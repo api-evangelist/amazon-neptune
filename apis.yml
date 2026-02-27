@@ -1,0 +1,105 @@
+name: Amazon Neptune
+description: Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build and run applications that work with highly connected datasets.
+image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+tags:
+- Graph Database
+- Database
+- AWS
+- Neptune
+- RDF
+- Property Graph
+- Gremlin
+- SPARQL
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+apis:
+- name: Amazon Neptune API
+  description: Amazon Neptune REST API for managing Neptune database clusters, instances, and related resources
+  image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+  humanUrl: https://aws.amazon.com/neptune/
+  baseUrl: https://neptune.{region}.amazonaws.com
+  tags:
+  - Graph Database
+  - Database Management
+  - AWS
+  properties:
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
+  - type: OpenAPI
+    url: https://api.apis.guru/v2/specs/amazonaws.com/neptune/2014-10-31/openapi.yaml
+  - type: API Reference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/api-reference.html
+  - type: Pricing
+    url: https://aws.amazon.com/neptune/pricing/
+  - type: Getting Started
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
+- name: Neptune Gremlin API
+  description: Apache TinkerPop Gremlin graph traversal language API for querying property graphs in Neptune
+  image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+  humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
+  baseUrl: wss://{cluster-endpoint}:8182/gremlin
+  tags:
+  - Gremlin
+  - Graph Traversal
+  - Property Graph
+  - Query Language
+  properties:
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
+  - type: Gremlin Reference
+    url: https://tinkerpop.apache.org/docs/current/reference/
+  - type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
+- name: Neptune SPARQL API
+  description: W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune
+  image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+  humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
+  baseUrl: https://{cluster-endpoint}:8182/sparql
+  tags:
+  - SPARQL
+  - RDF
+  - Semantic Web
+  - Query Language
+  properties:
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
+  - type: SPARQL Reference
+    url: https://www.w3.org/TR/sparql11-query/
+  - type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
+- name: Neptune openCypher API
+  description: openCypher graph query language API for querying property graphs with Cypher syntax
+  image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+  humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
+  baseUrl: https://{cluster-endpoint}:8182/openCypher
+  tags:
+  - openCypher
+  - Cypher
+  - Property Graph
+  - Query Language
+  properties:
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
+  - type: openCypher Reference
+    url: https://opencypher.org/
+maintainers:
+- name: Amazon Web Services
+  email: aws-neptune@amazon.com
+  url: https://aws.amazon.com
+common:
+- type: Blog
+  url: https://aws.amazon.com/neptune/resources/#Blog_Posts
+- type: FAQs
+  url: https://aws.amazon.com/neptune/faqs/
+- type: Features
+  url: https://aws.amazon.com/neptune/features/
+- type: Security
+  url: https://docs.aws.amazon.com/neptune/latest/userguide/security.html
+- type: Service Level Agreement
+  url: https://aws.amazon.com/neptune/sla/
+- type: AWS Console
+  url: https://console.aws.amazon.com/neptune/
+- type: GitHub Samples
+  url: https://github.com/aws-samples/amazon-neptune-samples
+include: []
