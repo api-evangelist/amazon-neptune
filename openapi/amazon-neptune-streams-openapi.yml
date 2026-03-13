@@ -1,0 +1,351 @@
+openapi: 3.1.0
+info:
+  title: Neptune Streams API
+  description: >-
+    Neptune Streams generates a complete sequence of change-log entries that
+    record every change made to graph data as it happens, enabling real-time
+    capture of graph mutations via a REST API. Streams must be enabled by
+    setting the neptune_streams DB cluster parameter to 1. The API supports
+    both property graph (Gremlin/openCypher) and RDF (SPARQL) stream
+    endpoints. Only HTTP GET operations are allowed. Maximum response size
+    is 10 MB. Supports gzip compression via Accept-Encoding header.
+  version: '2024-01-01'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{cluster-endpoint}:8182
+    description: Neptune Streams REST endpoint
+    variables:
+      cluster-endpoint:
+        default: your-cluster-endpoint.region.neptune.amazonaws.com
+        description: The cluster endpoint DNS name for your Neptune DB cluster
+security:
+  - aws_sigv4: []
+tags:
+  - name: Property Graph Stream
+    description: Change data capture for property graph (Gremlin/openCypher) data
+  - name: SPARQL Stream
+    description: Change data capture for RDF (SPARQL) data
+paths:
+  /propertygraph/stream:
+    get:
+      operationId: getPropertyGraphStream
+      summary: Get property graph change stream records
+      description: >-
+        Gets a stream of change-log entries for property graph
+        (Gremlin/openCypher) data. Each entry records a mutation (ADD or
+        REMOVE) made to vertices, edges, or their properties. The response
+        format is PG_JSON. This is the recommended endpoint for property
+        graph streams, replacing the deprecated /gremlin/stream endpoint.
+      tags:
+        - Property Graph Stream
+      parameters:
+        - name: limit
+          in: query
+          description: >-
+            Maximum number of records to return (1-100,000). Default is 10.
+            The 10 MB response size limit takes precedence over this value.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100000
+            default: 10
+        - name: iteratorType
+          in: query
+          description: >-
+            Determines the starting point for reading the stream.
+          schema:
+            type: string
+            enum:
+              - AT_SEQUENCE_NUMBER
+              - AFTER_SEQUENCE_NUMBER
+              - TRIM_HORIZON
+              - LATEST
+            default: AT_SEQUENCE_NUMBER
+        - name: commitNum
+          in: query
+          description: >-
+            The commit number to start reading from. Required when
+            iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER.
+          schema:
+            type: integer
+        - name: opNum
+          in: query
+          description: >-
+            The operation sequence number within the specified commit.
+            Default is 1.
+          schema:
+            type: integer
+            default: 1
+        - name: Accept-Encoding
+          in: header
+          description: Set to 'gzip' to receive compressed responses.
+          schema:
+            type: string
+            enum:
+              - gzip
+      responses:
+        '200':
+          description: Stream records retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyGraphStreamResponse'
+        '400':
+          description: Bad request - invalid parameters.
+        '500':
+          description: Internal server error.
+  /pg/stream:
+    get:
+      operationId: getPropertyGraphStreamAlias
+      summary: Get property graph change stream records (alias)
+      description: >-
+        Alias for /propertygraph/stream. Gets a stream of change-log entries
+        for property graph data. Supports the same parameters and returns
+        the same response format.
+      tags:
+        - Property Graph Stream
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100000
+            default: 10
+        - name: iteratorType
+          in: query
+          schema:
+            type: string
+            enum:
+              - AT_SEQUENCE_NUMBER
+              - AFTER_SEQUENCE_NUMBER
+              - TRIM_HORIZON
+              - LATEST
+        - name: commitNum
+          in: query
+          schema:
+            type: integer
+        - name: opNum
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Stream records retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyGraphStreamResponse'
+  /sparql/stream:
+    get:
+      operationId: getSparqlStream
+      summary: Get SPARQL RDF change stream records
+      description: >-
+        Gets a stream of change-log entries for RDF (SPARQL) data. Each
+        entry records a mutation (ADD or REMOVE) of an RDF triple or quad.
+        The response format is NQUADS, with each change represented as an
+        N-Quads statement string.
+      tags:
+        - SPARQL Stream
+      parameters:
+        - name: limit
+          in: query
+          description: >-
+            Maximum number of records to return (1-100,000). Default is 10.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100000
+            default: 10
+        - name: iteratorType
+          in: query
+          description: >-
+            Determines the starting point for reading the stream.
+          schema:
+            type: string
+            enum:
+              - AT_SEQUENCE_NUMBER
+              - AFTER_SEQUENCE_NUMBER
+              - TRIM_HORIZON
+              - LATEST
+            default: AT_SEQUENCE_NUMBER
+        - name: commitNum
+          in: query
+          description: >-
+            The commit number to start reading from. Required when
+            iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER.
+          schema:
+            type: integer
+        - name: opNum
+          in: query
+          description: >-
+            The operation sequence number within the specified commit.
+          schema:
+            type: integer
+            default: 1
+        - name: Accept-Encoding
+          in: header
+          description: Set to 'gzip' to receive compressed responses.
+          schema:
+            type: string
+            enum:
+              - gzip
+      responses:
+        '200':
+          description: Stream records retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlStreamResponse'
+        '400':
+          description: Bad request - invalid parameters.
+        '500':
+          description: Internal server error.
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication via IAM
+  schemas:
+    PropertyGraphStreamResponse:
+      type: object
+      properties:
+        lastEventId:
+          $ref: '#/components/schemas/StreamEventId'
+        lastTrxTimestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds of the last commit.
+        format:
+          type: string
+          enum:
+            - PG_JSON
+          description: The serialization format (always PG_JSON for property graph).
+        records:
+          type: array
+          description: The array of change-log stream records.
+          items:
+            $ref: '#/components/schemas/PropertyGraphStreamRecord'
+        totalRecords:
+          type: integer
+          description: Total number of records in the response.
+    PropertyGraphStreamRecord:
+      type: object
+      properties:
+        commitTimestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds of the transaction commit.
+        eventId:
+          $ref: '#/components/schemas/StreamEventId'
+        data:
+          $ref: '#/components/schemas/PropertyGraphData'
+        op:
+          type: string
+          enum:
+            - ADD
+            - REMOVE
+          description: The operation type (ADD or REMOVE).
+        isLastOp:
+          type: boolean
+          description: >-
+            True only if this is the last operation in the transaction.
+    PropertyGraphData:
+      type: object
+      description: >-
+        The serialized property graph change data. The type field indicates
+        the element kind.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the element.
+        type:
+          type: string
+          description: >-
+            The element type: v (vertex), vl (vertex label), vp (vertex
+            property), e (edge), ep (edge property).
+          enum:
+            - v
+            - vl
+            - vp
+            - e
+            - ep
+        key:
+          type: string
+          description: The property key name.
+        value:
+          type: object
+          description: The property value with its data type.
+          properties:
+            value:
+              description: The actual property value.
+            dataType:
+              type: string
+              description: The data type (String, Integer, Double, etc.).
+        from:
+          type: string
+          description: Source vertex ID (for edges only).
+        to:
+          type: string
+          description: Target vertex ID (for edges only).
+    SparqlStreamResponse:
+      type: object
+      properties:
+        lastEventId:
+          $ref: '#/components/schemas/StreamEventId'
+        lastTrxTimestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds of the last commit.
+        format:
+          type: string
+          enum:
+            - NQUADS
+          description: The serialization format (always NQUADS for RDF).
+        records:
+          type: array
+          description: The array of change-log stream records.
+          items:
+            $ref: '#/components/schemas/SparqlStreamRecord'
+        totalRecords:
+          type: integer
+          description: Total number of records in the response.
+    SparqlStreamRecord:
+      type: object
+      properties:
+        commitTimestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds of the transaction commit.
+        eventId:
+          $ref: '#/components/schemas/StreamEventId'
+        data:
+          type: object
+          properties:
+            stmt:
+              type: string
+              description: >-
+                The N-Quads statement representing the RDF triple or quad change.
+        op:
+          type: string
+          enum:
+            - ADD
+            - REMOVE
+          description: The operation type (ADD or REMOVE).
+        isLastOp:
+          type: boolean
+          description: True only if this is the last operation in the transaction.
+    StreamEventId:
+      type: object
+      description: A sequence identifier for a stream event.
+      properties:
+        commitNum:
+          type: integer
+          description: The commit (transaction) number.
+        opNum:
+          type: integer
+          description: The operation number within the commit.

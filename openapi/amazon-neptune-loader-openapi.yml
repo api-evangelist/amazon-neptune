@@ -1,0 +1,445 @@
+openapi: 3.1.0
+info:
+  title: Neptune Loader API
+  description: >-
+    Neptune bulk loader API for ingesting large volumes of data from Amazon
+    S3 into a Neptune DB instance. It supports CSV formats for property
+    graphs and multiple RDF serialization formats including N-Triples,
+    N-Quads, RDF/XML, and Turtle. The loader operates from the HTTP
+    endpoint of a Neptune DB instance and tracks the most recent 1,024
+    bulk load jobs.
+  version: '2024-01-01'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{cluster-endpoint}:8182
+    description: Neptune Loader REST endpoint
+    variables:
+      cluster-endpoint:
+        default: your-cluster-endpoint.region.neptune.amazonaws.com
+        description: The cluster endpoint DNS name for your Neptune DB cluster
+security:
+  - aws_sigv4: []
+tags:
+  - name: Loader
+    description: Bulk data loading operations
+paths:
+  /loader:
+    post:
+      operationId: startBulkLoadJob
+      summary: Start a bulk data load job from S3
+      description: >-
+        Initiates a bulk data loading job from Amazon S3 into the Neptune
+        database. The source data can be in CSV format for property graphs
+        or in N-Triples, N-Quads, RDF/XML, or Turtle formats for RDF data.
+        The loader requires an IAM role with access to the S3 bucket.
+        Neptune queues up to 64 jobs in FIFO order when queueRequest is
+        enabled.
+      tags:
+        - Loader
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoaderRequest'
+            examples:
+              csvLoad:
+                summary: Load CSV property graph data
+                value:
+                  source: s3://my-bucket/graph-data/
+                  format: csv
+                  iamRoleArn: arn:aws:iam::123456789012:role/NeptuneLoadRole
+                  region: us-east-1
+                  failOnError: 'FALSE'
+                  parallelism: MEDIUM
+              rdfLoad:
+                summary: Load RDF triples
+                value:
+                  source: s3://my-bucket/rdf-data/data.nt
+                  format: ntriples
+                  iamRoleArn: arn:aws:iam::123456789012:role/NeptuneLoadRole
+                  region: us-east-1
+      responses:
+        '200':
+          description: Bulk load job started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderStartResponse'
+        '400':
+          description: Bad request - invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+    get:
+      operationId: listBulkLoadJobs
+      summary: List bulk load job IDs
+      description: >-
+        Returns a list of bulk load job IDs. Neptune tracks the most recent
+        1,024 bulk load jobs.
+      tags:
+        - Loader
+      parameters:
+        - name: limit
+          in: query
+          description: The maximum number of load IDs to return.
+          schema:
+            type: integer
+        - name: includeQueuedLoads
+          in: query
+          description: Whether to include queued load jobs in the response.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Load job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderListResponse'
+  /loader/{loadId}:
+    get:
+      operationId: getBulkLoadJobStatus
+      summary: Get the status of a bulk load job
+      description: >-
+        Returns the status of a specific bulk load job by its load ID.
+        Includes overall status, feed counts, and optionally detailed
+        error information. Neptune stores the last 10,000 error details
+        per job.
+      tags:
+        - Loader
+      parameters:
+        - name: loadId
+          in: path
+          required: true
+          description: The unique identifier of the bulk load job.
+          schema:
+            type: string
+        - name: details
+          in: query
+          description: Whether to include detailed feed-level status information.
+          schema:
+            type: boolean
+        - name: errors
+          in: query
+          description: Whether to include error details in the response.
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          description: The error page number to retrieve (when errors=true).
+          schema:
+            type: integer
+        - name: errorsPerPage
+          in: query
+          description: The number of errors per page (when errors=true).
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Load job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderStatusResponse'
+        '400':
+          description: Invalid loadId format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+        '404':
+          description: Load job with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+    delete:
+      operationId: cancelBulkLoadJob
+      summary: Cancel an in-progress bulk load job
+      description: >-
+        Cancels an in-progress bulk load job by its load ID. Must be
+        executed against the read/write cluster endpoint (not a read
+        replica).
+      tags:
+        - Loader
+      parameters:
+        - name: loadId
+          in: path
+          required: true
+          description: The unique identifier of the load job to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Load job cancelled successfully.
+        '400':
+          description: Invalid loadId format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+        '404':
+          description: >-
+            Load job with the specified ID does not exist or is not active.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+        '405':
+          description: >-
+            Load cancellation attempted on a read replica instance. Use the
+            read/write cluster endpoint instead.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderErrorResponse'
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication via IAM
+  schemas:
+    LoaderRequest:
+      type: object
+      required:
+        - source
+        - format
+        - iamRoleArn
+        - region
+      properties:
+        source:
+          type: string
+          description: >-
+            Amazon S3 URI identifying the data file(s), folder, or multiple
+            folders to load. Supported URI formats: s3://bucket_name/key,
+            https://s3.amazonaws.com/bucket_name/key,
+            https://s3.region.amazonaws.com/bucket_name/key.
+        format:
+          type: string
+          description: The data format of the source files.
+          enum:
+            - csv
+            - opencypher
+            - ntriples
+            - nquads
+            - rdfxml
+            - turtle
+        iamRoleArn:
+          type: string
+          description: >-
+            The ARN of the IAM role that provides Neptune access to the S3
+            bucket. Can be a comma-separated list for cross-account access.
+        region:
+          type: string
+          description: >-
+            The AWS Region of the S3 bucket. Must match the Neptune cluster
+            region or be accessible cross-region.
+        mode:
+          type: string
+          description: >-
+            The load mode. NEW fails if data was previously loaded. RESUME
+            continues a failed load. AUTO resumes or starts new as needed.
+          enum:
+            - NEW
+            - RESUME
+            - AUTO
+          default: AUTO
+        failOnError:
+          type: string
+          description: Whether to stop the entire load job on error.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+          default: 'TRUE'
+        parallelism:
+          type: string
+          description: >-
+            The degree of parallelism for loading. LOW uses a single thread,
+            MEDIUM uses num_vCPU/2, HIGH uses num_vCPU, OVERSUBSCRIBE uses
+            all available resources.
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+            - OVERSUBSCRIBE
+          default: HIGH
+        parserConfiguration:
+          type: object
+          description: Optional parser configuration settings for RDF data.
+          properties:
+            baseUri:
+              type: string
+              description: The base URI for relative URIs in the data.
+            namedGraphUri:
+              type: string
+              description: The default named graph URI for loaded triples.
+            allowEmptyStrings:
+              type: boolean
+              description: Whether to allow empty string property values.
+        updateSingleCardinalityProperties:
+          type: string
+          description: >-
+            Whether to update existing single-cardinality vertex properties.
+            Not supported for openCypher format.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+          default: 'FALSE'
+        queueRequest:
+          type: string
+          description: >-
+            Whether to queue the request if a load is already running.
+            Neptune queues up to 64 jobs in FIFO order.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+          default: 'FALSE'
+        dependencies:
+          type: array
+          description: >-
+            Array of load job IDs that must complete successfully before
+            this job runs.
+          items:
+            type: string
+        userProvidedEdgeIds:
+          type: string
+          description: >-
+            For openCypher format only. TRUE requires an :ID column in edge
+            files. FALSE auto-generates edge IDs.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+    LoaderStartResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The HTTP status (e.g., '200 OK').
+        payload:
+          type: object
+          properties:
+            loadId:
+              type: string
+              description: The unique identifier for the initiated load job.
+    LoaderListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            loadIds:
+              type: array
+              description: The list of load job IDs.
+              items:
+                type: string
+    LoaderStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            feedCount:
+              type: array
+              description: Count of feeds processed.
+              items:
+                type: object
+            overallStatus:
+              type: object
+              description: Overall status of the load job.
+              properties:
+                fullUri:
+                  type: string
+                  description: The S3 URI of the data source.
+                runNumber:
+                  type: integer
+                  description: The run number for this load.
+                retryNumber:
+                  type: integer
+                  description: The retry number.
+                status:
+                  type: string
+                  description: >-
+                    The job status (LOAD_NOT_STARTED, LOAD_IN_PROGRESS,
+                    LOAD_COMPLETED, LOAD_CANCELLED_BY_USER,
+                    LOAD_CANCELLED_DUE_TO_ERRORS, LOAD_FAILED,
+                    LOAD_UNEXPECTED_ERROR, LOAD_DATA_DEADLOCK,
+                    LOAD_DATA_FAILED_DUE_TO_FEED_MODIFIED_OR_DELETED,
+                    LOAD_S3_READ_ERROR, LOAD_S3_ACCESS_DENIED_ERROR,
+                    LOAD_COMMITTED_W_WRITE_CONFLICTS).
+                  enum:
+                    - LOAD_NOT_STARTED
+                    - LOAD_IN_PROGRESS
+                    - LOAD_COMPLETED
+                    - LOAD_CANCELLED_BY_USER
+                    - LOAD_CANCELLED_DUE_TO_ERRORS
+                    - LOAD_FAILED
+                    - LOAD_UNEXPECTED_ERROR
+                    - LOAD_DATA_DEADLOCK
+                    - LOAD_DATA_FAILED_DUE_TO_FEED_MODIFIED_OR_DELETED
+                    - LOAD_S3_READ_ERROR
+                    - LOAD_S3_ACCESS_DENIED_ERROR
+                    - LOAD_COMMITTED_W_WRITE_CONFLICTS
+                totalTimeSpent:
+                  type: integer
+                  description: Total time spent on the load in seconds.
+                startTime:
+                  type: integer
+                  description: Start time as a Unix timestamp.
+                totalRecords:
+                  type: integer
+                  description: Total records processed.
+                totalDuplicates:
+                  type: integer
+                  description: Total duplicate records encountered.
+                parsingErrors:
+                  type: integer
+                  description: Total parsing errors.
+                datatypeMismatchErrors:
+                  type: integer
+                  description: Total datatype mismatch errors.
+                insertErrors:
+                  type: integer
+                  description: Total insert errors.
+            failedFeeds:
+              type: array
+              description: Details about failed feeds.
+              items:
+                type: object
+            errors:
+              type: object
+              description: Error details (when errors=true was requested).
+    LoaderErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+          description: Detailed error message.

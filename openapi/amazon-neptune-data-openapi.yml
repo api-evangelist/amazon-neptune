@@ -1,0 +1,1800 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Data API
+  description: >-
+    Amazon Neptune Data API provides SDK support for more than 40 data
+    operations including data loading, query execution, data inquiry, and
+    machine learning. It supports Gremlin and openCypher query languages
+    and provides programmatic access to Neptune graph data through AWS SDKs.
+  version: '2023-08-01'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://neptune-db.{region}.amazonaws.com
+    description: Amazon Neptune Data API regional endpoint
+    variables:
+      region:
+        default: us-east-1
+        description: AWS region
+security:
+  - aws_sigv4: []
+tags:
+  - name: Gremlin
+    description: Execute Gremlin graph traversal queries
+  - name: openCypher
+    description: Execute openCypher graph queries
+  - name: SPARQL
+    description: Execute SPARQL queries against RDF data
+  - name: Status
+    description: Query engine status and statistics
+  - name: Loader
+    description: Bulk data loading operations
+  - name: Streams
+    description: Change data capture stream operations
+  - name: ML
+    description: Machine learning operations
+paths:
+  /gremlin:
+    post:
+      operationId: executeGremlinQuery
+      summary: Execute a Gremlin query via the Data API
+      description: >-
+        Executes a Gremlin query against the Neptune graph database using the
+        Data API. The query is submitted as a JSON payload and results are
+        returned synchronously.
+      tags:
+        - Gremlin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteGremlinQueryInput'
+      responses:
+        '200':
+          description: Query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecuteGremlinQueryOutput'
+        '400':
+          description: Bad request - malformed query or invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '408':
+          description: Query timed out.
+        '500':
+          description: Internal server error.
+  /gremlin/explain:
+    post:
+      operationId: executeGremlinExplainQuery
+      summary: Get the execution plan for a Gremlin query
+      description: >-
+        Executes a Gremlin explain query against the Neptune graph database.
+        Returns the query execution plan without actually running the query
+        against the data.
+      tags:
+        - Gremlin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteGremlinQueryInput'
+      responses:
+        '200':
+          description: Explain query executed successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The Gremlin query execution plan as text.
+        '400':
+          description: Bad request - malformed query.
+  /gremlin/profile:
+    post:
+      operationId: executeGremlinProfileQuery
+      summary: Profile a Gremlin query execution
+      description: >-
+        Executes a Gremlin profile query against the Neptune graph database.
+        Returns the query execution plan along with actual runtime statistics
+        including execution time and intermediate result counts.
+      tags:
+        - Gremlin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteGremlinProfileInput'
+      responses:
+        '200':
+          description: Profile query executed successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The Gremlin query profile with runtime statistics.
+        '400':
+          description: Bad request - malformed query.
+  /gremlin/status:
+    get:
+      operationId: getGremlinQueryStatus
+      summary: Get the status of Gremlin queries
+      description: >-
+        Gets the status of running and waiting Gremlin queries. Returns a list
+        of active queries with their query IDs and statuses.
+      tags:
+        - Gremlin
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatusOutput'
+  /gremlin/status/{queryId}:
+    get:
+      operationId: getGremlinQueryStatusById
+      summary: Get the status of a specific Gremlin query
+      description: >-
+        Gets the status of a specific Gremlin query by its query ID.
+      tags:
+        - Gremlin
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the Gremlin query.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatus'
+        '404':
+          description: Query not found.
+    delete:
+      operationId: cancelGremlinQuery
+      summary: Cancel a running Gremlin query
+      description: >-
+        Cancels a running Gremlin query by its query ID.
+      tags:
+        - Gremlin
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the Gremlin query to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query not found.
+  /opencypher:
+    post:
+      operationId: executeOpenCypherQuery
+      summary: Execute an openCypher query via the Data API
+      description: >-
+        Executes an openCypher query against the Neptune property graph
+        database using the Data API. Returns the results in JSON format.
+      tags:
+        - openCypher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteOpenCypherQueryInput'
+      responses:
+        '200':
+          description: Query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecuteOpenCypherQueryOutput'
+        '400':
+          description: Bad request - malformed query or invalid parameters.
+        '500':
+          description: Internal server error.
+  /opencypher/explain:
+    post:
+      operationId: executeOpenCypherExplainQuery
+      summary: Get the execution plan for an openCypher query
+      description: >-
+        Executes an openCypher explain query. Returns the query execution
+        plan without actually running the query against the data.
+      tags:
+        - openCypher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteOpenCypherExplainInput'
+      responses:
+        '200':
+          description: Explain plan returned successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad request - malformed query.
+  /opencypher/status:
+    get:
+      operationId: getOpenCypherQueryStatus
+      summary: Get the status of openCypher queries
+      description: >-
+        Gets the status of running and waiting openCypher queries.
+      tags:
+        - openCypher
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryStatusOutput'
+  /opencypher/status/{queryId}:
+    get:
+      operationId: getOpenCypherQueryStatusById
+      summary: Get the status of a specific openCypher query
+      description: >-
+        Gets the status of a specific openCypher query by its query ID.
+      tags:
+        - openCypher
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the openCypher query.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+        '404':
+          description: Query not found.
+    delete:
+      operationId: cancelOpenCypherQuery
+      summary: Cancel a running openCypher query
+      description: >-
+        Cancels a running openCypher query by its query ID.
+      tags:
+        - openCypher
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the openCypher query to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query not found.
+  /sparql:
+    post:
+      operationId: executeSparqlQuery
+      summary: Execute a SPARQL query via the Data API
+      description: >-
+        Executes a SPARQL query against the Neptune RDF graph database using
+        the Data API. Supports SELECT, ASK, CONSTRUCT, and DESCRIBE queries.
+      tags:
+        - SPARQL
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExecuteSparqlQueryInput'
+      responses:
+        '200':
+          description: Query executed successfully.
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SparqlQueryOutput'
+        '400':
+          description: Bad request - malformed query.
+  /sparql/status:
+    get:
+      operationId: getSparqlQueryStatus
+      summary: Get the status of SPARQL queries
+      description: >-
+        Gets the status of running and waiting SPARQL queries.
+      tags:
+        - SPARQL
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  acceptedQueryCount:
+                    type: integer
+                  runningQueryCount:
+                    type: integer
+                  queries:
+                    type: array
+                    items:
+                      type: object
+  /status:
+    get:
+      operationId: getEngineStatus
+      summary: Get Neptune engine status
+      description: >-
+        Returns the status of the Neptune DB instance including engine version,
+        cluster role, and instance health information.
+      tags:
+        - Status
+      responses:
+        '200':
+          description: Engine status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineStatusOutput'
+  /propertygraph/statistics:
+    get:
+      operationId: getPropertygraphStatistics
+      summary: Get property graph statistics
+      description: >-
+        Returns statistics for the property graph data stored in the Neptune
+        database, including node and edge counts and label distributions.
+      tags:
+        - Status
+      responses:
+        '200':
+          description: Statistics retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertygraphStatisticsOutput'
+    post:
+      operationId: managePropertygraphStatistics
+      summary: Manage property graph statistics
+      description: >-
+        Starts or deletes statistics generation for the property graph data.
+      tags:
+        - Status
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - disableAutoCompute
+                    - enableAutoCompute
+                    - refresh
+      responses:
+        '200':
+          description: Statistics operation completed successfully.
+  /sparql/statistics:
+    get:
+      operationId: getSparqlStatistics
+      summary: Get SPARQL RDF statistics
+      description: >-
+        Returns statistics for the RDF data stored in the Neptune database,
+        including triple counts and predicate distributions.
+      tags:
+        - Status
+      responses:
+        '200':
+          description: Statistics retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlStatisticsOutput'
+    post:
+      operationId: manageSparqlStatistics
+      summary: Manage SPARQL RDF statistics
+      description: >-
+        Starts or deletes statistics generation for the RDF data.
+      tags:
+        - Status
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                    - disableAutoCompute
+                    - enableAutoCompute
+                    - refresh
+      responses:
+        '200':
+          description: Statistics operation completed successfully.
+  /loader:
+    post:
+      operationId: startLoaderJob
+      summary: Start a bulk loader job
+      description: >-
+        Initiates a bulk data loading job from Amazon S3 into the Neptune
+        database. Supports CSV for property graphs and multiple RDF formats.
+      tags:
+        - Loader
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartLoaderJobInput'
+      responses:
+        '200':
+          description: Loader job started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartLoaderJobOutput'
+        '400':
+          description: Bad request - invalid parameters.
+        '500':
+          description: Internal server error.
+    get:
+      operationId: listLoaderJobs
+      summary: List bulk loader jobs
+      description: >-
+        Returns a list of Neptune bulk loader job IDs. Neptune tracks the
+        most recent 1,024 bulk load jobs.
+      tags:
+        - Loader
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of load IDs to return.
+          schema:
+            type: integer
+        - name: includeQueuedLoads
+          in: query
+          description: Whether to include queued loads in the response.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Loader job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  payload:
+                    type: object
+                    properties:
+                      loadIds:
+                        type: array
+                        items:
+                          type: string
+  /loader/{loadId}:
+    get:
+      operationId: getLoaderJobStatus
+      summary: Get the status of a bulk loader job
+      description: >-
+        Returns the status of a specific bulk loader job including overall
+        progress and any error details.
+      tags:
+        - Loader
+      parameters:
+        - name: loadId
+          in: path
+          required: true
+          description: The unique identifier of the load job.
+          schema:
+            type: string
+        - name: details
+          in: query
+          description: Whether to include detailed status information.
+          schema:
+            type: boolean
+        - name: errors
+          in: query
+          description: Whether to include error details.
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          description: Error page number to retrieve.
+          schema:
+            type: integer
+        - name: errorsPerPage
+          in: query
+          description: Number of errors per page.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Loader job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderJobStatusOutput'
+        '404':
+          description: Load job not found.
+    delete:
+      operationId: cancelLoaderJob
+      summary: Cancel a bulk loader job
+      description: >-
+        Cancels an in-progress bulk loader job by its load ID.
+      tags:
+        - Loader
+      parameters:
+        - name: loadId
+          in: path
+          required: true
+          description: The unique identifier of the load job to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Loader job cancelled successfully.
+        '404':
+          description: Load job not found.
+  /propertygraph/stream:
+    get:
+      operationId: getPropertygraphStream
+      summary: Get property graph change stream records
+      description: >-
+        Gets a stream of change-log entries for property graph data. Each
+        entry records a mutation (add, remove) made to the graph data.
+      tags:
+        - Streams
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of records to return (1-100000, default 10).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100000
+            default: 10
+        - name: iteratorType
+          in: query
+          description: >-
+            The stream position to start reading from.
+          schema:
+            type: string
+            enum:
+              - AT_SEQUENCE_NUMBER
+              - AFTER_SEQUENCE_NUMBER
+              - TRIM_HORIZON
+              - LATEST
+        - name: commitNum
+          in: query
+          description: The commit number to start from.
+          schema:
+            type: integer
+        - name: opNum
+          in: query
+          description: The operation sequence number within the commit.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Stream records retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertygraphStreamOutput'
+  /sparql/stream:
+    get:
+      operationId: getSparqlStream
+      summary: Get SPARQL RDF change stream records
+      description: >-
+        Gets a stream of change-log entries for RDF data. Each entry records
+        a mutation (add, remove) made to the RDF triples.
+      tags:
+        - Streams
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of records to return (1-100000, default 10).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100000
+            default: 10
+        - name: iteratorType
+          in: query
+          description: The stream position to start reading from.
+          schema:
+            type: string
+            enum:
+              - AT_SEQUENCE_NUMBER
+              - AFTER_SEQUENCE_NUMBER
+              - TRIM_HORIZON
+              - LATEST
+        - name: commitNum
+          in: query
+          description: The commit number to start from.
+          schema:
+            type: integer
+        - name: opNum
+          in: query
+          description: The operation sequence number within the commit.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Stream records retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlStreamOutput'
+  /ml/dataprocessing:
+    post:
+      operationId: startMLDataProcessingJob
+      summary: Start an ML data processing job
+      description: >-
+        Creates a new Neptune ML data processing job that prepares graph data
+        for model training using Amazon SageMaker.
+      tags:
+        - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartMLDataProcessingJobInput'
+      responses:
+        '200':
+          description: Data processing job started successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+    get:
+      operationId: listMLDataProcessingJobs
+      summary: List ML data processing jobs
+      description: >-
+        Returns a list of active Neptune ML data processing job IDs.
+      tags:
+        - ML
+      parameters:
+        - name: maxItems
+          in: query
+          description: Maximum number of items to return (default 10, max 1024).
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          description: The ARN of the IAM role for Neptune access.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Data processing job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ids:
+                    type: array
+                    items:
+                      type: string
+  /ml/dataprocessing/{jobId}:
+    get:
+      operationId: getMLDataProcessingJobStatus
+      summary: Get ML data processing job status
+      description: >-
+        Returns the status of a Neptune ML data processing job.
+      tags:
+        - ML
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: The unique identifier of the data processing job.
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          description: The ARN of the IAM role for Neptune access.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLJobStatusOutput'
+    delete:
+      operationId: cancelMLDataProcessingJob
+      summary: Cancel an ML data processing job
+      description: >-
+        Cancels a running Neptune ML data processing job.
+      tags:
+        - ML
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: The unique identifier of the data processing job.
+          schema:
+            type: string
+        - name: clean
+          in: query
+          description: Whether to delete all S3 artifacts when cancelling.
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          description: The ARN of the IAM role for Neptune access.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job cancelled successfully.
+  /ml/modeltraining:
+    post:
+      operationId: startMLModelTrainingJob
+      summary: Start an ML model training job
+      description: >-
+        Creates a new Neptune ML model training job using Amazon SageMaker.
+      tags:
+        - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartMLModelTrainingJobInput'
+      responses:
+        '200':
+          description: Model training job started successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+    get:
+      operationId: listMLModelTrainingJobs
+      summary: List ML model training jobs
+      description: >-
+        Returns a list of active Neptune ML model training job IDs.
+      tags:
+        - ML
+      parameters:
+        - name: maxItems
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Model training job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ids:
+                    type: array
+                    items:
+                      type: string
+  /ml/modeltraining/{jobId}:
+    get:
+      operationId: getMLModelTrainingJobStatus
+      summary: Get ML model training job status
+      description: >-
+        Returns the status of a Neptune ML model training job.
+      tags:
+        - ML
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLJobStatusOutput'
+    delete:
+      operationId: cancelMLModelTrainingJob
+      summary: Cancel an ML model training job
+      description: >-
+        Cancels a running Neptune ML model training job.
+      tags:
+        - ML
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: clean
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job cancelled successfully.
+  /ml/modeltransform:
+    post:
+      operationId: startMLModelTransformJob
+      summary: Start an ML model transform job
+      description: >-
+        Creates a new Neptune ML model transform job that generates model
+        artifacts for inference.
+      tags:
+        - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartMLModelTransformJobInput'
+      responses:
+        '200':
+          description: Model transform job started successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+    get:
+      operationId: listMLModelTransformJobs
+      summary: List ML model transform jobs
+      description: >-
+        Returns a list of active Neptune ML model transform job IDs.
+      tags:
+        - ML
+      parameters:
+        - name: maxItems
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Model transform job list retrieved successfully.
+  /ml/modeltransform/{jobId}:
+    get:
+      operationId: getMLModelTransformJobStatus
+      summary: Get ML model transform job status
+      description: >-
+        Returns the status of a Neptune ML model transform job.
+      tags:
+        - ML
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLJobStatusOutput'
+    delete:
+      operationId: cancelMLModelTransformJob
+      summary: Cancel an ML model transform job
+      description: >-
+        Cancels a running Neptune ML model transform job.
+      tags:
+        - ML
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: clean
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job cancelled successfully.
+  /ml/endpoints:
+    post:
+      operationId: createMLEndpoint
+      summary: Create an ML inference endpoint
+      description: >-
+        Creates a new Neptune ML inference endpoint backed by Amazon SageMaker.
+      tags:
+        - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMLEndpointInput'
+      responses:
+        '200':
+          description: Inference endpoint created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+    get:
+      operationId: listMLEndpoints
+      summary: List ML inference endpoints
+      description: >-
+        Returns a list of active Neptune ML inference endpoint IDs.
+      tags:
+        - ML
+      parameters:
+        - name: maxItems
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Endpoint list retrieved successfully.
+  /ml/endpoints/{endpointId}:
+    get:
+      operationId: getMLEndpointStatus
+      summary: Get ML inference endpoint status
+      description: >-
+        Returns the status of a Neptune ML inference endpoint.
+      tags:
+        - ML
+      parameters:
+        - name: endpointId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Endpoint status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLEndpointStatusOutput'
+    delete:
+      operationId: deleteMLEndpoint
+      summary: Delete an ML inference endpoint
+      description: >-
+        Deletes a Neptune ML inference endpoint.
+      tags:
+        - ML
+      parameters:
+        - name: endpointId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: clean
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Endpoint deleted successfully.
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+    ExecuteGremlinQueryInput:
+      type: object
+      required:
+        - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: The Gremlin traversal query string to execute.
+    ExecuteGremlinQueryOutput:
+      type: object
+      properties:
+        requestId:
+          type: string
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: integer
+        result:
+          type: object
+          properties:
+            data:
+              description: The query result data.
+    ExecuteGremlinProfileInput:
+      type: object
+      required:
+        - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: The Gremlin traversal query string to profile.
+        results:
+          type: boolean
+          description: Whether to include results in the profile output.
+        chop:
+          type: integer
+          description: Maximum length of result string per entry.
+        serializer:
+          type: string
+          description: The serialization format for results.
+        indexOps:
+          type: boolean
+          description: Whether to include index operation details.
+    GremlinQueryStatusOutput:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/GremlinQueryStatus'
+    GremlinQueryStatus:
+      type: object
+      properties:
+        queryId:
+          type: string
+        queryString:
+          type: string
+        queryEvalStats:
+          type: object
+          properties:
+            waited:
+              type: integer
+            elapsed:
+              type: integer
+            cancelled:
+              type: boolean
+    ExecuteOpenCypherQueryInput:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The openCypher query string to execute.
+        parameters:
+          type: string
+          description: >-
+            The openCypher query parameters as a JSON-serialized string.
+    ExecuteOpenCypherQueryOutput:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+          description: The query result rows.
+    ExecuteOpenCypherExplainInput:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The openCypher query to explain.
+        parameters:
+          type: string
+        explainMode:
+          type: string
+          enum:
+            - static
+            - dynamic
+            - details
+          description: The explain mode (static, dynamic, or details).
+    OpenCypherQueryStatusOutput:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            type: object
+            properties:
+              queryId:
+                type: string
+              queryString:
+                type: string
+              queryEvalStats:
+                type: object
+    ExecuteSparqlQueryInput:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).
+        update:
+          type: string
+          description: The SPARQL update string (for INSERT, DELETE operations).
+    SparqlQueryOutput:
+      type: object
+      properties:
+        head:
+          type: object
+          properties:
+            vars:
+              type: array
+              items:
+                type: string
+        results:
+          type: object
+          properties:
+            bindings:
+              type: array
+              items:
+                type: object
+    EngineStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the Neptune engine (healthy, recovery, etc.).
+        startTime:
+          type: string
+          description: The start time of the engine.
+        dbEngineVersion:
+          type: string
+          description: The Neptune engine version.
+        role:
+          type: string
+          description: The cluster role (writer or reader).
+        dfeQueryEngine:
+          type: string
+          description: The DFE query engine status (enabled or viaQueryHint).
+        gremlin:
+          type: object
+          properties:
+            version:
+              type: string
+        sparql:
+          type: object
+          properties:
+            version:
+              type: string
+        opencypher:
+          type: object
+          properties:
+            version:
+              type: string
+        labMode:
+          type: object
+          additionalProperties:
+            type: string
+        features:
+          type: object
+          additionalProperties:
+            type: object
+    PropertygraphStatisticsOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            graphStatistics:
+              type: object
+              properties:
+                numNodes:
+                  type: integer
+                numEdges:
+                  type: integer
+                numNodeLabels:
+                  type: integer
+                numEdgeLabels:
+                  type: integer
+                numNodeProperties:
+                  type: integer
+                numEdgeProperties:
+                  type: integer
+    SparqlStatisticsOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            graphStatistics:
+              type: object
+              properties:
+                numStatements:
+                  type: integer
+                numDistinctSubjects:
+                  type: integer
+                numDistinctPredicates:
+                  type: integer
+    StartLoaderJobInput:
+      type: object
+      required:
+        - source
+        - format
+        - iamRoleArn
+        - region
+      properties:
+        source:
+          type: string
+          description: >-
+            Amazon S3 URI identifying files or folders to load (s3://bucket/key).
+        format:
+          type: string
+          description: The data format of the files to load.
+          enum:
+            - csv
+            - opencypher
+            - ntriples
+            - nquads
+            - rdfxml
+            - turtle
+        iamRoleArn:
+          type: string
+          description: The ARN of the IAM role with S3 access.
+        region:
+          type: string
+          description: The AWS Region of the S3 bucket.
+        mode:
+          type: string
+          description: The load mode.
+          enum:
+            - NEW
+            - RESUME
+            - AUTO
+          default: AUTO
+        failOnError:
+          type: string
+          description: Whether to stop the load job on error.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+          default: 'TRUE'
+        parallelism:
+          type: string
+          description: The degree of parallelism for loading.
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+            - OVERSUBSCRIBE
+          default: HIGH
+        parserConfiguration:
+          type: object
+          description: Optional parser configuration settings.
+          properties:
+            baseUri:
+              type: string
+            namedGraphUri:
+              type: string
+            allowEmptyStrings:
+              type: boolean
+        updateSingleCardinalityProperties:
+          type: string
+          description: Whether to update existing single-cardinality properties.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+          default: 'FALSE'
+        queueRequest:
+          type: string
+          description: Whether to queue the request if a load is already running.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+          default: 'FALSE'
+        dependencies:
+          type: array
+          description: Load job IDs that must complete before this job runs.
+          items:
+            type: string
+        userProvidedEdgeIds:
+          type: string
+          description: For openCypher format, whether edge IDs are provided.
+          enum:
+            - 'TRUE'
+            - 'FALSE'
+    StartLoaderJobOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            loadId:
+              type: string
+              description: The unique identifier for the load job.
+    LoaderJobStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            feedCount:
+              type: array
+              items:
+                type: object
+            overallStatus:
+              type: object
+              properties:
+                fullUri:
+                  type: string
+                runNumber:
+                  type: integer
+                retryNumber:
+                  type: integer
+                status:
+                  type: string
+                totalTimeSpent:
+                  type: integer
+                startTime:
+                  type: integer
+                totalRecords:
+                  type: integer
+                totalDuplicates:
+                  type: integer
+                parsingErrors:
+                  type: integer
+                datatypeMismatchErrors:
+                  type: integer
+                insertErrors:
+                  type: integer
+    PropertygraphStreamOutput:
+      type: object
+      properties:
+        lastEventId:
+          type: object
+          properties:
+            commitNum:
+              type: integer
+            opNum:
+              type: integer
+        lastTrxTimestampInMillis:
+          type: integer
+          description: Timestamp of the last transaction in milliseconds.
+        format:
+          type: string
+          enum:
+            - PG_JSON
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertygraphStreamRecord'
+        totalRecords:
+          type: integer
+    PropertygraphStreamRecord:
+      type: object
+      properties:
+        commitTimestampInMillis:
+          type: integer
+        eventId:
+          type: object
+          properties:
+            commitNum:
+              type: integer
+            opNum:
+              type: integer
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              description: >-
+                The type of the element (v=vertex, vl=vertex label,
+                vp=vertex property, e=edge, ep=edge property).
+            key:
+              type: string
+            value:
+              type: object
+              properties:
+                value:
+                  description: The property value.
+                dataType:
+                  type: string
+            from:
+              type: string
+              description: Source vertex ID (for edges only).
+            to:
+              type: string
+              description: Target vertex ID (for edges only).
+        op:
+          type: string
+          enum:
+            - ADD
+            - REMOVE
+        isLastOp:
+          type: boolean
+    SparqlStreamOutput:
+      type: object
+      properties:
+        lastEventId:
+          type: object
+          properties:
+            commitNum:
+              type: integer
+            opNum:
+              type: integer
+        lastTrxTimestampInMillis:
+          type: integer
+        format:
+          type: string
+          enum:
+            - NQUADS
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              commitTimestampInMillis:
+                type: integer
+              eventId:
+                type: object
+                properties:
+                  commitNum:
+                    type: integer
+                  opNum:
+                    type: integer
+              data:
+                type: object
+                properties:
+                  stmt:
+                    type: string
+                    description: The N-Quads statement.
+              op:
+                type: string
+                enum:
+                  - ADD
+                  - REMOVE
+              isLastOp:
+                type: boolean
+        totalRecords:
+          type: integer
+    StartMLDataProcessingJobInput:
+      type: object
+      required:
+        - inputDataS3Location
+        - processedDataS3Location
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the job (auto-generated if omitted).
+        inputDataS3Location:
+          type: string
+          description: S3 URI for input data.
+        processedDataS3Location:
+          type: string
+          description: S3 URI for output results.
+        previousDataProcessingJobId:
+          type: string
+          description: Job ID of a previous job for incremental processing.
+        sagemakerIamRoleArn:
+          type: string
+          description: IAM role ARN for SageMaker execution.
+        neptuneIamRoleArn:
+          type: string
+          description: IAM role ARN for Neptune access.
+        processingInstanceType:
+          type: string
+          description: ML instance type (default auto-selected ml.r5 type).
+        processingInstanceVolumeSizeInGB:
+          type: integer
+          description: Disk volume size in GB (default 0 = auto-selected).
+        processingTimeOutInSeconds:
+          type: integer
+          description: Timeout in seconds (default 86400).
+        modelType:
+          type: string
+          description: Model type selection.
+          enum:
+            - heterogeneous
+            - kge
+        configFileName:
+          type: string
+          description: Data specification file name.
+          default: training-data-configuration.json
+        subnets:
+          type: array
+          items:
+            type: string
+          description: Subnet IDs in Neptune VPC.
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+          description: VPC security group IDs.
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+    StartMLModelTrainingJobInput:
+      type: object
+      required:
+        - dataProcessingJobId
+        - trainModelS3Location
+      properties:
+        id:
+          type: string
+        dataProcessingJobId:
+          type: string
+          description: Job ID of the completed data processing job.
+        trainModelS3Location:
+          type: string
+          description: S3 location for model artifacts.
+        previousModelTrainingJobId:
+          type: string
+        sagemakerIamRoleArn:
+          type: string
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          description: The model type to use.
+          enum:
+            - rgcn
+            - transe
+            - distmult
+            - rotate
+            - custom
+        baseProcessingInstanceType:
+          type: string
+        trainingInstanceType:
+          type: string
+          default: ml.p3.2xlarge
+        trainingInstanceVolumeSizeInGB:
+          type: integer
+        trainingTimeOutInSeconds:
+          type: integer
+          default: 86400
+        maxHPONumberOfTrainingJobs:
+          type: integer
+          default: 2
+        maxHPOParallelTrainingJobs:
+          type: integer
+          default: 2
+        subnets:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+        enableManagedSpotTraining:
+          type: boolean
+          default: false
+        customModelTrainingParameters:
+          type: object
+          properties:
+            sourceS3DirectoryPath:
+              type: string
+            trainingEntryPointScript:
+              type: string
+            transformEntryPointScript:
+              type: string
+    StartMLModelTransformJobInput:
+      type: object
+      required:
+        - modelTransformOutputS3Location
+      properties:
+        id:
+          type: string
+        dataProcessingJobId:
+          type: string
+        mlModelTrainingJobId:
+          type: string
+        trainingJobName:
+          type: string
+        modelTransformOutputS3Location:
+          type: string
+          description: S3 location for transform output.
+        sagemakerIamRoleArn:
+          type: string
+        neptuneIamRoleArn:
+          type: string
+        baseProcessingInstanceType:
+          type: string
+        baseProcessingInstanceVolumeSizeInGB:
+          type: integer
+        subnets:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+        customModelTransformParameters:
+          type: object
+          properties:
+            sourceS3DirectoryPath:
+              type: string
+            transformEntryPointScript:
+              type: string
+    CreateMLEndpointInput:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint.
+        mlModelTrainingJobId:
+          type: string
+          description: Job ID from a completed training job.
+        mlModelTransformJobId:
+          type: string
+          description: Job ID from a completed transform job.
+        update:
+          type: boolean
+          description: Whether this is an update request.
+          default: false
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          enum:
+            - rgcn
+            - kge
+            - transe
+            - distmult
+            - rotate
+        instanceType:
+          type: string
+          default: ml.m5.xlarge
+        instanceCount:
+          type: integer
+          default: 1
+        volumeEncryptionKMSKey:
+          type: string
+    MLJobStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
+    MLEndpointStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        endpoint:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+        endpointConfig:
+          type: object

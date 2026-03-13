@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/amazon-neptune/json-schema/amazon-neptune-db-instance-schema.json",
+  "title": "Amazon Neptune DB Instance",
+  "description": "Represents an Amazon Neptune DB instance, which is a compute node within a Neptune DB cluster that processes graph queries and manages the connection to the shared cluster storage.",
+  "type": "object",
+  "required": [
+    "DBInstanceIdentifier",
+    "DBInstanceClass",
+    "Engine"
+  ],
+  "properties": {
+    "DBInstanceIdentifier": {
+      "type": "string",
+      "description": "The user-supplied unique identifier for the DB instance.",
+      "minLength": 1,
+      "maxLength": 63
+    },
+    "DBInstanceArn": {
+      "type": "string",
+      "description": "The Amazon Resource Name (ARN) for the DB instance."
+    },
+    "DBInstanceClass": {
+      "type": "string",
+      "description": "The compute and memory capacity of the DB instance (e.g., db.r5.large, db.r6g.xlarge, db.serverless).",
+      "examples": [
+        "db.r5.large",
+        "db.r5.xlarge",
+        "db.r6g.large",
+        "db.t3.medium",
+        "db.serverless"
+      ]
+    },
+    "Engine": {
+      "type": "string",
+      "description": "The name of the database engine.",
+      "const": "neptune"
+    },
+    "EngineVersion": {
+      "type": "string",
+      "description": "The version of the Neptune database engine."
+    },
+    "DBInstanceStatus": {
+      "type": "string",
+      "description": "The current state of the DB instance.",
+      "enum": [
+        "available",
+        "backing-up",
+        "creating",
+        "deleting",
+        "failed",
+        "inaccessible-encryption-credentials",
+        "incompatible-network",
+        "incompatible-option-group",
+        "incompatible-parameters",
+        "incompatible-restore",
+        "maintenance",
+        "modifying",
+        "rebooting",
+        "renaming",
+        "starting",
+        "stopped",
+        "stopping",
+        "storage-optimization",
+        "upgrading"
+      ]
+    },
+    "Endpoint": {
+      "type": "object",
+      "description": "The connection endpoint for the DB instance.",
+      "properties": {
+        "Address": {
+          "type": "string",
+          "description": "The DNS address of the DB instance."
+        },
+        "Port": {
+          "type": "integer",
+          "description": "The port that the DB instance listens on.",
+          "default": 8182
+        },
+        "HostedZoneId": {
+          "type": "string",
+          "description": "The ID of the hosted zone for the endpoint."
+        }
+      }
+    },
+    "DBClusterIdentifier": {
+      "type": "string",
+      "description": "The identifier of the DB cluster that this instance belongs to."
+    },
+    "AvailabilityZone": {
+      "type": "string",
+      "description": "The name of the Availability Zone where the DB instance is located."
+    },
+    "DBSubnetGroup": {
+      "type": "object",
+      "description": "The DB subnet group associated with the instance.",
+      "properties": {
+        "DBSubnetGroupName": {
+          "type": "string"
+        },
+        "DBSubnetGroupDescription": {
+          "type": "string"
+        },
+        "VpcId": {
+          "type": "string"
+        },
+        "SubnetGroupStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "PreferredMaintenanceWindow": {
+      "type": "string",
+      "description": "The weekly time range during which system maintenance can occur (UTC)."
+    },
+    "AutoMinorVersionUpgrade": {
+      "type": "boolean",
+      "description": "Whether minor engine version upgrades are applied automatically."
+    },
+    "PubliclyAccessible": {
+      "type": "boolean",
+      "description": "Whether the DB instance is publicly accessible.",
+      "default": false
+    },
+    "PromotionTier": {
+      "type": "integer",
+      "description": "The order in which a read replica is promoted to the primary instance during a failover.",
+      "minimum": 0,
+      "maximum": 15,
+      "default": 1
+    },
+    "StorageEncrypted": {
+      "type": "boolean",
+      "description": "Whether the DB instance storage is encrypted."
+    },
+    "KmsKeyId": {
+      "type": "string",
+      "description": "The AWS KMS key identifier for the encrypted instance."
+    },
+    "DbiResourceId": {
+      "type": "string",
+      "description": "The AWS Region-unique, immutable identifier for the DB instance."
+    },
+    "CACertificateIdentifier": {
+      "type": "string",
+      "description": "The identifier of the CA certificate for this DB instance."
+    },
+    "CopyTagsToSnapshot": {
+      "type": "boolean",
+      "description": "Whether tags are copied to snapshots of the DB instance."
+    },
+    "InstanceCreateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the DB instance was created."
+    },
+    "PendingModifiedValues": {
+      "type": "object",
+      "description": "Changes to the DB instance that are pending application.",
+      "properties": {
+        "DBInstanceClass": {
+          "type": "string"
+        },
+        "EngineVersion": {
+          "type": "string"
+        },
+        "PendingCloudwatchLogsExports": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

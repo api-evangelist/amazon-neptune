@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/amazon-neptune/json-schema/amazon-neptune-graph-element-schema.json",
+  "title": "Amazon Neptune Graph Element",
+  "description": "Represents graph elements (vertices, edges, and their properties) as stored and returned by Neptune property graph queries via Gremlin and openCypher.",
+  "oneOf": [
+    { "$ref": "#/$defs/Vertex" },
+    { "$ref": "#/$defs/Edge" }
+  ],
+  "$defs": {
+    "Vertex": {
+      "type": "object",
+      "title": "Vertex (Node)",
+      "description": "A vertex (node) in the Neptune property graph. Vertices have a unique ID, one or more labels, and zero or more key-value properties.",
+      "required": [
+        "~id",
+        "~entityType",
+        "~labels"
+      ],
+      "properties": {
+        "~id": {
+          "type": "string",
+          "description": "The unique identifier of the vertex."
+        },
+        "~entityType": {
+          "type": "string",
+          "const": "node",
+          "description": "The entity type (always 'node' for vertices in openCypher format)."
+        },
+        "~labels": {
+          "type": "array",
+          "description": "The labels assigned to the vertex.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "~properties": {
+          "type": "object",
+          "description": "The vertex properties as key-value pairs. Values can be strings, numbers, booleans, or dates.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "Edge": {
+      "type": "object",
+      "title": "Edge (Relationship)",
+      "description": "An edge (relationship) in the Neptune property graph. Edges connect two vertices and have a unique ID, a type (label), source and target vertices, and zero or more properties.",
+      "required": [
+        "~id",
+        "~entityType",
+        "~start",
+        "~end",
+        "~type"
+      ],
+      "properties": {
+        "~id": {
+          "type": "string",
+          "description": "The unique identifier of the edge."
+        },
+        "~entityType": {
+          "type": "string",
+          "const": "relationship",
+          "description": "The entity type (always 'relationship' for edges in openCypher format)."
+        },
+        "~start": {
+          "type": "string",
+          "description": "The ID of the source (start) vertex."
+        },
+        "~end": {
+          "type": "string",
+          "description": "The ID of the target (end) vertex."
+        },
+        "~type": {
+          "type": "string",
+          "description": "The relationship type (edge label)."
+        },
+        "~properties": {
+          "type": "object",
+          "description": "The edge properties as key-value pairs.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "PropertyValue": {
+      "type": "object",
+      "title": "Property Value",
+      "description": "A typed property value as returned in Neptune stream records.",
+      "properties": {
+        "value": {
+          "description": "The actual value of the property."
+        },
+        "dataType": {
+          "type": "string",
+          "description": "The Neptune data type of the value.",
+          "enum": [
+            "String",
+            "Integer",
+            "Long",
+            "Double",
+            "Float",
+            "Boolean",
+            "Date",
+            "DateTime"
+          ]
+        }
+      }
+    },
+    "GremlinVertex": {
+      "type": "object",
+      "title": "Gremlin Vertex",
+      "description": "A vertex as returned by Gremlin valueMap or elementMap traversals.",
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the vertex."
+        },
+        "label": {
+          "type": "string",
+          "description": "The vertex label."
+        },
+        "properties": {
+          "type": "object",
+          "description": "The vertex properties. In Gremlin, property values are arrays to support multi-valued properties.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "description": "The property ID."
+                },
+                "value": {
+                  "description": "The property value."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "GremlinEdge": {
+      "type": "object",
+      "title": "Gremlin Edge",
+      "description": "An edge as returned by Gremlin valueMap or elementMap traversals.",
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the edge."
+        },
+        "label": {
+          "type": "string",
+          "description": "The edge label."
+        },
+        "inV": {
+          "description": "The ID of the incoming (target) vertex."
+        },
+        "inVLabel": {
+          "type": "string",
+          "description": "The label of the incoming vertex."
+        },
+        "outV": {
+          "description": "The ID of the outgoing (source) vertex."
+        },
+        "outVLabel": {
+          "type": "string",
+          "description": "The label of the outgoing vertex."
+        },
+        "properties": {
+          "type": "object",
+          "description": "The edge properties.",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,309 @@
+openapi: 3.1.0
+info:
+  title: Neptune openCypher API
+  description: >-
+    openCypher graph query language API for querying property graphs with
+    Cypher syntax in Neptune. It provides an HTTP endpoint for executing
+    openCypher queries against property graph data. Neptune supports openCypher
+    as a declarative query language with SQL-inspired syntax using MATCH,
+    WHERE, WITH, and RETURN clauses. Production-ready since Neptune engine
+    release 1.1.1.0. Uses HTTP/1.1 with HTTPS only.
+  version: '2024-01-01'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{cluster-endpoint}:8182
+    description: Neptune openCypher HTTP REST endpoint
+    variables:
+      cluster-endpoint:
+        default: your-cluster-endpoint.region.neptune.amazonaws.com
+        description: The cluster endpoint DNS name for your Neptune DB cluster
+security:
+  - aws_sigv4: []
+tags:
+  - name: Query
+    description: Execute openCypher graph queries
+  - name: Status
+    description: Query status and cancellation operations
+paths:
+  /openCypher:
+    post:
+      operationId: executeOpenCypherQuery
+      summary: Execute an openCypher query via HTTP POST
+      description: >-
+        Submits an openCypher query to the Neptune HTTP endpoint. The query
+        is provided as a form-encoded parameter. Supports both read and write
+        queries. Nodes are returned with ~id, ~entityType, ~labels, and
+        ~properties fields. Relationships include ~id, ~entityType, ~start,
+        ~end, ~type, and ~properties fields.
+      tags:
+        - Query
+      parameters:
+        - name: TE
+          in: header
+          description: >-
+            Set to 'trailers' to enable trailing headers for better error
+            detection. Available in Neptune 1.4.5.0+.
+          schema:
+            type: string
+            enum:
+              - trailers
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OpenCypherQueryRequest'
+            examples:
+              matchAll:
+                summary: Match all nodes
+                value:
+                  query: 'MATCH (n) RETURN n LIMIT 10'
+              countNodes:
+                summary: Count all nodes
+                value:
+                  query: 'MATCH (n) RETURN count(n)'
+              createNode:
+                summary: Create a node
+                value:
+                  query: "CREATE (n:Person {name: 'John', age: 30}) RETURN n"
+      responses:
+        '200':
+          description: openCypher query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryResponse'
+          headers:
+            X-Neptune-Status:
+              description: >-
+                Response code and status (only when TE: trailers was sent).
+              schema:
+                type: string
+            X-Neptune-Detail:
+              description: >-
+                URL-encoded JSON error details (only when TE: trailers was sent).
+                Empty on success.
+              schema:
+                type: string
+        '400':
+          description: Bad request - malformed openCypher query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherErrorResponse'
+        '408':
+          description: Query timed out before completing.
+        '500':
+          description: Internal server error during query execution.
+    get:
+      operationId: executeOpenCypherQueryGet
+      summary: Execute an openCypher query via HTTP GET
+      description: >-
+        Submits an openCypher query via URL query parameter. Supports both
+        read and write queries.
+      tags:
+        - Query
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: The openCypher query string (URL-encoded).
+          schema:
+            type: string
+          example: MATCH (n1) RETURN n1 LIMIT 10
+        - name: TE
+          in: header
+          description: Set to 'trailers' for trailing headers.
+          schema:
+            type: string
+            enum:
+              - trailers
+      responses:
+        '200':
+          description: openCypher query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryResponse'
+        '400':
+          description: Bad request - malformed openCypher query.
+  /openCypher/status:
+    get:
+      operationId: getOpenCypherQueryStatus
+      summary: Get the status of all running openCypher queries
+      description: >-
+        Returns the status of all running and waiting openCypher queries,
+        including query IDs and execution statistics.
+      tags:
+        - Status
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryStatusList'
+  /openCypher/status/{queryId}:
+    get:
+      operationId: getOpenCypherQueryStatusById
+      summary: Get the status of a specific openCypher query
+      description: >-
+        Returns the status of a specific openCypher query by its query ID.
+      tags:
+        - Status
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the openCypher query.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
+        '404':
+          description: Query with the specified ID was not found.
+    delete:
+      operationId: cancelOpenCypherQuery
+      summary: Cancel a running openCypher query
+      description: >-
+        Cancels a running openCypher query by its query ID.
+      tags:
+        - Status
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the openCypher query to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query with the specified ID was not found.
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication via IAM
+  schemas:
+    OpenCypherQueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The openCypher query string.
+    OpenCypherQueryResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          description: The query result rows.
+          items:
+            type: object
+            description: >-
+              A result row. Keys are the RETURN alias names. Values can be
+              scalars, nodes, relationships, or paths.
+            additionalProperties:
+              description: >-
+                Result value. Nodes have ~id, ~entityType, ~labels,
+                ~properties. Relationships have ~id, ~entityType, ~start,
+                ~end, ~type, ~properties.
+    OpenCypherNode:
+      type: object
+      description: A property graph node as returned by openCypher queries.
+      properties:
+        ~id:
+          type: string
+          description: The unique identifier of the node.
+        ~entityType:
+          type: string
+          enum:
+            - node
+          description: The entity type (always 'node').
+        ~labels:
+          type: array
+          items:
+            type: string
+          description: The labels assigned to the node.
+        ~properties:
+          type: object
+          additionalProperties: true
+          description: The node properties as key-value pairs.
+    OpenCypherRelationship:
+      type: object
+      description: A property graph relationship as returned by openCypher queries.
+      properties:
+        ~id:
+          type: string
+          description: The unique identifier of the relationship.
+        ~entityType:
+          type: string
+          enum:
+            - relationship
+          description: The entity type (always 'relationship').
+        ~start:
+          type: string
+          description: The ID of the source node.
+        ~end:
+          type: string
+          description: The ID of the target node.
+        ~type:
+          type: string
+          description: The relationship type.
+        ~properties:
+          type: object
+          additionalProperties: true
+          description: The relationship properties as key-value pairs.
+    OpenCypherErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+    OpenCypherQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
+    OpenCypherQueryStatusDetail:
+      type: object
+      properties:
+        queryId:
+          type: string
+        queryString:
+          type: string
+        queryEvalStats:
+          type: object
+          properties:
+            waited:
+              type: integer
+              description: Time waited in queue (milliseconds).
+            elapsed:
+              type: integer
+              description: Elapsed execution time (milliseconds).
+            cancelled:
+              type: boolean

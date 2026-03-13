@@ -1,0 +1,210 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "neptune": "https://docs.aws.amazon.com/neptune/latest/userguide/",
+    "aws": "https://aws.amazon.com/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "void": "http://rdfs.org/ns/void#",
+    "sd": "http://www.w3.org/ns/sparql-service-description#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "schema": "https://schema.org/",
+
+    "NeptuneService": {
+      "@id": "schema:SoftwareApplication",
+      "@context": {
+        "serviceName": "schema:name",
+        "description": "schema:description",
+        "provider": "schema:provider",
+        "url": "schema:url",
+        "documentation": "schema:documentation"
+      }
+    },
+
+    "DBCluster": {
+      "@id": "neptune:api-reference-cluster.html",
+      "@context": {
+        "identifier": "schema:identifier",
+        "name": "schema:name",
+        "status": "schema:status",
+        "engine": "schema:applicationCategory",
+        "engineVersion": "schema:softwareVersion",
+        "endpoint": "schema:url",
+        "readerEndpoint": "schema:url",
+        "port": "schema:port",
+        "storageEncrypted": "schema:additionalProperty",
+        "deletionProtection": "schema:additionalProperty",
+        "createTime": "schema:dateCreated",
+        "members": "schema:hasPart",
+        "region": "schema:areaServed",
+        "arn": "dcterms:identifier"
+      }
+    },
+
+    "DBInstance": {
+      "@id": "neptune:api-reference-instance.html",
+      "@context": {
+        "identifier": "schema:identifier",
+        "instanceClass": "schema:additionalType",
+        "status": "schema:status",
+        "engine": "schema:applicationCategory",
+        "engineVersion": "schema:softwareVersion",
+        "endpoint": "schema:url",
+        "availabilityZone": "schema:areaServed",
+        "clusterIdentifier": "schema:isPartOf",
+        "publiclyAccessible": "schema:additionalProperty",
+        "createTime": "schema:dateCreated",
+        "arn": "dcterms:identifier"
+      }
+    },
+
+    "Graph": {
+      "@id": "void:Dataset",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "endpoint": "void:sparqlEndpoint",
+        "triples": "void:triples",
+        "entities": "void:entities",
+        "properties": "void:properties",
+        "classes": "void:classes"
+      }
+    },
+
+    "Vertex": {
+      "@id": "rdf:Resource",
+      "@context": {
+        "vertexId": "schema:identifier",
+        "label": "rdfs:label",
+        "properties": "schema:additionalProperty"
+      }
+    },
+
+    "Edge": {
+      "@id": "rdf:Property",
+      "@context": {
+        "edgeId": "schema:identifier",
+        "label": "rdfs:label",
+        "source": "schema:source",
+        "target": "schema:target",
+        "properties": "schema:additionalProperty"
+      }
+    },
+
+    "GremlinQuery": {
+      "@id": "neptune:access-graph-gremlin.html",
+      "@context": {
+        "queryString": "schema:query",
+        "queryLanguage": {
+          "@id": "schema:programmingLanguage",
+          "@type": "@id"
+        },
+        "result": "schema:result"
+      }
+    },
+
+    "SparqlQuery": {
+      "@id": "sd:Service",
+      "@context": {
+        "queryString": "schema:query",
+        "queryLanguage": {
+          "@id": "schema:programmingLanguage",
+          "@type": "@id"
+        },
+        "endpoint": "sd:endpoint",
+        "resultFormat": "sd:resultFormat",
+        "defaultDataset": "sd:defaultDataset"
+      }
+    },
+
+    "OpenCypherQuery": {
+      "@id": "neptune:access-graph-opencypher.html",
+      "@context": {
+        "queryString": "schema:query",
+        "queryLanguage": {
+          "@id": "schema:programmingLanguage",
+          "@type": "@id"
+        },
+        "result": "schema:result"
+      }
+    },
+
+    "StreamRecord": {
+      "@id": "neptune:streams.html",
+      "@context": {
+        "commitTimestamp": "schema:dateModified",
+        "eventId": "schema:identifier",
+        "operation": "schema:actionStatus",
+        "data": "schema:object"
+      }
+    },
+
+    "LoaderJob": {
+      "@id": "neptune:bulk-load.html",
+      "@context": {
+        "source": "schema:contentUrl",
+        "format": "schema:encodingFormat",
+        "status": "schema:actionStatus",
+        "loadId": "schema:identifier",
+        "startTime": "schema:startTime",
+        "region": "schema:areaServed"
+      }
+    },
+
+    "MLJob": {
+      "@id": "neptune:machine-learning.html",
+      "@context": {
+        "jobId": "schema:identifier",
+        "status": "schema:actionStatus",
+        "inputLocation": "schema:contentUrl",
+        "outputLocation": "schema:contentUrl",
+        "modelType": "schema:additionalType",
+        "instanceType": "schema:additionalProperty"
+      }
+    },
+
+    "Snapshot": {
+      "@id": "neptune:api-reference-snapshot.html",
+      "@context": {
+        "snapshotId": "schema:identifier",
+        "sourceCluster": "schema:isPartOf",
+        "createTime": "schema:dateCreated",
+        "status": "schema:status",
+        "encrypted": "schema:additionalProperty",
+        "arn": "dcterms:identifier"
+      }
+    },
+
+    "AnalyticsGraph": {
+      "@id": "https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html",
+      "@context": {
+        "graphId": "schema:identifier",
+        "graphName": "schema:name",
+        "status": "schema:status",
+        "provisionedMemory": "schema:additionalProperty",
+        "endpoint": "schema:url",
+        "vectorSearchDimension": "schema:additionalProperty",
+        "createTime": "schema:dateCreated",
+        "arn": "dcterms:identifier"
+      }
+    },
+
+    "identifier": "schema:identifier",
+    "name": "schema:name",
+    "description": "schema:description",
+    "status": "schema:status",
+    "dateCreated": "schema:dateCreated",
+    "dateModified": "schema:dateModified",
+    "url": "schema:url",
+    "provider": {
+      "@id": "schema:provider",
+      "@type": "@id"
+    },
+    "region": "schema:areaServed",
+    "version": "schema:softwareVersion",
+    "format": "schema:encodingFormat"
+  }
+}

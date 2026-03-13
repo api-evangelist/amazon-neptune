@@ -1,0 +1,274 @@
+openapi: 3.1.0
+info:
+  title: Neptune SPARQL API
+  description: >-
+    W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune.
+    It provides an HTTP REST endpoint compatible with the SPARQL 1.1
+    protocol specification. Supports SELECT, ASK, CONSTRUCT, DESCRIBE
+    query forms and INSERT/DELETE update operations. Uses HTTP/1.1 with
+    HTTPS only.
+  version: '2024-01-01'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{cluster-endpoint}:8182
+    description: Neptune SPARQL HTTP REST endpoint
+    variables:
+      cluster-endpoint:
+        default: your-cluster-endpoint.region.neptune.amazonaws.com
+        description: The cluster endpoint DNS name for your Neptune DB cluster
+security:
+  - aws_sigv4: []
+tags:
+  - name: Query
+    description: Execute SPARQL queries and updates
+  - name: Status
+    description: Query status and cancellation operations
+paths:
+  /sparql:
+    post:
+      operationId: executeSparqlQuery
+      summary: Execute a SPARQL query or update via HTTP POST
+      description: >-
+        Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL
+        endpoint. For queries, use the 'query' parameter with SELECT, ASK,
+        CONSTRUCT, or DESCRIBE forms. For mutations, use the 'update' parameter
+        with INSERT DATA or DELETE DATA operations. The request body is
+        form-encoded per the SPARQL 1.1 Protocol specification.
+      tags:
+        - Query
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SparqlRequestBody'
+            examples:
+              selectQuery:
+                summary: SELECT query
+                value:
+                  query: 'SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10'
+              insertData:
+                summary: INSERT DATA update
+                value:
+                  update: 'INSERT DATA { <https://example.org/s> <https://example.org/p> <https://example.org/o> . }'
+      responses:
+        '200':
+          description: SPARQL query or update executed successfully.
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SparqlSelectResponse'
+            application/n-quads:
+              schema:
+                type: string
+                description: >-
+                  N-Quads serialization for CONSTRUCT and DESCRIBE results.
+        '400':
+          description: Bad request - malformed SPARQL query or update.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlErrorResponse'
+        '408':
+          description: Query timed out before completing.
+        '500':
+          description: Internal server error during query execution.
+    get:
+      operationId: executeSparqlQueryGet
+      summary: Execute a SPARQL query via HTTP GET
+      description: >-
+        Submits a read-only SPARQL 1.1 query via URL query parameters. Only
+        SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via
+        GET. Update operations require POST.
+      tags:
+        - Query
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: The SPARQL query string (URL-encoded).
+          schema:
+            type: string
+          example: SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10
+      responses:
+        '200':
+          description: SPARQL query executed successfully.
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SparqlSelectResponse'
+        '400':
+          description: Bad request - malformed SPARQL query.
+  /sparql/status:
+    get:
+      operationId: getSparqlQueryStatus
+      summary: Get the status of all running SPARQL queries
+      description: >-
+        Returns the status of all running and waiting SPARQL queries,
+        including query IDs and execution statistics.
+      tags:
+        - Status
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlQueryStatusList'
+  /sparql/status/{queryId}:
+    get:
+      operationId: getSparqlQueryStatusById
+      summary: Get the status of a specific SPARQL query
+      description: >-
+        Returns the status of a specific SPARQL query by its query ID.
+      tags:
+        - Status
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the SPARQL query.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlQueryStatusDetail'
+        '404':
+          description: Query with the specified ID was not found.
+    delete:
+      operationId: cancelSparqlQuery
+      summary: Cancel a running SPARQL query
+      description: >-
+        Cancels a running SPARQL query by its query ID.
+      tags:
+        - Status
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the SPARQL query to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query with the specified ID was not found.
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication via IAM
+  schemas:
+    SparqlRequestBody:
+      type: object
+      properties:
+        query:
+          type: string
+          description: >-
+            A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually
+            exclusive with update.
+        update:
+          type: string
+          description: >-
+            A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.).
+            Mutually exclusive with query.
+        using-graph-uri:
+          type: string
+          description: Default graph URI for the query.
+        using-named-graph-uri:
+          type: string
+          description: Named graph URI for the query.
+    SparqlSelectResponse:
+      type: object
+      description: >-
+        SPARQL 1.1 Query Results JSON Format as defined by W3C.
+      properties:
+        head:
+          type: object
+          properties:
+            vars:
+              type: array
+              description: The list of variable names in the result set.
+              items:
+                type: string
+            link:
+              type: array
+              items:
+                type: string
+        results:
+          type: object
+          properties:
+            bindings:
+              type: array
+              description: The result bindings for each solution.
+              items:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - uri
+                        - literal
+                        - bnode
+                    value:
+                      type: string
+                    datatype:
+                      type: string
+                    xml:lang:
+                      type: string
+        boolean:
+          type: boolean
+          description: The result for ASK queries.
+    SparqlErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+          description: Detailed error message explaining the issue.
+    SparqlQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SparqlQueryStatusDetail'
+    SparqlQueryStatusDetail:
+      type: object
+      properties:
+        queryId:
+          type: string
+        queryString:
+          type: string
+        queryEvalStats:
+          type: object
+          properties:
+            waited:
+              type: integer
+              description: Time waited in queue (milliseconds).
+            elapsed:
+              type: integer
+              description: Elapsed execution time (milliseconds).
+            cancelled:
+              type: boolean

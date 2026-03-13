@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/amazon-neptune/json-schema/amazon-neptune-stream-record-schema.json",
+  "title": "Amazon Neptune Stream Record",
+  "description": "Represents a change-log stream record from Neptune Streams. Each record captures a single mutation (ADD or REMOVE) made to graph data. Supports both property graph (PG_JSON format) and RDF (NQUADS format) records.",
+  "type": "object",
+  "required": [
+    "lastEventId",
+    "lastTrxTimestamp",
+    "format",
+    "records",
+    "totalRecords"
+  ],
+  "properties": {
+    "lastEventId": {
+      "$ref": "#/$defs/EventId",
+      "description": "The sequence identifier of the last change in the response."
+    },
+    "lastTrxTimestamp": {
+      "type": "integer",
+      "description": "Unix epoch timestamp in milliseconds of the last transaction commit."
+    },
+    "format": {
+      "type": "string",
+      "description": "The serialization format of the stream records.",
+      "enum": [
+        "PG_JSON",
+        "NQUADS"
+      ]
+    },
+    "records": {
+      "type": "array",
+      "description": "The array of change-log stream records.",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/$defs/PropertyGraphRecord" },
+          { "$ref": "#/$defs/SparqlRecord" }
+        ]
+      }
+    },
+    "totalRecords": {
+      "type": "integer",
+      "description": "The total number of records in the response."
+    }
+  },
+  "$defs": {
+    "EventId": {
+      "type": "object",
+      "title": "Stream Event ID",
+      "description": "A unique sequence identifier for a stream event, composed of the commit number and operation number.",
+      "required": [
+        "commitNum",
+        "opNum"
+      ],
+      "properties": {
+        "commitNum": {
+          "type": "integer",
+          "description": "The commit (transaction) number."
+        },
+        "opNum": {
+          "type": "integer",
+          "description": "The operation number within the commit."
+        }
+      }
+    },
+    "PropertyGraphRecord": {
+      "type": "object",
+      "title": "Property Graph Stream Record",
+      "description": "A change record for property graph (Gremlin/openCypher) data in PG_JSON format.",
+      "required": [
+        "commitTimestamp",
+        "eventId",
+        "data",
+        "op"
+      ],
+      "properties": {
+        "commitTimestamp": {
+          "type": "integer",
+          "description": "Unix epoch timestamp in milliseconds of the transaction commit."
+        },
+        "eventId": {
+          "$ref": "#/$defs/EventId"
+        },
+        "data": {
+          "$ref": "#/$defs/PropertyGraphData"
+        },
+        "op": {
+          "type": "string",
+          "description": "The operation type.",
+          "enum": [
+            "ADD",
+            "REMOVE"
+          ]
+        },
+        "isLastOp": {
+          "type": "boolean",
+          "description": "True only if this is the last operation in the transaction."
+        }
+      }
+    },
+    "PropertyGraphData": {
+      "type": "object",
+      "title": "Property Graph Data",
+      "description": "The property graph change data within a stream record.",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the graph element."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of graph element: v (vertex), vl (vertex label), vp (vertex property), e (edge), ep (edge property).",
+          "enum": [
+            "v",
+            "vl",
+            "vp",
+            "e",
+            "ep"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "description": "The property key name (for property changes)."
+        },
+        "value": {
+          "type": "object",
+          "description": "The typed property value.",
+          "properties": {
+            "value": {
+              "description": "The actual value."
+            },
+            "dataType": {
+              "type": "string",
+              "description": "The Neptune data type.",
+              "enum": [
+                "String",
+                "Integer",
+                "Long",
+                "Double",
+                "Float",
+                "Boolean",
+                "Date",
+                "DateTime"
+              ]
+            }
+          }
+        },
+        "from": {
+          "type": "string",
+          "description": "The source vertex ID (for edge records only)."
+        },
+        "to": {
+          "type": "string",
+          "description": "The target vertex ID (for edge records only)."
+        }
+      }
+    },
+    "SparqlRecord": {
+      "type": "object",
+      "title": "SPARQL Stream Record",
+      "description": "A change record for RDF (SPARQL) data in NQUADS format.",
+      "required": [
+        "commitTimestamp",
+        "eventId",
+        "data",
+        "op"
+      ],
+      "properties": {
+        "commitTimestamp": {
+          "type": "integer",
+          "description": "Unix epoch timestamp in milliseconds of the transaction commit."
+        },
+        "eventId": {
+          "$ref": "#/$defs/EventId"
+        },
+        "data": {
+          "type": "object",
+          "required": [
+            "stmt"
+          ],
+          "properties": {
+            "stmt": {
+              "type": "string",
+              "description": "The N-Quads statement representing the RDF triple or quad change."
+            }
+          }
+        },
+        "op": {
+          "type": "string",
+          "description": "The operation type.",
+          "enum": [
+            "ADD",
+            "REMOVE"
+          ]
+        },
+        "isLastOp": {
+          "type": "boolean",
+          "description": "True only if this is the last operation in the transaction."
+        }
+      }
+    }
+  }
+}

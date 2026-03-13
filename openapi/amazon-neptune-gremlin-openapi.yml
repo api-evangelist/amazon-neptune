@@ -1,0 +1,267 @@
+openapi: 3.1.0
+info:
+  title: Neptune Gremlin API
+  description: >-
+    Apache TinkerPop Gremlin graph traversal language API for querying
+    property graphs in Neptune. It supports both WebSocket and HTTP REST
+    endpoints for submitting Gremlin traversals. This spec covers the HTTP
+    REST endpoint. Neptune supports Gremlin as defined in Apache TinkerPop
+    and uses HTTP/1.1 with HTTPS only.
+  version: '2024-01-01'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{cluster-endpoint}:8182
+    description: Neptune Gremlin HTTP REST endpoint
+    variables:
+      cluster-endpoint:
+        default: your-cluster-endpoint.region.neptune.amazonaws.com
+        description: The cluster endpoint DNS name for your Neptune DB cluster
+security:
+  - aws_sigv4: []
+tags:
+  - name: Query
+    description: Submit Gremlin graph traversal queries
+  - name: Status
+    description: Query status and cancellation operations
+paths:
+  /gremlin:
+    post:
+      operationId: executeGremlinTraversal
+      summary: Execute a Gremlin traversal via HTTP POST
+      description: >-
+        Submits a Gremlin traversal query to the Neptune HTTP REST endpoint.
+        The query is provided as a JSON body with a gremlin property containing
+        the traversal string. All results are returned in a single JSON
+        response by default. For large result sets, chunked responses can be
+        enabled to avoid OutOfMemoryError.
+      tags:
+        - Query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GremlinQueryRequest'
+            examples:
+              vertexCount:
+                summary: Count all vertices
+                value:
+                  gremlin: g.V().count()
+              limitedVertices:
+                summary: Get first vertex
+                value:
+                  gremlin: g.V().limit(1)
+              addVertex:
+                summary: Add a vertex
+                value:
+                  gremlin: g.addV('person').property('name','John')
+      responses:
+        '200':
+          description: Gremlin traversal executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryResponse'
+        '400':
+          description: Bad request - malformed Gremlin traversal.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinErrorResponse'
+        '408':
+          description: Query timed out before completing.
+        '500':
+          description: Internal server error during query execution.
+    get:
+      operationId: executeGremlinTraversalGet
+      summary: Execute a Gremlin traversal via HTTP GET
+      description: >-
+        Submits a Gremlin traversal query via a URL query parameter. This
+        is an alternative to the POST method for simple queries.
+      tags:
+        - Query
+      parameters:
+        - name: gremlin
+          in: query
+          required: true
+          description: The Gremlin traversal query string (URL-encoded).
+          schema:
+            type: string
+          example: g.V().count()
+      responses:
+        '200':
+          description: Gremlin traversal executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryResponse'
+        '400':
+          description: Bad request - malformed Gremlin traversal.
+  /gremlin/status:
+    get:
+      operationId: getGremlinQueryStatus
+      summary: Get the status of all running Gremlin queries
+      description: >-
+        Returns the status of all running and waiting Gremlin queries,
+        including query IDs, query strings, and execution statistics.
+      tags:
+        - Status
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatusList'
+  /gremlin/status/{queryId}:
+    get:
+      operationId: getGremlinQueryStatusById
+      summary: Get the status of a specific Gremlin query
+      description: >-
+        Returns the status of a specific Gremlin query identified by its
+        query ID, including the query string and execution statistics.
+      tags:
+        - Status
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the Gremlin query.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatusDetail'
+        '404':
+          description: Query with the specified ID was not found.
+    delete:
+      operationId: cancelGremlinQuery
+      summary: Cancel a running Gremlin query
+      description: >-
+        Cancels a running Gremlin query by its query ID. The query must
+        be currently running or waiting in the queue.
+      tags:
+        - Status
+      parameters:
+        - name: queryId
+          in: path
+          required: true
+          description: The unique identifier of the Gremlin query to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query with the specified ID was not found.
+        '500':
+          description: Failed to cancel the query.
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication via IAM
+  schemas:
+    GremlinQueryRequest:
+      type: object
+      required:
+        - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: >-
+            The Gremlin traversal query string. Must be a valid Gremlin
+            traversal starting with g. The bindings property is not
+            supported by Neptune.
+          examples:
+            - g.V().count()
+            - g.V().has('name','John').out('knows')
+    GremlinQueryResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: The unique request identifier.
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: integer
+              description: The response status code (200 for success).
+            attributes:
+              type: object
+              description: Additional response attributes.
+        result:
+          type: object
+          properties:
+            data:
+              description: >-
+                The query result data. The shape depends on the traversal's
+                terminal step (e.g., count, valueMap, path).
+            meta:
+              type: object
+    GremlinErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        code:
+          type: string
+          description: The error code.
+        detailedMessage:
+          type: string
+          description: A detailed description of the error.
+    GremlinQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+          description: The total number of accepted queries.
+        runningQueryCount:
+          type: integer
+          description: The number of currently running queries.
+        queries:
+          type: array
+          description: The list of running and waiting queries.
+          items:
+            $ref: '#/components/schemas/GremlinQueryStatusDetail'
+    GremlinQueryStatusDetail:
+      type: object
+      properties:
+        queryId:
+          type: string
+          description: The unique query identifier.
+        queryString:
+          type: string
+          description: The Gremlin traversal query string.
+        queryEvalStats:
+          type: object
+          description: Query execution statistics.
+          properties:
+            waited:
+              type: integer
+              description: The time the query waited in the queue (milliseconds).
+            elapsed:
+              type: integer
+              description: The elapsed execution time (milliseconds).
+            cancelled:
+              type: boolean
+              description: Whether the query was cancelled.
+            subqueries:
+              type: object
+              description: Statistics for subqueries, if any.

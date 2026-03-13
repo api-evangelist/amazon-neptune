@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/amazon-neptune/json-schema/amazon-neptune-ml-job-schema.json",
+  "title": "Amazon Neptune ML Job",
+  "description": "Represents Neptune ML job configurations and status for data processing, model training, model transform, and inference endpoint operations powered by Amazon SageMaker.",
+  "oneOf": [
+    { "$ref": "#/$defs/DataProcessingJob" },
+    { "$ref": "#/$defs/ModelTrainingJob" },
+    { "$ref": "#/$defs/ModelTransformJob" },
+    { "$ref": "#/$defs/InferenceEndpoint" }
+  ],
+  "$defs": {
+    "DataProcessingJob": {
+      "type": "object",
+      "title": "Data Processing Job",
+      "description": "A Neptune ML data processing job that exports and prepares graph data for model training.",
+      "required": [
+        "inputDataS3Location",
+        "processedDataS3Location"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the job."
+        },
+        "inputDataS3Location": {
+          "type": "string",
+          "description": "S3 URI for the input graph data."
+        },
+        "processedDataS3Location": {
+          "type": "string",
+          "description": "S3 URI where processed output is written."
+        },
+        "previousDataProcessingJobId": {
+          "type": "string",
+          "description": "Job ID of a previous job for incremental processing."
+        },
+        "sagemakerIamRoleArn": {
+          "type": "string",
+          "description": "IAM role ARN for SageMaker execution."
+        },
+        "neptuneIamRoleArn": {
+          "type": "string",
+          "description": "IAM role ARN for Neptune access."
+        },
+        "processingInstanceType": {
+          "type": "string",
+          "description": "The SageMaker ML instance type for processing.",
+          "examples": [
+            "ml.r5.xlarge",
+            "ml.r5.2xlarge",
+            "ml.r5.4xlarge"
+          ]
+        },
+        "processingInstanceVolumeSizeInGB": {
+          "type": "integer",
+          "description": "Disk volume size in GB.",
+          "default": 0
+        },
+        "processingTimeOutInSeconds": {
+          "type": "integer",
+          "description": "Processing timeout in seconds.",
+          "default": 86400
+        },
+        "modelType": {
+          "type": "string",
+          "description": "The model type to prepare data for.",
+          "enum": [
+            "heterogeneous",
+            "kge"
+          ]
+        },
+        "configFileName": {
+          "type": "string",
+          "description": "The data specification configuration file name.",
+          "default": "training-data-configuration.json"
+        },
+        "subnets": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "securityGroupIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "volumeEncryptionKMSKey": {
+          "type": "string"
+        },
+        "s3OutputEncryptionKMSKey": {
+          "type": "string"
+        },
+        "enableInterContainerTrafficEncryption": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "ModelTrainingJob": {
+      "type": "object",
+      "title": "Model Training Job",
+      "description": "A Neptune ML model training job that trains a graph neural network model using Amazon SageMaker.",
+      "required": [
+        "dataProcessingJobId",
+        "trainModelS3Location"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "dataProcessingJobId": {
+          "type": "string",
+          "description": "Job ID of the completed data processing job."
+        },
+        "trainModelS3Location": {
+          "type": "string",
+          "description": "S3 location for model artifacts."
+        },
+        "previousModelTrainingJobId": {
+          "type": "string",
+          "description": "Job ID for incremental training."
+        },
+        "sagemakerIamRoleArn": {
+          "type": "string"
+        },
+        "neptuneIamRoleArn": {
+          "type": "string"
+        },
+        "modelName": {
+          "type": "string",
+          "description": "The model architecture to train.",
+          "enum": [
+            "rgcn",
+            "transe",
+            "distmult",
+            "rotate",
+            "custom"
+          ]
+        },
+        "baseProcessingInstanceType": {
+          "type": "string"
+        },
+        "trainingInstanceType": {
+          "type": "string",
+          "default": "ml.p3.2xlarge"
+        },
+        "trainingInstanceVolumeSizeInGB": {
+          "type": "integer"
+        },
+        "trainingTimeOutInSeconds": {
+          "type": "integer",
+          "default": 86400
+        },
+        "maxHPONumberOfTrainingJobs": {
+          "type": "integer",
+          "description": "Max total training jobs for hyperparameter tuning.",
+          "default": 2
+        },
+        "maxHPOParallelTrainingJobs": {
+          "type": "integer",
+          "default": 2
+        },
+        "subnets": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "securityGroupIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "volumeEncryptionKMSKey": {
+          "type": "string"
+        },
+        "s3OutputEncryptionKMSKey": {
+          "type": "string"
+        },
+        "enableInterContainerTrafficEncryption": {
+          "type": "boolean",
+          "default": true
+        },
+        "enableManagedSpotTraining": {
+          "type": "boolean",
+          "default": false
+        },
+        "customModelTrainingParameters": {
+          "type": "object",
+          "properties": {
+            "sourceS3DirectoryPath": {
+              "type": "string"
+            },
+            "trainingEntryPointScript": {
+              "type": "string"
+            },
+            "transformEntryPointScript": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ModelTransformJob": {
+      "type": "object",
+      "title": "Model Transform Job",
+      "description": "A Neptune ML model transform job that generates model artifacts for inference.",
+      "required": [
+        "modelTransformOutputS3Location"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "dataProcessingJobId": {
+          "type": "string"
+        },
+        "mlModelTrainingJobId": {
+          "type": "string"
+        },
+        "trainingJobName": {
+          "type": "string"
+        },
+        "modelTransformOutputS3Location": {
+          "type": "string"
+        },
+        "sagemakerIamRoleArn": {
+          "type": "string"
+        },
+        "neptuneIamRoleArn": {
+          "type": "string"
+        },
+        "baseProcessingInstanceType": {
+          "type": "string"
+        },
+        "baseProcessingInstanceVolumeSizeInGB": {
+          "type": "integer"
+        },
+        "subnets": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "securityGroupIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "volumeEncryptionKMSKey": {
+          "type": "string"
+        },
+        "s3OutputEncryptionKMSKey": {
+          "type": "string"
+        },
+        "enableInterContainerTrafficEncryption": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "InferenceEndpoint": {
+      "type": "object",
+      "title": "Inference Endpoint",
+      "description": "A Neptune ML inference endpoint backed by Amazon SageMaker for real-time graph predictions.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "mlModelTrainingJobId": {
+          "type": "string"
+        },
+        "mlModelTransformJobId": {
+          "type": "string"
+        },
+        "update": {
+          "type": "boolean",
+          "default": false
+        },
+        "neptuneIamRoleArn": {
+          "type": "string"
+        },
+        "modelName": {
+          "type": "string",
+          "enum": [
+            "rgcn",
+            "kge",
+            "transe",
+            "distmult",
+            "rotate"
+          ]
+        },
+        "instanceType": {
+          "type": "string",
+          "default": "ml.m5.xlarge"
+        },
+        "instanceCount": {
+          "type": "integer",
+          "default": 1,
+          "minimum": 1
+        },
+        "volumeEncryptionKMSKey": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

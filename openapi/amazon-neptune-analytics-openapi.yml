@@ -1,0 +1,905 @@
+openapi: 3.1.0
+info:
+  title: Neptune Analytics API
+  description: >-
+    Neptune Analytics is a memory-optimized graph database engine for
+    analytics, providing optimized graph analytic algorithms, low-latency
+    queries, and vector search capabilities within graph traversals. This
+    API provides management operations for Neptune Analytics graph
+    resources including creating, managing, and querying graph databases
+    optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://neptune-graph.{region}.amazonaws.com
+    description: Neptune Analytics control plane regional endpoint
+    variables:
+      region:
+        default: us-east-1
+        description: AWS region
+security:
+  - aws_sigv4: []
+tags:
+  - name: Graphs
+    description: Operations for managing Neptune Analytics graph resources
+  - name: Graph Snapshots
+    description: Operations for managing graph snapshots
+  - name: Import Tasks
+    description: Operations for importing data into graphs
+  - name: Private Graph Endpoints
+    description: Operations for managing private graph endpoints in VPCs
+  - name: Queries
+    description: Operations for executing and managing queries
+paths:
+  /graphs:
+    post:
+      operationId: createGraph
+      summary: Create a Neptune Analytics graph
+      description: >-
+        Creates a new Neptune Analytics graph resource. The graph is a
+        memory-optimized database instance optimized for analytical
+        workloads with support for openCypher queries and vector search.
+      tags:
+        - Graphs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGraphInput'
+      responses:
+        '201':
+          description: Graph created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+        '400':
+          description: Bad request - invalid parameters.
+        '409':
+          description: A graph with the specified name already exists.
+    get:
+      operationId: listGraphs
+      summary: List Neptune Analytics graphs
+      description: >-
+        Returns a list of Neptune Analytics graph resources in the account.
+      tags:
+        - Graphs
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: nextToken
+          in: query
+          description: Pagination token from a previous request.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Graph list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListGraphsOutput'
+  /graphs/{graphIdentifier}:
+    get:
+      operationId: getGraph
+      summary: Get Neptune Analytics graph details
+      description: >-
+        Returns detailed information about a specific Neptune Analytics
+        graph resource.
+      tags:
+        - Graphs
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the graph.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Graph details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+        '404':
+          description: Graph not found.
+    patch:
+      operationId: updateGraph
+      summary: Update a Neptune Analytics graph
+      description: >-
+        Updates the configuration of an existing Neptune Analytics graph,
+        such as provisioned memory or deletion protection settings.
+      tags:
+        - Graphs
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the graph.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGraphInput'
+      responses:
+        '200':
+          description: Graph updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+        '404':
+          description: Graph not found.
+    delete:
+      operationId: deleteGraph
+      summary: Delete a Neptune Analytics graph
+      description: >-
+        Deletes a Neptune Analytics graph resource. The graph must not
+        have deletion protection enabled.
+      tags:
+        - Graphs
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the graph to delete.
+          schema:
+            type: string
+        - name: skipSnapshot
+          in: query
+          required: true
+          description: Whether to skip creating a final snapshot before deletion.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Graph deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+        '404':
+          description: Graph not found.
+        '409':
+          description: Graph has deletion protection enabled.
+  /graphs/{graphIdentifier}/reset:
+    put:
+      operationId: resetGraph
+      summary: Reset a Neptune Analytics graph
+      description: >-
+        Empties the data from a Neptune Analytics graph, removing all
+        nodes and edges while preserving the graph resource and its
+        configuration.
+      tags:
+        - Graphs
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the graph to reset.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - performCleanData
+              properties:
+                performCleanData:
+                  type: boolean
+                  description: Must be set to true to confirm the reset.
+      responses:
+        '200':
+          description: Graph reset initiated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+        '404':
+          description: Graph not found.
+  /snapshots:
+    post:
+      operationId: createGraphSnapshot
+      summary: Create a graph snapshot
+      description: >-
+        Creates a snapshot of a Neptune Analytics graph for backup
+        purposes.
+      tags:
+        - Graph Snapshots
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGraphSnapshotInput'
+      responses:
+        '201':
+          description: Snapshot created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphSnapshotOutput'
+        '404':
+          description: Source graph not found.
+    get:
+      operationId: listGraphSnapshots
+      summary: List graph snapshots
+      description: >-
+        Returns a list of graph snapshots in the account.
+      tags:
+        - Graph Snapshots
+      parameters:
+        - name: graphIdentifier
+          in: query
+          description: Filter snapshots by source graph identifier.
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Snapshot list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListGraphSnapshotsOutput'
+  /snapshots/{snapshotIdentifier}:
+    get:
+      operationId: getGraphSnapshot
+      summary: Get graph snapshot details
+      description: >-
+        Returns detailed information about a specific graph snapshot.
+      tags:
+        - Graph Snapshots
+      parameters:
+        - name: snapshotIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the snapshot.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Snapshot details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphSnapshotOutput'
+        '404':
+          description: Snapshot not found.
+    delete:
+      operationId: deleteGraphSnapshot
+      summary: Delete a graph snapshot
+      description: >-
+        Deletes a Neptune Analytics graph snapshot.
+      tags:
+        - Graph Snapshots
+      parameters:
+        - name: snapshotIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the snapshot to delete.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Snapshot deleted successfully.
+        '404':
+          description: Snapshot not found.
+  /snapshots/{snapshotIdentifier}/restore:
+    post:
+      operationId: restoreGraphFromSnapshot
+      summary: Restore a graph from a snapshot
+      description: >-
+        Creates a new Neptune Analytics graph by restoring from an existing
+        snapshot.
+      tags:
+        - Graph Snapshots
+      parameters:
+        - name: snapshotIdentifier
+          in: path
+          required: true
+          description: The identifier of the snapshot to restore from.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestoreGraphFromSnapshotInput'
+      responses:
+        '201':
+          description: Graph restore initiated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+  /importtasks:
+    post:
+      operationId: createGraphUsingImportTask
+      summary: Create a graph using an import task
+      description: >-
+        Creates a new Neptune Analytics graph and populates it with data
+        from an Amazon S3 source in a single operation.
+      tags:
+        - Import Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGraphUsingImportTaskInput'
+      responses:
+        '201':
+          description: Import task created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportTaskOutput'
+    get:
+      operationId: listImportTasks
+      summary: List import tasks
+      description: >-
+        Returns a list of import tasks in the account.
+      tags:
+        - Import Tasks
+      parameters:
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Import task list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListImportTasksOutput'
+  /importtasks/{taskIdentifier}:
+    get:
+      operationId: getImportTask
+      summary: Get import task details
+      description: >-
+        Returns detailed information about a specific import task.
+      tags:
+        - Import Tasks
+      parameters:
+        - name: taskIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the import task.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Import task details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportTaskOutput'
+        '404':
+          description: Import task not found.
+    delete:
+      operationId: cancelImportTask
+      summary: Cancel an import task
+      description: >-
+        Cancels a running import task.
+      tags:
+        - Import Tasks
+      parameters:
+        - name: taskIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the import task to cancel.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Import task cancelled successfully.
+        '404':
+          description: Import task not found.
+  /privategraphendpoints/{graphIdentifier}:
+    post:
+      operationId: createPrivateGraphEndpoint
+      summary: Create a private graph endpoint
+      description: >-
+        Creates a private graph endpoint in a VPC for accessing a Neptune
+        Analytics graph without going over the public internet.
+      tags:
+        - Private Graph Endpoints
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          description: The unique identifier of the graph.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePrivateGraphEndpointInput'
+      responses:
+        '201':
+          description: Private endpoint created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateGraphEndpointOutput'
+    get:
+      operationId: listPrivateGraphEndpoints
+      summary: List private graph endpoints
+      description: >-
+        Returns a list of private graph endpoints for a specific graph.
+      tags:
+        - Private Graph Endpoints
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Private endpoint list retrieved successfully.
+  /privategraphendpoints/{graphIdentifier}/{vpcId}:
+    get:
+      operationId: getPrivateGraphEndpoint
+      summary: Get private graph endpoint details
+      description: >-
+        Returns details of a specific private graph endpoint.
+      tags:
+        - Private Graph Endpoints
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: vpcId
+          in: path
+          required: true
+          description: The VPC ID of the private endpoint.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Private endpoint details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateGraphEndpointOutput'
+    delete:
+      operationId: deletePrivateGraphEndpoint
+      summary: Delete a private graph endpoint
+      description: >-
+        Deletes a private graph endpoint from a VPC.
+      tags:
+        - Private Graph Endpoints
+      parameters:
+        - name: graphIdentifier
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: vpcId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Private endpoint deleted successfully.
+        '404':
+          description: Private endpoint not found.
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication
+  schemas:
+    CreateGraphInput:
+      type: object
+      required:
+        - graphName
+        - provisionedMemory
+      properties:
+        graphName:
+          type: string
+          description: The name of the graph (1-63 alphanumeric characters or hyphens).
+          minLength: 1
+          maxLength: 63
+        provisionedMemory:
+          type: integer
+          description: The provisioned memory size in Neptune Capacity Units (NCUs).
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Tags to assign to the graph.
+        publicConnectivity:
+          type: boolean
+          description: Whether the graph can be reached over the internet.
+          default: false
+        kmsKeyIdentifier:
+          type: string
+          description: KMS key identifier for encryption at rest.
+        vectorSearchConfiguration:
+          type: object
+          description: Vector search configuration for the graph.
+          properties:
+            dimension:
+              type: integer
+              description: The number of dimensions for vector embeddings.
+        replicaCount:
+          type: integer
+          description: The number of read replicas.
+          default: 0
+        deletionProtection:
+          type: boolean
+          description: Whether deletion protection is enabled.
+          default: false
+    UpdateGraphInput:
+      type: object
+      properties:
+        provisionedMemory:
+          type: integer
+          description: The new provisioned memory size in NCUs.
+        deletionProtection:
+          type: boolean
+          description: Whether deletion protection is enabled.
+        publicConnectivity:
+          type: boolean
+    GraphOutput:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the graph.
+        name:
+          type: string
+          description: The name of the graph.
+        arn:
+          type: string
+          description: The ARN of the graph.
+        status:
+          type: string
+          description: The current status of the graph.
+          enum:
+            - CREATING
+            - AVAILABLE
+            - DELETING
+            - RESETTING
+            - UPDATING
+            - SNAPSHOTTING
+            - FAILED
+            - IMPORTING
+        statusReason:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        provisionedMemory:
+          type: integer
+        endpoint:
+          type: string
+          description: The DNS endpoint for the graph.
+        publicConnectivity:
+          type: boolean
+        vectorSearchConfiguration:
+          type: object
+          properties:
+            dimension:
+              type: integer
+        replicaCount:
+          type: integer
+        kmsKeyIdentifier:
+          type: string
+        sourceSnapshotId:
+          type: string
+        deletionProtection:
+          type: boolean
+        buildNumber:
+          type: string
+    ListGraphsOutput:
+      type: object
+      properties:
+        graphs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              arn:
+                type: string
+              status:
+                type: string
+              provisionedMemory:
+                type: integer
+              publicConnectivity:
+                type: boolean
+              endpoint:
+                type: string
+              replicaCount:
+                type: integer
+              deletionProtection:
+                type: boolean
+        nextToken:
+          type: string
+    CreateGraphSnapshotInput:
+      type: object
+      required:
+        - graphIdentifier
+        - snapshotName
+      properties:
+        graphIdentifier:
+          type: string
+          description: The identifier of the graph to snapshot.
+        snapshotName:
+          type: string
+          description: The name of the snapshot.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    GraphSnapshotOutput:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        arn:
+          type: string
+        sourceGraphId:
+          type: string
+        snapshotCreateTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - CREATING
+            - AVAILABLE
+            - DELETING
+            - FAILED
+        kmsKeyIdentifier:
+          type: string
+    ListGraphSnapshotsOutput:
+      type: object
+      properties:
+        graphSnapshots:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              arn:
+                type: string
+              sourceGraphId:
+                type: string
+              snapshotCreateTime:
+                type: string
+                format: date-time
+              status:
+                type: string
+        nextToken:
+          type: string
+    RestoreGraphFromSnapshotInput:
+      type: object
+      required:
+        - graphName
+      properties:
+        graphName:
+          type: string
+          description: The name of the restored graph.
+        provisionedMemory:
+          type: integer
+        deletionProtection:
+          type: boolean
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        replicaCount:
+          type: integer
+        publicConnectivity:
+          type: boolean
+    CreateGraphUsingImportTaskInput:
+      type: object
+      required:
+        - graphName
+        - source
+        - roleArn
+      properties:
+        graphName:
+          type: string
+          description: The name of the graph to create.
+        source:
+          type: string
+          description: S3 URI of the source data to import.
+        roleArn:
+          type: string
+          description: IAM role ARN with S3 access.
+        provisionedMemory:
+          type: integer
+        format:
+          type: string
+          description: The format of the source data.
+          enum:
+            - CSV
+            - OPEN_CYPHER
+            - PARQUET
+            - NTRIPLES
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        deletionProtection:
+          type: boolean
+        publicConnectivity:
+          type: boolean
+        kmsKeyIdentifier:
+          type: string
+        vectorSearchConfiguration:
+          type: object
+          properties:
+            dimension:
+              type: integer
+        replicaCount:
+          type: integer
+        importOptions:
+          type: object
+          description: Additional import configuration options.
+    ImportTaskOutput:
+      type: object
+      properties:
+        graphId:
+          type: string
+        taskId:
+          type: string
+        source:
+          type: string
+        format:
+          type: string
+        roleArn:
+          type: string
+        status:
+          type: string
+          enum:
+            - INITIALIZING
+            - EXPORTING
+            - ANALYZING_DATA
+            - IMPORTING
+            - REPROVISIONING
+            - ROLLING_BACK
+            - SUCCEEDED
+            - FAILED
+            - CANCELLING
+            - CANCELLED
+        importOptions:
+          type: object
+        importTaskDetails:
+          type: object
+          properties:
+            status:
+              type: string
+            startTime:
+              type: string
+              format: date-time
+            timeElapsedSeconds:
+              type: integer
+            progressPercentage:
+              type: integer
+            errorCount:
+              type: integer
+            errorDetails:
+              type: string
+            statementCount:
+              type: integer
+            dictionaryEntryCount:
+              type: integer
+    ListImportTasksOutput:
+      type: object
+      properties:
+        tasks:
+          type: array
+          items:
+            type: object
+            properties:
+              graphId:
+                type: string
+              taskId:
+                type: string
+              source:
+                type: string
+              format:
+                type: string
+              roleArn:
+                type: string
+              status:
+                type: string
+        nextToken:
+          type: string
+    CreatePrivateGraphEndpointInput:
+      type: object
+      properties:
+        vpcId:
+          type: string
+          description: The VPC ID for the private endpoint.
+        subnetIds:
+          type: array
+          description: The subnet IDs for the private endpoint.
+          items:
+            type: string
+        vpcSecurityGroupIds:
+          type: array
+          description: The security group IDs for the private endpoint.
+          items:
+            type: string
+    PrivateGraphEndpointOutput:
+      type: object
+      properties:
+        vpcId:
+          type: string
+        subnetIds:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - CREATING
+            - AVAILABLE
+            - DELETING
+            - FAILED
+        vpcEndpointId:
+          type: string

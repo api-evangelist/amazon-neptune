@@ -1,0 +1,794 @@
+openapi: 3.1.0
+info:
+  title: Neptune ML API
+  description: >-
+    Neptune ML enables machine learning on graph data using graph neural
+    networks. It provides APIs for data processing, model training, model
+    transform, and inference endpoint management powered by Amazon SageMaker.
+    The ML API endpoints are available on the Neptune DB instance HTTP
+    endpoint under the /ml path prefix.
+  version: '2024-01-01'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://{cluster-endpoint}:8182
+    description: Neptune ML REST endpoint
+    variables:
+      cluster-endpoint:
+        default: your-cluster-endpoint.region.neptune.amazonaws.com
+        description: The cluster endpoint DNS name for your Neptune DB cluster
+security:
+  - aws_sigv4: []
+tags:
+  - name: Data Processing
+    description: ML data processing job operations
+  - name: Model Training
+    description: ML model training job operations
+  - name: Model Transform
+    description: ML model transform job operations
+  - name: Inference Endpoints
+    description: ML inference endpoint management operations
+paths:
+  /ml/dataprocessing:
+    post:
+      operationId: createDataProcessingJob
+      summary: Create an ML data processing job
+      description: >-
+        Creates a new Neptune ML data processing job that exports and
+        prepares graph data from Neptune for model training using Amazon
+        SageMaker. The job reads data from Neptune and writes processed
+        output to the specified S3 location.
+      tags:
+        - Data Processing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataProcessingJobRequest'
+      responses:
+        '200':
+          description: Data processing job created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters.
+        '500':
+          description: Internal server error.
+    get:
+      operationId: listDataProcessingJobs
+      summary: List active data processing jobs
+      description: >-
+        Returns a list of active Neptune ML data processing job IDs.
+      tags:
+        - Data Processing
+      parameters:
+        - name: maxItems
+          in: query
+          description: Maximum number of items to return (default 10, max 1024).
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          description: The ARN of the IAM role for Neptune access.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+  /ml/dataprocessing/{id}:
+    get:
+      operationId: getDataProcessingJobStatus
+      summary: Get data processing job status
+      description: >-
+        Returns the status of a Neptune ML data processing job.
+      tags:
+        - Data Processing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the data processing job.
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          description: The ARN of the IAM role for Neptune access.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '404':
+          description: Job not found.
+    delete:
+      operationId: stopDataProcessingJob
+      summary: Stop a data processing job
+      description: >-
+        Stops a running Neptune ML data processing job. Optionally deletes
+        all S3 artifacts when the clean parameter is set to true.
+      tags:
+        - Data Processing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the data processing job.
+          schema:
+            type: string
+        - name: clean
+          in: query
+          description: Whether to delete all S3 artifacts when stopping.
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          description: The ARN of the IAM role for Neptune access.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job stopped successfully.
+        '404':
+          description: Job not found.
+  /ml/modeltraining:
+    post:
+      operationId: createModelTrainingJob
+      summary: Create an ML model training job
+      description: >-
+        Creates a new Neptune ML model training job using Amazon SageMaker.
+        The job trains a graph neural network model using the output from
+        a completed data processing job. Supports relational graph
+        convolutional network (RGCN) and knowledge graph embedding (KGE)
+        models, as well as custom training scripts.
+      tags:
+        - Model Training
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateModelTrainingJobRequest'
+      responses:
+        '200':
+          description: Model training job created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters.
+        '500':
+          description: Internal server error.
+    get:
+      operationId: listModelTrainingJobs
+      summary: List active model training jobs
+      description: >-
+        Returns a list of active Neptune ML model training job IDs.
+      tags:
+        - Model Training
+      parameters:
+        - name: maxItems
+          in: query
+          description: Maximum number of items to return (default 10, max 1024).
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+  /ml/modeltraining/{id}:
+    get:
+      operationId: getModelTrainingJobStatus
+      summary: Get model training job status
+      description: >-
+        Returns the status of a Neptune ML model training job.
+      tags:
+        - Model Training
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the model training job.
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '404':
+          description: Job not found.
+    delete:
+      operationId: stopModelTrainingJob
+      summary: Stop a model training job
+      description: >-
+        Stops a running Neptune ML model training job. Optionally deletes
+        all S3 artifacts when the clean parameter is set to true.
+      tags:
+        - Model Training
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: clean
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job stopped successfully.
+        '404':
+          description: Job not found.
+  /ml/modeltransform:
+    post:
+      operationId: createModelTransformJob
+      summary: Create an ML model transform job
+      description: >-
+        Creates a new Neptune ML model transform job that generates model
+        artifacts for inference. The transform job creates the embeddings
+        and other artifacts needed to deploy the model to an inference
+        endpoint.
+      tags:
+        - Model Transform
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateModelTransformJobRequest'
+      responses:
+        '200':
+          description: Model transform job created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters.
+    get:
+      operationId: listModelTransformJobs
+      summary: List active model transform jobs
+      description: >-
+        Returns a list of active Neptune ML model transform job IDs.
+      tags:
+        - Model Transform
+      parameters:
+        - name: maxItems
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+  /ml/modeltransform/{id}:
+    get:
+      operationId: getModelTransformJobStatus
+      summary: Get model transform job status
+      description: >-
+        Returns the status of a Neptune ML model transform job.
+      tags:
+        - Model Transform
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '404':
+          description: Job not found.
+    delete:
+      operationId: stopModelTransformJob
+      summary: Stop a model transform job
+      description: >-
+        Stops a running Neptune ML model transform job.
+      tags:
+        - Model Transform
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: clean
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job stopped successfully.
+        '404':
+          description: Job not found.
+  /ml/endpoints:
+    post:
+      operationId: createInferenceEndpoint
+      summary: Create an ML inference endpoint
+      description: >-
+        Creates a new Neptune ML inference endpoint backed by Amazon
+        SageMaker. The endpoint can be used to make real-time predictions
+        on graph data using a trained model. Can also be used to update
+        an existing endpoint by setting the update parameter to true.
+      tags:
+        - Inference Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInferenceEndpointRequest'
+      responses:
+        '200':
+          description: Inference endpoint created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointCreatedResponse'
+        '400':
+          description: Bad request - invalid parameters.
+    get:
+      operationId: listInferenceEndpoints
+      summary: List ML inference endpoints
+      description: >-
+        Returns a list of active Neptune ML inference endpoint IDs.
+      tags:
+        - Inference Endpoints
+      parameters:
+        - name: maxItems
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 1024
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Endpoint list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointListResponse'
+  /ml/endpoints/{id}:
+    get:
+      operationId: getInferenceEndpointStatus
+      summary: Get ML inference endpoint status
+      description: >-
+        Returns the status of a Neptune ML inference endpoint.
+      tags:
+        - Inference Endpoints
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the inference endpoint.
+          schema:
+            type: string
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Endpoint status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointStatusResponse'
+        '404':
+          description: Endpoint not found.
+    delete:
+      operationId: deleteInferenceEndpoint
+      summary: Delete an ML inference endpoint
+      description: >-
+        Deletes a Neptune ML inference endpoint. Optionally cleans up all
+        related S3 artifacts.
+      tags:
+        - Inference Endpoints
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: clean
+          in: query
+          description: Whether to delete all related S3 artifacts.
+          schema:
+            type: boolean
+            default: false
+        - name: neptuneIamRoleArn
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Endpoint deleted successfully.
+        '404':
+          description: Endpoint not found.
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication via IAM
+  schemas:
+    CreateDataProcessingJobRequest:
+      type: object
+      required:
+        - inputDataS3Location
+        - processedDataS3Location
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the job (auto-generated UUID if omitted).
+        inputDataS3Location:
+          type: string
+          description: S3 URI for the input data.
+        processedDataS3Location:
+          type: string
+          description: S3 URI where processed output is written.
+        previousDataProcessingJobId:
+          type: string
+          description: Job ID of a previous job for incremental processing.
+        sagemakerIamRoleArn:
+          type: string
+          description: IAM role ARN for SageMaker execution.
+        neptuneIamRoleArn:
+          type: string
+          description: IAM role ARN for Neptune access.
+        processingInstanceType:
+          type: string
+          description: ML instance type (default auto-selected ml.r5 type).
+        processingInstanceVolumeSizeInGB:
+          type: integer
+          description: Disk volume size in GB (default 0 means auto-selected).
+        processingTimeOutInSeconds:
+          type: integer
+          description: Timeout in seconds (default 86400, i.e., 1 day).
+          default: 86400
+        modelType:
+          type: string
+          description: The type of model to prepare data for.
+          enum:
+            - heterogeneous
+            - kge
+        configFileName:
+          type: string
+          description: The data specification configuration file name.
+          default: training-data-configuration.json
+        subnets:
+          type: array
+          description: VPC subnet IDs for SageMaker processing.
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          description: VPC security group IDs.
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+          description: KMS key for storage volume encryption.
+        s3OutputEncryptionKMSKey:
+          type: string
+          description: KMS key for S3 output encryption.
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          description: Whether to enable inter-container traffic encryption.
+          default: true
+    CreateModelTrainingJobRequest:
+      type: object
+      required:
+        - dataProcessingJobId
+        - trainModelS3Location
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the job.
+        dataProcessingJobId:
+          type: string
+          description: Job ID of the completed data processing job.
+        trainModelS3Location:
+          type: string
+          description: S3 location for model artifacts output.
+        previousModelTrainingJobId:
+          type: string
+          description: Job ID of a previous training job for incremental training.
+        sagemakerIamRoleArn:
+          type: string
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          description: >-
+            The model type to train: rgcn (relational graph convolutional
+            network), transe, distmult, rotate, or custom.
+          enum:
+            - rgcn
+            - transe
+            - distmult
+            - rotate
+            - custom
+        baseProcessingInstanceType:
+          type: string
+          description: ML instance type for data preparation step.
+        trainingInstanceType:
+          type: string
+          description: ML instance type for the training step.
+          default: ml.p3.2xlarge
+        trainingInstanceVolumeSizeInGB:
+          type: integer
+          description: Disk volume size for training instance in GB.
+        trainingTimeOutInSeconds:
+          type: integer
+          description: Training job timeout in seconds.
+          default: 86400
+        maxHPONumberOfTrainingJobs:
+          type: integer
+          description: >-
+            Maximum total training jobs for hyperparameter tuning. Minimum
+            10 recommended for meaningful results.
+          default: 2
+        maxHPOParallelTrainingJobs:
+          type: integer
+          description: Maximum parallel training jobs.
+          default: 2
+        subnets:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+        enableManagedSpotTraining:
+          type: boolean
+          description: Whether to use EC2 spot instances for training.
+          default: false
+        customModelTrainingParameters:
+          type: object
+          description: Custom model training configuration.
+          properties:
+            sourceS3DirectoryPath:
+              type: string
+              description: S3 path to the custom training script directory.
+            trainingEntryPointScript:
+              type: string
+              description: Name of the training entry point script.
+            transformEntryPointScript:
+              type: string
+              description: Name of the transform entry point script.
+    CreateModelTransformJobRequest:
+      type: object
+      required:
+        - modelTransformOutputS3Location
+      properties:
+        id:
+          type: string
+        dataProcessingJobId:
+          type: string
+          description: Job ID of the completed data processing job.
+        mlModelTrainingJobId:
+          type: string
+          description: Job ID of the completed model training job.
+        trainingJobName:
+          type: string
+          description: Name of a completed SageMaker training job.
+        modelTransformOutputS3Location:
+          type: string
+          description: S3 location for transform output artifacts.
+        sagemakerIamRoleArn:
+          type: string
+        neptuneIamRoleArn:
+          type: string
+        baseProcessingInstanceType:
+          type: string
+        baseProcessingInstanceVolumeSizeInGB:
+          type: integer
+        subnets:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+        customModelTransformParameters:
+          type: object
+          properties:
+            sourceS3DirectoryPath:
+              type: string
+            transformEntryPointScript:
+              type: string
+    CreateInferenceEndpointRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the endpoint (auto-generated timestamped
+            name if omitted).
+        mlModelTrainingJobId:
+          type: string
+          description: Job ID from a completed training job.
+        mlModelTransformJobId:
+          type: string
+          description: Job ID from a completed transform job.
+        update:
+          type: boolean
+          description: Whether this is an update to an existing endpoint.
+          default: false
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          description: The model type.
+          enum:
+            - rgcn
+            - kge
+            - transe
+            - distmult
+            - rotate
+        instanceType:
+          type: string
+          description: ML instance type for the inference endpoint.
+          default: ml.m5.xlarge
+        instanceCount:
+          type: integer
+          description: Minimum number of EC2 instances to deploy.
+          default: 1
+        volumeEncryptionKMSKey:
+          type: string
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
+    JobListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          description: List of job IDs.
+          items:
+            type: string
+    JobStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+        id:
+          type: string
+          description: The job identifier.
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
+            failureReason:
+              type: string
+            cloudwatchLogUrl:
+              type: string
+    EndpointCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created endpoint.
+    EndpointListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+    EndpointStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        endpoint:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+        endpointConfig:
+          type: object
+        outputLocation:
+          type: string
