@@ -25,16 +25,14 @@ servers:
 security:
   - aws_sigv4: []
 tags:
-  - name: Graphs
-    description: Operations for managing Neptune Analytics graph resources
   - name: Graph Snapshots
     description: Operations for managing graph snapshots
+  - name: Graphs
+    description: Operations for managing Neptune Analytics graph resources
   - name: Import Tasks
     description: Operations for importing data into graphs
   - name: Private Graph Endpoints
     description: Operations for managing private graph endpoints in VPCs
-  - name: Queries
-    description: Operations for executing and managing queries
 paths:
   /graphs:
     post:

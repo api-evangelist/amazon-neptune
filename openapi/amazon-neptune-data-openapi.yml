@@ -25,18 +25,18 @@ security:
 tags:
   - name: Gremlin
     description: Execute Gremlin graph traversal queries
+  - name: Loader
+    description: Bulk data loading operations
+  - name: ML
+    description: Machine learning operations
   - name: openCypher
     description: Execute openCypher graph queries
   - name: SPARQL
     description: Execute SPARQL queries against RDF data
   - name: Status
     description: Query engine status and statistics
-  - name: Loader
-    description: Bulk data loading operations
   - name: Streams
     description: Change data capture stream operations
-  - name: ML
-    description: Machine learning operations
 paths:
   /gremlin:
     post:

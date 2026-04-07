@@ -43,24 +43,22 @@ security:
 tags:
   - name: DB Clusters
     description: Operations for managing Neptune DB clusters
-  - name: Global Clusters
-    description: Operations for managing Neptune global database clusters
   - name: DB Instances
     description: Operations for managing Neptune DB instances
-  - name: Parameter Groups
-    description: Operations for managing DB and cluster parameter groups
-  - name: Subnet Groups
-    description: Operations for managing DB subnet groups
-  - name: Snapshots
-    description: Operations for managing cluster snapshots
-  - name: Events
-    description: Operations for managing event subscriptions and viewing events
-  - name: Tags
-    description: Operations for tagging Neptune resources
-  - name: Maintenance
-    description: Operations for managing pending maintenance actions
   - name: Engine
     description: Operations for querying engine version information
+  - name: Events
+    description: Operations for managing event subscriptions and viewing events
+  - name: Global Clusters
+    description: Operations for managing Neptune global database clusters
+  - name: Maintenance
+    description: Operations for managing pending maintenance actions
+  - name: Parameter Groups
+    description: Operations for managing DB and cluster parameter groups
+  - name: Snapshots
+    description: Operations for managing cluster snapshots
+  - name: Subnet Groups
+    description: Operations for managing DB subnet groups
 paths:
   /:
     get:
@@ -1186,8 +1184,7 @@ paths:
       description: >-
         Adds metadata tags to an Amazon Neptune resource. Tags are key-value
         pairs that you can use to categorize and manage your resources.
-      tags:
-        - Tags
+      tags: []
       parameters:
         - name: Action
           in: query
@@ -1219,8 +1216,7 @@ paths:
       summary: Amazon Neptune List tags for a Neptune resource
       description: >-
         Lists all tags on an Amazon Neptune resource.
-      tags:
-        - Tags
+      tags: []
       parameters:
         - name: Action
           in: query

@@ -26,12 +26,12 @@ security:
 tags:
   - name: Data Processing
     description: ML data processing job operations
+  - name: Inference Endpoints
+    description: ML inference endpoint management operations
   - name: Model Training
     description: ML model training job operations
   - name: Model Transform
     description: ML model transform job operations
-  - name: Inference Endpoints
-    description: ML inference endpoint management operations
 paths:
   /ml/dataprocessing:
     post:
