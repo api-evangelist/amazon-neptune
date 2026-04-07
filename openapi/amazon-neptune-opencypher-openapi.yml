@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Neptune openCypher API
+  title: Amazon Neptune Neptune openCypher API
   description: >-
     openCypher graph query language API for querying property graphs with
     Cypher syntax in Neptune. It provides an HTTP endpoint for executing
@@ -33,7 +33,7 @@ paths:
   /openCypher:
     post:
       operationId: executeOpenCypherQuery
-      summary: Execute an openCypher query via HTTP POST
+      summary: Amazon Neptune Execute an openCypher query via HTTP POST
       description: >-
         Submits an openCypher query to the Neptune HTTP endpoint. The query
         is provided as a form-encoded parameter. Supports both read and write
@@ -102,7 +102,7 @@ paths:
           description: Internal server error during query execution.
     get:
       operationId: executeOpenCypherQueryGet
-      summary: Execute an openCypher query via HTTP GET
+      summary: Amazon Neptune Execute an openCypher query via HTTP GET
       description: >-
         Submits an openCypher query via URL query parameter. Supports both
         read and write queries.
@@ -135,7 +135,7 @@ paths:
   /openCypher/status:
     get:
       operationId: getOpenCypherQueryStatus
-      summary: Get the status of all running openCypher queries
+      summary: Amazon Neptune Get the status of all running openCypher queries
       description: >-
         Returns the status of all running and waiting openCypher queries,
         including query IDs and execution statistics.
@@ -151,7 +151,7 @@ paths:
   /openCypher/status/{queryId}:
     get:
       operationId: getOpenCypherQueryStatusById
-      summary: Get the status of a specific openCypher query
+      summary: Amazon Neptune Get the status of a specific openCypher query
       description: >-
         Returns the status of a specific openCypher query by its query ID.
       tags:
@@ -174,7 +174,7 @@ paths:
           description: Query with the specified ID was not found.
     delete:
       operationId: cancelOpenCypherQuery
-      summary: Cancel a running openCypher query
+      summary: Amazon Neptune Cancel a running openCypher query
       description: >-
         Cancels a running openCypher query by its query ID.
       tags:

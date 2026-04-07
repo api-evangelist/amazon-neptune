@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Neptune Loader API
+  title: Amazon Neptune Neptune Loader API
   description: >-
     Neptune bulk loader API for ingesting large volumes of data from Amazon
     S3 into a Neptune DB instance. It supports CSV formats for property
@@ -31,7 +31,7 @@ paths:
   /loader:
     post:
       operationId: startBulkLoadJob
-      summary: Start a bulk data load job from S3
+      summary: Amazon Neptune Start a bulk data load job from S3
       description: >-
         Initiates a bulk data loading job from Amazon S3 into the Neptune
         database. The source data can be in CSV format for property graphs
@@ -85,7 +85,7 @@ paths:
                 $ref: '#/components/schemas/LoaderErrorResponse'
     get:
       operationId: listBulkLoadJobs
-      summary: List bulk load job IDs
+      summary: Amazon Neptune List bulk load job IDs
       description: >-
         Returns a list of bulk load job IDs. Neptune tracks the most recent
         1,024 bulk load jobs.
@@ -112,7 +112,7 @@ paths:
   /loader/{loadId}:
     get:
       operationId: getBulkLoadJobStatus
-      summary: Get the status of a bulk load job
+      summary: Amazon Neptune Get the status of a bulk load job
       description: >-
         Returns the status of a specific bulk load job by its load ID.
         Includes overall status, feed counts, and optionally detailed
@@ -168,7 +168,7 @@ paths:
                 $ref: '#/components/schemas/LoaderErrorResponse'
     delete:
       operationId: cancelBulkLoadJob
-      summary: Cancel an in-progress bulk load job
+      summary: Amazon Neptune Cancel an in-progress bulk load job
       description: >-
         Cancels an in-progress bulk load job by its load ID. Must be
         executed against the read/write cluster endpoint (not a read

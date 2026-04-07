@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Neptune Analytics API
+  title: Amazon Neptune Neptune Analytics API
   description: >-
     Neptune Analytics is a memory-optimized graph database engine for
     analytics, providing optimized graph analytic algorithms, low-latency
@@ -39,7 +39,7 @@ paths:
   /graphs:
     post:
       operationId: createGraph
-      summary: Create a Neptune Analytics graph
+      summary: Amazon Neptune Create a Neptune Analytics graph
       description: >-
         Creates a new Neptune Analytics graph resource. The graph is a
         memory-optimized database instance optimized for analytical
@@ -65,7 +65,7 @@ paths:
           description: A graph with the specified name already exists.
     get:
       operationId: listGraphs
-      summary: List Neptune Analytics graphs
+      summary: Amazon Neptune List Neptune Analytics graphs
       description: >-
         Returns a list of Neptune Analytics graph resources in the account.
       tags:
@@ -93,7 +93,7 @@ paths:
   /graphs/{graphIdentifier}:
     get:
       operationId: getGraph
-      summary: Get Neptune Analytics graph details
+      summary: Amazon Neptune Get Neptune Analytics graph details
       description: >-
         Returns detailed information about a specific Neptune Analytics
         graph resource.
@@ -117,7 +117,7 @@ paths:
           description: Graph not found.
     patch:
       operationId: updateGraph
-      summary: Update a Neptune Analytics graph
+      summary: Amazon Neptune Update a Neptune Analytics graph
       description: >-
         Updates the configuration of an existing Neptune Analytics graph,
         such as provisioned memory or deletion protection settings.
@@ -147,7 +147,7 @@ paths:
           description: Graph not found.
     delete:
       operationId: deleteGraph
-      summary: Delete a Neptune Analytics graph
+      summary: Amazon Neptune Delete a Neptune Analytics graph
       description: >-
         Deletes a Neptune Analytics graph resource. The graph must not
         have deletion protection enabled.
@@ -180,7 +180,7 @@ paths:
   /graphs/{graphIdentifier}/reset:
     put:
       operationId: resetGraph
-      summary: Reset a Neptune Analytics graph
+      summary: Amazon Neptune Reset a Neptune Analytics graph
       description: >-
         Empties the data from a Neptune Analytics graph, removing all
         nodes and edges while preserving the graph resource and its
@@ -218,7 +218,7 @@ paths:
   /snapshots:
     post:
       operationId: createGraphSnapshot
-      summary: Create a graph snapshot
+      summary: Amazon Neptune Create a graph snapshot
       description: >-
         Creates a snapshot of a Neptune Analytics graph for backup
         purposes.
@@ -241,7 +241,7 @@ paths:
           description: Source graph not found.
     get:
       operationId: listGraphSnapshots
-      summary: List graph snapshots
+      summary: Amazon Neptune List graph snapshots
       description: >-
         Returns a list of graph snapshots in the account.
       tags:
@@ -272,7 +272,7 @@ paths:
   /snapshots/{snapshotIdentifier}:
     get:
       operationId: getGraphSnapshot
-      summary: Get graph snapshot details
+      summary: Amazon Neptune Get graph snapshot details
       description: >-
         Returns detailed information about a specific graph snapshot.
       tags:
@@ -295,7 +295,7 @@ paths:
           description: Snapshot not found.
     delete:
       operationId: deleteGraphSnapshot
-      summary: Delete a graph snapshot
+      summary: Amazon Neptune Delete a graph snapshot
       description: >-
         Deletes a Neptune Analytics graph snapshot.
       tags:
@@ -315,7 +315,7 @@ paths:
   /snapshots/{snapshotIdentifier}/restore:
     post:
       operationId: restoreGraphFromSnapshot
-      summary: Restore a graph from a snapshot
+      summary: Amazon Neptune Restore a graph from a snapshot
       description: >-
         Creates a new Neptune Analytics graph by restoring from an existing
         snapshot.
@@ -344,7 +344,7 @@ paths:
   /importtasks:
     post:
       operationId: createGraphUsingImportTask
-      summary: Create a graph using an import task
+      summary: Amazon Neptune Create a graph using an import task
       description: >-
         Creates a new Neptune Analytics graph and populates it with data
         from an Amazon S3 source in a single operation.
@@ -365,7 +365,7 @@ paths:
                 $ref: '#/components/schemas/ImportTaskOutput'
     get:
       operationId: listImportTasks
-      summary: List import tasks
+      summary: Amazon Neptune List import tasks
       description: >-
         Returns a list of import tasks in the account.
       tags:
@@ -389,7 +389,7 @@ paths:
   /importtasks/{taskIdentifier}:
     get:
       operationId: getImportTask
-      summary: Get import task details
+      summary: Amazon Neptune Get import task details
       description: >-
         Returns detailed information about a specific import task.
       tags:
@@ -412,7 +412,7 @@ paths:
           description: Import task not found.
     delete:
       operationId: cancelImportTask
-      summary: Cancel an import task
+      summary: Amazon Neptune Cancel an import task
       description: >-
         Cancels a running import task.
       tags:
@@ -432,7 +432,7 @@ paths:
   /privategraphendpoints/{graphIdentifier}:
     post:
       operationId: createPrivateGraphEndpoint
-      summary: Create a private graph endpoint
+      summary: Amazon Neptune Create a private graph endpoint
       description: >-
         Creates a private graph endpoint in a VPC for accessing a Neptune
         Analytics graph without going over the public internet.
@@ -460,7 +460,7 @@ paths:
                 $ref: '#/components/schemas/PrivateGraphEndpointOutput'
     get:
       operationId: listPrivateGraphEndpoints
-      summary: List private graph endpoints
+      summary: Amazon Neptune List private graph endpoints
       description: >-
         Returns a list of private graph endpoints for a specific graph.
       tags:
@@ -485,7 +485,7 @@ paths:
   /privategraphendpoints/{graphIdentifier}/{vpcId}:
     get:
       operationId: getPrivateGraphEndpoint
-      summary: Get private graph endpoint details
+      summary: Amazon Neptune Get private graph endpoint details
       description: >-
         Returns details of a specific private graph endpoint.
       tags:
@@ -511,7 +511,7 @@ paths:
                 $ref: '#/components/schemas/PrivateGraphEndpointOutput'
     delete:
       operationId: deletePrivateGraphEndpoint
-      summary: Delete a private graph endpoint
+      summary: Amazon Neptune Delete a private graph endpoint
       description: >-
         Deletes a private graph endpoint from a VPC.
       tags:

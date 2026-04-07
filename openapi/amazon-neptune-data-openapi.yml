@@ -41,7 +41,7 @@ paths:
   /gremlin:
     post:
       operationId: executeGremlinQuery
-      summary: Execute a Gremlin query via the Data API
+      summary: Amazon Neptune Execute a Gremlin query via the Data API
       description: >-
         Executes a Gremlin query against the Neptune graph database using the
         Data API. The query is submitted as a JSON payload and results are
@@ -74,7 +74,7 @@ paths:
   /gremlin/explain:
     post:
       operationId: executeGremlinExplainQuery
-      summary: Get the execution plan for a Gremlin query
+      summary: Amazon Neptune Get the execution plan for a Gremlin query
       description: >-
         Executes a Gremlin explain query against the Neptune graph database.
         Returns the query execution plan without actually running the query
@@ -100,7 +100,7 @@ paths:
   /gremlin/profile:
     post:
       operationId: executeGremlinProfileQuery
-      summary: Profile a Gremlin query execution
+      summary: Amazon Neptune Profile a Gremlin query execution
       description: >-
         Executes a Gremlin profile query against the Neptune graph database.
         Returns the query execution plan along with actual runtime statistics
@@ -126,7 +126,7 @@ paths:
   /gremlin/status:
     get:
       operationId: getGremlinQueryStatus
-      summary: Get the status of Gremlin queries
+      summary: Amazon Neptune Get the status of Gremlin queries
       description: >-
         Gets the status of running and waiting Gremlin queries. Returns a list
         of active queries with their query IDs and statuses.
@@ -142,7 +142,7 @@ paths:
   /gremlin/status/{queryId}:
     get:
       operationId: getGremlinQueryStatusById
-      summary: Get the status of a specific Gremlin query
+      summary: Amazon Neptune Get the status of a specific Gremlin query
       description: >-
         Gets the status of a specific Gremlin query by its query ID.
       tags:
@@ -165,7 +165,7 @@ paths:
           description: Query not found.
     delete:
       operationId: cancelGremlinQuery
-      summary: Cancel a running Gremlin query
+      summary: Amazon Neptune Cancel a running Gremlin query
       description: >-
         Cancels a running Gremlin query by its query ID.
       tags:
@@ -185,7 +185,7 @@ paths:
   /opencypher:
     post:
       operationId: executeOpenCypherQuery
-      summary: Execute an openCypher query via the Data API
+      summary: Amazon Neptune Execute an openCypher query via the Data API
       description: >-
         Executes an openCypher query against the Neptune property graph
         database using the Data API. Returns the results in JSON format.
@@ -211,7 +211,7 @@ paths:
   /opencypher/explain:
     post:
       operationId: executeOpenCypherExplainQuery
-      summary: Get the execution plan for an openCypher query
+      summary: Amazon Neptune Get the execution plan for an openCypher query
       description: >-
         Executes an openCypher explain query. Returns the query execution
         plan without actually running the query against the data.
@@ -235,7 +235,7 @@ paths:
   /opencypher/status:
     get:
       operationId: getOpenCypherQueryStatus
-      summary: Get the status of openCypher queries
+      summary: Amazon Neptune Get the status of openCypher queries
       description: >-
         Gets the status of running and waiting openCypher queries.
       tags:
@@ -250,7 +250,7 @@ paths:
   /opencypher/status/{queryId}:
     get:
       operationId: getOpenCypherQueryStatusById
-      summary: Get the status of a specific openCypher query
+      summary: Amazon Neptune Get the status of a specific openCypher query
       description: >-
         Gets the status of a specific openCypher query by its query ID.
       tags:
@@ -269,7 +269,7 @@ paths:
           description: Query not found.
     delete:
       operationId: cancelOpenCypherQuery
-      summary: Cancel a running openCypher query
+      summary: Amazon Neptune Cancel a running openCypher query
       description: >-
         Cancels a running openCypher query by its query ID.
       tags:
@@ -289,7 +289,7 @@ paths:
   /sparql:
     post:
       operationId: executeSparqlQuery
-      summary: Execute a SPARQL query via the Data API
+      summary: Amazon Neptune Execute a SPARQL query via the Data API
       description: >-
         Executes a SPARQL query against the Neptune RDF graph database using
         the Data API. Supports SELECT, ASK, CONSTRUCT, and DESCRIBE queries.
@@ -313,7 +313,7 @@ paths:
   /sparql/status:
     get:
       operationId: getSparqlQueryStatus
-      summary: Get the status of SPARQL queries
+      summary: Amazon Neptune Get the status of SPARQL queries
       description: >-
         Gets the status of running and waiting SPARQL queries.
       tags:
@@ -337,7 +337,7 @@ paths:
   /status:
     get:
       operationId: getEngineStatus
-      summary: Get Neptune engine status
+      summary: Amazon Neptune Get Neptune engine status
       description: >-
         Returns the status of the Neptune DB instance including engine version,
         cluster role, and instance health information.
@@ -353,7 +353,7 @@ paths:
   /propertygraph/statistics:
     get:
       operationId: getPropertygraphStatistics
-      summary: Get property graph statistics
+      summary: Amazon Neptune Get property graph statistics
       description: >-
         Returns statistics for the property graph data stored in the Neptune
         database, including node and edge counts and label distributions.
@@ -368,7 +368,7 @@ paths:
                 $ref: '#/components/schemas/PropertygraphStatisticsOutput'
     post:
       operationId: managePropertygraphStatistics
-      summary: Manage property graph statistics
+      summary: Amazon Neptune Manage property graph statistics
       description: >-
         Starts or deletes statistics generation for the property graph data.
       tags:
@@ -392,7 +392,7 @@ paths:
   /sparql/statistics:
     get:
       operationId: getSparqlStatistics
-      summary: Get SPARQL RDF statistics
+      summary: Amazon Neptune Get SPARQL RDF statistics
       description: >-
         Returns statistics for the RDF data stored in the Neptune database,
         including triple counts and predicate distributions.
@@ -407,7 +407,7 @@ paths:
                 $ref: '#/components/schemas/SparqlStatisticsOutput'
     post:
       operationId: manageSparqlStatistics
-      summary: Manage SPARQL RDF statistics
+      summary: Amazon Neptune Manage SPARQL RDF statistics
       description: >-
         Starts or deletes statistics generation for the RDF data.
       tags:
@@ -431,7 +431,7 @@ paths:
   /loader:
     post:
       operationId: startLoaderJob
-      summary: Start a bulk loader job
+      summary: Amazon Neptune Start a bulk loader job
       description: >-
         Initiates a bulk data loading job from Amazon S3 into the Neptune
         database. Supports CSV for property graphs and multiple RDF formats.
@@ -456,7 +456,7 @@ paths:
           description: Internal server error.
     get:
       operationId: listLoaderJobs
-      summary: List bulk loader jobs
+      summary: Amazon Neptune List bulk loader jobs
       description: >-
         Returns a list of Neptune bulk loader job IDs. Neptune tracks the
         most recent 1,024 bulk load jobs.
@@ -493,7 +493,7 @@ paths:
   /loader/{loadId}:
     get:
       operationId: getLoaderJobStatus
-      summary: Get the status of a bulk loader job
+      summary: Amazon Neptune Get the status of a bulk loader job
       description: >-
         Returns the status of a specific bulk loader job including overall
         progress and any error details.
@@ -537,7 +537,7 @@ paths:
           description: Load job not found.
     delete:
       operationId: cancelLoaderJob
-      summary: Cancel a bulk loader job
+      summary: Amazon Neptune Cancel a bulk loader job
       description: >-
         Cancels an in-progress bulk loader job by its load ID.
       tags:
@@ -557,7 +557,7 @@ paths:
   /propertygraph/stream:
     get:
       operationId: getPropertygraphStream
-      summary: Get property graph change stream records
+      summary: Amazon Neptune Get property graph change stream records
       description: >-
         Gets a stream of change-log entries for property graph data. Each
         entry records a mutation (add, remove) made to the graph data.
@@ -603,7 +603,7 @@ paths:
   /sparql/stream:
     get:
       operationId: getSparqlStream
-      summary: Get SPARQL RDF change stream records
+      summary: Amazon Neptune Get SPARQL RDF change stream records
       description: >-
         Gets a stream of change-log entries for RDF data. Each entry records
         a mutation (add, remove) made to the RDF triples.
@@ -648,7 +648,7 @@ paths:
   /ml/dataprocessing:
     post:
       operationId: startMLDataProcessingJob
-      summary: Start an ML data processing job
+      summary: Amazon Neptune Start an ML data processing job
       description: >-
         Creates a new Neptune ML data processing job that prepares graph data
         for model training using Amazon SageMaker.
@@ -672,7 +672,7 @@ paths:
                     type: string
     get:
       operationId: listMLDataProcessingJobs
-      summary: List ML data processing jobs
+      summary: Amazon Neptune List ML data processing jobs
       description: >-
         Returns a list of active Neptune ML data processing job IDs.
       tags:
@@ -705,7 +705,7 @@ paths:
   /ml/dataprocessing/{jobId}:
     get:
       operationId: getMLDataProcessingJobStatus
-      summary: Get ML data processing job status
+      summary: Amazon Neptune Get ML data processing job status
       description: >-
         Returns the status of a Neptune ML data processing job.
       tags:
@@ -731,7 +731,7 @@ paths:
                 $ref: '#/components/schemas/MLJobStatusOutput'
     delete:
       operationId: cancelMLDataProcessingJob
-      summary: Cancel an ML data processing job
+      summary: Amazon Neptune Cancel an ML data processing job
       description: >-
         Cancels a running Neptune ML data processing job.
       tags:
@@ -760,7 +760,7 @@ paths:
   /ml/modeltraining:
     post:
       operationId: startMLModelTrainingJob
-      summary: Start an ML model training job
+      summary: Amazon Neptune Start an ML model training job
       description: >-
         Creates a new Neptune ML model training job using Amazon SageMaker.
       tags:
@@ -783,7 +783,7 @@ paths:
                     type: string
     get:
       operationId: listMLModelTrainingJobs
-      summary: List ML model training jobs
+      summary: Amazon Neptune List ML model training jobs
       description: >-
         Returns a list of active Neptune ML model training job IDs.
       tags:
@@ -814,7 +814,7 @@ paths:
   /ml/modeltraining/{jobId}:
     get:
       operationId: getMLModelTrainingJobStatus
-      summary: Get ML model training job status
+      summary: Amazon Neptune Get ML model training job status
       description: >-
         Returns the status of a Neptune ML model training job.
       tags:
@@ -838,7 +838,7 @@ paths:
                 $ref: '#/components/schemas/MLJobStatusOutput'
     delete:
       operationId: cancelMLModelTrainingJob
-      summary: Cancel an ML model training job
+      summary: Amazon Neptune Cancel an ML model training job
       description: >-
         Cancels a running Neptune ML model training job.
       tags:
@@ -864,7 +864,7 @@ paths:
   /ml/modeltransform:
     post:
       operationId: startMLModelTransformJob
-      summary: Start an ML model transform job
+      summary: Amazon Neptune Start an ML model transform job
       description: >-
         Creates a new Neptune ML model transform job that generates model
         artifacts for inference.
@@ -888,7 +888,7 @@ paths:
                     type: string
     get:
       operationId: listMLModelTransformJobs
-      summary: List ML model transform jobs
+      summary: Amazon Neptune List ML model transform jobs
       description: >-
         Returns a list of active Neptune ML model transform job IDs.
       tags:
@@ -910,7 +910,7 @@ paths:
   /ml/modeltransform/{jobId}:
     get:
       operationId: getMLModelTransformJobStatus
-      summary: Get ML model transform job status
+      summary: Amazon Neptune Get ML model transform job status
       description: >-
         Returns the status of a Neptune ML model transform job.
       tags:
@@ -934,7 +934,7 @@ paths:
                 $ref: '#/components/schemas/MLJobStatusOutput'
     delete:
       operationId: cancelMLModelTransformJob
-      summary: Cancel an ML model transform job
+      summary: Amazon Neptune Cancel an ML model transform job
       description: >-
         Cancels a running Neptune ML model transform job.
       tags:
@@ -960,7 +960,7 @@ paths:
   /ml/endpoints:
     post:
       operationId: createMLEndpoint
-      summary: Create an ML inference endpoint
+      summary: Amazon Neptune Create an ML inference endpoint
       description: >-
         Creates a new Neptune ML inference endpoint backed by Amazon SageMaker.
       tags:
@@ -983,7 +983,7 @@ paths:
                     type: string
     get:
       operationId: listMLEndpoints
-      summary: List ML inference endpoints
+      summary: Amazon Neptune List ML inference endpoints
       description: >-
         Returns a list of active Neptune ML inference endpoint IDs.
       tags:
@@ -1005,7 +1005,7 @@ paths:
   /ml/endpoints/{endpointId}:
     get:
       operationId: getMLEndpointStatus
-      summary: Get ML inference endpoint status
+      summary: Amazon Neptune Get ML inference endpoint status
       description: >-
         Returns the status of a Neptune ML inference endpoint.
       tags:
@@ -1029,7 +1029,7 @@ paths:
                 $ref: '#/components/schemas/MLEndpointStatusOutput'
     delete:
       operationId: deleteMLEndpoint
-      summary: Delete an ML inference endpoint
+      summary: Amazon Neptune Delete an ML inference endpoint
       description: >-
         Deletes a Neptune ML inference endpoint.
       tags:

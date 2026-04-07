@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Neptune Streams API
+  title: Amazon Neptune Neptune Streams API
   description: >-
     Neptune Streams generates a complete sequence of change-log entries that
     record every change made to graph data as it happens, enabling real-time
@@ -34,7 +34,7 @@ paths:
   /propertygraph/stream:
     get:
       operationId: getPropertyGraphStream
-      summary: Get property graph change stream records
+      summary: Amazon Neptune Get property graph change stream records
       description: >-
         Gets a stream of change-log entries for property graph
         (Gremlin/openCypher) data. Each entry records a mutation (ADD or
@@ -102,7 +102,7 @@ paths:
   /pg/stream:
     get:
       operationId: getPropertyGraphStreamAlias
-      summary: Get property graph change stream records (alias)
+      summary: Amazon Neptune Get property graph change stream records (alias)
       description: >-
         Alias for /propertygraph/stream. Gets a stream of change-log entries
         for property graph data. Supports the same parameters and returns
@@ -145,7 +145,7 @@ paths:
   /sparql/stream:
     get:
       operationId: getSparqlStream
-      summary: Get SPARQL RDF change stream records
+      summary: Amazon Neptune Get SPARQL RDF change stream records
       description: >-
         Gets a stream of change-log entries for RDF (SPARQL) data. Each
         entry records a mutation (ADD or REMOVE) of an RDF triple or quad.

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Neptune ML API
+  title: Amazon Neptune Neptune ML API
   description: >-
     Neptune ML enables machine learning on graph data using graph neural
     networks. It provides APIs for data processing, model training, model
@@ -36,7 +36,7 @@ paths:
   /ml/dataprocessing:
     post:
       operationId: createDataProcessingJob
-      summary: Create an ML data processing job
+      summary: Amazon Neptune Create an ML data processing job
       description: >-
         Creates a new Neptune ML data processing job that exports and
         prepares graph data from Neptune for model training using Amazon
@@ -63,7 +63,7 @@ paths:
           description: Internal server error.
     get:
       operationId: listDataProcessingJobs
-      summary: List active data processing jobs
+      summary: Amazon Neptune List active data processing jobs
       description: >-
         Returns a list of active Neptune ML data processing job IDs.
       tags:
@@ -91,7 +91,7 @@ paths:
   /ml/dataprocessing/{id}:
     get:
       operationId: getDataProcessingJobStatus
-      summary: Get data processing job status
+      summary: Amazon Neptune Get data processing job status
       description: >-
         Returns the status of a Neptune ML data processing job.
       tags:
@@ -119,7 +119,7 @@ paths:
           description: Job not found.
     delete:
       operationId: stopDataProcessingJob
-      summary: Stop a data processing job
+      summary: Amazon Neptune Stop a data processing job
       description: >-
         Stops a running Neptune ML data processing job. Optionally deletes
         all S3 artifacts when the clean parameter is set to true.
@@ -151,7 +151,7 @@ paths:
   /ml/modeltraining:
     post:
       operationId: createModelTrainingJob
-      summary: Create an ML model training job
+      summary: Amazon Neptune Create an ML model training job
       description: >-
         Creates a new Neptune ML model training job using Amazon SageMaker.
         The job trains a graph neural network model using the output from
@@ -179,7 +179,7 @@ paths:
           description: Internal server error.
     get:
       operationId: listModelTrainingJobs
-      summary: List active model training jobs
+      summary: Amazon Neptune List active model training jobs
       description: >-
         Returns a list of active Neptune ML model training job IDs.
       tags:
@@ -206,7 +206,7 @@ paths:
   /ml/modeltraining/{id}:
     get:
       operationId: getModelTrainingJobStatus
-      summary: Get model training job status
+      summary: Amazon Neptune Get model training job status
       description: >-
         Returns the status of a Neptune ML model training job.
       tags:
@@ -233,7 +233,7 @@ paths:
           description: Job not found.
     delete:
       operationId: stopModelTrainingJob
-      summary: Stop a model training job
+      summary: Amazon Neptune Stop a model training job
       description: >-
         Stops a running Neptune ML model training job. Optionally deletes
         all S3 artifacts when the clean parameter is set to true.
@@ -262,7 +262,7 @@ paths:
   /ml/modeltransform:
     post:
       operationId: createModelTransformJob
-      summary: Create an ML model transform job
+      summary: Amazon Neptune Create an ML model transform job
       description: >-
         Creates a new Neptune ML model transform job that generates model
         artifacts for inference. The transform job creates the embeddings
@@ -287,7 +287,7 @@ paths:
           description: Bad request - invalid parameters.
     get:
       operationId: listModelTransformJobs
-      summary: List active model transform jobs
+      summary: Amazon Neptune List active model transform jobs
       description: >-
         Returns a list of active Neptune ML model transform job IDs.
       tags:
@@ -313,7 +313,7 @@ paths:
   /ml/modeltransform/{id}:
     get:
       operationId: getModelTransformJobStatus
-      summary: Get model transform job status
+      summary: Amazon Neptune Get model transform job status
       description: >-
         Returns the status of a Neptune ML model transform job.
       tags:
@@ -339,7 +339,7 @@ paths:
           description: Job not found.
     delete:
       operationId: stopModelTransformJob
-      summary: Stop a model transform job
+      summary: Amazon Neptune Stop a model transform job
       description: >-
         Stops a running Neptune ML model transform job.
       tags:
@@ -367,7 +367,7 @@ paths:
   /ml/endpoints:
     post:
       operationId: createInferenceEndpoint
-      summary: Create an ML inference endpoint
+      summary: Amazon Neptune Create an ML inference endpoint
       description: >-
         Creates a new Neptune ML inference endpoint backed by Amazon
         SageMaker. The endpoint can be used to make real-time predictions
@@ -392,7 +392,7 @@ paths:
           description: Bad request - invalid parameters.
     get:
       operationId: listInferenceEndpoints
-      summary: List ML inference endpoints
+      summary: Amazon Neptune List ML inference endpoints
       description: >-
         Returns a list of active Neptune ML inference endpoint IDs.
       tags:
@@ -418,7 +418,7 @@ paths:
   /ml/endpoints/{id}:
     get:
       operationId: getInferenceEndpointStatus
-      summary: Get ML inference endpoint status
+      summary: Amazon Neptune Get ML inference endpoint status
       description: >-
         Returns the status of a Neptune ML inference endpoint.
       tags:
@@ -445,7 +445,7 @@ paths:
           description: Endpoint not found.
     delete:
       operationId: deleteInferenceEndpoint
-      summary: Delete an ML inference endpoint
+      summary: Amazon Neptune Delete an ML inference endpoint
       description: >-
         Deletes a Neptune ML inference endpoint. Optionally cleans up all
         related S3 artifacts.

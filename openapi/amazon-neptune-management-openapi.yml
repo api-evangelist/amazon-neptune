@@ -65,7 +65,7 @@ paths:
   /:
     get:
       operationId: describeDBClusters
-      summary: Describe Neptune DB clusters
+      summary: Amazon Neptune Describe Neptune DB clusters
       description: >-
         Returns information about provisioned Neptune DB clusters. If a cluster
         identifier is supplied, details for that specific cluster are returned.
@@ -114,7 +114,7 @@ paths:
           description: The specified DB cluster was not found.
     post:
       operationId: createDBCluster
-      summary: Create a new Neptune DB cluster
+      summary: Amazon Neptune Create a new Neptune DB cluster
       description: >-
         Creates a new Amazon Neptune DB cluster. You can use the
         ReplicationSourceIdentifier parameter to create the DB cluster as a
@@ -155,7 +155,7 @@ paths:
   /?Action=DeleteDBCluster:
     post:
       operationId: deleteDBCluster
-      summary: Delete a Neptune DB cluster
+      summary: Amazon Neptune Delete a Neptune DB cluster
       description: >-
         Deletes a previously provisioned DB cluster. When you delete a DB
         cluster, all automated backups are deleted and cannot be recovered.
@@ -204,7 +204,7 @@ paths:
   /?Action=ModifyDBCluster:
     post:
       operationId: modifyDBCluster
-      summary: Modify a Neptune DB cluster
+      summary: Amazon Neptune Modify a Neptune DB cluster
       description: >-
         Modifies settings for a DB cluster. You can change one or more database
         configuration parameters by specifying them and their new values.
@@ -242,7 +242,7 @@ paths:
   /?Action=StartDBCluster:
     post:
       operationId: startDBCluster
-      summary: Start a stopped Neptune DB cluster
+      summary: Amazon Neptune Start a stopped Neptune DB cluster
       description: >-
         Starts a stopped Neptune DB cluster. When you start a cluster, Neptune
         restores the cluster to the state it was in when it was stopped.
@@ -280,7 +280,7 @@ paths:
   /?Action=StopDBCluster:
     post:
       operationId: stopDBCluster
-      summary: Stop a running Neptune DB cluster
+      summary: Amazon Neptune Stop a running Neptune DB cluster
       description: >-
         Stops a running Neptune DB cluster. While the cluster is stopped, you
         are charged only for storage. A stopped cluster automatically restarts
@@ -319,7 +319,7 @@ paths:
   /?Action=FailoverDBCluster:
     post:
       operationId: failoverDBCluster
-      summary: Force a failover for a Neptune DB cluster
+      summary: Amazon Neptune Force a failover for a Neptune DB cluster
       description: >-
         Forces a failover for a DB cluster. A failover for a DB cluster promotes
         one of the read replicas in the cluster to be the new primary instance.
@@ -362,7 +362,7 @@ paths:
   /?Action=AddRoleToDBCluster:
     post:
       operationId: addRoleToDBCluster
-      summary: Associate an IAM role with a Neptune DB cluster
+      summary: Amazon Neptune Associate an IAM role with a Neptune DB cluster
       description: >-
         Associates an Identity and Access Management (IAM) role with a Neptune
         DB cluster so that the cluster can access other AWS services on your
@@ -403,7 +403,7 @@ paths:
   /?Action=RemoveRoleFromDBCluster:
     post:
       operationId: removeRoleFromDBCluster
-      summary: Disassociate an IAM role from a Neptune DB cluster
+      summary: Amazon Neptune Disassociate an IAM role from a Neptune DB cluster
       description: >-
         Disassociates an Identity and Access Management (IAM) role from a
         Neptune DB cluster.
@@ -443,7 +443,7 @@ paths:
   /?Action=CreateDBInstance:
     post:
       operationId: createDBInstance
-      summary: Create a new Neptune DB instance
+      summary: Amazon Neptune Create a new Neptune DB instance
       description: >-
         Creates a new DB instance in a Neptune DB cluster. The DB instance
         inherits the cluster's storage and high availability configuration.
@@ -483,7 +483,7 @@ paths:
   /?Action=DeleteDBInstance:
     post:
       operationId: deleteDBInstance
-      summary: Delete a Neptune DB instance
+      summary: Amazon Neptune Delete a Neptune DB instance
       description: >-
         Deletes a previously provisioned DB instance. When you delete an
         instance, all automated backups for that instance are deleted and
@@ -527,7 +527,7 @@ paths:
   /?Action=DescribeDBInstances:
     get:
       operationId: describeDBInstances
-      summary: Describe Neptune DB instances
+      summary: Amazon Neptune Describe Neptune DB instances
       description: >-
         Returns information about provisioned Neptune DB instances. If a
         specific instance identifier is supplied, details for that instance
@@ -577,7 +577,7 @@ paths:
   /?Action=ModifyDBInstance:
     post:
       operationId: modifyDBInstance
-      summary: Modify a Neptune DB instance
+      summary: Amazon Neptune Modify a Neptune DB instance
       description: >-
         Modifies settings for a DB instance. You can change one or more database
         configuration parameters by specifying them and their new values.
@@ -615,7 +615,7 @@ paths:
   /?Action=RebootDBInstance:
     post:
       operationId: rebootDBInstance
-      summary: Reboot a Neptune DB instance
+      summary: Amazon Neptune Reboot a Neptune DB instance
       description: >-
         Reboots a DB instance. When you reboot an instance, the instance is
         restarted. Rebooting results in a momentary outage.
@@ -658,7 +658,7 @@ paths:
   /?Action=CreateDBClusterSnapshot:
     post:
       operationId: createDBClusterSnapshot
-      summary: Create a snapshot of a Neptune DB cluster
+      summary: Amazon Neptune Create a snapshot of a Neptune DB cluster
       description: >-
         Creates a snapshot of a DB cluster. Manual snapshots can be used to
         restore a DB cluster to a specific state.
@@ -702,7 +702,7 @@ paths:
   /?Action=DescribeDBClusterSnapshots:
     get:
       operationId: describeDBClusterSnapshots
-      summary: Describe Neptune DB cluster snapshots
+      summary: Amazon Neptune Describe Neptune DB cluster snapshots
       description: >-
         Returns information about DB cluster snapshots. If a specific snapshot
         identifier is supplied, details for that snapshot are returned.
@@ -752,7 +752,7 @@ paths:
   /?Action=DeleteDBClusterSnapshot:
     post:
       operationId: deleteDBClusterSnapshot
-      summary: Delete a Neptune DB cluster snapshot
+      summary: Amazon Neptune Delete a Neptune DB cluster snapshot
       description: >-
         Deletes a DB cluster snapshot. If the snapshot is being copied, the
         copy operation is terminated.
@@ -786,7 +786,7 @@ paths:
   /?Action=RestoreDBClusterFromSnapshot:
     post:
       operationId: restoreDBClusterFromSnapshot
-      summary: Restore a Neptune DB cluster from a snapshot
+      summary: Amazon Neptune Restore a Neptune DB cluster from a snapshot
       description: >-
         Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
         The new DB cluster is created from the source snapshot with a default
@@ -825,7 +825,7 @@ paths:
   /?Action=CreateDBSubnetGroup:
     post:
       operationId: createDBSubnetGroup
-      summary: Create a new DB subnet group
+      summary: Amazon Neptune Create a new DB subnet group
       description: >-
         Creates a new DB subnet group. DB subnet groups must contain at least
         one subnet in at least two Availability Zones in the AWS Region.
@@ -869,7 +869,7 @@ paths:
   /?Action=DescribeDBSubnetGroups:
     get:
       operationId: describeDBSubnetGroups
-      summary: Describe DB subnet groups
+      summary: Amazon Neptune Describe DB subnet groups
       description: >-
         Returns a list of DB subnet group descriptions. If a specific subnet
         group name is supplied, the description for that group is returned.
@@ -912,7 +912,7 @@ paths:
   /?Action=CreateDBParameterGroup:
     post:
       operationId: createDBParameterGroup
-      summary: Create a new DB parameter group
+      summary: Amazon Neptune Create a new DB parameter group
       description: >-
         Creates a new DB parameter group. A DB parameter group is initially
         created with the default parameters for the database engine used.
@@ -958,7 +958,7 @@ paths:
   /?Action=CreateDBClusterParameterGroup:
     post:
       operationId: createDBClusterParameterGroup
-      summary: Create a new DB cluster parameter group
+      summary: Amazon Neptune Create a new DB cluster parameter group
       description: >-
         Creates a new DB cluster parameter group. Parameters in a DB cluster
         parameter group apply to all of the instances in a DB cluster.
@@ -1004,7 +1004,7 @@ paths:
   /?Action=DescribeDBParameterGroups:
     get:
       operationId: describeDBParameterGroups
-      summary: Describe DB parameter groups
+      summary: Amazon Neptune Describe DB parameter groups
       description: >-
         Returns a list of DB parameter group descriptions.
       tags:
@@ -1042,7 +1042,7 @@ paths:
   /?Action=DescribeDBClusterParameterGroups:
     get:
       operationId: describeDBClusterParameterGroups
-      summary: Describe DB cluster parameter groups
+      summary: Amazon Neptune Describe DB cluster parameter groups
       description: >-
         Returns a list of DB cluster parameter group descriptions.
       tags:
@@ -1080,7 +1080,7 @@ paths:
   /?Action=CreateEventSubscription:
     post:
       operationId: createEventSubscription
-      summary: Create a Neptune event notification subscription
+      summary: Amazon Neptune Create a Neptune event notification subscription
       description: >-
         Creates an event notification subscription. This action requires an
         Amazon SNS topic ARN. Notifications are sent to the SNS topic when
@@ -1133,7 +1133,7 @@ paths:
   /?Action=DescribeEvents:
     get:
       operationId: describeEvents
-      summary: Describe Neptune events
+      summary: Amazon Neptune Describe Neptune events
       description: >-
         Returns events related to DB instances, DB clusters, DB parameter
         groups, and DB cluster snapshots for the past 14 days.
@@ -1182,7 +1182,7 @@ paths:
   /?Action=AddTagsToResource:
     post:
       operationId: addTagsToResource
-      summary: Add tags to a Neptune resource
+      summary: Amazon Neptune Add tags to a Neptune resource
       description: >-
         Adds metadata tags to an Amazon Neptune resource. Tags are key-value
         pairs that you can use to categorize and manage your resources.
@@ -1216,7 +1216,7 @@ paths:
   /?Action=ListTagsForResource:
     get:
       operationId: listTagsForResource
-      summary: List tags for a Neptune resource
+      summary: Amazon Neptune List tags for a Neptune resource
       description: >-
         Lists all tags on an Amazon Neptune resource.
       tags:
@@ -1249,7 +1249,7 @@ paths:
   /?Action=DescribeDBEngineVersions:
     get:
       operationId: describeDBEngineVersions
-      summary: Describe Neptune DB engine versions
+      summary: Amazon Neptune Describe Neptune DB engine versions
       description: >-
         Returns a list of the available DB engine versions. The output shows
         the supported features and parameter group families for each version.
@@ -1299,7 +1299,7 @@ paths:
   /?Action=CreateGlobalCluster:
     post:
       operationId: createGlobalCluster
-      summary: Create a Neptune global database cluster
+      summary: Amazon Neptune Create a Neptune global database cluster
       description: >-
         Creates a Neptune global database spread across multiple AWS Regions.
         The global database contains a single primary cluster with read-write
@@ -1344,7 +1344,7 @@ paths:
   /?Action=DescribeGlobalClusters:
     get:
       operationId: describeGlobalClusters
-      summary: Describe Neptune global database clusters
+      summary: Amazon Neptune Describe Neptune global database clusters
       description: >-
         Returns information about Neptune global database clusters.
       tags:
@@ -1382,7 +1382,7 @@ paths:
   /?Action=DescribePendingMaintenanceActions:
     get:
       operationId: describePendingMaintenanceActions
-      summary: Describe pending maintenance actions
+      summary: Amazon Neptune Describe pending maintenance actions
       description: >-
         Returns a list of resources with pending maintenance actions.
       tags:
@@ -1420,7 +1420,7 @@ paths:
   /?Action=ApplyPendingMaintenanceAction:
     post:
       operationId: applyPendingMaintenanceAction
-      summary: Apply a pending maintenance action
+      summary: Amazon Neptune Apply a pending maintenance action
       description: >-
         Applies a pending maintenance action to a resource.
       tags:

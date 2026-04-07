@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Neptune SPARQL API
+  title: Amazon Neptune Neptune SPARQL API
   description: >-
     W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune.
     It provides an HTTP REST endpoint compatible with the SPARQL 1.1
@@ -32,7 +32,7 @@ paths:
   /sparql:
     post:
       operationId: executeSparqlQuery
-      summary: Execute a SPARQL query or update via HTTP POST
+      summary: Amazon Neptune Execute a SPARQL query or update via HTTP POST
       description: >-
         Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL
         endpoint. For queries, use the 'query' parameter with SELECT, ASK,
@@ -80,7 +80,7 @@ paths:
           description: Internal server error during query execution.
     get:
       operationId: executeSparqlQueryGet
-      summary: Execute a SPARQL query via HTTP GET
+      summary: Amazon Neptune Execute a SPARQL query via HTTP GET
       description: >-
         Submits a read-only SPARQL 1.1 query via URL query parameters. Only
         SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via
@@ -107,7 +107,7 @@ paths:
   /sparql/status:
     get:
       operationId: getSparqlQueryStatus
-      summary: Get the status of all running SPARQL queries
+      summary: Amazon Neptune Get the status of all running SPARQL queries
       description: >-
         Returns the status of all running and waiting SPARQL queries,
         including query IDs and execution statistics.
@@ -123,7 +123,7 @@ paths:
   /sparql/status/{queryId}:
     get:
       operationId: getSparqlQueryStatusById
-      summary: Get the status of a specific SPARQL query
+      summary: Amazon Neptune Get the status of a specific SPARQL query
       description: >-
         Returns the status of a specific SPARQL query by its query ID.
       tags:
@@ -146,7 +146,7 @@ paths:
           description: Query with the specified ID was not found.
     delete:
       operationId: cancelSparqlQuery
-      summary: Cancel a running SPARQL query
+      summary: Amazon Neptune Cancel a running SPARQL query
       description: >-
         Cancels a running SPARQL query by its query ID.
       tags:
