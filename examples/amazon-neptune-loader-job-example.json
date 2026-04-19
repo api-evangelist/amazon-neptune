@@ -1,0 +1,20 @@
+{
+  "source": "example-string",
+  "format": "opencypher",
+  "iamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "region": "us-east-1",
+  "mode": "NEW",
+  "failOnError": "FALSE",
+  "parallelism": "OVERSUBSCRIBE",
+  "parserConfiguration": {
+    "baseUri": "example-string",
+    "namedGraphUri": "my-neptune-cluster",
+    "allowEmptyStrings": true
+  },
+  "updateSingleCardinalityProperties": "TRUE",
+  "queueRequest": "TRUE",
+  "dependencies": [
+    "example-string"
+  ],
+  "userProvidedEdgeIds": "TRUE"
+}

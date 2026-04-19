@@ -1,0 +1,24 @@
+{
+  "id": "neptune-cluster-abc123",
+  "dataProcessingJobId": "neptune-cluster-abc123",
+  "mlModelTrainingJobId": "neptune-cluster-abc123",
+  "trainingJobName": "my-neptune-cluster",
+  "modelTransformOutputS3Location": "example-string",
+  "sagemakerIamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "neptuneIamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "baseProcessingInstanceType": "db.r6g.large",
+  "baseProcessingInstanceVolumeSizeInGB": 10,
+  "subnets": [
+    "example-string"
+  ],
+  "securityGroupIds": [
+    "example-string"
+  ],
+  "volumeEncryptionKMSKey": "example-string",
+  "s3OutputEncryptionKMSKey": "example-string",
+  "enableInterContainerTrafficEncryption": true,
+  "customModelTransformParameters": {
+    "sourceS3DirectoryPath": "example-string",
+    "transformEntryPointScript": "example-string"
+  }
+}

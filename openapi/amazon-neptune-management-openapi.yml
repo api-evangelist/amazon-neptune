@@ -14,93 +14,93 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://rds.{region}.amazonaws.com
-    description: Amazon Neptune Management API regional endpoint
-    variables:
-      region:
-        default: us-east-1
-        description: AWS region
-        enum:
-          - us-east-1
-          - us-east-2
-          - us-west-1
-          - us-west-2
-          - eu-west-1
-          - eu-west-2
-          - eu-west-3
-          - eu-central-1
-          - eu-north-1
-          - ap-southeast-1
-          - ap-southeast-2
-          - ap-northeast-1
-          - ap-northeast-2
-          - ap-south-1
-          - ca-central-1
-          - me-south-1
-          - sa-east-1
+- url: https://rds.{region}.amazonaws.com
+  description: Amazon Neptune Management API regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-north-1
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-south-1
+      - ca-central-1
+      - me-south-1
+      - sa-east-1
 security:
-  - aws_sigv4: []
+- aws_sigv4: []
 tags:
-  - name: DB Clusters
-    description: Operations for managing Neptune DB clusters
-  - name: DB Instances
-    description: Operations for managing Neptune DB instances
-  - name: Engine
-    description: Operations for querying engine version information
-  - name: Events
-    description: Operations for managing event subscriptions and viewing events
-  - name: Global Clusters
-    description: Operations for managing Neptune global database clusters
-  - name: Maintenance
-    description: Operations for managing pending maintenance actions
-  - name: Parameter Groups
-    description: Operations for managing DB and cluster parameter groups
-  - name: Snapshots
-    description: Operations for managing cluster snapshots
-  - name: Subnet Groups
-    description: Operations for managing DB subnet groups
+- name: DB Clusters
+  description: Operations for managing Neptune DB clusters
+- name: DB Instances
+  description: Operations for managing Neptune DB instances
+- name: Engine
+  description: Operations for querying engine version information
+- name: Events
+  description: Operations for managing event subscriptions and viewing events
+- name: Global Clusters
+  description: Operations for managing Neptune global database clusters
+- name: Maintenance
+  description: Operations for managing pending maintenance actions
+- name: Parameter Groups
+  description: Operations for managing DB and cluster parameter groups
+- name: Snapshots
+  description: Operations for managing cluster snapshots
+- name: Subnet Groups
+  description: Operations for managing DB subnet groups
 paths:
   /:
     get:
       operationId: describeDBClusters
-      summary: Amazon Neptune Describe Neptune DB clusters
+      summary: Amazon Neptune Describe Neptune DB Clusters
       description: >-
         Returns information about provisioned Neptune DB clusters. If a cluster
         identifier is supplied, details for that specific cluster are returned.
         Otherwise, details for up to 100 clusters are returned.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeDBClusters
-        - name: DBClusterIdentifier
-          in: query
-          description: The identifier of the DB cluster to describe.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          description: Maximum number of records to include in the response (20-100).
-          schema:
-            type: integer
-            minimum: 20
-            maximum: 100
-        - name: Marker
-          in: query
-          description: Pagination token from a previous request.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBClusters
+      - name: DBClusterIdentifier
+        in: query
+        description: The identifier of the DB cluster to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        description: Maximum number of records to include in the response (20-100).
+        schema:
+          type: integer
+          minimum: 20
+          maximum: 100
+      - name: Marker
+        in: query
+        description: Pagination token from a previous request.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with DB cluster details.
@@ -108,31 +108,42 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DescribeDBClustersResponse'
+              examples:
+                describeDBClusters200Example:
+                  summary: Default describeDBClusters 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusters:
+                    - {}
+                    Marker: example-value
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createDBCluster
-      summary: Amazon Neptune Create a new Neptune DB cluster
+      summary: Amazon Neptune Create a New Neptune DB Cluster
       description: >-
         Creates a new Amazon Neptune DB cluster. You can use the
         ReplicationSourceIdentifier parameter to create the DB cluster as a
         read replica of another DB cluster.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateDBCluster
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBCluster
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       requestBody:
         required: true
         content:
@@ -146,50 +157,68 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBCluster'
+              examples:
+                createDBCluster200Example:
+                  summary: Default createDBCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    DBClusterArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    Status: available
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    ReaderEndpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    Port: 1
+                    MasterUsername: my-neptune-cluster
+                    DBClusterParameterGroup: example-value
         '400':
           description: Invalid request parameters.
         '409':
           description: A DB cluster with the specified identifier already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DeleteDBCluster:
     post:
       operationId: deleteDBCluster
-      summary: Amazon Neptune Delete a Neptune DB cluster
+      summary: Amazon Neptune Delete a Neptune DB Cluster
       description: >-
         Deletes a previously provisioned DB cluster. When you delete a DB
         cluster, all automated backups are deleted and cannot be recovered.
         Manual snapshots are not deleted.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DeleteDBCluster
-        - name: DBClusterIdentifier
-          in: query
-          required: true
-          description: The DB cluster identifier for the cluster to be deleted.
-          schema:
-            type: string
-        - name: SkipFinalSnapshot
-          in: query
-          description: Whether to skip creation of a final snapshot before deletion.
-          schema:
-            type: boolean
-        - name: FinalDBSnapshotIdentifier
-          in: query
-          description: The identifier of the final snapshot to create before deletion.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DeleteDBCluster
+      - name: DBClusterIdentifier
+        in: query
+        required: true
+        description: The DB cluster identifier for the cluster to be deleted.
+        schema:
+          type: string
+      - name: SkipFinalSnapshot
+        in: query
+        description: Whether to skip creation of a final snapshot before deletion.
+        schema:
+          type: boolean
+      - name: FinalDBSnapshotIdentifier
+        in: query
+        description: The identifier of the final snapshot to create before deletion.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB cluster deleted successfully.
@@ -197,31 +226,49 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBCluster'
+              examples:
+                deleteDBCluster200Example:
+                  summary: Default deleteDBCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    DBClusterArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    Status: available
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    ReaderEndpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    Port: 1
+                    MasterUsername: my-neptune-cluster
+                    DBClusterParameterGroup: example-value
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ModifyDBCluster:
     post:
       operationId: modifyDBCluster
-      summary: Amazon Neptune Modify a Neptune DB cluster
+      summary: Amazon Neptune Modify a Neptune DB Cluster
       description: >-
         Modifies settings for a DB cluster. You can change one or more database
         configuration parameters by specifying them and their new values.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - ModifyDBCluster
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ModifyDBCluster
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       requestBody:
         required: true
         content:
@@ -235,37 +282,55 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBCluster'
+              examples:
+                modifyDBCluster200Example:
+                  summary: Default modifyDBCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    DBClusterArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    Status: available
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    ReaderEndpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    Port: 1
+                    MasterUsername: my-neptune-cluster
+                    DBClusterParameterGroup: example-value
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=StartDBCluster:
     post:
       operationId: startDBCluster
-      summary: Amazon Neptune Start a stopped Neptune DB cluster
+      summary: Amazon Neptune Start a Stopped Neptune DB Cluster
       description: >-
         Starts a stopped Neptune DB cluster. When you start a cluster, Neptune
         restores the cluster to the state it was in when it was stopped.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - StartDBCluster
-        - name: DBClusterIdentifier
-          in: query
-          required: true
-          description: The identifier of the DB cluster to start.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - StartDBCluster
+      - name: DBClusterIdentifier
+        in: query
+        required: true
+        description: The identifier of the DB cluster to start.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB cluster start initiated successfully.
@@ -273,38 +338,56 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBCluster'
+              examples:
+                startDBCluster200Example:
+                  summary: Default startDBCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    DBClusterArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    Status: available
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    ReaderEndpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    Port: 1
+                    MasterUsername: my-neptune-cluster
+                    DBClusterParameterGroup: example-value
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=StopDBCluster:
     post:
       operationId: stopDBCluster
-      summary: Amazon Neptune Stop a running Neptune DB cluster
+      summary: Amazon Neptune Stop a Running Neptune DB Cluster
       description: >-
         Stops a running Neptune DB cluster. While the cluster is stopped, you
         are charged only for storage. A stopped cluster automatically restarts
         after 7 days.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - StopDBCluster
-        - name: DBClusterIdentifier
-          in: query
-          required: true
-          description: The identifier of the DB cluster to stop.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - StopDBCluster
+      - name: DBClusterIdentifier
+        in: query
+        required: true
+        description: The identifier of the DB cluster to stop.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB cluster stop initiated successfully.
@@ -312,42 +395,60 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBCluster'
+              examples:
+                stopDBCluster200Example:
+                  summary: Default stopDBCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    DBClusterArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    Status: available
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    ReaderEndpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    Port: 1
+                    MasterUsername: my-neptune-cluster
+                    DBClusterParameterGroup: example-value
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=FailoverDBCluster:
     post:
       operationId: failoverDBCluster
-      summary: Amazon Neptune Force a failover for a Neptune DB cluster
+      summary: Amazon Neptune Force a Failover for a Neptune DB Cluster
       description: >-
         Forces a failover for a DB cluster. A failover for a DB cluster promotes
         one of the read replicas in the cluster to be the new primary instance.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - FailoverDBCluster
-        - name: DBClusterIdentifier
-          in: query
-          required: true
-          description: The identifier of the cluster to force a failover for.
-          schema:
-            type: string
-        - name: TargetDBInstanceIdentifier
-          in: query
-          description: The name of the instance to promote to the primary instance.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - FailoverDBCluster
+      - name: DBClusterIdentifier
+        in: query
+        required: true
+        description: The identifier of the cluster to force a failover for.
+        schema:
+          type: string
+      - name: TargetDBInstanceIdentifier
+        in: query
+        description: The name of the instance to promote to the primary instance.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Failover initiated successfully.
@@ -355,112 +456,136 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBCluster'
+              examples:
+                failoverDBCluster200Example:
+                  summary: Default failoverDBCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    DBClusterArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    Status: available
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    ReaderEndpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    Port: 1
+                    MasterUsername: my-neptune-cluster
+                    DBClusterParameterGroup: example-value
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=AddRoleToDBCluster:
     post:
       operationId: addRoleToDBCluster
-      summary: Amazon Neptune Associate an IAM role with a Neptune DB cluster
+      summary: Amazon Neptune Associate an IAM Role with a Neptune DB Cluster
       description: >-
         Associates an Identity and Access Management (IAM) role with a Neptune
         DB cluster so that the cluster can access other AWS services on your
         behalf.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - AddRoleToDBCluster
-        - name: DBClusterIdentifier
-          in: query
-          required: true
-          description: The name of the DB cluster to associate the IAM role with.
-          schema:
-            type: string
-        - name: RoleArn
-          in: query
-          required: true
-          description: The ARN of the IAM role to associate with the cluster.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - AddRoleToDBCluster
+      - name: DBClusterIdentifier
+        in: query
+        required: true
+        description: The name of the DB cluster to associate the IAM role with.
+        schema:
+          type: string
+      - name: RoleArn
+        in: query
+        required: true
+        description: The ARN of the IAM role to associate with the cluster.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: IAM role associated successfully.
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=RemoveRoleFromDBCluster:
     post:
       operationId: removeRoleFromDBCluster
-      summary: Amazon Neptune Disassociate an IAM role from a Neptune DB cluster
+      summary: Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster
       description: >-
         Disassociates an Identity and Access Management (IAM) role from a
         Neptune DB cluster.
       tags:
-        - DB Clusters
+      - DB Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - RemoveRoleFromDBCluster
-        - name: DBClusterIdentifier
-          in: query
-          required: true
-          description: The name of the DB cluster to disassociate the role from.
-          schema:
-            type: string
-        - name: RoleArn
-          in: query
-          required: true
-          description: The ARN of the IAM role to disassociate.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - RemoveRoleFromDBCluster
+      - name: DBClusterIdentifier
+        in: query
+        required: true
+        description: The name of the DB cluster to disassociate the role from.
+        schema:
+          type: string
+      - name: RoleArn
+        in: query
+        required: true
+        description: The ARN of the IAM role to disassociate.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: IAM role disassociated successfully.
         '404':
           description: The specified DB cluster or role was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreateDBInstance:
     post:
       operationId: createDBInstance
-      summary: Amazon Neptune Create a new Neptune DB instance
+      summary: Amazon Neptune Create a New Neptune DB Instance
       description: >-
         Creates a new DB instance in a Neptune DB cluster. The DB instance
         inherits the cluster's storage and high availability configuration.
       tags:
-        - DB Instances
+      - DB Instances
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateDBInstance
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBInstance
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       requestBody:
         required: true
         content:
@@ -474,45 +599,65 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBInstance'
+              examples:
+                createDBInstance200Example:
+                  summary: Default createDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
         '400':
           description: Invalid request parameters.
         '409':
           description: A DB instance with the specified identifier already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DeleteDBInstance:
     post:
       operationId: deleteDBInstance
-      summary: Amazon Neptune Delete a Neptune DB instance
+      summary: Amazon Neptune Delete a Neptune DB Instance
       description: >-
         Deletes a previously provisioned DB instance. When you delete an
         instance, all automated backups for that instance are deleted and
         cannot be recovered.
       tags:
-        - DB Instances
+      - DB Instances
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DeleteDBInstance
-        - name: DBInstanceIdentifier
-          in: query
-          required: true
-          description: The DB instance identifier for the instance to be deleted.
-          schema:
-            type: string
-        - name: SkipFinalSnapshot
-          in: query
-          description: Whether to skip creation of a final snapshot.
-          schema:
-            type: boolean
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DeleteDBInstance
+      - name: DBInstanceIdentifier
+        in: query
+        required: true
+        description: The DB instance identifier for the instance to be deleted.
+        schema:
+          type: string
+      - name: SkipFinalSnapshot
+        in: query
+        description: Whether to skip creation of a final snapshot.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB instance deleted successfully.
@@ -520,49 +665,69 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBInstance'
+              examples:
+                deleteDBInstance200Example:
+                  summary: Default deleteDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
         '404':
           description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeDBInstances:
     get:
       operationId: describeDBInstances
-      summary: Amazon Neptune Describe Neptune DB instances
+      summary: Amazon Neptune Describe Neptune DB Instances
       description: >-
         Returns information about provisioned Neptune DB instances. If a
         specific instance identifier is supplied, details for that instance
         are returned.
       tags:
-        - DB Instances
+      - DB Instances
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeDBInstances
-        - name: DBInstanceIdentifier
-          in: query
-          description: The identifier of the DB instance to describe.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          description: Maximum number of records to include in the response.
-          schema:
-            type: integer
-            minimum: 20
-            maximum: 100
-        - name: Marker
-          in: query
-          description: Pagination token from a previous request.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBInstances
+      - name: DBInstanceIdentifier
+        in: query
+        description: The identifier of the DB instance to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        description: Maximum number of records to include in the response.
+        schema:
+          type: integer
+          minimum: 20
+          maximum: 100
+      - name: Marker
+        in: query
+        description: Pagination token from a previous request.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with DB instance details.
@@ -570,31 +735,42 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DescribeDBInstancesResponse'
+              examples:
+                describeDBInstances200Example:
+                  summary: Default describeDBInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstances:
+                    - {}
+                    Marker: example-value
         '404':
           description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ModifyDBInstance:
     post:
       operationId: modifyDBInstance
-      summary: Amazon Neptune Modify a Neptune DB instance
+      summary: Amazon Neptune Modify a Neptune DB Instance
       description: >-
         Modifies settings for a DB instance. You can change one or more database
         configuration parameters by specifying them and their new values.
       tags:
-        - DB Instances
+      - DB Instances
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - ModifyDBInstance
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ModifyDBInstance
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       requestBody:
         required: true
         content:
@@ -608,42 +784,62 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBInstance'
+              examples:
+                modifyDBInstance200Example:
+                  summary: Default modifyDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
         '404':
           description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=RebootDBInstance:
     post:
       operationId: rebootDBInstance
-      summary: Amazon Neptune Reboot a Neptune DB instance
+      summary: Amazon Neptune Reboot a Neptune DB Instance
       description: >-
         Reboots a DB instance. When you reboot an instance, the instance is
         restarted. Rebooting results in a momentary outage.
       tags:
-        - DB Instances
+      - DB Instances
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - RebootDBInstance
-        - name: DBInstanceIdentifier
-          in: query
-          required: true
-          description: The identifier of the DB instance to reboot.
-          schema:
-            type: string
-        - name: ForceFailover
-          in: query
-          description: Whether to force a failover during the reboot.
-          schema:
-            type: boolean
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - RebootDBInstance
+      - name: DBInstanceIdentifier
+        in: query
+        required: true
+        description: The identifier of the DB instance to reboot.
+        schema:
+          type: string
+      - name: ForceFailover
+        in: query
+        description: Whether to force a failover during the reboot.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB instance reboot initiated successfully.
@@ -651,43 +847,63 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBInstance'
+              examples:
+                rebootDBInstance200Example:
+                  summary: Default rebootDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
         '404':
           description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreateDBClusterSnapshot:
     post:
       operationId: createDBClusterSnapshot
-      summary: Amazon Neptune Create a snapshot of a Neptune DB cluster
+      summary: Amazon Neptune Create a Snapshot of a Neptune DB Cluster
       description: >-
         Creates a snapshot of a DB cluster. Manual snapshots can be used to
         restore a DB cluster to a specific state.
       tags:
-        - Snapshots
+      - Snapshots
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateDBClusterSnapshot
-        - name: DBClusterIdentifier
-          in: query
-          required: true
-          description: The identifier of the DB cluster to create a snapshot for.
-          schema:
-            type: string
-        - name: DBClusterSnapshotIdentifier
-          in: query
-          required: true
-          description: The identifier for the DB cluster snapshot.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBClusterSnapshot
+      - name: DBClusterIdentifier
+        in: query
+        required: true
+        description: The identifier of the DB cluster to create a snapshot for.
+        schema:
+          type: string
+      - name: DBClusterSnapshotIdentifier
+        in: query
+        required: true
+        description: The identifier for the DB cluster snapshot.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB cluster snapshot created successfully.
@@ -695,51 +911,69 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBClusterSnapshot'
+              examples:
+                createDBClusterSnapshot200Example:
+                  summary: Default createDBClusterSnapshot 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterSnapshotIdentifier: neptune-cluster-abc123
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    SnapshotCreateTime: '2025-03-15T14:30:00Z'
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Status: available
+                    AllocatedStorage: 1
+                    VpcId: neptune-cluster-abc123
+                    Port: 1
+                    StorageEncrypted: true
         '404':
           description: The specified DB cluster was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeDBClusterSnapshots:
     get:
       operationId: describeDBClusterSnapshots
-      summary: Amazon Neptune Describe Neptune DB cluster snapshots
+      summary: Amazon Neptune Describe Neptune DB Cluster Snapshots
       description: >-
         Returns information about DB cluster snapshots. If a specific snapshot
         identifier is supplied, details for that snapshot are returned.
       tags:
-        - Snapshots
+      - Snapshots
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeDBClusterSnapshots
-        - name: DBClusterSnapshotIdentifier
-          in: query
-          description: The identifier of a specific snapshot to describe.
-          schema:
-            type: string
-        - name: DBClusterIdentifier
-          in: query
-          description: The identifier of the cluster to filter snapshots by.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          description: Maximum number of records to include in the response.
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          description: Pagination token from a previous request.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBClusterSnapshots
+      - name: DBClusterSnapshotIdentifier
+        in: query
+        description: The identifier of a specific snapshot to describe.
+        schema:
+          type: string
+      - name: DBClusterIdentifier
+        in: query
+        description: The identifier of the cluster to filter snapshots by.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        description: Maximum number of records to include in the response.
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        description: Pagination token from a previous request.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with snapshot details.
@@ -747,64 +981,78 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DescribeDBClusterSnapshotsResponse'
+              examples:
+                describeDBClusterSnapshots200Example:
+                  summary: Default describeDBClusterSnapshots 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterSnapshots:
+                    - {}
+                    Marker: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DeleteDBClusterSnapshot:
     post:
       operationId: deleteDBClusterSnapshot
-      summary: Amazon Neptune Delete a Neptune DB cluster snapshot
+      summary: Amazon Neptune Delete a Neptune DB Cluster Snapshot
       description: >-
         Deletes a DB cluster snapshot. If the snapshot is being copied, the
         copy operation is terminated.
       tags:
-        - Snapshots
+      - Snapshots
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DeleteDBClusterSnapshot
-        - name: DBClusterSnapshotIdentifier
-          in: query
-          required: true
-          description: The identifier of the cluster snapshot to delete.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DeleteDBClusterSnapshot
+      - name: DBClusterSnapshotIdentifier
+        in: query
+        required: true
+        description: The identifier of the cluster snapshot to delete.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB cluster snapshot deleted successfully.
         '404':
           description: The specified snapshot was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=RestoreDBClusterFromSnapshot:
     post:
       operationId: restoreDBClusterFromSnapshot
-      summary: Amazon Neptune Restore a Neptune DB cluster from a snapshot
+      summary: Amazon Neptune Restore a Neptune DB Cluster from a Snapshot
       description: >-
         Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
         The new DB cluster is created from the source snapshot with a default
         configuration.
       tags:
-        - Snapshots
+      - Snapshots
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - RestoreDBClusterFromSnapshot
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - RestoreDBClusterFromSnapshot
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       requestBody:
         required: true
         content:
@@ -818,43 +1066,61 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBCluster'
+              examples:
+                restoreDBClusterFromSnapshot200Example:
+                  summary: Default restoreDBClusterFromSnapshot 200 response
+                  x-microcks-default: true
+                  value:
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    DBClusterArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    Status: available
+                    Engine: example-value
+                    EngineVersion: 1.3.2.0
+                    Endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    ReaderEndpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    Port: 1
+                    MasterUsername: my-neptune-cluster
+                    DBClusterParameterGroup: example-value
         '404':
           description: The specified snapshot was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreateDBSubnetGroup:
     post:
       operationId: createDBSubnetGroup
-      summary: Amazon Neptune Create a new DB subnet group
+      summary: Amazon Neptune Create a New DB Subnet Group
       description: >-
         Creates a new DB subnet group. DB subnet groups must contain at least
         one subnet in at least two Availability Zones in the AWS Region.
       tags:
-        - Subnet Groups
+      - Subnet Groups
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateDBSubnetGroup
-        - name: DBSubnetGroupName
-          in: query
-          required: true
-          description: The name for the DB subnet group.
-          schema:
-            type: string
-        - name: DBSubnetGroupDescription
-          in: query
-          required: true
-          description: The description for the DB subnet group.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBSubnetGroup
+      - name: DBSubnetGroupName
+        in: query
+        required: true
+        description: The name for the DB subnet group.
+        schema:
+          type: string
+      - name: DBSubnetGroupDescription
+        in: query
+        required: true
+        description: The description for the DB subnet group.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB subnet group created successfully.
@@ -862,44 +1128,62 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DBSubnetGroup'
+              examples:
+                createDBSubnetGroup200Example:
+                  summary: Default createDBSubnetGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    DBSubnetGroupName: my-neptune-cluster
+                    DBSubnetGroupDescription: example-value
+                    VpcId: neptune-cluster-abc123
+                    SubnetGroupStatus: available
+                    Subnets:
+                    - SubnetIdentifier: neptune-cluster-abc123
+                      SubnetAvailabilityZone:
+                        Name: {}
+                      SubnetStatus: available
+                    DBSubnetGroupArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
         '400':
           description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeDBSubnetGroups:
     get:
       operationId: describeDBSubnetGroups
-      summary: Amazon Neptune Describe DB subnet groups
+      summary: Amazon Neptune Describe DB Subnet Groups
       description: >-
         Returns a list of DB subnet group descriptions. If a specific subnet
         group name is supplied, the description for that group is returned.
       tags:
-        - Subnet Groups
+      - Subnet Groups
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeDBSubnetGroups
-        - name: DBSubnetGroupName
-          in: query
-          description: The name of a specific DB subnet group to describe.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBSubnetGroups
+      - name: DBSubnetGroupName
+        in: query
+        description: The name of a specific DB subnet group to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with subnet group details.
@@ -907,561 +1191,611 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DescribeDBSubnetGroupsResponse'
+              examples:
+                describeDBSubnetGroups200Example:
+                  summary: Default describeDBSubnetGroups 200 response
+                  x-microcks-default: true
+                  value:
+                    DBSubnetGroups:
+                    - {}
+                    Marker: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreateDBParameterGroup:
     post:
       operationId: createDBParameterGroup
-      summary: Amazon Neptune Create a new DB parameter group
+      summary: Amazon Neptune Create a New DB Parameter Group
       description: >-
         Creates a new DB parameter group. A DB parameter group is initially
         created with the default parameters for the database engine used.
       tags:
-        - Parameter Groups
+      - Parameter Groups
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateDBParameterGroup
-        - name: DBParameterGroupName
-          in: query
-          required: true
-          description: The name of the DB parameter group.
-          schema:
-            type: string
-        - name: DBParameterGroupFamily
-          in: query
-          required: true
-          description: The DB parameter group family name (e.g., neptune1, neptune1.2, neptune1.3).
-          schema:
-            type: string
-        - name: Description
-          in: query
-          required: true
-          description: The description for the DB parameter group.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBParameterGroup
+      - name: DBParameterGroupName
+        in: query
+        required: true
+        description: The name of the DB parameter group.
+        schema:
+          type: string
+      - name: DBParameterGroupFamily
+        in: query
+        required: true
+        description: The DB parameter group family name (e.g., neptune1, neptune1.2, neptune1.3).
+        schema:
+          type: string
+      - name: Description
+        in: query
+        required: true
+        description: The description for the DB parameter group.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB parameter group created successfully.
         '400':
           description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreateDBClusterParameterGroup:
     post:
       operationId: createDBClusterParameterGroup
-      summary: Amazon Neptune Create a new DB cluster parameter group
+      summary: Amazon Neptune Create a New DB Cluster Parameter Group
       description: >-
         Creates a new DB cluster parameter group. Parameters in a DB cluster
         parameter group apply to all of the instances in a DB cluster.
       tags:
-        - Parameter Groups
+      - Parameter Groups
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateDBClusterParameterGroup
-        - name: DBClusterParameterGroupName
-          in: query
-          required: true
-          description: The name of the DB cluster parameter group.
-          schema:
-            type: string
-        - name: DBParameterGroupFamily
-          in: query
-          required: true
-          description: The DB parameter group family name.
-          schema:
-            type: string
-        - name: Description
-          in: query
-          required: true
-          description: The description for the DB cluster parameter group.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBClusterParameterGroup
+      - name: DBClusterParameterGroupName
+        in: query
+        required: true
+        description: The name of the DB cluster parameter group.
+        schema:
+          type: string
+      - name: DBParameterGroupFamily
+        in: query
+        required: true
+        description: The DB parameter group family name.
+        schema:
+          type: string
+      - name: Description
+        in: query
+        required: true
+        description: The description for the DB cluster parameter group.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: DB cluster parameter group created successfully.
         '400':
           description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeDBParameterGroups:
     get:
       operationId: describeDBParameterGroups
-      summary: Amazon Neptune Describe DB parameter groups
+      summary: Amazon Neptune Describe DB Parameter Groups
       description: >-
         Returns a list of DB parameter group descriptions.
       tags:
-        - Parameter Groups
+      - Parameter Groups
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeDBParameterGroups
-        - name: DBParameterGroupName
-          in: query
-          description: The name of a specific DB parameter group to describe.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBParameterGroups
+      - name: DBParameterGroupName
+        in: query
+        description: The name of a specific DB parameter group to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with parameter group details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeDBClusterParameterGroups:
     get:
       operationId: describeDBClusterParameterGroups
-      summary: Amazon Neptune Describe DB cluster parameter groups
+      summary: Amazon Neptune Describe DB Cluster Parameter Groups
       description: >-
         Returns a list of DB cluster parameter group descriptions.
       tags:
-        - Parameter Groups
+      - Parameter Groups
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeDBClusterParameterGroups
-        - name: DBClusterParameterGroupName
-          in: query
-          description: The name of a specific cluster parameter group to describe.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBClusterParameterGroups
+      - name: DBClusterParameterGroupName
+        in: query
+        description: The name of a specific cluster parameter group to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with cluster parameter group details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreateEventSubscription:
     post:
       operationId: createEventSubscription
-      summary: Amazon Neptune Create a Neptune event notification subscription
+      summary: Amazon Neptune Create a Neptune Event Notification Subscription
       description: >-
         Creates an event notification subscription. This action requires an
         Amazon SNS topic ARN. Notifications are sent to the SNS topic when
         specified events occur.
       tags:
-        - Events
+      - Events
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateEventSubscription
-        - name: SubscriptionName
-          in: query
-          required: true
-          description: The name of the subscription.
-          schema:
-            type: string
-        - name: SnsTopicArn
-          in: query
-          required: true
-          description: The ARN of the SNS topic to send notifications to.
-          schema:
-            type: string
-        - name: SourceType
-          in: query
-          description: >-
-            The type of source that triggers notifications (db-instance,
-            db-cluster, db-parameter-group, db-cluster-snapshot).
-          schema:
-            type: string
-        - name: Enabled
-          in: query
-          description: Whether the subscription is enabled.
-          schema:
-            type: boolean
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateEventSubscription
+      - name: SubscriptionName
+        in: query
+        required: true
+        description: The name of the subscription.
+        schema:
+          type: string
+      - name: SnsTopicArn
+        in: query
+        required: true
+        description: The ARN of the SNS topic to send notifications to.
+        schema:
+          type: string
+      - name: SourceType
+        in: query
+        description: >-
+          The type of source that triggers notifications (db-instance,
+          db-cluster, db-parameter-group, db-cluster-snapshot).
+        schema:
+          type: string
+      - name: Enabled
+        in: query
+        description: Whether the subscription is enabled.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Event subscription created successfully.
         '400':
           description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeEvents:
     get:
       operationId: describeEvents
-      summary: Amazon Neptune Describe Neptune events
+      summary: Amazon Neptune Describe Neptune Events
       description: >-
         Returns events related to DB instances, DB clusters, DB parameter
         groups, and DB cluster snapshots for the past 14 days.
       tags:
-        - Events
+      - Events
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeEvents
-        - name: SourceIdentifier
-          in: query
-          description: The identifier of the event source to filter events.
-          schema:
-            type: string
-        - name: SourceType
-          in: query
-          description: The event source type to filter events.
-          schema:
-            type: string
-        - name: Duration
-          in: query
-          description: The number of minutes to retrieve events for.
-          schema:
-            type: integer
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeEvents
+      - name: SourceIdentifier
+        in: query
+        description: The identifier of the event source to filter events.
+        schema:
+          type: string
+      - name: SourceType
+        in: query
+        description: The event source type to filter events.
+        schema:
+          type: string
+      - name: Duration
+        in: query
+        description: The number of minutes to retrieve events for.
+        schema:
+          type: integer
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with event details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=AddTagsToResource:
     post:
       operationId: addTagsToResource
-      summary: Amazon Neptune Add tags to a Neptune resource
+      summary: Amazon Neptune Add Tags to a Neptune Resource
       description: >-
         Adds metadata tags to an Amazon Neptune resource. Tags are key-value
         pairs that you can use to categorize and manage your resources.
       tags: []
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - AddTagsToResource
-        - name: ResourceName
-          in: query
-          required: true
-          description: The ARN of the resource to add tags to.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - AddTagsToResource
+      - name: ResourceName
+        in: query
+        required: true
+        description: The ARN of the resource to add tags to.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Tags added successfully.
         '404':
           description: The specified resource was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ListTagsForResource:
     get:
       operationId: listTagsForResource
-      summary: Amazon Neptune List tags for a Neptune resource
+      summary: Amazon Neptune List Tags for a Neptune Resource
       description: >-
         Lists all tags on an Amazon Neptune resource.
       tags: []
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - ListTagsForResource
-        - name: ResourceName
-          in: query
-          required: true
-          description: The ARN of the resource to list tags for.
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ListTagsForResource
+      - name: ResourceName
+        in: query
+        required: true
+        description: The ARN of the resource to list tags for.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with tags.
         '404':
           description: The specified resource was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeDBEngineVersions:
     get:
       operationId: describeDBEngineVersions
-      summary: Amazon Neptune Describe Neptune DB engine versions
+      summary: Amazon Neptune Describe Neptune DB Engine Versions
       description: >-
         Returns a list of the available DB engine versions. The output shows
         the supported features and parameter group families for each version.
       tags:
-        - Engine
+      - Engine
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeDBEngineVersions
-        - name: Engine
-          in: query
-          description: The database engine to return versions for.
-          schema:
-            type: string
-            default: neptune
-        - name: EngineVersion
-          in: query
-          description: A specific engine version to return details for.
-          schema:
-            type: string
-        - name: DBParameterGroupFamily
-          in: query
-          description: The parameter group family to filter versions by.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBEngineVersions
+      - name: Engine
+        in: query
+        description: The database engine to return versions for.
+        schema:
+          type: string
+          default: neptune
+      - name: EngineVersion
+        in: query
+        description: A specific engine version to return details for.
+        schema:
+          type: string
+      - name: DBParameterGroupFamily
+        in: query
+        description: The parameter group family to filter versions by.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with engine version details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=CreateGlobalCluster:
     post:
       operationId: createGlobalCluster
-      summary: Amazon Neptune Create a Neptune global database cluster
+      summary: Amazon Neptune Create a Neptune Global Database Cluster
       description: >-
         Creates a Neptune global database spread across multiple AWS Regions.
         The global database contains a single primary cluster with read-write
         capability.
       tags:
-        - Global Clusters
+      - Global Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateGlobalCluster
-        - name: GlobalClusterIdentifier
-          in: query
-          required: true
-          description: The cluster identifier of the new global cluster.
-          schema:
-            type: string
-        - name: SourceDBClusterIdentifier
-          in: query
-          description: The ARN of an existing Neptune cluster to use as the primary cluster.
-          schema:
-            type: string
-        - name: DeletionProtection
-          in: query
-          description: Whether the global cluster has deletion protection enabled.
-          schema:
-            type: boolean
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateGlobalCluster
+      - name: GlobalClusterIdentifier
+        in: query
+        required: true
+        description: The cluster identifier of the new global cluster.
+        schema:
+          type: string
+      - name: SourceDBClusterIdentifier
+        in: query
+        description: The ARN of an existing Neptune cluster to use as the primary cluster.
+        schema:
+          type: string
+      - name: DeletionProtection
+        in: query
+        description: Whether the global cluster has deletion protection enabled.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Global cluster created successfully.
         '400':
           description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribeGlobalClusters:
     get:
       operationId: describeGlobalClusters
-      summary: Amazon Neptune Describe Neptune global database clusters
+      summary: Amazon Neptune Describe Neptune Global Database Clusters
       description: >-
         Returns information about Neptune global database clusters.
       tags:
-        - Global Clusters
+      - Global Clusters
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeGlobalClusters
-        - name: GlobalClusterIdentifier
-          in: query
-          description: The identifier of the global cluster to describe.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeGlobalClusters
+      - name: GlobalClusterIdentifier
+        in: query
+        description: The identifier of the global cluster to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with global cluster details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=DescribePendingMaintenanceActions:
     get:
       operationId: describePendingMaintenanceActions
-      summary: Amazon Neptune Describe pending maintenance actions
+      summary: Amazon Neptune Describe Pending Maintenance Actions
       description: >-
         Returns a list of resources with pending maintenance actions.
       tags:
-        - Maintenance
+      - Maintenance
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribePendingMaintenanceActions
-        - name: ResourceIdentifier
-          in: query
-          description: The ARN of a resource to filter maintenance actions.
-          schema:
-            type: string
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-        - name: Marker
-          in: query
-          schema:
-            type: string
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribePendingMaintenanceActions
+      - name: ResourceIdentifier
+        in: query
+        description: The ARN of a resource to filter maintenance actions.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Successful response with pending maintenance actions.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ApplyPendingMaintenanceAction:
     post:
       operationId: applyPendingMaintenanceAction
-      summary: Amazon Neptune Apply a pending maintenance action
+      summary: Amazon Neptune Apply a Pending Maintenance Action
       description: >-
         Applies a pending maintenance action to a resource.
       tags:
-        - Maintenance
+      - Maintenance
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - ApplyPendingMaintenanceAction
-        - name: ResourceIdentifier
-          in: query
-          required: true
-          description: The ARN of the resource to apply the action to.
-          schema:
-            type: string
-        - name: ApplyAction
-          in: query
-          required: true
-          description: The pending maintenance action to apply.
-          schema:
-            type: string
-        - name: OptInType
-          in: query
-          required: true
-          description: The type of opt-in request (immediate, next-maintenance, undo-opt-in).
-          schema:
-            type: string
-            enum:
-              - immediate
-              - next-maintenance
-              - undo-opt-in
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2014-10-31'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ApplyPendingMaintenanceAction
+      - name: ResourceIdentifier
+        in: query
+        required: true
+        description: The ARN of the resource to apply the action to.
+        schema:
+          type: string
+      - name: ApplyAction
+        in: query
+        required: true
+        description: The pending maintenance action to apply.
+        schema:
+          type: string
+      - name: OptInType
+        in: query
+        required: true
+        description: The type of opt-in request (immediate, next-maintenance, undo-opt-in).
+        schema:
+          type: string
+          enum:
+          - immediate
+          - next-maintenance
+          - undo-opt-in
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
       responses:
         '200':
           description: Maintenance action applied successfully.
         '404':
           description: The specified resource was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     aws_sigv4:
@@ -1687,8 +2021,8 @@ components:
     CreateDBClusterRequest:
       type: object
       required:
-        - DBClusterIdentifier
-        - Engine
+      - DBClusterIdentifier
+      - Engine
       properties:
         DBClusterIdentifier:
           type: string
@@ -1736,7 +2070,7 @@ components:
     ModifyDBClusterRequest:
       type: object
       required:
-        - DBClusterIdentifier
+      - DBClusterIdentifier
       properties:
         DBClusterIdentifier:
           type: string
@@ -1771,10 +2105,10 @@ components:
     CreateDBInstanceRequest:
       type: object
       required:
-        - DBInstanceIdentifier
-        - DBInstanceClass
-        - Engine
-        - DBClusterIdentifier
+      - DBInstanceIdentifier
+      - DBInstanceClass
+      - Engine
+      - DBClusterIdentifier
       properties:
         DBInstanceIdentifier:
           type: string
@@ -1804,7 +2138,7 @@ components:
     ModifyDBInstanceRequest:
       type: object
       required:
-        - DBInstanceIdentifier
+      - DBInstanceIdentifier
       properties:
         DBInstanceIdentifier:
           type: string
@@ -1825,9 +2159,9 @@ components:
     RestoreDBClusterFromSnapshotRequest:
       type: object
       required:
-        - DBClusterIdentifier
-        - SnapshotIdentifier
-        - Engine
+      - DBClusterIdentifier
+      - SnapshotIdentifier
+      - Engine
       properties:
         DBClusterIdentifier:
           type: string

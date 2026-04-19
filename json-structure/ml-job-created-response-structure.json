@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/ml-job-created-response-structure.json",
+  "name": "JobCreatedResponse",
+  "description": "JobCreatedResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the created job."
+    }
+  }
+}

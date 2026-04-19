@@ -1,0 +1,8 @@
+{
+  "~id": "neptune-cluster-abc123",
+  "~entityType": "node",
+  "~labels": [
+    "example-string"
+  ],
+  "~properties": {}
+}

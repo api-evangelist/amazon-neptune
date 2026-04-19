@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/analytics-restore-graph-from-snapshot-input-structure.json",
+  "name": "RestoreGraphFromSnapshotInput",
+  "description": "RestoreGraphFromSnapshotInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "graphName": {
+      "type": "string",
+      "description": "The name of the restored graph."
+    },
+    "provisionedMemory": {
+      "type": "int32"
+    },
+    "deletionProtection": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "replicaCount": {
+      "type": "int32"
+    },
+    "publicConnectivity": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "graphName"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/ml-create-inference-endpoint-request-schema.json",
+  "title": "CreateInferenceEndpointRequest",
+  "description": "CreateInferenceEndpointRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the endpoint (auto-generated timestamped name if omitted)."
+    },
+    "mlModelTrainingJobId": {
+      "type": "string",
+      "description": "Job ID from a completed training job."
+    },
+    "mlModelTransformJobId": {
+      "type": "string",
+      "description": "Job ID from a completed transform job."
+    },
+    "update": {
+      "type": "boolean",
+      "description": "Whether this is an update to an existing endpoint.",
+      "default": false
+    },
+    "neptuneIamRoleArn": {
+      "type": "string"
+    },
+    "modelName": {
+      "type": "string",
+      "description": "The model type.",
+      "enum": [
+        "rgcn",
+        "kge",
+        "transe",
+        "distmult",
+        "rotate"
+      ]
+    },
+    "instanceType": {
+      "type": "string",
+      "description": "ML instance type for the inference endpoint.",
+      "default": "ml.m5.xlarge"
+    },
+    "instanceCount": {
+      "type": "integer",
+      "description": "Minimum number of EC2 instances to deploy.",
+      "default": 1
+    },
+    "volumeEncryptionKMSKey": {
+      "type": "string"
+    }
+  }
+}

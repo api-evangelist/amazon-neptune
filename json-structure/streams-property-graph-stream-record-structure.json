@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/streams-property-graph-stream-record-structure.json",
+  "name": "PropertyGraphStreamRecord",
+  "description": "PropertyGraphStreamRecord schema from Neptune",
+  "type": "object",
+  "properties": {
+    "commitTimestamp": {
+      "type": "int32",
+      "description": "Unix epoch timestamp in milliseconds of the transaction commit."
+    },
+    "eventId": {
+      "$ref": "#/components/schemas/StreamEventId"
+    },
+    "data": {
+      "$ref": "#/components/schemas/PropertyGraphData"
+    },
+    "op": {
+      "type": "string",
+      "enum": [
+        "ADD",
+        "REMOVE"
+      ],
+      "description": "The operation type (ADD or REMOVE)."
+    },
+    "isLastOp": {
+      "type": "boolean",
+      "description": "True only if this is the last operation in the transaction."
+    }
+  }
+}

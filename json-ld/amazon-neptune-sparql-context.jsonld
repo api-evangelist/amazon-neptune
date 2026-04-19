@@ -1,0 +1,106 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "SparqlErrorResponse": "neptune:SparqlErrorResponse",
+    "SparqlQueryStatusDetail": "neptune:SparqlQueryStatusDetail",
+    "SparqlQueryStatusList": "neptune:SparqlQueryStatusList",
+    "SparqlRequestBody": "neptune:SparqlRequestBody",
+    "SparqlSelectResponse": "neptune:SparqlSelectResponse",
+    "acceptedQueryCount": {
+      "@id": "neptune:acceptedQueryCount",
+      "@type": "xsd:integer"
+    },
+    "bindings": {
+      "@id": "neptune:bindings",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "boolean": {
+      "@id": "neptune:boolean",
+      "@type": "xsd:boolean"
+    },
+    "cancelled": {
+      "@id": "neptune:cancelled",
+      "@type": "xsd:boolean"
+    },
+    "code": {
+      "@id": "neptune:code",
+      "@type": "xsd:string"
+    },
+    "detailedMessage": {
+      "@id": "neptune:detailedMessage",
+      "@type": "xsd:string"
+    },
+    "elapsed": {
+      "@id": "neptune:elapsed",
+      "@type": "xsd:integer"
+    },
+    "head": {
+      "@id": "neptune:head",
+      "@type": "@id"
+    },
+    "link": {
+      "@id": "neptune:link",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "queries": {
+      "@id": "neptune:queries",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "query": {
+      "@id": "neptune:query",
+      "@type": "xsd:string"
+    },
+    "queryEvalStats": {
+      "@id": "neptune:queryEvalStats",
+      "@type": "@id"
+    },
+    "queryId": {
+      "@id": "neptune:queryId",
+      "@type": "xsd:string"
+    },
+    "queryString": {
+      "@id": "neptune:queryString",
+      "@type": "xsd:string"
+    },
+    "requestId": {
+      "@id": "neptune:requestId",
+      "@type": "xsd:string"
+    },
+    "results": {
+      "@id": "neptune:results",
+      "@type": "@id"
+    },
+    "runningQueryCount": {
+      "@id": "neptune:runningQueryCount",
+      "@type": "xsd:integer"
+    },
+    "update": {
+      "@id": "neptune:update",
+      "@type": "xsd:string"
+    },
+    "using-graph-uri": {
+      "@id": "neptune:using-graph-uri",
+      "@type": "xsd:string"
+    },
+    "using-named-graph-uri": {
+      "@id": "neptune:using-named-graph-uri",
+      "@type": "xsd:string"
+    },
+    "vars": {
+      "@id": "neptune:vars",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "waited": {
+      "@id": "neptune:waited",
+      "@type": "xsd:integer"
+    }
+  }
+}

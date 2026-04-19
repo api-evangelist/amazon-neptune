@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/analytics-create-graph-snapshot-input-structure.json",
+  "name": "CreateGraphSnapshotInput",
+  "description": "CreateGraphSnapshotInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "graphIdentifier": {
+      "type": "string",
+      "description": "The identifier of the graph to snapshot."
+    },
+    "snapshotName": {
+      "type": "string",
+      "description": "The name of the snapshot."
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "graphIdentifier",
+    "snapshotName"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/sparql-sparql-query-status-detail-schema.json",
+  "title": "SparqlQueryStatusDetail",
+  "description": "SparqlQueryStatusDetail schema from Neptune",
+  "type": "object",
+  "properties": {
+    "queryId": {
+      "type": "string"
+    },
+    "queryString": {
+      "type": "string"
+    },
+    "queryEvalStats": {
+      "type": "object",
+      "properties": {
+        "waited": {
+          "type": "integer",
+          "description": "Time waited in queue (milliseconds)."
+        },
+        "elapsed": {
+          "type": "integer",
+          "description": "Elapsed execution time (milliseconds)."
+        },
+        "cancelled": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

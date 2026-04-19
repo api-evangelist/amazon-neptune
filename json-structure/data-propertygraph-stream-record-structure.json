@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/data-propertygraph-stream-record-structure.json",
+  "name": "PropertygraphStreamRecord",
+  "description": "PropertygraphStreamRecord schema from Neptune",
+  "type": "object",
+  "properties": {
+    "commitTimestampInMillis": {
+      "type": "int32"
+    },
+    "eventId": {
+      "type": "object",
+      "properties": {
+        "commitNum": {
+          "type": "int32"
+        },
+        "opNum": {
+          "type": "int32"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the element (v=vertex, vl=vertex label, vp=vertex property, e=edge, ep=edge property)."
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "description": "The property value."
+            },
+            "dataType": {
+              "type": "string"
+            }
+          }
+        },
+        "from": {
+          "type": "string",
+          "description": "Source vertex ID (for edges only)."
+        },
+        "to": {
+          "type": "string",
+          "description": "Target vertex ID (for edges only)."
+        }
+      }
+    },
+    "op": {
+      "type": "string",
+      "enum": [
+        "ADD",
+        "REMOVE"
+      ]
+    },
+    "isLastOp": {
+      "type": "boolean"
+    }
+  }
+}

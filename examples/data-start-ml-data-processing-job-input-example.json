@@ -1,0 +1,21 @@
+{
+  "id": "neptune-cluster-abc123",
+  "inputDataS3Location": "example-string",
+  "processedDataS3Location": "example-string",
+  "previousDataProcessingJobId": "neptune-cluster-abc123",
+  "sagemakerIamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "neptuneIamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "processingInstanceType": "db.r6g.large",
+  "processingInstanceVolumeSizeInGB": 81,
+  "processingTimeOutInSeconds": 94,
+  "modelType": "kge",
+  "configFileName": "my-neptune-cluster",
+  "subnets": [
+    "example-string"
+  ],
+  "securityGroupIds": [
+    "example-string"
+  ],
+  "volumeEncryptionKMSKey": "example-string",
+  "s3OutputEncryptionKMSKey": "example-string"
+}

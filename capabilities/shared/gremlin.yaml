@@ -1,0 +1,96 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Amazon Neptune Neptune Gremlin API
+  description: Apache TinkerPop Gremlin graph traversal language API for querying property graphs in Neptune. It supports both WebSocket and HTTP REST endpoints for submitting Gremlin traversals. This
+    spec covers th
+  tags:
+  - Amazon Neptune
+  - AWS
+  - Graph Database
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_SIGV4_AUTH: AWS_SIGV4_AUTH
+capability:
+  consumes:
+  - type: http
+    namespace: gremlin
+    baseUri: https://{cluster-endpoint}:8182
+    description: Apache TinkerPop Gremlin graph traversal language API for querying property graphs in Neptune. It su
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_SIGV4_AUTH}}'
+      placement: header
+    resources:
+    - name: query
+      path: /query
+      description: Query operations for Amazon Neptune Neptune Gremlin API
+      operations:
+      - name: executeGremlinTraversalGet
+        method: GET
+        description: Amazon Neptune Execute a Gremlin Traversal via HTTP GET
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: gremlin
+          in: query
+          type: string
+          required: true
+          description: The Gremlin traversal query string (URL-encoded).
+      - name: executeGremlinTraversal
+        method: POST
+        description: Amazon Neptune Execute a Gremlin Traversal via HTTP POST
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: {}
+    - name: status
+      path: /status
+      description: Status operations for Amazon Neptune Neptune Gremlin API
+      operations:
+      - name: getGremlinQueryStatus
+        method: GET
+        description: Amazon Neptune Get the Status of All Running Gremlin Queries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getGremlinQueryStatusById
+        method: GET
+        description: Amazon Neptune Get the Status of a Specific Gremlin Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: queryId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the Gremlin query.
+      - name: cancelGremlinQuery
+        method: DELETE
+        description: Amazon Neptune Cancel a Running Gremlin Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: queryId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the Gremlin query to cancel.

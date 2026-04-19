@@ -1,0 +1,521 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateMLEndpointInput": "neptune:CreateMLEndpointInput",
+    "EngineStatusOutput": "neptune:EngineStatusOutput",
+    "ExecuteGremlinProfileInput": "neptune:ExecuteGremlinProfileInput",
+    "ExecuteGremlinQueryInput": "neptune:ExecuteGremlinQueryInput",
+    "ExecuteGremlinQueryOutput": "neptune:ExecuteGremlinQueryOutput",
+    "ExecuteOpenCypherExplainInput": "neptune:ExecuteOpenCypherExplainInput",
+    "ExecuteOpenCypherQueryInput": "neptune:ExecuteOpenCypherQueryInput",
+    "ExecuteOpenCypherQueryOutput": "neptune:ExecuteOpenCypherQueryOutput",
+    "ExecuteSparqlQueryInput": "neptune:ExecuteSparqlQueryInput",
+    "GremlinQueryStatus": "neptune:GremlinQueryStatus",
+    "GremlinQueryStatusOutput": "neptune:GremlinQueryStatusOutput",
+    "LoaderJobStatusOutput": "neptune:LoaderJobStatusOutput",
+    "MLEndpointStatusOutput": "neptune:MLEndpointStatusOutput",
+    "MLJobStatusOutput": "neptune:MLJobStatusOutput",
+    "OpenCypherQueryStatusOutput": "neptune:OpenCypherQueryStatusOutput",
+    "PropertygraphStatisticsOutput": "neptune:PropertygraphStatisticsOutput",
+    "PropertygraphStreamOutput": "neptune:PropertygraphStreamOutput",
+    "PropertygraphStreamRecord": "neptune:PropertygraphStreamRecord",
+    "SparqlQueryOutput": "neptune:SparqlQueryOutput",
+    "SparqlStatisticsOutput": "neptune:SparqlStatisticsOutput",
+    "SparqlStreamOutput": "neptune:SparqlStreamOutput",
+    "StartLoaderJobInput": "neptune:StartLoaderJobInput",
+    "StartLoaderJobOutput": "neptune:StartLoaderJobOutput",
+    "StartMLDataProcessingJobInput": "neptune:StartMLDataProcessingJobInput",
+    "StartMLModelTrainingJobInput": "neptune:StartMLModelTrainingJobInput",
+    "StartMLModelTransformJobInput": "neptune:StartMLModelTransformJobInput",
+    "acceptedQueryCount": {
+      "@id": "neptune:acceptedQueryCount",
+      "@type": "xsd:integer"
+    },
+    "allowEmptyStrings": {
+      "@id": "neptune:allowEmptyStrings",
+      "@type": "xsd:boolean"
+    },
+    "arn": {
+      "@id": "neptune:arn",
+      "@type": "xsd:string"
+    },
+    "baseProcessingInstanceType": {
+      "@id": "neptune:baseProcessingInstanceType",
+      "@type": "xsd:string"
+    },
+    "baseProcessingInstanceVolumeSizeInGB": {
+      "@id": "neptune:baseProcessingInstanceVolumeSizeInGB",
+      "@type": "xsd:integer"
+    },
+    "baseUri": {
+      "@id": "neptune:baseUri",
+      "@type": "xsd:string"
+    },
+    "cancelled": {
+      "@id": "neptune:cancelled",
+      "@type": "xsd:boolean"
+    },
+    "chop": {
+      "@id": "neptune:chop",
+      "@type": "xsd:integer"
+    },
+    "commitNum": {
+      "@id": "neptune:commitNum",
+      "@type": "xsd:integer"
+    },
+    "commitTimestampInMillis": {
+      "@id": "neptune:commitTimestampInMillis",
+      "@type": "xsd:integer"
+    },
+    "configFileName": {
+      "@id": "neptune:configFileName",
+      "@type": "xsd:string"
+    },
+    "customModelTrainingParameters": {
+      "@id": "neptune:customModelTrainingParameters",
+      "@type": "@id"
+    },
+    "customModelTransformParameters": {
+      "@id": "neptune:customModelTransformParameters",
+      "@type": "@id"
+    },
+    "data": {
+      "@id": "neptune:data",
+      "@type": "@id"
+    },
+    "dataProcessingJobId": {
+      "@id": "neptune:dataProcessingJobId",
+      "@type": "xsd:string"
+    },
+    "dataType": {
+      "@id": "neptune:dataType",
+      "@type": "xsd:string"
+    },
+    "datatypeMismatchErrors": {
+      "@id": "neptune:datatypeMismatchErrors",
+      "@type": "xsd:integer"
+    },
+    "dbEngineVersion": {
+      "@id": "neptune:dbEngineVersion",
+      "@type": "xsd:string"
+    },
+    "dependencies": {
+      "@id": "neptune:dependencies",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "dfeQueryEngine": {
+      "@id": "neptune:dfeQueryEngine",
+      "@type": "xsd:string"
+    },
+    "elapsed": {
+      "@id": "neptune:elapsed",
+      "@type": "xsd:integer"
+    },
+    "enableInterContainerTrafficEncryption": {
+      "@id": "neptune:enableInterContainerTrafficEncryption",
+      "@type": "xsd:boolean"
+    },
+    "enableManagedSpotTraining": {
+      "@id": "neptune:enableManagedSpotTraining",
+      "@type": "xsd:boolean"
+    },
+    "endpoint": {
+      "@id": "neptune:endpoint",
+      "@type": "@id"
+    },
+    "endpointConfig": {
+      "@id": "neptune:endpointConfig",
+      "@type": "@id"
+    },
+    "eventId": {
+      "@id": "neptune:eventId",
+      "@type": "@id"
+    },
+    "explainMode": {
+      "@id": "neptune:explainMode",
+      "@type": "xsd:string"
+    },
+    "failOnError": {
+      "@id": "neptune:failOnError",
+      "@type": "xsd:string"
+    },
+    "features": {
+      "@id": "neptune:features",
+      "@type": "@id"
+    },
+    "feedCount": {
+      "@id": "neptune:feedCount",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "format": {
+      "@id": "neptune:format",
+      "@type": "xsd:string"
+    },
+    "from": {
+      "@id": "neptune:from",
+      "@type": "xsd:string"
+    },
+    "fullUri": {
+      "@id": "neptune:fullUri",
+      "@type": "xsd:string"
+    },
+    "gremlin": {
+      "@id": "neptune:gremlin",
+      "@type": "@id"
+    },
+    "head": {
+      "@id": "neptune:head",
+      "@type": "@id"
+    },
+    "iamRoleArn": {
+      "@id": "neptune:iamRoleArn",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "neptune:id",
+      "@type": "xsd:string"
+    },
+    "indexOps": {
+      "@id": "neptune:indexOps",
+      "@type": "xsd:boolean"
+    },
+    "inputDataS3Location": {
+      "@id": "neptune:inputDataS3Location",
+      "@type": "xsd:string"
+    },
+    "insertErrors": {
+      "@id": "neptune:insertErrors",
+      "@type": "xsd:integer"
+    },
+    "instanceCount": {
+      "@id": "neptune:instanceCount",
+      "@type": "xsd:integer"
+    },
+    "instanceType": {
+      "@id": "neptune:instanceType",
+      "@type": "xsd:string"
+    },
+    "isLastOp": {
+      "@id": "neptune:isLastOp",
+      "@type": "xsd:boolean"
+    },
+    "key": {
+      "@id": "neptune:key",
+      "@type": "xsd:string"
+    },
+    "labMode": {
+      "@id": "neptune:labMode",
+      "@type": "@id"
+    },
+    "lastEventId": {
+      "@id": "neptune:lastEventId",
+      "@type": "@id"
+    },
+    "lastTrxTimestampInMillis": {
+      "@id": "neptune:lastTrxTimestampInMillis",
+      "@type": "xsd:integer"
+    },
+    "maxHPONumberOfTrainingJobs": {
+      "@id": "neptune:maxHPONumberOfTrainingJobs",
+      "@type": "xsd:integer"
+    },
+    "maxHPOParallelTrainingJobs": {
+      "@id": "neptune:maxHPOParallelTrainingJobs",
+      "@type": "xsd:integer"
+    },
+    "mlModelTrainingJobId": {
+      "@id": "neptune:mlModelTrainingJobId",
+      "@type": "xsd:string"
+    },
+    "mlModelTransformJobId": {
+      "@id": "neptune:mlModelTransformJobId",
+      "@type": "xsd:string"
+    },
+    "mode": {
+      "@id": "neptune:mode",
+      "@type": "xsd:string"
+    },
+    "modelName": {
+      "@id": "neptune:modelName",
+      "@type": "xsd:string"
+    },
+    "modelTransformOutputS3Location": {
+      "@id": "neptune:modelTransformOutputS3Location",
+      "@type": "xsd:string"
+    },
+    "modelType": {
+      "@id": "neptune:modelType",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "namedGraphUri": {
+      "@id": "neptune:namedGraphUri",
+      "@type": "xsd:string"
+    },
+    "neptuneIamRoleArn": {
+      "@id": "neptune:neptuneIamRoleArn",
+      "@type": "xsd:string"
+    },
+    "op": {
+      "@id": "neptune:op",
+      "@type": "xsd:string"
+    },
+    "opNum": {
+      "@id": "neptune:opNum",
+      "@type": "xsd:integer"
+    },
+    "opencypher": {
+      "@id": "neptune:opencypher",
+      "@type": "@id"
+    },
+    "outputLocation": {
+      "@id": "neptune:outputLocation",
+      "@type": "xsd:string"
+    },
+    "overallStatus": {
+      "@id": "neptune:overallStatus",
+      "@type": "@id"
+    },
+    "parallelism": {
+      "@id": "neptune:parallelism",
+      "@type": "xsd:string"
+    },
+    "parameters": {
+      "@id": "neptune:parameters",
+      "@type": "xsd:string"
+    },
+    "parserConfiguration": {
+      "@id": "neptune:parserConfiguration",
+      "@type": "@id"
+    },
+    "parsingErrors": {
+      "@id": "neptune:parsingErrors",
+      "@type": "xsd:integer"
+    },
+    "payload": {
+      "@id": "neptune:payload",
+      "@type": "@id"
+    },
+    "previousDataProcessingJobId": {
+      "@id": "neptune:previousDataProcessingJobId",
+      "@type": "xsd:string"
+    },
+    "previousModelTrainingJobId": {
+      "@id": "neptune:previousModelTrainingJobId",
+      "@type": "xsd:string"
+    },
+    "processedDataS3Location": {
+      "@id": "neptune:processedDataS3Location",
+      "@type": "xsd:string"
+    },
+    "processingInstanceType": {
+      "@id": "neptune:processingInstanceType",
+      "@type": "xsd:string"
+    },
+    "processingInstanceVolumeSizeInGB": {
+      "@id": "neptune:processingInstanceVolumeSizeInGB",
+      "@type": "xsd:integer"
+    },
+    "processingJob": {
+      "@id": "neptune:processingJob",
+      "@type": "@id"
+    },
+    "processingTimeOutInSeconds": {
+      "@id": "neptune:processingTimeOutInSeconds",
+      "@type": "xsd:integer"
+    },
+    "queries": {
+      "@id": "neptune:queries",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "query": {
+      "@id": "neptune:query",
+      "@type": "xsd:string"
+    },
+    "queryEvalStats": {
+      "@id": "neptune:queryEvalStats",
+      "@type": "@id"
+    },
+    "queryId": {
+      "@id": "neptune:queryId",
+      "@type": "xsd:string"
+    },
+    "queryString": {
+      "@id": "neptune:queryString",
+      "@type": "xsd:string"
+    },
+    "queueRequest": {
+      "@id": "neptune:queueRequest",
+      "@type": "xsd:string"
+    },
+    "records": {
+      "@id": "neptune:records",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "neptune:region",
+      "@type": "xsd:string"
+    },
+    "requestId": {
+      "@id": "neptune:requestId",
+      "@type": "xsd:string"
+    },
+    "result": {
+      "@id": "neptune:result",
+      "@type": "@id"
+    },
+    "results": {
+      "@id": "neptune:results",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "retryNumber": {
+      "@id": "neptune:retryNumber",
+      "@type": "xsd:integer"
+    },
+    "role": {
+      "@id": "neptune:role",
+      "@type": "xsd:string"
+    },
+    "runNumber": {
+      "@id": "neptune:runNumber",
+      "@type": "xsd:integer"
+    },
+    "runningQueryCount": {
+      "@id": "neptune:runningQueryCount",
+      "@type": "xsd:integer"
+    },
+    "s3OutputEncryptionKMSKey": {
+      "@id": "neptune:s3OutputEncryptionKMSKey",
+      "@type": "xsd:string"
+    },
+    "sagemakerIamRoleArn": {
+      "@id": "neptune:sagemakerIamRoleArn",
+      "@type": "xsd:string"
+    },
+    "securityGroupIds": {
+      "@id": "neptune:securityGroupIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "serializer": {
+      "@id": "neptune:serializer",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "neptune:source",
+      "@type": "xsd:string"
+    },
+    "sourceS3DirectoryPath": {
+      "@id": "neptune:sourceS3DirectoryPath",
+      "@type": "xsd:string"
+    },
+    "sparql": {
+      "@id": "neptune:sparql",
+      "@type": "@id"
+    },
+    "startTime": {
+      "@id": "neptune:startTime",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "neptune:status",
+      "@type": "xsd:string"
+    },
+    "subnets": {
+      "@id": "neptune:subnets",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "to": {
+      "@id": "neptune:to",
+      "@type": "xsd:string"
+    },
+    "totalDuplicates": {
+      "@id": "neptune:totalDuplicates",
+      "@type": "xsd:integer"
+    },
+    "totalRecords": {
+      "@id": "neptune:totalRecords",
+      "@type": "xsd:integer"
+    },
+    "totalTimeSpent": {
+      "@id": "neptune:totalTimeSpent",
+      "@type": "xsd:integer"
+    },
+    "trainModelS3Location": {
+      "@id": "neptune:trainModelS3Location",
+      "@type": "xsd:string"
+    },
+    "trainingEntryPointScript": {
+      "@id": "neptune:trainingEntryPointScript",
+      "@type": "xsd:string"
+    },
+    "trainingInstanceType": {
+      "@id": "neptune:trainingInstanceType",
+      "@type": "xsd:string"
+    },
+    "trainingInstanceVolumeSizeInGB": {
+      "@id": "neptune:trainingInstanceVolumeSizeInGB",
+      "@type": "xsd:integer"
+    },
+    "trainingJobName": {
+      "@id": "neptune:trainingJobName",
+      "@type": "xsd:string"
+    },
+    "trainingTimeOutInSeconds": {
+      "@id": "neptune:trainingTimeOutInSeconds",
+      "@type": "xsd:integer"
+    },
+    "transformEntryPointScript": {
+      "@id": "neptune:transformEntryPointScript",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "neptune:type",
+      "@type": "xsd:string"
+    },
+    "update": {
+      "@id": "neptune:update",
+      "@type": "xsd:string"
+    },
+    "updateSingleCardinalityProperties": {
+      "@id": "neptune:updateSingleCardinalityProperties",
+      "@type": "xsd:string"
+    },
+    "userProvidedEdgeIds": {
+      "@id": "neptune:userProvidedEdgeIds",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "neptune:value",
+      "@type": "@id"
+    },
+    "vars": {
+      "@id": "neptune:vars",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "schema:version"
+    },
+    "volumeEncryptionKMSKey": {
+      "@id": "neptune:volumeEncryptionKMSKey",
+      "@type": "xsd:string"
+    },
+    "waited": {
+      "@id": "neptune:waited",
+      "@type": "xsd:integer"
+    }
+  }
+}

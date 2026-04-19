@@ -1,0 +1,20 @@
+{
+  "source": "example-string",
+  "format": "csv",
+  "iamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "region": "us-east-1",
+  "mode": "RESUME",
+  "failOnError": "TRUE",
+  "parallelism": "LOW",
+  "parserConfiguration": {
+    "baseUri": "example-string",
+    "namedGraphUri": "my-neptune-cluster",
+    "allowEmptyStrings": true
+  },
+  "updateSingleCardinalityProperties": "TRUE",
+  "queueRequest": "FALSE",
+  "dependencies": [
+    "example-string"
+  ],
+  "userProvidedEdgeIds": "TRUE"
+}

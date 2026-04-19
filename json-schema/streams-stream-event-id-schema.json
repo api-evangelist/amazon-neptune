@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/streams-stream-event-id-schema.json",
+  "title": "StreamEventId",
+  "description": "A sequence identifier for a stream event.",
+  "type": "object",
+  "properties": {
+    "commitNum": {
+      "type": "integer",
+      "description": "The commit (transaction) number."
+    },
+    "opNum": {
+      "type": "integer",
+      "description": "The operation number within the commit."
+    }
+  }
+}

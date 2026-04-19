@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Amazon Neptune Analytics and Machine Learning
+  description: Workflow capability for Neptune Analytics graph analysis, vector search, and Neptune ML graph neural network model training and inference. Used by data scientists and ML engineers.
+  tags:
+  - Amazon Neptune
+  - AWS
+  - Graph Analytics
+  - Machine Learning
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_SIGV4_AUTH: AWS_SIGV4_AUTH
+capability:
+  consumes:
+  - import: analytics
+    location: ./shared/analytics.yaml
+  - import: ml
+    location: ./shared/ml.yaml
+  exposes:
+  - type: rest
+    port: 8081
+    namespace: neptune-analytics-api
+    description: Unified REST API for Neptune Analytics and ML.
+    resources:
+    - path: /v1/graphs
+      name: analytics-graphs
+      description: Neptune Analytics graph management
+      operations:
+      - method: GET
+        name: list-analytics-graphs
+        description: List Neptune Analytics graphs
+        call: analytics.listGraphs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/jobs
+      name: ml-jobs
+      description: Neptune ML training job management
+      operations:
+      - method: GET
+        name: list-ml-jobs
+        description: List Neptune ML training jobs
+        call: ml.listMLJobs
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9091
+    namespace: neptune-analytics-mcp
+    transport: http
+    description: MCP server for AI-assisted Neptune Analytics and ML operations.
+    tools:
+    - name: list-analytics-graphs
+      description: List Neptune Analytics graphs for in-memory graph analysis
+      hints:
+        readOnly: true
+      call: analytics.listGraphs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-analytics-graph
+      description: Create a Neptune Analytics graph for graph analytics workloads
+      hints:
+        readOnly: false
+      call: analytics.createGraph
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-ml-training-jobs
+      description: List Neptune ML graph neural network training jobs
+      hints:
+        readOnly: true
+      call: ml.listMLJobs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-ml-inference-endpoint
+      description: Create a Neptune ML inference endpoint for predictions
+      hints:
+        readOnly: false
+      call: ml.createMLEndpoint
+      outputParameters:
+      - type: object
+        mapping: $.

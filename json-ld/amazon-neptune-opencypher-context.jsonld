@@ -1,0 +1,103 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "OpenCypherErrorResponse": "neptune:OpenCypherErrorResponse",
+    "OpenCypherNode": "neptune:OpenCypherNode",
+    "OpenCypherQueryRequest": "neptune:OpenCypherQueryRequest",
+    "OpenCypherQueryResponse": "neptune:OpenCypherQueryResponse",
+    "OpenCypherQueryStatusDetail": "neptune:OpenCypherQueryStatusDetail",
+    "OpenCypherQueryStatusList": "neptune:OpenCypherQueryStatusList",
+    "OpenCypherRelationship": "neptune:OpenCypherRelationship",
+    "acceptedQueryCount": {
+      "@id": "neptune:acceptedQueryCount",
+      "@type": "xsd:integer"
+    },
+    "cancelled": {
+      "@id": "neptune:cancelled",
+      "@type": "xsd:boolean"
+    },
+    "code": {
+      "@id": "neptune:code",
+      "@type": "xsd:string"
+    },
+    "detailedMessage": {
+      "@id": "neptune:detailedMessage",
+      "@type": "xsd:string"
+    },
+    "elapsed": {
+      "@id": "neptune:elapsed",
+      "@type": "xsd:integer"
+    },
+    "queries": {
+      "@id": "neptune:queries",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "query": {
+      "@id": "neptune:query",
+      "@type": "xsd:string"
+    },
+    "queryEvalStats": {
+      "@id": "neptune:queryEvalStats",
+      "@type": "@id"
+    },
+    "queryId": {
+      "@id": "neptune:queryId",
+      "@type": "xsd:string"
+    },
+    "queryString": {
+      "@id": "neptune:queryString",
+      "@type": "xsd:string"
+    },
+    "requestId": {
+      "@id": "neptune:requestId",
+      "@type": "xsd:string"
+    },
+    "results": {
+      "@id": "neptune:results",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "runningQueryCount": {
+      "@id": "neptune:runningQueryCount",
+      "@type": "xsd:integer"
+    },
+    "waited": {
+      "@id": "neptune:waited",
+      "@type": "xsd:integer"
+    },
+    "~end": {
+      "@id": "neptune:~end",
+      "@type": "xsd:string"
+    },
+    "~entityType": {
+      "@id": "neptune:~entityType",
+      "@type": "xsd:string"
+    },
+    "~id": {
+      "@id": "neptune:~id",
+      "@type": "xsd:string"
+    },
+    "~labels": {
+      "@id": "neptune:~labels",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "~properties": {
+      "@id": "neptune:~properties",
+      "@type": "@id"
+    },
+    "~start": {
+      "@id": "neptune:~start",
+      "@type": "xsd:string"
+    },
+    "~type": {
+      "@id": "neptune:~type",
+      "@type": "xsd:string"
+    }
+  }
+}

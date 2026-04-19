@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/data-execute-open-cypher-query-input-structure.json",
+  "name": "ExecuteOpenCypherQueryInput",
+  "description": "ExecuteOpenCypherQueryInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The openCypher query string to execute."
+    },
+    "parameters": {
+      "type": "string",
+      "description": "The openCypher query parameters as a JSON-serialized string."
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

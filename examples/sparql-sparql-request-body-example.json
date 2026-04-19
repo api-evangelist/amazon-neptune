@@ -1,0 +1,6 @@
+{
+  "query": "g.V().limit(10)",
+  "update": "example-string",
+  "using-graph-uri": "example-string",
+  "using-named-graph-uri": "my-neptune-cluster"
+}

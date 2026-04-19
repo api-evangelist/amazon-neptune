@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/data-execute-open-cypher-explain-input-schema.json",
+  "title": "ExecuteOpenCypherExplainInput",
+  "description": "ExecuteOpenCypherExplainInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The openCypher query to explain."
+    },
+    "parameters": {
+      "type": "string"
+    },
+    "explainMode": {
+      "type": "string",
+      "enum": [
+        "static",
+        "dynamic",
+        "details"
+      ],
+      "description": "The explain mode (static, dynamic, or details)."
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

@@ -15,24 +15,24 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://{cluster-endpoint}:8182
-    description: Neptune SPARQL HTTP REST endpoint
-    variables:
-      cluster-endpoint:
-        default: your-cluster-endpoint.region.neptune.amazonaws.com
-        description: The cluster endpoint DNS name for your Neptune DB cluster
+- url: https://{cluster-endpoint}:8182
+  description: Neptune SPARQL HTTP REST endpoint
+  variables:
+    cluster-endpoint:
+      default: your-cluster-endpoint.region.neptune.amazonaws.com
+      description: The cluster endpoint DNS name for your Neptune DB cluster
 security:
-  - aws_sigv4: []
+- aws_sigv4: []
 tags:
-  - name: Query
-    description: Execute SPARQL queries and updates
-  - name: Status
-    description: Query status and cancellation operations
+- name: Query
+  description: Execute SPARQL queries and updates
+- name: Status
+  description: Query status and cancellation operations
 paths:
   /sparql:
     post:
       operationId: executeSparqlQuery
-      summary: Amazon Neptune Execute a SPARQL query or update via HTTP POST
+      summary: Amazon Neptune Execute a SPARQL Query or Update via HTTP POST
       description: >-
         Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL
         endpoint. For queries, use the 'query' parameter with SELECT, ASK,
@@ -40,7 +40,7 @@ paths:
         with INSERT DATA or DELETE DATA operations. The request body is
         form-encoded per the SPARQL 1.1 Protocol specification.
       tags:
-        - Query
+      - Query
       requestBody:
         required: true
         content:
@@ -74,27 +74,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SparqlErrorResponse'
+              examples:
+                executeSparqlQuery400Example:
+                  summary: Default executeSparqlQuery 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '408':
           description: Query timed out before completing.
         '500':
           description: Internal server error during query execution.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: executeSparqlQueryGet
-      summary: Amazon Neptune Execute a SPARQL query via HTTP GET
+      summary: Amazon Neptune Execute a SPARQL Query via HTTP GET
       description: >-
         Submits a read-only SPARQL 1.1 query via URL query parameters. Only
         SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via
         GET. Update operations require POST.
       tags:
-        - Query
+      - Query
       parameters:
-        - name: query
-          in: query
-          required: true
-          description: The SPARQL query string (URL-encoded).
-          schema:
-            type: string
-          example: SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10
+      - name: query
+        in: query
+        required: true
+        description: The SPARQL query string (URL-encoded).
+        schema:
+          type: string
+        example: SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10
       responses:
         '200':
           description: SPARQL query executed successfully.
@@ -104,15 +115,18 @@ paths:
                 $ref: '#/components/schemas/SparqlSelectResponse'
         '400':
           description: Bad request - malformed SPARQL query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sparql/status:
     get:
       operationId: getSparqlQueryStatus
-      summary: Amazon Neptune Get the status of all running SPARQL queries
+      summary: Amazon Neptune Get the Status of All Running SPARQL Queries
       description: >-
         Returns the status of all running and waiting SPARQL queries,
         including query IDs and execution statistics.
       tags:
-        - Status
+      - Status
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -120,21 +134,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SparqlQueryStatusList'
+              examples:
+                getSparqlQueryStatus200Example:
+                  summary: Default getSparqlQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sparql/status/{queryId}:
     get:
       operationId: getSparqlQueryStatusById
-      summary: Amazon Neptune Get the status of a specific SPARQL query
+      summary: Amazon Neptune Get the Status of a Specific SPARQL Query
       description: >-
         Returns the status of a specific SPARQL query by its query ID.
       tags:
-        - Status
+      - Status
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the SPARQL query.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the SPARQL query.
+        schema:
+          type: string
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -142,27 +168,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SparqlQueryStatusDetail'
+              examples:
+                getSparqlQueryStatusById200Example:
+                  summary: Default getSparqlQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
         '404':
           description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelSparqlQuery
-      summary: Amazon Neptune Cancel a running SPARQL query
+      summary: Amazon Neptune Cancel a Running SPARQL Query
       description: >-
         Cancels a running SPARQL query by its query ID.
       tags:
-        - Status
+      - Status
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the SPARQL query to cancel.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the SPARQL query to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Query cancelled successfully.
         '404':
           description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     aws_sigv4:
@@ -221,9 +264,9 @@ components:
                     type:
                       type: string
                       enum:
-                        - uri
-                        - literal
-                        - bnode
+                      - uri
+                      - literal
+                      - bnode
                     value:
                       type: string
                     datatype:

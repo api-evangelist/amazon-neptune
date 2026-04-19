@@ -1,0 +1,19 @@
+{
+  "id": "neptune-cluster-abc123",
+  "name": "my-neptune-cluster",
+  "graphName": "my-neptune-cluster",
+  "arn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "status": "SNAPSHOTTING",
+  "statusReason": "available",
+  "createTime": "2025-03-15T14:30:00Z",
+  "provisionedMemory": 78,
+  "endpoint": "neptune-cluster-1.xyz.us-east-1.neptune.amazonaws.com",
+  "publicConnectivity": true,
+  "vectorSearchConfiguration": {
+    "dimension": 82
+  },
+  "replicaCount": 98,
+  "kmsKeyIdentifier": "neptune-cluster-abc123",
+  "sourceSnapshotId": "neptune-cluster-abc123",
+  "deletionProtection": false
+}

@@ -1,0 +1,26 @@
+{
+  "DBInstanceIdentifier": "neptune-cluster-abc123",
+  "DBInstanceArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "DBInstanceClass": "db.r6g.large",
+  "Engine": "neptune",
+  "EngineVersion": "1.3.2.0",
+  "DBInstanceStatus": "incompatible-parameters",
+  "Endpoint": {
+    "Address": "example-string",
+    "Port": 61,
+    "HostedZoneId": "neptune-cluster-abc123"
+  },
+  "DBClusterIdentifier": "neptune-cluster-abc123",
+  "AvailabilityZone": "us-east-1a",
+  "DBSubnetGroup": {
+    "DBSubnetGroupName": "my-neptune-cluster",
+    "DBSubnetGroupDescription": "example-string",
+    "VpcId": "neptune-cluster-abc123",
+    "SubnetGroupStatus": "available"
+  },
+  "PreferredMaintenanceWindow": "example-string",
+  "AutoMinorVersionUpgrade": false,
+  "PubliclyAccessible": false,
+  "PromotionTier": 33,
+  "StorageEncrypted": true
+}

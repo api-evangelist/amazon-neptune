@@ -1,0 +1,6 @@
+{
+  "DBSubnetGroups": [
+    "example-ref"
+  ],
+  "Marker": "example-string"
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/analytics-graph-output-structure.json",
+  "name": "GraphOutput",
+  "description": "GraphOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the graph."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the graph."
+    },
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the graph."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the graph.",
+      "enum": [
+        "CREATING",
+        "AVAILABLE",
+        "DELETING",
+        "RESETTING",
+        "UPDATING",
+        "SNAPSHOTTING",
+        "FAILED",
+        "IMPORTING"
+      ]
+    },
+    "statusReason": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "datetime"
+    },
+    "provisionedMemory": {
+      "type": "int32"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "The DNS endpoint for the graph."
+    },
+    "publicConnectivity": {
+      "type": "boolean"
+    },
+    "vectorSearchConfiguration": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "int32"
+        }
+      }
+    },
+    "replicaCount": {
+      "type": "int32"
+    },
+    "kmsKeyIdentifier": {
+      "type": "string"
+    },
+    "sourceSnapshotId": {
+      "type": "string"
+    },
+    "deletionProtection": {
+      "type": "boolean"
+    },
+    "buildNumber": {
+      "type": "string"
+    }
+  }
+}

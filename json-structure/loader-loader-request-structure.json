@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/loader-loader-request-structure.json",
+  "name": "LoaderRequest",
+  "description": "LoaderRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Amazon S3 URI identifying the data file(s), folder, or multiple folders to load. Supported URI formats: s3://bucket_name/key, https://s3.amazonaws.com/bucket_name/key, https://s3.region.amazonaws.com/bucket_name/key."
+    },
+    "format": {
+      "type": "string",
+      "description": "The data format of the source files.",
+      "enum": [
+        "csv",
+        "opencypher",
+        "ntriples",
+        "nquads",
+        "rdfxml",
+        "turtle"
+      ]
+    },
+    "iamRoleArn": {
+      "type": "string",
+      "description": "The ARN of the IAM role that provides Neptune access to the S3 bucket. Can be a comma-separated list for cross-account access."
+    },
+    "region": {
+      "type": "string",
+      "description": "The AWS Region of the S3 bucket. Must match the Neptune cluster region or be accessible cross-region."
+    },
+    "mode": {
+      "type": "string",
+      "description": "The load mode. NEW fails if data was previously loaded. RESUME continues a failed load. AUTO resumes or starts new as needed.",
+      "enum": [
+        "NEW",
+        "RESUME",
+        "AUTO"
+      ],
+      "default": "AUTO"
+    },
+    "failOnError": {
+      "type": "string",
+      "description": "Whether to stop the entire load job on error.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ],
+      "default": "TRUE"
+    },
+    "parallelism": {
+      "type": "string",
+      "description": "The degree of parallelism for loading. LOW uses a single thread, MEDIUM uses num_vCPU/2, HIGH uses num_vCPU, OVERSUBSCRIBE uses all available resources.",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "OVERSUBSCRIBE"
+      ],
+      "default": "HIGH"
+    },
+    "parserConfiguration": {
+      "type": "object",
+      "description": "Optional parser configuration settings for RDF data.",
+      "properties": {
+        "baseUri": {
+          "type": "string",
+          "description": "The base URI for relative URIs in the data."
+        },
+        "namedGraphUri": {
+          "type": "string",
+          "description": "The default named graph URI for loaded triples."
+        },
+        "allowEmptyStrings": {
+          "type": "boolean",
+          "description": "Whether to allow empty string property values."
+        }
+      }
+    },
+    "updateSingleCardinalityProperties": {
+      "type": "string",
+      "description": "Whether to update existing single-cardinality vertex properties. Not supported for openCypher format.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ],
+      "default": "FALSE"
+    },
+    "queueRequest": {
+      "type": "string",
+      "description": "Whether to queue the request if a load is already running. Neptune queues up to 64 jobs in FIFO order.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ],
+      "default": "FALSE"
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Array of load job IDs that must complete successfully before this job runs.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "userProvidedEdgeIds": {
+      "type": "string",
+      "description": "For openCypher format only. TRUE requires an :ID column in edge files. FALSE auto-generates edge IDs.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ]
+    }
+  },
+  "required": [
+    "source",
+    "format",
+    "iamRoleArn",
+    "region"
+  ]
+}

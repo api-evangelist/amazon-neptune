@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/analytics-list-import-tasks-output-schema.json",
+  "title": "ListImportTasksOutput",
+  "description": "ListImportTasksOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "graphId": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "roleArn": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nextToken": {
+      "type": "string"
+    }
+  }
+}

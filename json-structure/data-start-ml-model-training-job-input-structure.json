@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/data-start-ml-model-training-job-input-structure.json",
+  "name": "StartMLModelTrainingJobInput",
+  "description": "StartMLModelTrainingJobInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "dataProcessingJobId": {
+      "type": "string",
+      "description": "Job ID of the completed data processing job."
+    },
+    "trainModelS3Location": {
+      "type": "string",
+      "description": "S3 location for model artifacts."
+    },
+    "previousModelTrainingJobId": {
+      "type": "string"
+    },
+    "sagemakerIamRoleArn": {
+      "type": "string"
+    },
+    "neptuneIamRoleArn": {
+      "type": "string"
+    },
+    "modelName": {
+      "type": "string",
+      "description": "The model type to use.",
+      "enum": [
+        "rgcn",
+        "transe",
+        "distmult",
+        "rotate",
+        "custom"
+      ]
+    },
+    "baseProcessingInstanceType": {
+      "type": "string"
+    },
+    "trainingInstanceType": {
+      "type": "string",
+      "default": "ml.p3.2xlarge"
+    },
+    "trainingInstanceVolumeSizeInGB": {
+      "type": "int32"
+    },
+    "trainingTimeOutInSeconds": {
+      "type": "int32",
+      "default": 86400
+    },
+    "maxHPONumberOfTrainingJobs": {
+      "type": "int32",
+      "default": 2
+    },
+    "maxHPOParallelTrainingJobs": {
+      "type": "int32",
+      "default": 2
+    },
+    "subnets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "securityGroupIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "volumeEncryptionKMSKey": {
+      "type": "string"
+    },
+    "s3OutputEncryptionKMSKey": {
+      "type": "string"
+    },
+    "enableInterContainerTrafficEncryption": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableManagedSpotTraining": {
+      "type": "boolean",
+      "default": false
+    },
+    "customModelTrainingParameters": {
+      "type": "object",
+      "properties": {
+        "sourceS3DirectoryPath": {
+          "type": "string"
+        },
+        "trainingEntryPointScript": {
+          "type": "string"
+        },
+        "transformEntryPointScript": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "dataProcessingJobId",
+    "trainModelS3Location"
+  ]
+}

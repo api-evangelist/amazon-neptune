@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/data-create-ml-endpoint-input-structure.json",
+  "name": "CreateMLEndpointInput",
+  "description": "CreateMLEndpointInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the endpoint."
+    },
+    "mlModelTrainingJobId": {
+      "type": "string",
+      "description": "Job ID from a completed training job."
+    },
+    "mlModelTransformJobId": {
+      "type": "string",
+      "description": "Job ID from a completed transform job."
+    },
+    "update": {
+      "type": "boolean",
+      "description": "Whether this is an update request.",
+      "default": false
+    },
+    "neptuneIamRoleArn": {
+      "type": "string"
+    },
+    "modelName": {
+      "type": "string",
+      "enum": [
+        "rgcn",
+        "kge",
+        "transe",
+        "distmult",
+        "rotate"
+      ]
+    },
+    "instanceType": {
+      "type": "string",
+      "default": "ml.m5.xlarge"
+    },
+    "instanceCount": {
+      "type": "int32",
+      "default": 1
+    },
+    "volumeEncryptionKMSKey": {
+      "type": "string"
+    }
+  }
+}

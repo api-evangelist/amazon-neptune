@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/opencypher-open-cypher-relationship-structure.json",
+  "name": "OpenCypherRelationship",
+  "description": "A property graph relationship as returned by openCypher queries.",
+  "type": "object",
+  "properties": {
+    "~id": {
+      "type": "string",
+      "description": "The unique identifier of the relationship."
+    },
+    "~entityType": {
+      "type": "string",
+      "enum": [
+        "relationship"
+      ],
+      "description": "The entity type (always 'relationship')."
+    },
+    "~start": {
+      "type": "string",
+      "description": "The ID of the source node."
+    },
+    "~end": {
+      "type": "string",
+      "description": "The ID of the target node."
+    },
+    "~type": {
+      "type": "string",
+      "description": "The relationship type."
+    },
+    "~properties": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The relationship properties as key-value pairs."
+    }
+  }
+}

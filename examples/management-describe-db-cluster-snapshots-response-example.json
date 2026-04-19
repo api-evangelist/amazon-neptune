@@ -1,0 +1,6 @@
+{
+  "DBClusterSnapshots": [
+    "example-ref"
+  ],
+  "Marker": "example-string"
+}

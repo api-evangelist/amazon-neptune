@@ -16,34 +16,34 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://neptune-graph.{region}.amazonaws.com
-    description: Neptune Analytics control plane regional endpoint
-    variables:
-      region:
-        default: us-east-1
-        description: AWS region
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
 security:
-  - aws_sigv4: []
+- aws_sigv4: []
 tags:
-  - name: Graph Snapshots
-    description: Operations for managing graph snapshots
-  - name: Graphs
-    description: Operations for managing Neptune Analytics graph resources
-  - name: Import Tasks
-    description: Operations for importing data into graphs
-  - name: Private Graph Endpoints
-    description: Operations for managing private graph endpoints in VPCs
+- name: Graph Snapshots
+  description: Operations for managing graph snapshots
+- name: Graphs
+  description: Operations for managing Neptune Analytics graph resources
+- name: Import Tasks
+  description: Operations for importing data into graphs
+- name: Private Graph Endpoints
+  description: Operations for managing private graph endpoints in VPCs
 paths:
   /graphs:
     post:
       operationId: createGraph
-      summary: Amazon Neptune Create a Neptune Analytics graph
+      summary: Amazon Neptune Create a Neptune Analytics Graph
       description: >-
         Creates a new Neptune Analytics graph resource. The graph is a
         memory-optimized database instance optimized for analytical
         workloads with support for openCypher queries and vector search.
       tags:
-        - Graphs
+      - Graphs
       requestBody:
         required: true
         content:
@@ -57,30 +57,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphOutput'
+              examples:
+                createGraph201Example:
+                  summary: Default createGraph 201 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
         '400':
           description: Bad request - invalid parameters.
         '409':
           description: A graph with the specified name already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listGraphs
-      summary: Amazon Neptune List Neptune Analytics graphs
+      summary: Amazon Neptune List Neptune Analytics Graphs
       description: >-
         Returns a list of Neptune Analytics graph resources in the account.
       tags:
-        - Graphs
+      - Graphs
       parameters:
-        - name: maxResults
-          in: query
-          description: Maximum number of results to return.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-        - name: nextToken
-          in: query
-          description: Pagination token from a previous request.
-          schema:
-            type: string
+      - name: maxResults
+        in: query
+        description: Maximum number of results to return.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: nextToken
+        in: query
+        description: Pagination token from a previous request.
+        schema:
+          type: string
       responses:
         '200':
           description: Graph list retrieved successfully.
@@ -88,22 +107,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListGraphsOutput'
+              examples:
+                listGraphs200Example:
+                  summary: Default listGraphs 200 response
+                  x-microcks-default: true
+                  value:
+                    graphs:
+                    - id: neptune-cluster-abc123
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      provisionedMemory: 1
+                    nextToken: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /graphs/{graphIdentifier}:
     get:
       operationId: getGraph
-      summary: Amazon Neptune Get Neptune Analytics graph details
+      summary: Amazon Neptune Get Neptune Analytics Graph Details
       description: >-
         Returns detailed information about a specific Neptune Analytics
         graph resource.
       tags:
-        - Graphs
+      - Graphs
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the graph.
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph.
+        schema:
+          type: string
       responses:
         '200':
           description: Graph details retrieved successfully.
@@ -111,23 +145,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphOutput'
+              examples:
+                getGraph200Example:
+                  summary: Default getGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
         '404':
           description: Graph not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: updateGraph
-      summary: Amazon Neptune Update a Neptune Analytics graph
+      summary: Amazon Neptune Update a Neptune Analytics Graph
       description: >-
         Updates the configuration of an existing Neptune Analytics graph,
         such as provisioned memory or deletion protection settings.
       tags:
-        - Graphs
+      - Graphs
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the graph.
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph.
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -141,29 +194,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphOutput'
+              examples:
+                updateGraph200Example:
+                  summary: Default updateGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
         '404':
           description: Graph not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteGraph
-      summary: Amazon Neptune Delete a Neptune Analytics graph
+      summary: Amazon Neptune Delete a Neptune Analytics Graph
       description: >-
         Deletes a Neptune Analytics graph resource. The graph must not
         have deletion protection enabled.
       tags:
-        - Graphs
+      - Graphs
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the graph to delete.
-          schema:
-            type: string
-        - name: skipSnapshot
-          in: query
-          required: true
-          description: Whether to skip creating a final snapshot before deletion.
-          schema:
-            type: boolean
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph to delete.
+        schema:
+          type: string
+      - name: skipSnapshot
+        in: query
+        required: true
+        description: Whether to skip creating a final snapshot before deletion.
+        schema:
+          type: boolean
       responses:
         '200':
           description: Graph deleted successfully.
@@ -171,27 +243,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphOutput'
+              examples:
+                deleteGraph200Example:
+                  summary: Default deleteGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
         '404':
           description: Graph not found.
         '409':
           description: Graph has deletion protection enabled.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /graphs/{graphIdentifier}/reset:
     put:
       operationId: resetGraph
-      summary: Amazon Neptune Reset a Neptune Analytics graph
+      summary: Amazon Neptune Reset a Neptune Analytics Graph
       description: >-
         Empties the data from a Neptune Analytics graph, removing all
         nodes and edges while preserving the graph resource and its
         configuration.
       tags:
-        - Graphs
+      - Graphs
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the graph to reset.
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph to reset.
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -199,7 +290,7 @@ paths:
             schema:
               type: object
               required:
-                - performCleanData
+              - performCleanData
               properties:
                 performCleanData:
                   type: boolean
@@ -211,17 +302,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphOutput'
+              examples:
+                resetGraph200Example:
+                  summary: Default resetGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
         '404':
           description: Graph not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /snapshots:
     post:
       operationId: createGraphSnapshot
-      summary: Amazon Neptune Create a graph snapshot
+      summary: Amazon Neptune Create a Graph Snapshot
       description: >-
         Creates a snapshot of a Neptune Analytics graph for backup
         purposes.
       tags:
-        - Graph Snapshots
+      - Graph Snapshots
       requestBody:
         required: true
         content:
@@ -235,31 +345,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphSnapshotOutput'
+              examples:
+                createGraphSnapshot201Example:
+                  summary: Default createGraphSnapshot 201 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    sourceGraphId: neptune-cluster-abc123
+                    snapshotCreateTime: '2025-03-15T14:30:00Z'
+                    status: CREATING
+                    kmsKeyIdentifier: neptune-cluster-abc123
         '404':
           description: Source graph not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listGraphSnapshots
-      summary: Amazon Neptune List graph snapshots
+      summary: Amazon Neptune List Graph Snapshots
       description: >-
         Returns a list of graph snapshots in the account.
       tags:
-        - Graph Snapshots
+      - Graph Snapshots
       parameters:
-        - name: graphIdentifier
-          in: query
-          description: Filter snapshots by source graph identifier.
-          schema:
-            type: string
-        - name: maxResults
-          in: query
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-        - name: nextToken
-          in: query
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: query
+        description: Filter snapshots by source graph identifier.
+        schema:
+          type: string
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: nextToken
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Snapshot list retrieved successfully.
@@ -267,21 +392,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListGraphSnapshotsOutput'
+              examples:
+                listGraphSnapshots200Example:
+                  summary: Default listGraphSnapshots 200 response
+                  x-microcks-default: true
+                  value:
+                    graphSnapshots:
+                    - id: neptune-cluster-abc123
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      sourceGraphId: neptune-cluster-abc123
+                      snapshotCreateTime: '2025-03-15T14:30:00Z'
+                    nextToken: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /snapshots/{snapshotIdentifier}:
     get:
       operationId: getGraphSnapshot
-      summary: Amazon Neptune Get graph snapshot details
+      summary: Amazon Neptune Get Graph Snapshot Details
       description: >-
         Returns detailed information about a specific graph snapshot.
       tags:
-        - Graph Snapshots
+      - Graph Snapshots
       parameters:
-        - name: snapshotIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the snapshot.
-          schema:
-            type: string
+      - name: snapshotIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the snapshot.
+        schema:
+          type: string
       responses:
         '200':
           description: Snapshot details retrieved successfully.
@@ -289,43 +429,61 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphSnapshotOutput'
+              examples:
+                getGraphSnapshot200Example:
+                  summary: Default getGraphSnapshot 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    sourceGraphId: neptune-cluster-abc123
+                    snapshotCreateTime: '2025-03-15T14:30:00Z'
+                    status: CREATING
+                    kmsKeyIdentifier: neptune-cluster-abc123
         '404':
           description: Snapshot not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteGraphSnapshot
-      summary: Amazon Neptune Delete a graph snapshot
+      summary: Amazon Neptune Delete a Graph Snapshot
       description: >-
         Deletes a Neptune Analytics graph snapshot.
       tags:
-        - Graph Snapshots
+      - Graph Snapshots
       parameters:
-        - name: snapshotIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the snapshot to delete.
-          schema:
-            type: string
+      - name: snapshotIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the snapshot to delete.
+        schema:
+          type: string
       responses:
         '200':
           description: Snapshot deleted successfully.
         '404':
           description: Snapshot not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /snapshots/{snapshotIdentifier}/restore:
     post:
       operationId: restoreGraphFromSnapshot
-      summary: Amazon Neptune Restore a graph from a snapshot
+      summary: Amazon Neptune Restore a Graph from a Snapshot
       description: >-
         Creates a new Neptune Analytics graph by restoring from an existing
         snapshot.
       tags:
-        - Graph Snapshots
+      - Graph Snapshots
       parameters:
-        - name: snapshotIdentifier
-          in: path
-          required: true
-          description: The identifier of the snapshot to restore from.
-          schema:
-            type: string
+      - name: snapshotIdentifier
+        in: path
+        required: true
+        description: The identifier of the snapshot to restore from.
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -339,15 +497,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphOutput'
+              examples:
+                restoreGraphFromSnapshot201Example:
+                  summary: Default restoreGraphFromSnapshot 201 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /importtasks:
     post:
       operationId: createGraphUsingImportTask
-      summary: Amazon Neptune Create a graph using an import task
+      summary: Amazon Neptune Create a Graph Using an Import Task
       description: >-
         Creates a new Neptune Analytics graph and populates it with data
         from an Amazon S3 source in a single operation.
       tags:
-        - Import Tasks
+      - Import Tasks
       requestBody:
         required: true
         content:
@@ -361,22 +538,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImportTaskOutput'
+              examples:
+                createGraphUsingImportTask201Example:
+                  summary: Default createGraphUsingImportTask 201 response
+                  x-microcks-default: true
+                  value:
+                    graphId: neptune-cluster-abc123
+                    taskId: neptune-cluster-abc123
+                    source: example-value
+                    format: example-value
+                    roleArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: INITIALIZING
+                    importOptions: {}
+                    importTaskDetails:
+                      status: available
+                      startTime: '2025-03-15T14:30:00Z'
+                      timeElapsedSeconds: 1
+                      progressPercentage: 1
+                      errorCount: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listImportTasks
-      summary: Amazon Neptune List import tasks
+      summary: Amazon Neptune List Import Tasks
       description: >-
         Returns a list of import tasks in the account.
       tags:
-        - Import Tasks
+      - Import Tasks
       parameters:
-        - name: maxResults
-          in: query
-          schema:
-            type: integer
-        - name: nextToken
-          in: query
-          schema:
-            type: string
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Import task list retrieved successfully.
@@ -384,21 +582,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListImportTasksOutput'
+              examples:
+                listImportTasks200Example:
+                  summary: Default listImportTasks 200 response
+                  x-microcks-default: true
+                  value:
+                    tasks:
+                    - graphId: neptune-cluster-abc123
+                      taskId: neptune-cluster-abc123
+                      source: example-value
+                      format: example-value
+                      roleArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    nextToken: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /importtasks/{taskIdentifier}:
     get:
       operationId: getImportTask
-      summary: Amazon Neptune Get import task details
+      summary: Amazon Neptune Get Import Task Details
       description: >-
         Returns detailed information about a specific import task.
       tags:
-        - Import Tasks
+      - Import Tasks
       parameters:
-        - name: taskIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the import task.
-          schema:
-            type: string
+      - name: taskIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the import task.
+        schema:
+          type: string
       responses:
         '200':
           description: Import task details retrieved successfully.
@@ -406,43 +619,67 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImportTaskOutput'
+              examples:
+                getImportTask200Example:
+                  summary: Default getImportTask 200 response
+                  x-microcks-default: true
+                  value:
+                    graphId: neptune-cluster-abc123
+                    taskId: neptune-cluster-abc123
+                    source: example-value
+                    format: example-value
+                    roleArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: INITIALIZING
+                    importOptions: {}
+                    importTaskDetails:
+                      status: available
+                      startTime: '2025-03-15T14:30:00Z'
+                      timeElapsedSeconds: 1
+                      progressPercentage: 1
+                      errorCount: 1
         '404':
           description: Import task not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelImportTask
-      summary: Amazon Neptune Cancel an import task
+      summary: Amazon Neptune Cancel an Import Task
       description: >-
         Cancels a running import task.
       tags:
-        - Import Tasks
+      - Import Tasks
       parameters:
-        - name: taskIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the import task to cancel.
-          schema:
-            type: string
+      - name: taskIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the import task to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Import task cancelled successfully.
         '404':
           description: Import task not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /privategraphendpoints/{graphIdentifier}:
     post:
       operationId: createPrivateGraphEndpoint
-      summary: Amazon Neptune Create a private graph endpoint
+      summary: Amazon Neptune Create a Private Graph Endpoint
       description: >-
         Creates a private graph endpoint in a VPC for accessing a Neptune
         Analytics graph without going over the public internet.
       tags:
-        - Private Graph Endpoints
+      - Private Graph Endpoints
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          description: The unique identifier of the graph.
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph.
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -456,50 +693,66 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PrivateGraphEndpointOutput'
+              examples:
+                createPrivateGraphEndpoint201Example:
+                  summary: Default createPrivateGraphEndpoint 201 response
+                  x-microcks-default: true
+                  value:
+                    vpcId: neptune-cluster-abc123
+                    subnetIds:
+                    - example-value
+                    status: CREATING
+                    vpcEndpointId: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listPrivateGraphEndpoints
-      summary: Amazon Neptune List private graph endpoints
+      summary: Amazon Neptune List Private Graph Endpoints
       description: >-
         Returns a list of private graph endpoints for a specific graph.
       tags:
-        - Private Graph Endpoints
+      - Private Graph Endpoints
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: maxResults
-          in: query
-          schema:
-            type: integer
-        - name: nextToken
-          in: query
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Private endpoint list retrieved successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /privategraphendpoints/{graphIdentifier}/{vpcId}:
     get:
       operationId: getPrivateGraphEndpoint
-      summary: Amazon Neptune Get private graph endpoint details
+      summary: Amazon Neptune Get Private Graph Endpoint Details
       description: >-
         Returns details of a specific private graph endpoint.
       tags:
-        - Private Graph Endpoints
+      - Private Graph Endpoints
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: vpcId
-          in: path
-          required: true
-          description: The VPC ID of the private endpoint.
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vpcId
+        in: path
+        required: true
+        description: The VPC ID of the private endpoint.
+        schema:
+          type: string
       responses:
         '200':
           description: Private endpoint details retrieved successfully.
@@ -507,29 +760,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PrivateGraphEndpointOutput'
+              examples:
+                getPrivateGraphEndpoint200Example:
+                  summary: Default getPrivateGraphEndpoint 200 response
+                  x-microcks-default: true
+                  value:
+                    vpcId: neptune-cluster-abc123
+                    subnetIds:
+                    - example-value
+                    status: CREATING
+                    vpcEndpointId: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deletePrivateGraphEndpoint
-      summary: Amazon Neptune Delete a private graph endpoint
+      summary: Amazon Neptune Delete a Private Graph Endpoint
       description: >-
         Deletes a private graph endpoint from a VPC.
       tags:
-        - Private Graph Endpoints
+      - Private Graph Endpoints
       parameters:
-        - name: graphIdentifier
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: vpcId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: graphIdentifier
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: vpcId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Private endpoint deleted successfully.
         '404':
           description: Private endpoint not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     aws_sigv4:
@@ -541,8 +810,8 @@ components:
     CreateGraphInput:
       type: object
       required:
-        - graphName
-        - provisionedMemory
+      - graphName
+      - provisionedMemory
       properties:
         graphName:
           type: string
@@ -606,14 +875,14 @@ components:
           type: string
           description: The current status of the graph.
           enum:
-            - CREATING
-            - AVAILABLE
-            - DELETING
-            - RESETTING
-            - UPDATING
-            - SNAPSHOTTING
-            - FAILED
-            - IMPORTING
+          - CREATING
+          - AVAILABLE
+          - DELETING
+          - RESETTING
+          - UPDATING
+          - SNAPSHOTTING
+          - FAILED
+          - IMPORTING
         statusReason:
           type: string
         createTime:
@@ -672,8 +941,8 @@ components:
     CreateGraphSnapshotInput:
       type: object
       required:
-        - graphIdentifier
-        - snapshotName
+      - graphIdentifier
+      - snapshotName
       properties:
         graphIdentifier:
           type: string
@@ -702,10 +971,10 @@ components:
         status:
           type: string
           enum:
-            - CREATING
-            - AVAILABLE
-            - DELETING
-            - FAILED
+          - CREATING
+          - AVAILABLE
+          - DELETING
+          - FAILED
         kmsKeyIdentifier:
           type: string
     ListGraphSnapshotsOutput:
@@ -734,7 +1003,7 @@ components:
     RestoreGraphFromSnapshotInput:
       type: object
       required:
-        - graphName
+      - graphName
       properties:
         graphName:
           type: string
@@ -754,9 +1023,9 @@ components:
     CreateGraphUsingImportTaskInput:
       type: object
       required:
-        - graphName
-        - source
-        - roleArn
+      - graphName
+      - source
+      - roleArn
       properties:
         graphName:
           type: string
@@ -773,10 +1042,10 @@ components:
           type: string
           description: The format of the source data.
           enum:
-            - CSV
-            - OPEN_CYPHER
-            - PARQUET
-            - NTRIPLES
+          - CSV
+          - OPEN_CYPHER
+          - PARQUET
+          - NTRIPLES
         tags:
           type: object
           additionalProperties:
@@ -813,16 +1082,16 @@ components:
         status:
           type: string
           enum:
-            - INITIALIZING
-            - EXPORTING
-            - ANALYZING_DATA
-            - IMPORTING
-            - REPROVISIONING
-            - ROLLING_BACK
-            - SUCCEEDED
-            - FAILED
-            - CANCELLING
-            - CANCELLED
+          - INITIALIZING
+          - EXPORTING
+          - ANALYZING_DATA
+          - IMPORTING
+          - REPROVISIONING
+          - ROLLING_BACK
+          - SUCCEEDED
+          - FAILED
+          - CANCELLING
+          - CANCELLED
         importOptions:
           type: object
         importTaskDetails:
@@ -895,9 +1164,9 @@ components:
         status:
           type: string
           enum:
-            - CREATING
-            - AVAILABLE
-            - DELETING
-            - FAILED
+          - CREATING
+          - AVAILABLE
+          - DELETING
+          - FAILED
         vpcEndpointId:
           type: string

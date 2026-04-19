@@ -1,0 +1,16 @@
+{
+  "head": {
+    "vars": [
+      "example-string"
+    ],
+    "link": [
+      "example-string"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {}
+    ]
+  },
+  "boolean": true
+}

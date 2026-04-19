@@ -1,0 +1,9 @@
+{
+  "id": "neptune-cluster-abc123",
+  "name": "my-neptune-cluster",
+  "arn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "sourceGraphId": "neptune-cluster-abc123",
+  "snapshotCreateTime": "2025-03-15T14:30:00Z",
+  "status": "FAILED",
+  "kmsKeyIdentifier": "neptune-cluster-abc123"
+}

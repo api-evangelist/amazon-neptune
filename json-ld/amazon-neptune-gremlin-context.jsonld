@@ -1,0 +1,95 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "GremlinErrorResponse": "neptune:GremlinErrorResponse",
+    "GremlinQueryRequest": "neptune:GremlinQueryRequest",
+    "GremlinQueryResponse": "neptune:GremlinQueryResponse",
+    "GremlinQueryStatusDetail": "neptune:GremlinQueryStatusDetail",
+    "GremlinQueryStatusList": "neptune:GremlinQueryStatusList",
+    "acceptedQueryCount": {
+      "@id": "neptune:acceptedQueryCount",
+      "@type": "xsd:integer"
+    },
+    "attributes": {
+      "@id": "neptune:attributes",
+      "@type": "@id"
+    },
+    "cancelled": {
+      "@id": "neptune:cancelled",
+      "@type": "xsd:boolean"
+    },
+    "code": {
+      "@id": "neptune:code",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "neptune:data",
+      "@type": "xsd:string"
+    },
+    "detailedMessage": {
+      "@id": "neptune:detailedMessage",
+      "@type": "xsd:string"
+    },
+    "elapsed": {
+      "@id": "neptune:elapsed",
+      "@type": "xsd:integer"
+    },
+    "gremlin": {
+      "@id": "neptune:gremlin",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "neptune:message",
+      "@type": "xsd:string"
+    },
+    "meta": {
+      "@id": "neptune:meta",
+      "@type": "@id"
+    },
+    "queries": {
+      "@id": "neptune:queries",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "queryEvalStats": {
+      "@id": "neptune:queryEvalStats",
+      "@type": "@id"
+    },
+    "queryId": {
+      "@id": "neptune:queryId",
+      "@type": "xsd:string"
+    },
+    "queryString": {
+      "@id": "neptune:queryString",
+      "@type": "xsd:string"
+    },
+    "requestId": {
+      "@id": "neptune:requestId",
+      "@type": "xsd:string"
+    },
+    "result": {
+      "@id": "neptune:result",
+      "@type": "@id"
+    },
+    "runningQueryCount": {
+      "@id": "neptune:runningQueryCount",
+      "@type": "xsd:integer"
+    },
+    "status": {
+      "@id": "neptune:status",
+      "@type": "@id"
+    },
+    "subqueries": {
+      "@id": "neptune:subqueries",
+      "@type": "@id"
+    },
+    "waited": {
+      "@id": "neptune:waited",
+      "@type": "xsd:integer"
+    }
+  }
+}

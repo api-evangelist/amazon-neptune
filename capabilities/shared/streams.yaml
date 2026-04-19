@@ -1,0 +1,132 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Amazon Neptune Neptune Streams API
+  description: Neptune Streams generates a complete sequence of change-log entries that record every change made to graph data as it happens, enabling real-time capture of graph mutations via a REST 
+    API. Streams mus
+  tags:
+  - Amazon Neptune
+  - AWS
+  - Graph Database
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_SIGV4_AUTH: AWS_SIGV4_AUTH
+capability:
+  consumes:
+  - type: http
+    namespace: streams
+    baseUri: https://{cluster-endpoint}:8182
+    description: Neptune Streams generates a complete sequence of change-log entries that record every change made to
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_SIGV4_AUTH}}'
+      placement: header
+    resources:
+    - name: property-graph-stream
+      path: /property-graph-stream
+      description: Property Graph Stream operations for Amazon Neptune Neptune Streams API
+      operations:
+      - name: getPropertyGraphStream
+        method: GET
+        description: Amazon Neptune Get Property Graph Change Stream Records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: 'Maximum number of records to return (1-100,000). Default is 10. The 10 MB response size limit takes '
+        - name: iteratorType
+          in: query
+          type: string
+          required: false
+          description: Determines the starting point for reading the stream.
+        - name: commitNum
+          in: query
+          type: integer
+          required: false
+          description: The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_S
+        - name: opNum
+          in: query
+          type: integer
+          required: false
+          description: The operation sequence number within the specified commit. Default is 1.
+        - name: Accept-Encoding
+          in: header
+          type: string
+          required: false
+          description: Set to 'gzip' to receive compressed responses.
+      - name: getPropertyGraphStreamAlias
+        method: GET
+        description: Amazon Neptune Get Property Graph Change Stream Records (alias)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: limit
+        - name: iteratorType
+          in: query
+          type: string
+          required: false
+          description: iteratorType
+        - name: commitNum
+          in: query
+          type: integer
+          required: false
+          description: commitNum
+        - name: opNum
+          in: query
+          type: integer
+          required: false
+          description: opNum
+    - name: sparql-stream
+      path: /sparql-stream
+      description: SPARQL Stream operations for Amazon Neptune Neptune Streams API
+      operations:
+      - name: getSparqlStream
+        method: GET
+        description: Amazon Neptune Get SPARQL RDF Change Stream Records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of records to return (1-100,000). Default is 10.
+        - name: iteratorType
+          in: query
+          type: string
+          required: false
+          description: Determines the starting point for reading the stream.
+        - name: commitNum
+          in: query
+          type: integer
+          required: false
+          description: The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_S
+        - name: opNum
+          in: query
+          type: integer
+          required: false
+          description: The operation sequence number within the specified commit.
+        - name: Accept-Encoding
+          in: header
+          type: string
+          required: false
+          description: Set to 'gzip' to receive compressed responses.

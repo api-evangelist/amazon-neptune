@@ -1,0 +1,221 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateDataProcessingJobRequest": "neptune:CreateDataProcessingJobRequest",
+    "CreateInferenceEndpointRequest": "neptune:CreateInferenceEndpointRequest",
+    "CreateModelTrainingJobRequest": "neptune:CreateModelTrainingJobRequest",
+    "CreateModelTransformJobRequest": "neptune:CreateModelTransformJobRequest",
+    "EndpointCreatedResponse": "neptune:EndpointCreatedResponse",
+    "EndpointListResponse": "neptune:EndpointListResponse",
+    "EndpointStatusResponse": "neptune:EndpointStatusResponse",
+    "JobCreatedResponse": "neptune:JobCreatedResponse",
+    "JobListResponse": "neptune:JobListResponse",
+    "JobStatusResponse": "neptune:JobStatusResponse",
+    "arn": {
+      "@id": "neptune:arn",
+      "@type": "xsd:string"
+    },
+    "baseProcessingInstanceType": {
+      "@id": "neptune:baseProcessingInstanceType",
+      "@type": "xsd:string"
+    },
+    "baseProcessingInstanceVolumeSizeInGB": {
+      "@id": "neptune:baseProcessingInstanceVolumeSizeInGB",
+      "@type": "xsd:integer"
+    },
+    "cloudwatchLogUrl": {
+      "@id": "neptune:cloudwatchLogUrl",
+      "@type": "xsd:string"
+    },
+    "configFileName": {
+      "@id": "neptune:configFileName",
+      "@type": "xsd:string"
+    },
+    "customModelTrainingParameters": {
+      "@id": "neptune:customModelTrainingParameters",
+      "@type": "@id"
+    },
+    "customModelTransformParameters": {
+      "@id": "neptune:customModelTransformParameters",
+      "@type": "@id"
+    },
+    "dataProcessingJobId": {
+      "@id": "neptune:dataProcessingJobId",
+      "@type": "xsd:string"
+    },
+    "enableInterContainerTrafficEncryption": {
+      "@id": "neptune:enableInterContainerTrafficEncryption",
+      "@type": "xsd:boolean"
+    },
+    "enableManagedSpotTraining": {
+      "@id": "neptune:enableManagedSpotTraining",
+      "@type": "xsd:boolean"
+    },
+    "endpoint": {
+      "@id": "neptune:endpoint",
+      "@type": "@id"
+    },
+    "endpointConfig": {
+      "@id": "neptune:endpointConfig",
+      "@type": "@id"
+    },
+    "failureReason": {
+      "@id": "neptune:failureReason",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "neptune:id",
+      "@type": "xsd:string"
+    },
+    "ids": {
+      "@id": "neptune:ids",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "inputDataS3Location": {
+      "@id": "neptune:inputDataS3Location",
+      "@type": "xsd:string"
+    },
+    "instanceCount": {
+      "@id": "neptune:instanceCount",
+      "@type": "xsd:integer"
+    },
+    "instanceType": {
+      "@id": "neptune:instanceType",
+      "@type": "xsd:string"
+    },
+    "maxHPONumberOfTrainingJobs": {
+      "@id": "neptune:maxHPONumberOfTrainingJobs",
+      "@type": "xsd:integer"
+    },
+    "maxHPOParallelTrainingJobs": {
+      "@id": "neptune:maxHPOParallelTrainingJobs",
+      "@type": "xsd:integer"
+    },
+    "mlModelTrainingJobId": {
+      "@id": "neptune:mlModelTrainingJobId",
+      "@type": "xsd:string"
+    },
+    "mlModelTransformJobId": {
+      "@id": "neptune:mlModelTransformJobId",
+      "@type": "xsd:string"
+    },
+    "modelName": {
+      "@id": "neptune:modelName",
+      "@type": "xsd:string"
+    },
+    "modelTransformOutputS3Location": {
+      "@id": "neptune:modelTransformOutputS3Location",
+      "@type": "xsd:string"
+    },
+    "modelType": {
+      "@id": "neptune:modelType",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "neptuneIamRoleArn": {
+      "@id": "neptune:neptuneIamRoleArn",
+      "@type": "xsd:string"
+    },
+    "outputLocation": {
+      "@id": "neptune:outputLocation",
+      "@type": "xsd:string"
+    },
+    "previousDataProcessingJobId": {
+      "@id": "neptune:previousDataProcessingJobId",
+      "@type": "xsd:string"
+    },
+    "previousModelTrainingJobId": {
+      "@id": "neptune:previousModelTrainingJobId",
+      "@type": "xsd:string"
+    },
+    "processedDataS3Location": {
+      "@id": "neptune:processedDataS3Location",
+      "@type": "xsd:string"
+    },
+    "processingInstanceType": {
+      "@id": "neptune:processingInstanceType",
+      "@type": "xsd:string"
+    },
+    "processingInstanceVolumeSizeInGB": {
+      "@id": "neptune:processingInstanceVolumeSizeInGB",
+      "@type": "xsd:integer"
+    },
+    "processingJob": {
+      "@id": "neptune:processingJob",
+      "@type": "@id"
+    },
+    "processingTimeOutInSeconds": {
+      "@id": "neptune:processingTimeOutInSeconds",
+      "@type": "xsd:integer"
+    },
+    "s3OutputEncryptionKMSKey": {
+      "@id": "neptune:s3OutputEncryptionKMSKey",
+      "@type": "xsd:string"
+    },
+    "sagemakerIamRoleArn": {
+      "@id": "neptune:sagemakerIamRoleArn",
+      "@type": "xsd:string"
+    },
+    "securityGroupIds": {
+      "@id": "neptune:securityGroupIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "sourceS3DirectoryPath": {
+      "@id": "neptune:sourceS3DirectoryPath",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "neptune:status",
+      "@type": "xsd:string"
+    },
+    "subnets": {
+      "@id": "neptune:subnets",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "trainModelS3Location": {
+      "@id": "neptune:trainModelS3Location",
+      "@type": "xsd:string"
+    },
+    "trainingEntryPointScript": {
+      "@id": "neptune:trainingEntryPointScript",
+      "@type": "xsd:string"
+    },
+    "trainingInstanceType": {
+      "@id": "neptune:trainingInstanceType",
+      "@type": "xsd:string"
+    },
+    "trainingInstanceVolumeSizeInGB": {
+      "@id": "neptune:trainingInstanceVolumeSizeInGB",
+      "@type": "xsd:integer"
+    },
+    "trainingJobName": {
+      "@id": "neptune:trainingJobName",
+      "@type": "xsd:string"
+    },
+    "trainingTimeOutInSeconds": {
+      "@id": "neptune:trainingTimeOutInSeconds",
+      "@type": "xsd:integer"
+    },
+    "transformEntryPointScript": {
+      "@id": "neptune:transformEntryPointScript",
+      "@type": "xsd:string"
+    },
+    "update": {
+      "@id": "neptune:update",
+      "@type": "xsd:boolean"
+    },
+    "volumeEncryptionKMSKey": {
+      "@id": "neptune:volumeEncryptionKMSKey",
+      "@type": "xsd:string"
+    }
+  }
+}

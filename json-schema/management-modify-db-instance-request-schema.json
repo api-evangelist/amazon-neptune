@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/management-modify-db-instance-request-schema.json",
+  "title": "ModifyDBInstanceRequest",
+  "description": "ModifyDBInstanceRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "DBInstanceIdentifier": {
+      "type": "string",
+      "description": "The DB instance identifier."
+    },
+    "DBInstanceClass": {
+      "type": "string",
+      "description": "The new compute and memory capacity."
+    },
+    "PreferredMaintenanceWindow": {
+      "type": "string"
+    },
+    "AutoMinorVersionUpgrade": {
+      "type": "boolean"
+    },
+    "NewDBInstanceIdentifier": {
+      "type": "string"
+    },
+    "PromotionTier": {
+      "type": "integer"
+    },
+    "ApplyImmediately": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "DBInstanceIdentifier"
+  ]
+}

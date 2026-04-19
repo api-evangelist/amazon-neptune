@@ -1,0 +1,19 @@
+{
+  "commitTimestampInMillis": 89,
+  "eventId": {
+    "commitNum": 53,
+    "opNum": 29
+  },
+  "data": {
+    "id": "neptune-cluster-abc123",
+    "type": "db.r6g.large",
+    "key": "example-string",
+    "value": {
+      "value": "example-string",
+      "dataType": "db.r6g.large"
+    },
+    "from": "example-string"
+  },
+  "op": "REMOVE",
+  "isLastOp": false
+}

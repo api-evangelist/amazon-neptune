@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/data-sparql-statistics-output-structure.json",
+  "name": "SparqlStatisticsOutput",
+  "description": "SparqlStatisticsOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "graphStatistics": {
+          "type": "object",
+          "properties": {
+            "numStatements": {
+              "type": "int32"
+            },
+            "numDistinctSubjects": {
+              "type": "int32"
+            },
+            "numDistinctPredicates": {
+              "type": "int32"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "~id": "neptune-cluster-abc123",
+  "~entityType": "relationship",
+  "~start": "example-string",
+  "~end": "example-string",
+  "~type": "db.r6g.large",
+  "~properties": {}
+}

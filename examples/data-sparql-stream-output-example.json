@@ -1,0 +1,23 @@
+{
+  "lastEventId": {
+    "commitNum": 20,
+    "opNum": 16
+  },
+  "lastTrxTimestampInMillis": 21,
+  "format": "NQUADS",
+  "records": [
+    {
+      "commitTimestampInMillis": 51,
+      "eventId": {
+        "commitNum": {},
+        "opNum": {}
+      },
+      "data": {
+        "stmt": {}
+      },
+      "op": "REMOVE",
+      "isLastOp": false
+    }
+  ],
+  "totalRecords": 17
+}

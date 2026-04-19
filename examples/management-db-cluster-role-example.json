@@ -1,0 +1,4 @@
+{
+  "RoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "Status": "available"
+}

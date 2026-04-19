@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/streams-property-graph-data-schema.json",
+  "title": "PropertyGraphData",
+  "description": "The serialized property graph change data. The type field indicates the element kind.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the element."
+    },
+    "type": {
+      "type": "string",
+      "description": "The element type: v (vertex), vl (vertex label), vp (vertex property), e (edge), ep (edge property).",
+      "enum": [
+        "v",
+        "vl",
+        "vp",
+        "e",
+        "ep"
+      ]
+    },
+    "key": {
+      "type": "string",
+      "description": "The property key name."
+    },
+    "value": {
+      "type": "object",
+      "description": "The property value with its data type.",
+      "properties": {
+        "value": {
+          "description": "The actual property value."
+        },
+        "dataType": {
+          "type": "string",
+          "description": "The data type (String, Integer, Double, etc.)."
+        }
+      }
+    },
+    "from": {
+      "type": "string",
+      "description": "Source vertex ID (for edges only)."
+    },
+    "to": {
+      "type": "string",
+      "description": "Target vertex ID (for edges only)."
+    }
+  }
+}

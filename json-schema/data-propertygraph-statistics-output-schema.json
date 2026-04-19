@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/data-propertygraph-statistics-output-schema.json",
+  "title": "PropertygraphStatisticsOutput",
+  "description": "PropertygraphStatisticsOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "graphStatistics": {
+          "type": "object",
+          "properties": {
+            "numNodes": {
+              "type": "integer"
+            },
+            "numEdges": {
+              "type": "integer"
+            },
+            "numNodeLabels": {
+              "type": "integer"
+            },
+            "numEdgeLabels": {
+              "type": "integer"
+            },
+            "numNodeProperties": {
+              "type": "integer"
+            },
+            "numEdgeProperties": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

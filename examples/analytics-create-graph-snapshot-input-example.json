@@ -1,0 +1,5 @@
+{
+  "graphIdentifier": "neptune-cluster-abc123",
+  "snapshotName": "my-neptune-cluster",
+  "tags": {}
+}

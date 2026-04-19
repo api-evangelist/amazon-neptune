@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/opencypher-open-cypher-query-response-structure.json",
+  "name": "OpenCypherQueryResponse",
+  "description": "OpenCypherQueryResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "The query result rows.",
+      "items": {
+        "type": "object",
+        "description": "A result row. Keys are the RETURN alias names. Values can be scalars, nodes, relationships, or paths.",
+        "additionalProperties": {
+          "description": "Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties."
+        }
+      }
+    }
+  }
+}

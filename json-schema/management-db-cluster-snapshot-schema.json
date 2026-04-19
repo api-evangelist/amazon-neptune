@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/management-db-cluster-snapshot-schema.json",
+  "title": "DBClusterSnapshot",
+  "description": "Contains the details of a Neptune DB cluster snapshot.",
+  "type": "object",
+  "properties": {
+    "DBClusterSnapshotIdentifier": {
+      "type": "string",
+      "description": "The identifier of the cluster snapshot."
+    },
+    "DBClusterIdentifier": {
+      "type": "string",
+      "description": "The cluster identifier of the source cluster."
+    },
+    "SnapshotCreateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "Engine": {
+      "type": "string"
+    },
+    "EngineVersion": {
+      "type": "string"
+    },
+    "Status": {
+      "type": "string",
+      "description": "The status of the snapshot."
+    },
+    "AllocatedStorage": {
+      "type": "integer"
+    },
+    "VpcId": {
+      "type": "string"
+    },
+    "Port": {
+      "type": "integer"
+    },
+    "StorageEncrypted": {
+      "type": "boolean"
+    },
+    "KmsKeyId": {
+      "type": "string"
+    },
+    "DBClusterSnapshotArn": {
+      "type": "string"
+    },
+    "SnapshotType": {
+      "type": "string",
+      "description": "The type of the snapshot (manual or automated)."
+    }
+  }
+}

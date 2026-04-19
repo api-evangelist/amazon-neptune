@@ -1,0 +1,11 @@
+{
+  "id": "neptune-cluster-abc123",
+  "type": "v",
+  "key": "example-string",
+  "value": {
+    "value": "example-string",
+    "dataType": "db.r6g.large"
+  },
+  "from": "example-string",
+  "to": "example-string"
+}

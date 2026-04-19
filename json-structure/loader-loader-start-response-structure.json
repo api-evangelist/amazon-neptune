@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/loader-loader-start-response-structure.json",
+  "name": "LoaderStartResponse",
+  "description": "LoaderStartResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The HTTP status (e.g., '200 OK')."
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "loadId": {
+          "type": "string",
+          "description": "The unique identifier for the initiated load job."
+        }
+      }
+    }
+  }
+}

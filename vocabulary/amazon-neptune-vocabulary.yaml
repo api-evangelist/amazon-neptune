@@ -1,0 +1,153 @@
+vocabulary: 1.0.0
+info:
+  provider: Amazon Neptune
+  description: Unified vocabulary mapping Neptune graph database APIs, resources, actions, and capabilities across operational and workflow dimensions.
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - name: Amazon Neptune Neptune Analytics API
+    namespace: analytics
+    version: '2023-11-29'
+    baseUrl: https://neptune-graph.{region}.amazonaws.com
+    status: active
+  - name: Amazon Neptune Data API
+    namespace: data
+    version: '2023-08-01'
+    baseUrl: https://neptune-db.{region}.amazonaws.com
+    status: active
+  - name: Amazon Neptune Neptune Gremlin API
+    namespace: gremlin
+    version: '2024-01-01'
+    baseUrl: https://{cluster-endpoint}:8182
+    status: active
+  - name: Amazon Neptune Neptune Loader API
+    namespace: loader
+    version: '2024-01-01'
+    baseUrl: https://{cluster-endpoint}:8182
+    status: active
+  - name: Amazon Neptune Management API
+    namespace: management
+    version: '2014-10-31'
+    baseUrl: https://rds.{region}.amazonaws.com
+    status: active
+  - name: Amazon Neptune Neptune ML API
+    namespace: ml
+    version: '2024-01-01'
+    baseUrl: https://{cluster-endpoint}:8182
+    status: active
+  - name: Amazon Neptune Neptune openCypher API
+    namespace: opencypher
+    version: '2024-01-01'
+    baseUrl: https://{cluster-endpoint}:8182
+    status: active
+  - name: Amazon Neptune Neptune SPARQL API
+    namespace: sparql
+    version: '2024-01-01'
+    baseUrl: https://{cluster-endpoint}:8182
+    status: active
+  - name: Amazon Neptune Neptune Streams API
+    namespace: streams
+    version: '2024-01-01'
+    baseUrl: https://{cluster-endpoint}:8182
+    status: active
+  actions:
+  - name: list
+    method: GET
+    pattern: read
+  - name: create
+    method: POST
+    pattern: write
+  - name: get
+    method: GET
+    pattern: read
+  - name: update
+    method: PATCH
+    pattern: write
+  - name: delete
+    method: DELETE
+    pattern: destructive
+  authentication:
+    schemes:
+    - name: aws_sigv4
+      type: apiKey
+capability:
+  workflows:
+  - name: Neptune Graph Data Management
+    file: capabilities/neptune-graph-management.yaml
+    description: Graph database management, querying, and data streaming
+    apis:
+    - management
+    - data
+    - loader
+    - streams
+    personas:
+    - Graph Database Administrator
+    - Graph Developer
+  - name: Neptune Analytics and Machine Learning
+    file: capabilities/neptune-analytics-ml.yaml
+    description: Graph analytics, vector search, and ML model training and inference
+    apis:
+    - analytics
+    - ml
+    personas:
+    - Data Scientist
+    - ML Engineer
+  personas:
+  - id: graph-dba
+    name: Graph Database Administrator
+    description: Manages Neptune clusters, instances, and infrastructure
+  - id: graph-developer
+    name: Graph Developer
+    description: Writes Gremlin, SPARQL, and openCypher queries against Neptune
+  - id: data-scientist
+    name: Data Scientist
+    description: Performs graph analytics and builds ML models on graph data
+  - id: ml-engineer
+    name: ML Engineer
+    description: Trains and deploys Neptune ML graph neural network models
+  domains:
+  - Graph Database
+  - Graph Analytics
+  - Machine Learning
+  - Data Streaming
+  - Bulk Loading
+crossReference:
+- resource: DB Clusters
+  apis:
+  - management
+  workflows:
+  - Neptune Graph Data Management
+  personas:
+  - Graph Database Administrator
+- resource: Graph Queries
+  apis:
+  - data
+  - gremlin
+  - sparql
+  - opencypher
+  workflows:
+  - Neptune Graph Data Management
+  personas:
+  - Graph Developer
+- resource: Analytics Graphs
+  apis:
+  - analytics
+  workflows:
+  - Neptune Analytics and Machine Learning
+  personas:
+  - Data Scientist
+- resource: ML Jobs
+  apis:
+  - ml
+  workflows:
+  - Neptune Analytics and Machine Learning
+  personas:
+  - ML Engineer
+- resource: Streams
+  apis:
+  - streams
+  workflows:
+  - Neptune Graph Data Management
+  personas:
+  - Graph Developer

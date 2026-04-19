@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/analytics-create-graph-using-import-task-input-structure.json",
+  "name": "CreateGraphUsingImportTaskInput",
+  "description": "CreateGraphUsingImportTaskInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "graphName": {
+      "type": "string",
+      "description": "The name of the graph to create."
+    },
+    "source": {
+      "type": "string",
+      "description": "S3 URI of the source data to import."
+    },
+    "roleArn": {
+      "type": "string",
+      "description": "IAM role ARN with S3 access."
+    },
+    "provisionedMemory": {
+      "type": "int32"
+    },
+    "format": {
+      "type": "string",
+      "description": "The format of the source data.",
+      "enum": [
+        "CSV",
+        "OPEN_CYPHER",
+        "PARQUET",
+        "NTRIPLES"
+      ]
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "deletionProtection": {
+      "type": "boolean"
+    },
+    "publicConnectivity": {
+      "type": "boolean"
+    },
+    "kmsKeyIdentifier": {
+      "type": "string"
+    },
+    "vectorSearchConfiguration": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "int32"
+        }
+      }
+    },
+    "replicaCount": {
+      "type": "int32"
+    },
+    "importOptions": {
+      "type": "object",
+      "description": "Additional import configuration options."
+    }
+  },
+  "required": [
+    "graphName",
+    "source",
+    "roleArn"
+  ]
+}

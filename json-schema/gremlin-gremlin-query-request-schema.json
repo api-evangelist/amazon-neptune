@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/gremlin-gremlin-query-request-schema.json",
+  "title": "GremlinQueryRequest",
+  "description": "GremlinQueryRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "gremlin": {
+      "type": "string",
+      "description": "The Gremlin traversal query string. Must be a valid Gremlin traversal starting with g. The bindings property is not supported by Neptune.",
+      "examples": [
+        "g.V().count()",
+        "g.V().has('name','John').out('knows')"
+      ]
+    }
+  },
+  "required": [
+    "gremlin"
+  ]
+}

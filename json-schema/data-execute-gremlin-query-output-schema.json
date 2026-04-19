@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/data-execute-gremlin-query-output-schema.json",
+  "title": "ExecuteGremlinQueryOutput",
+  "description": "ExecuteGremlinQueryOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer"
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The query result data."
+        }
+      }
+    }
+  }
+}

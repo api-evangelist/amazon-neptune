@@ -1,0 +1,12 @@
+{
+  "graphName": "my-neptune-cluster",
+  "provisionedMemory": 13,
+  "tags": {},
+  "publicConnectivity": true,
+  "kmsKeyIdentifier": "neptune-cluster-abc123",
+  "vectorSearchConfiguration": {
+    "dimension": 74
+  },
+  "replicaCount": 36,
+  "deletionProtection": false
+}

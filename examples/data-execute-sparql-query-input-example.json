@@ -1,0 +1,4 @@
+{
+  "query": "g.V().limit(10)",
+  "update": "example-string"
+}

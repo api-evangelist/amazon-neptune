@@ -1,0 +1,109 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Amazon Neptune Neptune Loader API
+  description: Neptune bulk loader API for ingesting large volumes of data from Amazon S3 into a Neptune DB instance. It supports CSV formats for property graphs and multiple RDF serialization formats
+    including N-Tr
+  tags:
+  - Amazon Neptune
+  - AWS
+  - Graph Database
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_SIGV4_AUTH: AWS_SIGV4_AUTH
+capability:
+  consumes:
+  - type: http
+    namespace: loader
+    baseUri: https://{cluster-endpoint}:8182
+    description: Neptune bulk loader API for ingesting large volumes of data from Amazon S3 into a Neptune DB instanc
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_SIGV4_AUTH}}'
+      placement: header
+    resources:
+    - name: loader
+      path: /loader
+      description: Loader operations for Amazon Neptune Neptune Loader API
+      operations:
+      - name: listBulkLoadJobs
+        method: GET
+        description: Amazon Neptune List Bulk Load Job IDs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: The maximum number of load IDs to return.
+        - name: includeQueuedLoads
+          in: query
+          type: boolean
+          required: false
+          description: Whether to include queued load jobs in the response.
+      - name: startBulkLoadJob
+        method: POST
+        description: Amazon Neptune Start a Bulk Data Load Job from S3
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: {}
+      - name: getBulkLoadJobStatus
+        method: GET
+        description: Amazon Neptune Get the Status of a Bulk Load Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: loadId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the bulk load job.
+        - name: details
+          in: query
+          type: boolean
+          required: false
+          description: Whether to include detailed feed-level status information.
+        - name: errors
+          in: query
+          type: boolean
+          required: false
+          description: Whether to include error details in the response.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: The error page number to retrieve (when errors=true).
+        - name: errorsPerPage
+          in: query
+          type: integer
+          required: false
+          description: The number of errors per page (when errors=true).
+      - name: cancelBulkLoadJob
+        method: DELETE
+        description: Amazon Neptune Cancel an In-progress Bulk Load Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: loadId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the load job to cancel.

@@ -1,0 +1,15 @@
+{
+  "DBClusterSnapshotIdentifier": "neptune-cluster-abc123",
+  "DBClusterIdentifier": "neptune-cluster-abc123",
+  "SnapshotCreateTime": "2025-03-15T14:30:00Z",
+  "Engine": "neptune",
+  "EngineVersion": "1.3.2.0",
+  "Status": "available",
+  "AllocatedStorage": 30,
+  "VpcId": "neptune-cluster-abc123",
+  "Port": 100,
+  "StorageEncrypted": true,
+  "KmsKeyId": "neptune-cluster-abc123",
+  "DBClusterSnapshotArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "SnapshotType": "db.r6g.large"
+}

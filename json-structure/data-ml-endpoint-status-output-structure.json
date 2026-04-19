@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/data-ml-endpoint-status-output-structure.json",
+  "name": "MLEndpointStatusOutput",
+  "description": "MLEndpointStatusOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "endpoint": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "endpointConfig": {
+      "type": "object"
+    }
+  }
+}

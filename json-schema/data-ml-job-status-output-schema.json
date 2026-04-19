@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/data-ml-job-status-output-schema.json",
+  "title": "MLJobStatusOutput",
+  "description": "MLJobStatusOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "processingJob": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "outputLocation": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

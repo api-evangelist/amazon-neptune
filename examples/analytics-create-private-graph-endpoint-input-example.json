@@ -1,0 +1,9 @@
+{
+  "vpcId": "neptune-cluster-abc123",
+  "subnetIds": [
+    "example-string"
+  ],
+  "vpcSecurityGroupIds": [
+    "example-string"
+  ]
+}

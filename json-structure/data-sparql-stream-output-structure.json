@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/data-sparql-stream-output-structure.json",
+  "name": "SparqlStreamOutput",
+  "description": "SparqlStreamOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "lastEventId": {
+      "type": "object",
+      "properties": {
+        "commitNum": {
+          "type": "int32"
+        },
+        "opNum": {
+          "type": "int32"
+        }
+      }
+    },
+    "lastTrxTimestampInMillis": {
+      "type": "int32"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "NQUADS"
+      ]
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "commitTimestampInMillis": {
+            "type": "int32"
+          },
+          "eventId": {
+            "type": "object",
+            "properties": {
+              "commitNum": {
+                "type": "int32"
+              },
+              "opNum": {
+                "type": "int32"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "stmt": {
+                "type": "string",
+                "description": "The N-Quads statement."
+              }
+            }
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "ADD",
+              "REMOVE"
+            ]
+          },
+          "isLastOp": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "totalRecords": {
+      "type": "int32"
+    }
+  }
+}

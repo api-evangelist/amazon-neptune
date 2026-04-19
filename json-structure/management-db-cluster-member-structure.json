@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/management-db-cluster-member-structure.json",
+  "name": "DBClusterMember",
+  "description": "A member instance of a Neptune DB cluster.",
+  "type": "object",
+  "properties": {
+    "DBInstanceIdentifier": {
+      "type": "string",
+      "description": "The instance identifier."
+    },
+    "IsClusterWriter": {
+      "type": "boolean",
+      "description": "Whether the instance is the primary (writer) instance."
+    },
+    "DBClusterParameterGroupStatus": {
+      "type": "string",
+      "description": "The status of the parameter group for this member."
+    },
+    "PromotionTier": {
+      "type": "int32",
+      "description": "Failover priority for the instance."
+    }
+  }
+}

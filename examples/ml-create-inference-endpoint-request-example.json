@@ -1,0 +1,11 @@
+{
+  "id": "neptune-cluster-abc123",
+  "mlModelTrainingJobId": "neptune-cluster-abc123",
+  "mlModelTransformJobId": "neptune-cluster-abc123",
+  "update": false,
+  "neptuneIamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "modelName": "transe",
+  "instanceType": "db.r6g.large",
+  "instanceCount": 19,
+  "volumeEncryptionKMSKey": "example-string"
+}

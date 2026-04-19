@@ -1,0 +1,9 @@
+{
+  "queryId": "neptune-cluster-abc123",
+  "queryString": "g.V().limit(10)",
+  "queryEvalStats": {
+    "waited": 30,
+    "elapsed": 33,
+    "cancelled": true
+  }
+}

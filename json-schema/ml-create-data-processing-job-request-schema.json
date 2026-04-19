@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/ml-create-data-processing-job-request-schema.json",
+  "title": "CreateDataProcessingJobRequest",
+  "description": "CreateDataProcessingJobRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the job (auto-generated UUID if omitted)."
+    },
+    "inputDataS3Location": {
+      "type": "string",
+      "description": "S3 URI for the input data."
+    },
+    "processedDataS3Location": {
+      "type": "string",
+      "description": "S3 URI where processed output is written."
+    },
+    "previousDataProcessingJobId": {
+      "type": "string",
+      "description": "Job ID of a previous job for incremental processing."
+    },
+    "sagemakerIamRoleArn": {
+      "type": "string",
+      "description": "IAM role ARN for SageMaker execution."
+    },
+    "neptuneIamRoleArn": {
+      "type": "string",
+      "description": "IAM role ARN for Neptune access."
+    },
+    "processingInstanceType": {
+      "type": "string",
+      "description": "ML instance type (default auto-selected ml.r5 type)."
+    },
+    "processingInstanceVolumeSizeInGB": {
+      "type": "integer",
+      "description": "Disk volume size in GB (default 0 means auto-selected)."
+    },
+    "processingTimeOutInSeconds": {
+      "type": "integer",
+      "description": "Timeout in seconds (default 86400, i.e., 1 day).",
+      "default": 86400
+    },
+    "modelType": {
+      "type": "string",
+      "description": "The type of model to prepare data for.",
+      "enum": [
+        "heterogeneous",
+        "kge"
+      ]
+    },
+    "configFileName": {
+      "type": "string",
+      "description": "The data specification configuration file name.",
+      "default": "training-data-configuration.json"
+    },
+    "subnets": {
+      "type": "array",
+      "description": "VPC subnet IDs for SageMaker processing.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "securityGroupIds": {
+      "type": "array",
+      "description": "VPC security group IDs.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "volumeEncryptionKMSKey": {
+      "type": "string",
+      "description": "KMS key for storage volume encryption."
+    },
+    "s3OutputEncryptionKMSKey": {
+      "type": "string",
+      "description": "KMS key for S3 output encryption."
+    },
+    "enableInterContainerTrafficEncryption": {
+      "type": "boolean",
+      "description": "Whether to enable inter-container traffic encryption.",
+      "default": true
+    }
+  },
+  "required": [
+    "inputDataS3Location",
+    "processedDataS3Location"
+  ]
+}

@@ -15,24 +15,24 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://{cluster-endpoint}:8182
-    description: Neptune Gremlin HTTP REST endpoint
-    variables:
-      cluster-endpoint:
-        default: your-cluster-endpoint.region.neptune.amazonaws.com
-        description: The cluster endpoint DNS name for your Neptune DB cluster
+- url: https://{cluster-endpoint}:8182
+  description: Neptune Gremlin HTTP REST endpoint
+  variables:
+    cluster-endpoint:
+      default: your-cluster-endpoint.region.neptune.amazonaws.com
+      description: The cluster endpoint DNS name for your Neptune DB cluster
 security:
-  - aws_sigv4: []
+- aws_sigv4: []
 tags:
-  - name: Query
-    description: Submit Gremlin graph traversal queries
-  - name: Status
-    description: Query status and cancellation operations
+- name: Query
+  description: Submit Gremlin graph traversal queries
+- name: Status
+  description: Query status and cancellation operations
 paths:
   /gremlin:
     post:
       operationId: executeGremlinTraversal
-      summary: Amazon Neptune Execute a Gremlin traversal via HTTP POST
+      summary: Amazon Neptune Execute a Gremlin Traversal via HTTP POST
       description: >-
         Submits a Gremlin traversal query to the Neptune HTTP REST endpoint.
         The query is provided as a JSON body with a gremlin property containing
@@ -40,7 +40,7 @@ paths:
         response by default. For large result sets, chunked responses can be
         enabled to avoid OutOfMemoryError.
       tags:
-        - Query
+      - Query
       requestBody:
         required: true
         content:
@@ -67,32 +67,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GremlinQueryResponse'
+              examples:
+                executeGremlinTraversal200Example:
+                  summary: Default executeGremlinTraversal 200 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    status:
+                      message: example-value
+                      code: 1
+                      attributes: {}
+                    result:
+                      data: example-value
+                      meta: {}
         '400':
           description: Bad request - malformed Gremlin traversal.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GremlinErrorResponse'
+              examples:
+                executeGremlinTraversal400Example:
+                  summary: Default executeGremlinTraversal 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '408':
           description: Query timed out before completing.
         '500':
           description: Internal server error during query execution.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: executeGremlinTraversalGet
-      summary: Amazon Neptune Execute a Gremlin traversal via HTTP GET
+      summary: Amazon Neptune Execute a Gremlin Traversal via HTTP GET
       description: >-
         Submits a Gremlin traversal query via a URL query parameter. This
         is an alternative to the POST method for simple queries.
       tags:
-        - Query
+      - Query
       parameters:
-        - name: gremlin
-          in: query
-          required: true
-          description: The Gremlin traversal query string (URL-encoded).
-          schema:
-            type: string
-          example: g.V().count()
+      - name: gremlin
+        in: query
+        required: true
+        description: The Gremlin traversal query string (URL-encoded).
+        schema:
+          type: string
+        example: g.V().count()
       responses:
         '200':
           description: Gremlin traversal executed successfully.
@@ -100,17 +124,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GremlinQueryResponse'
+              examples:
+                executeGremlinTraversalGet200Example:
+                  summary: Default executeGremlinTraversalGet 200 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    status:
+                      message: example-value
+                      code: 1
+                      attributes: {}
+                    result:
+                      data: example-value
+                      meta: {}
         '400':
           description: Bad request - malformed Gremlin traversal.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /gremlin/status:
     get:
       operationId: getGremlinQueryStatus
-      summary: Amazon Neptune Get the status of all running Gremlin queries
+      summary: Amazon Neptune Get the Status of All Running Gremlin Queries
       description: >-
         Returns the status of all running and waiting Gremlin queries,
         including query IDs, query strings, and execution statistics.
       tags:
-        - Status
+      - Status
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -118,22 +158,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GremlinQueryStatusList'
+              examples:
+                getGremlinQueryStatus200Example:
+                  summary: Default getGremlinQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /gremlin/status/{queryId}:
     get:
       operationId: getGremlinQueryStatusById
-      summary: Amazon Neptune Get the status of a specific Gremlin query
+      summary: Amazon Neptune Get the Status of a Specific Gremlin Query
       description: >-
         Returns the status of a specific Gremlin query identified by its
         query ID, including the query string and execution statistics.
       tags:
-        - Status
+      - Status
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the Gremlin query.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query.
+        schema:
+          type: string
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -141,23 +193,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GremlinQueryStatusDetail'
+              examples:
+                getGremlinQueryStatusById200Example:
+                  summary: Default getGremlinQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
+                      subqueries: {}
         '404':
           description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelGremlinQuery
-      summary: Amazon Neptune Cancel a running Gremlin query
+      summary: Amazon Neptune Cancel a Running Gremlin Query
       description: >-
         Cancels a running Gremlin query by its query ID. The query must
         be currently running or waiting in the queue.
       tags:
-        - Status
+      - Status
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the Gremlin query to cancel.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Query cancelled successfully.
@@ -165,6 +232,9 @@ paths:
           description: Query with the specified ID was not found.
         '500':
           description: Failed to cancel the query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     aws_sigv4:
@@ -176,7 +246,7 @@ components:
     GremlinQueryRequest:
       type: object
       required:
-        - gremlin
+      - gremlin
       properties:
         gremlin:
           type: string
@@ -185,8 +255,8 @@ components:
             traversal starting with g. The bindings property is not
             supported by Neptune.
           examples:
-            - g.V().count()
-            - g.V().has('name','John').out('knows')
+          - g.V().count()
+          - g.V().has('name','John').out('knows')
     GremlinQueryResponse:
       type: object
       properties:

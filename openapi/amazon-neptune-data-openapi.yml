@@ -14,40 +14,40 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://neptune-db.{region}.amazonaws.com
-    description: Amazon Neptune Data API regional endpoint
-    variables:
-      region:
-        default: us-east-1
-        description: AWS region
+- url: https://neptune-db.{region}.amazonaws.com
+  description: Amazon Neptune Data API regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
 security:
-  - aws_sigv4: []
+- aws_sigv4: []
 tags:
-  - name: Gremlin
-    description: Execute Gremlin graph traversal queries
-  - name: Loader
-    description: Bulk data loading operations
-  - name: ML
-    description: Machine learning operations
-  - name: openCypher
-    description: Execute openCypher graph queries
-  - name: SPARQL
-    description: Execute SPARQL queries against RDF data
-  - name: Status
-    description: Query engine status and statistics
-  - name: Streams
-    description: Change data capture stream operations
+- name: Gremlin
+  description: Execute Gremlin graph traversal queries
+- name: Loader
+  description: Bulk data loading operations
+- name: ML
+  description: Machine learning operations
+- name: openCypher
+  description: Execute openCypher graph queries
+- name: SPARQL
+  description: Execute SPARQL queries against RDF data
+- name: Status
+  description: Query engine status and statistics
+- name: Streams
+  description: Change data capture stream operations
 paths:
   /gremlin:
     post:
       operationId: executeGremlinQuery
-      summary: Amazon Neptune Execute a Gremlin query via the Data API
+      summary: Amazon Neptune Execute a Gremlin Query via the Data API
       description: >-
         Executes a Gremlin query against the Neptune graph database using the
         Data API. The query is submitted as a JSON payload and results are
         returned synchronously.
       tags:
-        - Gremlin
+      - Gremlin
       requestBody:
         required: true
         content:
@@ -61,26 +61,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExecuteGremlinQueryOutput'
+              examples:
+                executeGremlinQuery200Example:
+                  summary: Default executeGremlinQuery 200 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    status:
+                      message: example-value
+                      code: 1
+                    result:
+                      data: example-value
         '400':
           description: Bad request - malformed query or invalid parameters.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                executeGremlinQuery400Example:
+                  summary: Default executeGremlinQuery 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '408':
           description: Query timed out.
         '500':
           description: Internal server error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /gremlin/explain:
     post:
       operationId: executeGremlinExplainQuery
-      summary: Amazon Neptune Get the execution plan for a Gremlin query
+      summary: Amazon Neptune Get the Execution Plan for a Gremlin Query
       description: >-
         Executes a Gremlin explain query against the Neptune graph database.
         Returns the query execution plan without actually running the query
         against the data.
       tags:
-        - Gremlin
+      - Gremlin
       requestBody:
         required: true
         content:
@@ -97,16 +119,19 @@ paths:
                 description: The Gremlin query execution plan as text.
         '400':
           description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /gremlin/profile:
     post:
       operationId: executeGremlinProfileQuery
-      summary: Amazon Neptune Profile a Gremlin query execution
+      summary: Amazon Neptune Profile a Gremlin Query Execution
       description: >-
         Executes a Gremlin profile query against the Neptune graph database.
         Returns the query execution plan along with actual runtime statistics
         including execution time and intermediate result counts.
       tags:
-        - Gremlin
+      - Gremlin
       requestBody:
         required: true
         content:
@@ -123,15 +148,18 @@ paths:
                 description: The Gremlin query profile with runtime statistics.
         '400':
           description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /gremlin/status:
     get:
       operationId: getGremlinQueryStatus
-      summary: Amazon Neptune Get the status of Gremlin queries
+      summary: Amazon Neptune Get the Status of Gremlin Queries
       description: >-
         Gets the status of running and waiting Gremlin queries. Returns a list
         of active queries with their query IDs and statuses.
       tags:
-        - Gremlin
+      - Gremlin
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -139,21 +167,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GremlinQueryStatusOutput'
+              examples:
+                getGremlinQueryStatus200Example:
+                  summary: Default getGremlinQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /gremlin/status/{queryId}:
     get:
       operationId: getGremlinQueryStatusById
-      summary: Amazon Neptune Get the status of a specific Gremlin query
+      summary: Amazon Neptune Get the Status of a Specific Gremlin Query
       description: >-
         Gets the status of a specific Gremlin query by its query ID.
       tags:
-        - Gremlin
+      - Gremlin
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the Gremlin query.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query.
+        schema:
+          type: string
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -161,36 +201,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GremlinQueryStatus'
+              examples:
+                getGremlinQueryStatusById200Example:
+                  summary: Default getGremlinQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
         '404':
           description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelGremlinQuery
-      summary: Amazon Neptune Cancel a running Gremlin query
+      summary: Amazon Neptune Cancel a Running Gremlin Query
       description: >-
         Cancels a running Gremlin query by its query ID.
       tags:
-        - Gremlin
+      - Gremlin
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the Gremlin query to cancel.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Query cancelled successfully.
         '404':
           description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /opencypher:
     post:
       operationId: executeOpenCypherQuery
-      summary: Amazon Neptune Execute an openCypher query via the Data API
+      summary: Amazon Neptune Execute an OpenCypher Query via the Data API
       description: >-
         Executes an openCypher query against the Neptune property graph
         database using the Data API. Returns the results in JSON format.
       tags:
-        - openCypher
+      - openCypher
       requestBody:
         required: true
         content:
@@ -204,19 +261,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExecuteOpenCypherQueryOutput'
+              examples:
+                executeOpenCypherQuery200Example:
+                  summary: Default executeOpenCypherQuery 200 response
+                  x-microcks-default: true
+                  value:
+                    results:
+                    - {}
         '400':
           description: Bad request - malformed query or invalid parameters.
         '500':
           description: Internal server error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /opencypher/explain:
     post:
       operationId: executeOpenCypherExplainQuery
-      summary: Amazon Neptune Get the execution plan for an openCypher query
+      summary: Amazon Neptune Get the Execution Plan for an OpenCypher Query
       description: >-
         Executes an openCypher explain query. Returns the query execution
         plan without actually running the query against the data.
       tags:
-        - openCypher
+      - openCypher
       requestBody:
         required: true
         content:
@@ -232,14 +299,17 @@ paths:
                 type: string
         '400':
           description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /opencypher/status:
     get:
       operationId: getOpenCypherQueryStatus
-      summary: Amazon Neptune Get the status of openCypher queries
+      summary: Amazon Neptune Get the Status of OpenCypher Queries
       description: >-
         Gets the status of running and waiting openCypher queries.
       tags:
-        - openCypher
+      - openCypher
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -247,54 +317,74 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OpenCypherQueryStatusOutput'
+              examples:
+                getOpenCypherQueryStatus200Example:
+                  summary: Default getOpenCypherQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - queryId: neptune-cluster-abc123
+                      queryString: example-value
+                      queryEvalStats: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /opencypher/status/{queryId}:
     get:
       operationId: getOpenCypherQueryStatusById
-      summary: Amazon Neptune Get the status of a specific openCypher query
+      summary: Amazon Neptune Get the Status of a Specific OpenCypher Query
       description: >-
         Gets the status of a specific openCypher query by its query ID.
       tags:
-        - openCypher
+      - openCypher
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the openCypher query.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query.
+        schema:
+          type: string
       responses:
         '200':
           description: Query status retrieved successfully.
         '404':
           description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelOpenCypherQuery
-      summary: Amazon Neptune Cancel a running openCypher query
+      summary: Amazon Neptune Cancel a Running OpenCypher Query
       description: >-
         Cancels a running openCypher query by its query ID.
       tags:
-        - openCypher
+      - openCypher
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the openCypher query to cancel.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Query cancelled successfully.
         '404':
           description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sparql:
     post:
       operationId: executeSparqlQuery
-      summary: Amazon Neptune Execute a SPARQL query via the Data API
+      summary: Amazon Neptune Execute a SPARQL Query via the Data API
       description: >-
         Executes a SPARQL query against the Neptune RDF graph database using
         the Data API. Supports SELECT, ASK, CONSTRUCT, and DESCRIBE queries.
       tags:
-        - SPARQL
+      - SPARQL
       requestBody:
         required: true
         content:
@@ -310,14 +400,17 @@ paths:
                 $ref: '#/components/schemas/SparqlQueryOutput'
         '400':
           description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sparql/status:
     get:
       operationId: getSparqlQueryStatus
-      summary: Amazon Neptune Get the status of SPARQL queries
+      summary: Amazon Neptune Get the Status of SPARQL Queries
       description: >-
         Gets the status of running and waiting SPARQL queries.
       tags:
-        - SPARQL
+      - SPARQL
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -334,15 +427,27 @@ paths:
                     type: array
                     items:
                       type: object
+              examples:
+                getSparqlQueryStatus200Example:
+                  summary: Default getSparqlQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /status:
     get:
       operationId: getEngineStatus
-      summary: Amazon Neptune Get Neptune engine status
+      summary: Amazon Neptune Get Neptune Engine Status
       description: >-
         Returns the status of the Neptune DB instance including engine version,
         cluster role, and instance health information.
       tags:
-        - Status
+      - Status
       responses:
         '200':
           description: Engine status retrieved successfully.
@@ -350,15 +455,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EngineStatusOutput'
+              examples:
+                getEngineStatus200Example:
+                  summary: Default getEngineStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    startTime: example-value
+                    dbEngineVersion: 1.3.2.0
+                    role: example-value
+                    dfeQueryEngine: example-value
+                    gremlin:
+                      version: 1.3.2.0
+                    sparql:
+                      version: 1.3.2.0
+                    opencypher:
+                      version: 1.3.2.0
+                    labMode: {}
+                    features: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /propertygraph/statistics:
     get:
       operationId: getPropertygraphStatistics
-      summary: Amazon Neptune Get property graph statistics
+      summary: Amazon Neptune Get Property Graph Statistics
       description: >-
         Returns statistics for the property graph data stored in the Neptune
         database, including node and edge counts and label distributions.
       tags:
-        - Status
+      - Status
       responses:
         '200':
           description: Statistics retrieved successfully.
@@ -366,13 +492,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PropertygraphStatisticsOutput'
+              examples:
+                getPropertygraphStatistics200Example:
+                  summary: Default getPropertygraphStatistics 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      graphStatistics:
+                        numNodes: 1
+                        numEdges: 1
+                        numNodeLabels: 1
+                        numEdgeLabels: 1
+                        numNodeProperties: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: managePropertygraphStatistics
-      summary: Amazon Neptune Manage property graph statistics
+      summary: Amazon Neptune Manage Property Graph Statistics
       description: >-
         Starts or deletes statistics generation for the property graph data.
       tags:
-        - Status
+      - Status
       requestBody:
         required: true
         content:
@@ -383,21 +525,24 @@ paths:
                 mode:
                   type: string
                   enum:
-                    - disableAutoCompute
-                    - enableAutoCompute
-                    - refresh
+                  - disableAutoCompute
+                  - enableAutoCompute
+                  - refresh
       responses:
         '200':
           description: Statistics operation completed successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sparql/statistics:
     get:
       operationId: getSparqlStatistics
-      summary: Amazon Neptune Get SPARQL RDF statistics
+      summary: Amazon Neptune Get SPARQL RDF Statistics
       description: >-
         Returns statistics for the RDF data stored in the Neptune database,
         including triple counts and predicate distributions.
       tags:
-        - Status
+      - Status
       responses:
         '200':
           description: Statistics retrieved successfully.
@@ -405,13 +550,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SparqlStatisticsOutput'
+              examples:
+                getSparqlStatistics200Example:
+                  summary: Default getSparqlStatistics 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      graphStatistics:
+                        numStatements: 1
+                        numDistinctSubjects: 1
+                        numDistinctPredicates: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: manageSparqlStatistics
-      summary: Amazon Neptune Manage SPARQL RDF statistics
+      summary: Amazon Neptune Manage SPARQL RDF Statistics
       description: >-
         Starts or deletes statistics generation for the RDF data.
       tags:
-        - Status
+      - Status
       requestBody:
         required: true
         content:
@@ -422,21 +581,24 @@ paths:
                 mode:
                   type: string
                   enum:
-                    - disableAutoCompute
-                    - enableAutoCompute
-                    - refresh
+                  - disableAutoCompute
+                  - enableAutoCompute
+                  - refresh
       responses:
         '200':
           description: Statistics operation completed successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /loader:
     post:
       operationId: startLoaderJob
-      summary: Amazon Neptune Start a bulk loader job
+      summary: Amazon Neptune Start a Bulk Loader Job
       description: >-
         Initiates a bulk data loading job from Amazon S3 into the Neptune
         database. Supports CSV for property graphs and multiple RDF formats.
       tags:
-        - Loader
+      - Loader
       requestBody:
         required: true
         content:
@@ -450,29 +612,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StartLoaderJobOutput'
+              examples:
+                startLoaderJob200Example:
+                  summary: Default startLoaderJob 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      loadId: neptune-cluster-abc123
         '400':
           description: Bad request - invalid parameters.
         '500':
           description: Internal server error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listLoaderJobs
-      summary: Amazon Neptune List bulk loader jobs
+      summary: Amazon Neptune List Bulk Loader Jobs
       description: >-
         Returns a list of Neptune bulk loader job IDs. Neptune tracks the
         most recent 1,024 bulk load jobs.
       tags:
-        - Loader
+      - Loader
       parameters:
-        - name: limit
-          in: query
-          description: Maximum number of load IDs to return.
-          schema:
-            type: integer
-        - name: includeQueuedLoads
-          in: query
-          description: Whether to include queued loads in the response.
-          schema:
-            type: boolean
+      - name: limit
+        in: query
+        description: Maximum number of load IDs to return.
+        schema:
+          type: integer
+      - name: includeQueuedLoads
+        in: query
+        description: Whether to include queued loads in the response.
+        schema:
+          type: boolean
       responses:
         '200':
           description: Loader job list retrieved successfully.
@@ -490,42 +663,54 @@ paths:
                         type: array
                         items:
                           type: string
+              examples:
+                listLoaderJobs200Example:
+                  summary: Default listLoaderJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      loadIds:
+                      - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /loader/{loadId}:
     get:
       operationId: getLoaderJobStatus
-      summary: Amazon Neptune Get the status of a bulk loader job
+      summary: Amazon Neptune Get the Status of a Bulk Loader Job
       description: >-
         Returns the status of a specific bulk loader job including overall
         progress and any error details.
       tags:
-        - Loader
+      - Loader
       parameters:
-        - name: loadId
-          in: path
-          required: true
-          description: The unique identifier of the load job.
-          schema:
-            type: string
-        - name: details
-          in: query
-          description: Whether to include detailed status information.
-          schema:
-            type: boolean
-        - name: errors
-          in: query
-          description: Whether to include error details.
-          schema:
-            type: boolean
-        - name: page
-          in: query
-          description: Error page number to retrieve.
-          schema:
-            type: integer
-        - name: errorsPerPage
-          in: query
-          description: Number of errors per page.
-          schema:
-            type: integer
+      - name: loadId
+        in: path
+        required: true
+        description: The unique identifier of the load job.
+        schema:
+          type: string
+      - name: details
+        in: query
+        description: Whether to include detailed status information.
+        schema:
+          type: boolean
+      - name: errors
+        in: query
+        description: Whether to include error details.
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        description: Error page number to retrieve.
+        schema:
+          type: integer
+      - name: errorsPerPage
+        in: query
+        description: Number of errors per page.
+        schema:
+          type: integer
       responses:
         '200':
           description: Loader job status retrieved successfully.
@@ -533,66 +718,87 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderJobStatusOutput'
+              examples:
+                getLoaderJobStatus200Example:
+                  summary: Default getLoaderJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      feedCount:
+                      - {}
+                      overallStatus:
+                        fullUri: example-value
+                        runNumber: 1
+                        retryNumber: 1
+                        status: available
+                        totalTimeSpent: 1
         '404':
           description: Load job not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelLoaderJob
-      summary: Amazon Neptune Cancel a bulk loader job
+      summary: Amazon Neptune Cancel a Bulk Loader Job
       description: >-
         Cancels an in-progress bulk loader job by its load ID.
       tags:
-        - Loader
+      - Loader
       parameters:
-        - name: loadId
-          in: path
-          required: true
-          description: The unique identifier of the load job to cancel.
-          schema:
-            type: string
+      - name: loadId
+        in: path
+        required: true
+        description: The unique identifier of the load job to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Loader job cancelled successfully.
         '404':
           description: Load job not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /propertygraph/stream:
     get:
       operationId: getPropertygraphStream
-      summary: Amazon Neptune Get property graph change stream records
+      summary: Amazon Neptune Get Property Graph Change Stream Records
       description: >-
         Gets a stream of change-log entries for property graph data. Each
         entry records a mutation (add, remove) made to the graph data.
       tags:
-        - Streams
+      - Streams
       parameters:
-        - name: limit
-          in: query
-          description: Maximum number of records to return (1-100000, default 10).
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100000
-            default: 10
-        - name: iteratorType
-          in: query
-          description: >-
-            The stream position to start reading from.
-          schema:
-            type: string
-            enum:
-              - AT_SEQUENCE_NUMBER
-              - AFTER_SEQUENCE_NUMBER
-              - TRIM_HORIZON
-              - LATEST
-        - name: commitNum
-          in: query
-          description: The commit number to start from.
-          schema:
-            type: integer
-        - name: opNum
-          in: query
-          description: The operation sequence number within the commit.
-          schema:
-            type: integer
+      - name: limit
+        in: query
+        description: Maximum number of records to return (1-100000, default 10).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100000
+          default: 10
+      - name: iteratorType
+        in: query
+        description: >-
+          The stream position to start reading from.
+        schema:
+          type: string
+          enum:
+          - AT_SEQUENCE_NUMBER
+          - AFTER_SEQUENCE_NUMBER
+          - TRIM_HORIZON
+          - LATEST
+      - name: commitNum
+        in: query
+        description: The commit number to start from.
+        schema:
+          type: integer
+      - name: opNum
+        in: query
+        description: The operation sequence number within the commit.
+        schema:
+          type: integer
       responses:
         '200':
           description: Stream records retrieved successfully.
@@ -600,44 +806,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PropertygraphStreamOutput'
+              examples:
+                getPropertygraphStream200Example:
+                  summary: Default getPropertygraphStream 200 response
+                  x-microcks-default: true
+                  value:
+                    lastEventId:
+                      commitNum: 1
+                      opNum: 1
+                    lastTrxTimestampInMillis: 1
+                    format: PG_JSON
+                    records:
+                    - {}
+                    totalRecords: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sparql/stream:
     get:
       operationId: getSparqlStream
-      summary: Amazon Neptune Get SPARQL RDF change stream records
+      summary: Amazon Neptune Get SPARQL RDF Change Stream Records
       description: >-
         Gets a stream of change-log entries for RDF data. Each entry records
         a mutation (add, remove) made to the RDF triples.
       tags:
-        - Streams
+      - Streams
       parameters:
-        - name: limit
-          in: query
-          description: Maximum number of records to return (1-100000, default 10).
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100000
-            default: 10
-        - name: iteratorType
-          in: query
-          description: The stream position to start reading from.
-          schema:
-            type: string
-            enum:
-              - AT_SEQUENCE_NUMBER
-              - AFTER_SEQUENCE_NUMBER
-              - TRIM_HORIZON
-              - LATEST
-        - name: commitNum
-          in: query
-          description: The commit number to start from.
-          schema:
-            type: integer
-        - name: opNum
-          in: query
-          description: The operation sequence number within the commit.
-          schema:
-            type: integer
+      - name: limit
+        in: query
+        description: Maximum number of records to return (1-100000, default 10).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100000
+          default: 10
+      - name: iteratorType
+        in: query
+        description: The stream position to start reading from.
+        schema:
+          type: string
+          enum:
+          - AT_SEQUENCE_NUMBER
+          - AFTER_SEQUENCE_NUMBER
+          - TRIM_HORIZON
+          - LATEST
+      - name: commitNum
+        in: query
+        description: The commit number to start from.
+        schema:
+          type: integer
+      - name: opNum
+        in: query
+        description: The operation sequence number within the commit.
+        schema:
+          type: integer
       responses:
         '200':
           description: Stream records retrieved successfully.
@@ -645,15 +867,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SparqlStreamOutput'
+              examples:
+                getSparqlStream200Example:
+                  summary: Default getSparqlStream 200 response
+                  x-microcks-default: true
+                  value:
+                    lastEventId:
+                      commitNum: 1
+                      opNum: 1
+                    lastTrxTimestampInMillis: 1
+                    format: NQUADS
+                    records:
+                    - commitTimestampInMillis: 1
+                      eventId:
+                        commitNum: {}
+                        opNum: {}
+                      data:
+                        stmt: {}
+                      op: ADD
+                      isLastOp: true
+                    totalRecords: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/dataprocessing:
     post:
       operationId: startMLDataProcessingJob
-      summary: Amazon Neptune Start an ML data processing job
+      summary: Amazon Neptune Start an ML Data Processing Job
       description: >-
         Creates a new Neptune ML data processing job that prepares graph data
         for model training using Amazon SageMaker.
       tags:
-        - ML
+      - ML
       requestBody:
         required: true
         content:
@@ -670,26 +915,35 @@ paths:
                 properties:
                   id:
                     type: string
+              examples:
+                startMLDataProcessingJob200Example:
+                  summary: Default startMLDataProcessingJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listMLDataProcessingJobs
-      summary: Amazon Neptune List ML data processing jobs
+      summary: Amazon Neptune List ML Data Processing Jobs
       description: >-
         Returns a list of active Neptune ML data processing job IDs.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: maxItems
-          in: query
-          description: Maximum number of items to return (default 10, max 1024).
-          schema:
-            type: integer
-            default: 10
-            maximum: 1024
-        - name: neptuneIamRoleArn
-          in: query
-          description: The ARN of the IAM role for Neptune access.
-          schema:
-            type: string
+      - name: maxItems
+        in: query
+        description: Maximum number of items to return (default 10, max 1024).
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
       responses:
         '200':
           description: Data processing job list retrieved successfully.
@@ -702,26 +956,36 @@ paths:
                     type: array
                     items:
                       type: string
+              examples:
+                listMLDataProcessingJobs200Example:
+                  summary: Default listMLDataProcessingJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    ids:
+                    - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/dataprocessing/{jobId}:
     get:
       operationId: getMLDataProcessingJobStatus
-      summary: Amazon Neptune Get ML data processing job status
+      summary: Amazon Neptune Get ML Data Processing Job Status
       description: >-
         Returns the status of a Neptune ML data processing job.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: jobId
-          in: path
-          required: true
-          description: The unique identifier of the data processing job.
-          schema:
-            type: string
-        - name: neptuneIamRoleArn
-          in: query
-          description: The ARN of the IAM role for Neptune access.
-          schema:
-            type: string
+      - name: jobId
+        in: path
+        required: true
+        description: The unique identifier of the data processing job.
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
       responses:
         '200':
           description: Job status retrieved successfully.
@@ -729,42 +993,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MLJobStatusOutput'
+              examples:
+                getMLDataProcessingJobStatus200Example:
+                  summary: Default getMLDataProcessingJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    processingJob:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      outputLocation: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelMLDataProcessingJob
-      summary: Amazon Neptune Cancel an ML data processing job
+      summary: Amazon Neptune Cancel an ML Data Processing Job
       description: >-
         Cancels a running Neptune ML data processing job.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: jobId
-          in: path
-          required: true
-          description: The unique identifier of the data processing job.
-          schema:
-            type: string
-        - name: clean
-          in: query
-          description: Whether to delete all S3 artifacts when cancelling.
-          schema:
-            type: boolean
-            default: false
-        - name: neptuneIamRoleArn
-          in: query
-          description: The ARN of the IAM role for Neptune access.
-          schema:
-            type: string
+      - name: jobId
+        in: path
+        required: true
+        description: The unique identifier of the data processing job.
+        schema:
+          type: string
+      - name: clean
+        in: query
+        description: Whether to delete all S3 artifacts when cancelling.
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
       responses:
         '200':
           description: Job cancelled successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/modeltraining:
     post:
       operationId: startMLModelTrainingJob
-      summary: Amazon Neptune Start an ML model training job
+      summary: Amazon Neptune Start an ML Model Training Job
       description: >-
         Creates a new Neptune ML model training job using Amazon SageMaker.
       tags:
-        - ML
+      - ML
       requestBody:
         required: true
         content:
@@ -781,24 +1063,33 @@ paths:
                 properties:
                   id:
                     type: string
+              examples:
+                startMLModelTrainingJob200Example:
+                  summary: Default startMLModelTrainingJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listMLModelTrainingJobs
-      summary: Amazon Neptune List ML model training jobs
+      summary: Amazon Neptune List ML Model Training Jobs
       description: >-
         Returns a list of active Neptune ML model training job IDs.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: maxItems
-          in: query
-          schema:
-            type: integer
-            default: 10
-            maximum: 1024
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Model training job list retrieved successfully.
@@ -811,24 +1102,34 @@ paths:
                     type: array
                     items:
                       type: string
+              examples:
+                listMLModelTrainingJobs200Example:
+                  summary: Default listMLModelTrainingJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    ids:
+                    - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/modeltraining/{jobId}:
     get:
       operationId: getMLModelTrainingJobStatus
-      summary: Amazon Neptune Get ML model training job status
+      summary: Amazon Neptune Get ML Model Training Job Status
       description: >-
         Returns the status of a Neptune ML model training job.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: jobId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Job status retrieved successfully.
@@ -836,40 +1137,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MLJobStatusOutput'
+              examples:
+                getMLModelTrainingJobStatus200Example:
+                  summary: Default getMLModelTrainingJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    processingJob:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      outputLocation: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelMLModelTrainingJob
-      summary: Amazon Neptune Cancel an ML model training job
+      summary: Amazon Neptune Cancel an ML Model Training Job
       description: >-
         Cancels a running Neptune ML model training job.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: jobId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: clean
-          in: query
-          schema:
-            type: boolean
-            default: false
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clean
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Job cancelled successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/modeltransform:
     post:
       operationId: startMLModelTransformJob
-      summary: Amazon Neptune Start an ML model transform job
+      summary: Amazon Neptune Start an ML Model Transform Job
       description: >-
         Creates a new Neptune ML model transform job that generates model
         artifacts for inference.
       tags:
-        - ML
+      - ML
       requestBody:
         required: true
         content:
@@ -886,45 +1205,57 @@ paths:
                 properties:
                   id:
                     type: string
+              examples:
+                startMLModelTransformJob200Example:
+                  summary: Default startMLModelTransformJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listMLModelTransformJobs
-      summary: Amazon Neptune List ML model transform jobs
+      summary: Amazon Neptune List ML Model Transform Jobs
       description: >-
         Returns a list of active Neptune ML model transform job IDs.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: maxItems
-          in: query
-          schema:
-            type: integer
-            default: 10
-            maximum: 1024
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Model transform job list retrieved successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/modeltransform/{jobId}:
     get:
       operationId: getMLModelTransformJobStatus
-      summary: Amazon Neptune Get ML model transform job status
+      summary: Amazon Neptune Get ML Model Transform Job Status
       description: >-
         Returns the status of a Neptune ML model transform job.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: jobId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Job status retrieved successfully.
@@ -932,39 +1263,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MLJobStatusOutput'
+              examples:
+                getMLModelTransformJobStatus200Example:
+                  summary: Default getMLModelTransformJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    processingJob:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      outputLocation: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelMLModelTransformJob
-      summary: Amazon Neptune Cancel an ML model transform job
+      summary: Amazon Neptune Cancel an ML Model Transform Job
       description: >-
         Cancels a running Neptune ML model transform job.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: jobId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: clean
-          in: query
-          schema:
-            type: boolean
-            default: false
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clean
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Job cancelled successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/endpoints:
     post:
       operationId: createMLEndpoint
-      summary: Amazon Neptune Create an ML inference endpoint
+      summary: Amazon Neptune Create an ML Inference Endpoint
       description: >-
         Creates a new Neptune ML inference endpoint backed by Amazon SageMaker.
       tags:
-        - ML
+      - ML
       requestBody:
         required: true
         content:
@@ -981,45 +1330,57 @@ paths:
                 properties:
                   id:
                     type: string
+              examples:
+                createMLEndpoint200Example:
+                  summary: Default createMLEndpoint 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listMLEndpoints
-      summary: Amazon Neptune List ML inference endpoints
+      summary: Amazon Neptune List ML Inference Endpoints
       description: >-
         Returns a list of active Neptune ML inference endpoint IDs.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: maxItems
-          in: query
-          schema:
-            type: integer
-            default: 10
-            maximum: 1024
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Endpoint list retrieved successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ml/endpoints/{endpointId}:
     get:
       operationId: getMLEndpointStatus
-      summary: Amazon Neptune Get ML inference endpoint status
+      summary: Amazon Neptune Get ML Inference Endpoint Status
       description: >-
         Returns the status of a Neptune ML inference endpoint.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: endpointId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: endpointId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Endpoint status retrieved successfully.
@@ -1027,31 +1388,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MLEndpointStatusOutput'
+              examples:
+                getMLEndpointStatus200Example:
+                  summary: Default getMLEndpointStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    endpoint:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                    endpointConfig: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteMLEndpoint
-      summary: Amazon Neptune Delete an ML inference endpoint
+      summary: Amazon Neptune Delete an ML Inference Endpoint
       description: >-
         Deletes a Neptune ML inference endpoint.
       tags:
-        - ML
+      - ML
       parameters:
-        - name: endpointId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: clean
-          in: query
-          schema:
-            type: boolean
-            default: false
-        - name: neptuneIamRoleArn
-          in: query
-          schema:
-            type: string
+      - name: endpointId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clean
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Endpoint deleted successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     aws_sigv4:
@@ -1072,7 +1451,7 @@ components:
     ExecuteGremlinQueryInput:
       type: object
       required:
-        - gremlin
+      - gremlin
       properties:
         gremlin:
           type: string
@@ -1097,7 +1476,7 @@ components:
     ExecuteGremlinProfileInput:
       type: object
       required:
-        - gremlin
+      - gremlin
       properties:
         gremlin:
           type: string
@@ -1144,7 +1523,7 @@ components:
     ExecuteOpenCypherQueryInput:
       type: object
       required:
-        - query
+      - query
       properties:
         query:
           type: string
@@ -1164,7 +1543,7 @@ components:
     ExecuteOpenCypherExplainInput:
       type: object
       required:
-        - query
+      - query
       properties:
         query:
           type: string
@@ -1174,9 +1553,9 @@ components:
         explainMode:
           type: string
           enum:
-            - static
-            - dynamic
-            - details
+          - static
+          - dynamic
+          - details
           description: The explain mode (static, dynamic, or details).
     OpenCypherQueryStatusOutput:
       type: object
@@ -1306,10 +1685,10 @@ components:
     StartLoaderJobInput:
       type: object
       required:
-        - source
-        - format
-        - iamRoleArn
-        - region
+      - source
+      - format
+      - iamRoleArn
+      - region
       properties:
         source:
           type: string
@@ -1319,12 +1698,12 @@ components:
           type: string
           description: The data format of the files to load.
           enum:
-            - csv
-            - opencypher
-            - ntriples
-            - nquads
-            - rdfxml
-            - turtle
+          - csv
+          - opencypher
+          - ntriples
+          - nquads
+          - rdfxml
+          - turtle
         iamRoleArn:
           type: string
           description: The ARN of the IAM role with S3 access.
@@ -1335,25 +1714,25 @@ components:
           type: string
           description: The load mode.
           enum:
-            - NEW
-            - RESUME
-            - AUTO
+          - NEW
+          - RESUME
+          - AUTO
           default: AUTO
         failOnError:
           type: string
           description: Whether to stop the load job on error.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
           default: 'TRUE'
         parallelism:
           type: string
           description: The degree of parallelism for loading.
           enum:
-            - LOW
-            - MEDIUM
-            - HIGH
-            - OVERSUBSCRIBE
+          - LOW
+          - MEDIUM
+          - HIGH
+          - OVERSUBSCRIBE
           default: HIGH
         parserConfiguration:
           type: object
@@ -1369,15 +1748,15 @@ components:
           type: string
           description: Whether to update existing single-cardinality properties.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
           default: 'FALSE'
         queueRequest:
           type: string
           description: Whether to queue the request if a load is already running.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
           default: 'FALSE'
         dependencies:
           type: array
@@ -1388,8 +1767,8 @@ components:
           type: string
           description: For openCypher format, whether edge IDs are provided.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
     StartLoaderJobOutput:
       type: object
       properties:
@@ -1454,7 +1833,7 @@ components:
         format:
           type: string
           enum:
-            - PG_JSON
+          - PG_JSON
         records:
           type: array
           items:
@@ -1501,8 +1880,8 @@ components:
         op:
           type: string
           enum:
-            - ADD
-            - REMOVE
+          - ADD
+          - REMOVE
         isLastOp:
           type: boolean
     SparqlStreamOutput:
@@ -1520,7 +1899,7 @@ components:
         format:
           type: string
           enum:
-            - NQUADS
+          - NQUADS
         records:
           type: array
           items:
@@ -1544,8 +1923,8 @@ components:
               op:
                 type: string
                 enum:
-                  - ADD
-                  - REMOVE
+                - ADD
+                - REMOVE
               isLastOp:
                 type: boolean
         totalRecords:
@@ -1553,8 +1932,8 @@ components:
     StartMLDataProcessingJobInput:
       type: object
       required:
-        - inputDataS3Location
-        - processedDataS3Location
+      - inputDataS3Location
+      - processedDataS3Location
       properties:
         id:
           type: string
@@ -1587,8 +1966,8 @@ components:
           type: string
           description: Model type selection.
           enum:
-            - heterogeneous
-            - kge
+          - heterogeneous
+          - kge
         configFileName:
           type: string
           description: Data specification file name.
@@ -1613,8 +1992,8 @@ components:
     StartMLModelTrainingJobInput:
       type: object
       required:
-        - dataProcessingJobId
-        - trainModelS3Location
+      - dataProcessingJobId
+      - trainModelS3Location
       properties:
         id:
           type: string
@@ -1634,11 +2013,11 @@ components:
           type: string
           description: The model type to use.
           enum:
-            - rgcn
-            - transe
-            - distmult
-            - rotate
-            - custom
+          - rgcn
+          - transe
+          - distmult
+          - rotate
+          - custom
         baseProcessingInstanceType:
           type: string
         trainingInstanceType:
@@ -1685,7 +2064,7 @@ components:
     StartMLModelTransformJobInput:
       type: object
       required:
-        - modelTransformOutputS3Location
+      - modelTransformOutputS3Location
       properties:
         id:
           type: string
@@ -1749,11 +2128,11 @@ components:
         modelName:
           type: string
           enum:
-            - rgcn
-            - kge
-            - transe
-            - distmult
-            - rotate
+          - rgcn
+          - kge
+          - transe
+          - distmult
+          - rotate
         instanceType:
           type: string
           default: ml.m5.xlarge

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/management-create-db-instance-request-schema.json",
+  "title": "CreateDBInstanceRequest",
+  "description": "CreateDBInstanceRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "DBInstanceIdentifier": {
+      "type": "string",
+      "description": "The DB instance identifier."
+    },
+    "DBInstanceClass": {
+      "type": "string",
+      "description": "The compute and memory capacity of the instance."
+    },
+    "Engine": {
+      "type": "string",
+      "description": "The database engine to use (neptune).",
+      "default": "neptune"
+    },
+    "DBClusterIdentifier": {
+      "type": "string",
+      "description": "The identifier of the DB cluster to add the instance to."
+    },
+    "AvailabilityZone": {
+      "type": "string",
+      "description": "The Availability Zone for the instance."
+    },
+    "PreferredMaintenanceWindow": {
+      "type": "string"
+    },
+    "AutoMinorVersionUpgrade": {
+      "type": "boolean"
+    },
+    "PromotionTier": {
+      "type": "integer",
+      "description": "Failover priority (0-15).",
+      "minimum": 0,
+      "maximum": 15
+    }
+  },
+  "required": [
+    "DBInstanceIdentifier",
+    "DBInstanceClass",
+    "Engine",
+    "DBClusterIdentifier"
+  ]
+}

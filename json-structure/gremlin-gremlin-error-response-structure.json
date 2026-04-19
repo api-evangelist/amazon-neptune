@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/gremlin-gremlin-error-response-structure.json",
+  "name": "GremlinErrorResponse",
+  "description": "GremlinErrorResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "uuid"
+    },
+    "code": {
+      "type": "string",
+      "description": "The error code."
+    },
+    "detailedMessage": {
+      "type": "string",
+      "description": "A detailed description of the error."
+    }
+  }
+}

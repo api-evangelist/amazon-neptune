@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "graphId": "neptune-cluster-abc123",
+      "taskId": "neptune-cluster-abc123",
+      "source": "example-string",
+      "format": "example-string",
+      "roleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1"
+    }
+  ],
+  "nextToken": "example-string"
+}

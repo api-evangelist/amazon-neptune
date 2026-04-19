@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/data-execute-sparql-query-input-schema.json",
+  "title": "ExecuteSparqlQueryInput",
+  "description": "ExecuteSparqlQueryInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE)."
+    },
+    "update": {
+      "type": "string",
+      "description": "The SPARQL update string (for INSERT, DELETE operations)."
+    }
+  }
+}

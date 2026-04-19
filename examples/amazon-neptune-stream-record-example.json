@@ -1,0 +1,9 @@
+{
+  "lastEventId": "example-ref",
+  "lastTrxTimestamp": 60,
+  "format": "PG_JSON",
+  "records": [
+    "example-string"
+  ],
+  "totalRecords": 70
+}

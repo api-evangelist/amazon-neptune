@@ -1,0 +1,16 @@
+{
+  "DBSubnetGroupName": "my-neptune-cluster",
+  "DBSubnetGroupDescription": "example-string",
+  "VpcId": "neptune-cluster-abc123",
+  "SubnetGroupStatus": "available",
+  "Subnets": [
+    {
+      "SubnetIdentifier": "neptune-cluster-abc123",
+      "SubnetAvailabilityZone": {
+        "Name": {}
+      },
+      "SubnetStatus": "available"
+    }
+  ],
+  "DBSubnetGroupArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1"
+}

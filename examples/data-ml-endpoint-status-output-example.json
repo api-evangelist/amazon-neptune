@@ -1,0 +1,10 @@
+{
+  "status": "available",
+  "id": "neptune-cluster-abc123",
+  "endpoint": {
+    "name": "my-neptune-cluster",
+    "arn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+    "status": "available"
+  },
+  "endpointConfig": {}
+}

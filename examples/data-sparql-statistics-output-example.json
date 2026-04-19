@@ -1,0 +1,10 @@
+{
+  "status": "available",
+  "payload": {
+    "graphStatistics": {
+      "numStatements": 98,
+      "numDistinctSubjects": 25,
+      "numDistinctPredicates": 51
+    }
+  }
+}

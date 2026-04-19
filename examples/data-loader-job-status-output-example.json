@@ -1,0 +1,15 @@
+{
+  "status": "available",
+  "payload": {
+    "feedCount": [
+      {}
+    ],
+    "overallStatus": {
+      "fullUri": "example-string",
+      "runNumber": 59,
+      "retryNumber": 57,
+      "status": "available",
+      "totalTimeSpent": 86
+    }
+  }
+}

@@ -1,0 +1,145 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Amazon Neptune Graph Data Management
+  description: Workflow capability for managing Neptune graph databases, executing queries across Gremlin, SPARQL, and openCypher, and monitoring data streams. Used by graph database administrators 
+    and developers.
+  tags:
+  - Amazon Neptune
+  - AWS
+  - Graph Database
+  - Data Management
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_SIGV4_AUTH: AWS_SIGV4_AUTH
+capability:
+  consumes:
+  - import: management
+    location: ./shared/management.yaml
+  - import: data
+    location: ./shared/data.yaml
+  - import: loader
+    location: ./shared/loader.yaml
+  - import: streams
+    location: ./shared/streams.yaml
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: neptune-graph-management-api
+    description: Unified REST API for Neptune graph database management.
+    resources:
+    - path: /v1/clusters
+      name: clusters
+      description: Neptune DB cluster management
+      operations:
+      - method: GET
+        name: list-clusters
+        description: List all Neptune DB clusters
+        call: management.describeDBClusters
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/queries
+      name: queries
+      description: Execute graph queries
+      operations:
+      - method: POST
+        name: execute-gremlin-query
+        description: Execute a Gremlin graph traversal query
+        call: data.executeGremlinQuery
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: execute-sparql-query
+        description: Execute a SPARQL query against RDF graph
+        call: data.executeSparqlQuery
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: execute-opencypher-query
+        description: Execute an openCypher query
+        call: data.executeOpenCypherQuery
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/loader
+      name: loader
+      description: Bulk data loading operations
+      operations:
+      - method: POST
+        name: start-load-job
+        description: Start a bulk data load from S3
+        call: loader.startLoaderJob
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/streams
+      name: streams
+      description: Graph change stream operations
+      operations:
+      - method: GET
+        name: get-propertygraph-stream
+        description: Get property graph change stream records
+        call: streams.getPropertygraphStream
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: neptune-graph-management-mcp
+    transport: http
+    description: MCP server for AI-assisted Neptune graph database management.
+    tools:
+    - name: list-neptune-clusters
+      description: List all Neptune DB clusters in the account
+      hints:
+        readOnly: true
+        openWorld: true
+      call: management.describeDBClusters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-gremlin-query
+      description: Execute a Gremlin graph traversal query
+      hints:
+        readOnly: true
+      call: data.executeGremlinQuery
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-sparql-query
+      description: Execute a SPARQL query against RDF data
+      hints:
+        readOnly: true
+      call: data.executeSparqlQuery
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-opencypher-query
+      description: Execute an openCypher query against property graph
+      hints:
+        readOnly: true
+      call: data.executeOpenCypherQuery
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-bulk-data-load
+      description: Start a Neptune bulk data load job from S3
+      hints:
+        readOnly: false
+      call: loader.startLoaderJob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-graph-change-stream
+      description: Get real-time property graph change stream records
+      hints:
+        readOnly: true
+      call: streams.getPropertygraphStream
+      outputParameters:
+      - type: object
+        mapping: $.

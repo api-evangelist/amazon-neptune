@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/ml-create-model-transform-job-request-structure.json",
+  "name": "CreateModelTransformJobRequest",
+  "description": "CreateModelTransformJobRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "dataProcessingJobId": {
+      "type": "string",
+      "description": "Job ID of the completed data processing job."
+    },
+    "mlModelTrainingJobId": {
+      "type": "string",
+      "description": "Job ID of the completed model training job."
+    },
+    "trainingJobName": {
+      "type": "string",
+      "description": "Name of a completed SageMaker training job."
+    },
+    "modelTransformOutputS3Location": {
+      "type": "string",
+      "description": "S3 location for transform output artifacts."
+    },
+    "sagemakerIamRoleArn": {
+      "type": "string"
+    },
+    "neptuneIamRoleArn": {
+      "type": "string"
+    },
+    "baseProcessingInstanceType": {
+      "type": "string"
+    },
+    "baseProcessingInstanceVolumeSizeInGB": {
+      "type": "int32"
+    },
+    "subnets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "securityGroupIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "volumeEncryptionKMSKey": {
+      "type": "string"
+    },
+    "s3OutputEncryptionKMSKey": {
+      "type": "string"
+    },
+    "enableInterContainerTrafficEncryption": {
+      "type": "boolean",
+      "default": true
+    },
+    "customModelTransformParameters": {
+      "type": "object",
+      "properties": {
+        "sourceS3DirectoryPath": {
+          "type": "string"
+        },
+        "transformEntryPointScript": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "modelTransformOutputS3Location"
+  ]
+}

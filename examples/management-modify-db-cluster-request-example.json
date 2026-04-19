@@ -1,0 +1,15 @@
+{
+  "DBClusterIdentifier": "neptune-cluster-abc123",
+  "NewDBClusterIdentifier": "neptune-cluster-abc123",
+  "EngineVersion": "1.3.2.0",
+  "Port": 44,
+  "DBClusterParameterGroupName": "my-neptune-cluster",
+  "VpcSecurityGroupIds": [
+    "example-string"
+  ],
+  "BackupRetentionPeriod": 85,
+  "PreferredBackupWindow": "example-string",
+  "PreferredMaintenanceWindow": "example-string",
+  "DeletionProtection": true,
+  "ApplyImmediately": true
+}

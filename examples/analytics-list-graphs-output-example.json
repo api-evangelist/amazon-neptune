@@ -1,0 +1,12 @@
+{
+  "graphs": [
+    {
+      "id": "neptune-cluster-abc123",
+      "name": "my-neptune-cluster",
+      "arn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+      "status": "available",
+      "provisionedMemory": 23
+    }
+  ],
+  "nextToken": "example-string"
+}

@@ -1,0 +1,16 @@
+{
+  "graphName": "my-neptune-cluster",
+  "source": "example-string",
+  "roleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "provisionedMemory": 6,
+  "format": "CSV",
+  "tags": {},
+  "deletionProtection": false,
+  "publicConnectivity": true,
+  "kmsKeyIdentifier": "neptune-cluster-abc123",
+  "vectorSearchConfiguration": {
+    "dimension": 33
+  },
+  "replicaCount": 49,
+  "importOptions": {}
+}

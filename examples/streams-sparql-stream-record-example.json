@@ -1,0 +1,9 @@
+{
+  "commitTimestamp": 18,
+  "eventId": "example-ref",
+  "data": {
+    "stmt": "example-string"
+  },
+  "op": "ADD",
+  "isLastOp": false
+}

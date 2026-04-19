@@ -16,22 +16,22 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://{cluster-endpoint}:8182
-    description: Neptune Loader REST endpoint
-    variables:
-      cluster-endpoint:
-        default: your-cluster-endpoint.region.neptune.amazonaws.com
-        description: The cluster endpoint DNS name for your Neptune DB cluster
+- url: https://{cluster-endpoint}:8182
+  description: Neptune Loader REST endpoint
+  variables:
+    cluster-endpoint:
+      default: your-cluster-endpoint.region.neptune.amazonaws.com
+      description: The cluster endpoint DNS name for your Neptune DB cluster
 security:
-  - aws_sigv4: []
+- aws_sigv4: []
 tags:
-  - name: Loader
-    description: Bulk data loading operations
+- name: Loader
+  description: Bulk data loading operations
 paths:
   /loader:
     post:
       operationId: startBulkLoadJob
-      summary: Amazon Neptune Start a bulk data load job from S3
+      summary: Amazon Neptune Start a Bulk Data Load Job from S3
       description: >-
         Initiates a bulk data loading job from Amazon S3 into the Neptune
         database. The source data can be in CSV format for property graphs
@@ -40,7 +40,7 @@ paths:
         Neptune queues up to 64 jobs in FIFO order when queueRequest is
         enabled.
       tags:
-        - Loader
+      - Loader
       requestBody:
         required: true
         content:
@@ -71,37 +71,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderStartResponse'
+              examples:
+                startBulkLoadJob200Example:
+                  summary: Default startBulkLoadJob 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      loadId: neptune-cluster-abc123
         '400':
           description: Bad request - invalid parameters.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                startBulkLoadJob400Example:
+                  summary: Default startBulkLoadJob 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                startBulkLoadJob500Example:
+                  summary: Default startBulkLoadJob 500 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: listBulkLoadJobs
-      summary: Amazon Neptune List bulk load job IDs
+      summary: Amazon Neptune List Bulk Load Job IDs
       description: >-
         Returns a list of bulk load job IDs. Neptune tracks the most recent
         1,024 bulk load jobs.
       tags:
-        - Loader
+      - Loader
       parameters:
-        - name: limit
-          in: query
-          description: The maximum number of load IDs to return.
-          schema:
-            type: integer
-        - name: includeQueuedLoads
-          in: query
-          description: Whether to include queued load jobs in the response.
-          schema:
-            type: boolean
+      - name: limit
+        in: query
+        description: The maximum number of load IDs to return.
+        schema:
+          type: integer
+      - name: includeQueuedLoads
+        in: query
+        description: Whether to include queued load jobs in the response.
+        schema:
+          type: boolean
       responses:
         '200':
           description: Load job list retrieved successfully.
@@ -109,44 +136,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderListResponse'
+              examples:
+                listBulkLoadJobs200Example:
+                  summary: Default listBulkLoadJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      loadIds:
+                      - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /loader/{loadId}:
     get:
       operationId: getBulkLoadJobStatus
-      summary: Amazon Neptune Get the status of a bulk load job
+      summary: Amazon Neptune Get the Status of a Bulk Load Job
       description: >-
         Returns the status of a specific bulk load job by its load ID.
         Includes overall status, feed counts, and optionally detailed
         error information. Neptune stores the last 10,000 error details
         per job.
       tags:
-        - Loader
+      - Loader
       parameters:
-        - name: loadId
-          in: path
-          required: true
-          description: The unique identifier of the bulk load job.
-          schema:
-            type: string
-        - name: details
-          in: query
-          description: Whether to include detailed feed-level status information.
-          schema:
-            type: boolean
-        - name: errors
-          in: query
-          description: Whether to include error details in the response.
-          schema:
-            type: boolean
-        - name: page
-          in: query
-          description: The error page number to retrieve (when errors=true).
-          schema:
-            type: integer
-        - name: errorsPerPage
-          in: query
-          description: The number of errors per page (when errors=true).
-          schema:
-            type: integer
+      - name: loadId
+        in: path
+        required: true
+        description: The unique identifier of the bulk load job.
+        schema:
+          type: string
+      - name: details
+        in: query
+        description: Whether to include detailed feed-level status information.
+        schema:
+          type: boolean
+      - name: errors
+        in: query
+        description: Whether to include error details in the response.
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        description: The error page number to retrieve (when errors=true).
+        schema:
+          type: integer
+      - name: errorsPerPage
+        in: query
+        description: The number of errors per page (when errors=true).
+        schema:
+          type: integer
       responses:
         '200':
           description: Load job status retrieved successfully.
@@ -154,34 +193,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderStatusResponse'
+              examples:
+                getBulkLoadJobStatus200Example:
+                  summary: Default getBulkLoadJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      feedCount:
+                      - {}
+                      overallStatus:
+                        fullUri: example-value
+                        runNumber: 1
+                        retryNumber: 1
+                        status: LOAD_NOT_STARTED
+                        totalTimeSpent: 1
+                      failedFeeds:
+                      - {}
+                      errors: {}
         '400':
           description: Invalid loadId format.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                getBulkLoadJobStatus400Example:
+                  summary: Default getBulkLoadJobStatus 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '404':
           description: Load job with the specified ID was not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                getBulkLoadJobStatus404Example:
+                  summary: Default getBulkLoadJobStatus 404 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelBulkLoadJob
-      summary: Amazon Neptune Cancel an in-progress bulk load job
+      summary: Amazon Neptune Cancel an In-progress Bulk Load Job
       description: >-
         Cancels an in-progress bulk load job by its load ID. Must be
         executed against the read/write cluster endpoint (not a read
         replica).
       tags:
-        - Loader
+      - Loader
       parameters:
-        - name: loadId
-          in: path
-          required: true
-          description: The unique identifier of the load job to cancel.
-          schema:
-            type: string
+      - name: loadId
+        in: path
+        required: true
+        description: The unique identifier of the load job to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Load job cancelled successfully.
@@ -191,6 +267,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                cancelBulkLoadJob400Example:
+                  summary: Default cancelBulkLoadJob 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '404':
           description: >-
             Load job with the specified ID does not exist or is not active.
@@ -198,6 +282,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                cancelBulkLoadJob404Example:
+                  summary: Default cancelBulkLoadJob 404 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '405':
           description: >-
             Load cancellation attempted on a read replica instance. Use the
@@ -206,12 +298,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                cancelBulkLoadJob405Example:
+                  summary: Default cancelBulkLoadJob 405 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoaderErrorResponse'
+              examples:
+                cancelBulkLoadJob500Example:
+                  summary: Default cancelBulkLoadJob 500 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     aws_sigv4:
@@ -223,10 +334,10 @@ components:
     LoaderRequest:
       type: object
       required:
-        - source
-        - format
-        - iamRoleArn
-        - region
+      - source
+      - format
+      - iamRoleArn
+      - region
       properties:
         source:
           type: string
@@ -239,12 +350,12 @@ components:
           type: string
           description: The data format of the source files.
           enum:
-            - csv
-            - opencypher
-            - ntriples
-            - nquads
-            - rdfxml
-            - turtle
+          - csv
+          - opencypher
+          - ntriples
+          - nquads
+          - rdfxml
+          - turtle
         iamRoleArn:
           type: string
           description: >-
@@ -261,16 +372,16 @@ components:
             The load mode. NEW fails if data was previously loaded. RESUME
             continues a failed load. AUTO resumes or starts new as needed.
           enum:
-            - NEW
-            - RESUME
-            - AUTO
+          - NEW
+          - RESUME
+          - AUTO
           default: AUTO
         failOnError:
           type: string
           description: Whether to stop the entire load job on error.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
           default: 'TRUE'
         parallelism:
           type: string
@@ -279,10 +390,10 @@ components:
             MEDIUM uses num_vCPU/2, HIGH uses num_vCPU, OVERSUBSCRIBE uses
             all available resources.
           enum:
-            - LOW
-            - MEDIUM
-            - HIGH
-            - OVERSUBSCRIBE
+          - LOW
+          - MEDIUM
+          - HIGH
+          - OVERSUBSCRIBE
           default: HIGH
         parserConfiguration:
           type: object
@@ -303,8 +414,8 @@ components:
             Whether to update existing single-cardinality vertex properties.
             Not supported for openCypher format.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
           default: 'FALSE'
         queueRequest:
           type: string
@@ -312,8 +423,8 @@ components:
             Whether to queue the request if a load is already running.
             Neptune queues up to 64 jobs in FIFO order.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
           default: 'FALSE'
         dependencies:
           type: array
@@ -328,8 +439,8 @@ components:
             For openCypher format only. TRUE requires an :ID column in edge
             files. FALSE auto-generates edge IDs.
           enum:
-            - 'TRUE'
-            - 'FALSE'
+          - 'TRUE'
+          - 'FALSE'
     LoaderStartResponse:
       type: object
       properties:
@@ -392,18 +503,18 @@ components:
                     LOAD_S3_READ_ERROR, LOAD_S3_ACCESS_DENIED_ERROR,
                     LOAD_COMMITTED_W_WRITE_CONFLICTS).
                   enum:
-                    - LOAD_NOT_STARTED
-                    - LOAD_IN_PROGRESS
-                    - LOAD_COMPLETED
-                    - LOAD_CANCELLED_BY_USER
-                    - LOAD_CANCELLED_DUE_TO_ERRORS
-                    - LOAD_FAILED
-                    - LOAD_UNEXPECTED_ERROR
-                    - LOAD_DATA_DEADLOCK
-                    - LOAD_DATA_FAILED_DUE_TO_FEED_MODIFIED_OR_DELETED
-                    - LOAD_S3_READ_ERROR
-                    - LOAD_S3_ACCESS_DENIED_ERROR
-                    - LOAD_COMMITTED_W_WRITE_CONFLICTS
+                  - LOAD_NOT_STARTED
+                  - LOAD_IN_PROGRESS
+                  - LOAD_COMPLETED
+                  - LOAD_CANCELLED_BY_USER
+                  - LOAD_CANCELLED_DUE_TO_ERRORS
+                  - LOAD_FAILED
+                  - LOAD_UNEXPECTED_ERROR
+                  - LOAD_DATA_DEADLOCK
+                  - LOAD_DATA_FAILED_DUE_TO_FEED_MODIFIED_OR_DELETED
+                  - LOAD_S3_READ_ERROR
+                  - LOAD_S3_ACCESS_DENIED_ERROR
+                  - LOAD_COMMITTED_W_WRITE_CONFLICTS
                 totalTimeSpent:
                   type: integer
                   description: Total time spent on the load in seconds.

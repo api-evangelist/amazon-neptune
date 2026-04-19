@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/sparql-sparql-error-response-structure.json",
+  "name": "SparqlErrorResponse",
+  "description": "SparqlErrorResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "detailedMessage": {
+      "type": "string",
+      "description": "Detailed error message explaining the issue."
+    }
+  }
+}

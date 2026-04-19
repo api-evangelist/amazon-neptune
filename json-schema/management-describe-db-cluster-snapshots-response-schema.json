@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/management-describe-db-cluster-snapshots-response-schema.json",
+  "title": "DescribeDBClusterSnapshotsResponse",
+  "description": "DescribeDBClusterSnapshotsResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "DBClusterSnapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DBClusterSnapshot"
+      }
+    },
+    "Marker": {
+      "type": "string"
+    }
+  }
+}

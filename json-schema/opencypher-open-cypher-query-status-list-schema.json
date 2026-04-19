@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/opencypher-open-cypher-query-status-list-schema.json",
+  "title": "OpenCypherQueryStatusList",
+  "description": "OpenCypherQueryStatusList schema from Neptune",
+  "type": "object",
+  "properties": {
+    "acceptedQueryCount": {
+      "type": "integer"
+    },
+    "runningQueryCount": {
+      "type": "integer"
+    },
+    "queries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OpenCypherQueryStatusDetail"
+      }
+    }
+  }
+}

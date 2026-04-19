@@ -1,0 +1,255 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateDBClusterRequest": "neptune:CreateDBClusterRequest",
+    "CreateDBInstanceRequest": "neptune:CreateDBInstanceRequest",
+    "DBCluster": "neptune:DBCluster",
+    "DBClusterMember": "neptune:DBClusterMember",
+    "DBClusterRole": "neptune:DBClusterRole",
+    "DBClusterSnapshot": "neptune:DBClusterSnapshot",
+    "DBInstance": "neptune:DBInstance",
+    "DBSubnetGroup": {
+      "@id": "neptune:DBSubnetGroup",
+      "@type": "xsd:string"
+    },
+    "DescribeDBClusterSnapshotsResponse": "neptune:DescribeDBClusterSnapshotsResponse",
+    "DescribeDBClustersResponse": "neptune:DescribeDBClustersResponse",
+    "DescribeDBInstancesResponse": "neptune:DescribeDBInstancesResponse",
+    "DescribeDBSubnetGroupsResponse": "neptune:DescribeDBSubnetGroupsResponse",
+    "ModifyDBClusterRequest": "neptune:ModifyDBClusterRequest",
+    "ModifyDBInstanceRequest": "neptune:ModifyDBInstanceRequest",
+    "RestoreDBClusterFromSnapshotRequest": "neptune:RestoreDBClusterFromSnapshotRequest",
+    "Address": {
+      "@id": "neptune:Address",
+      "@type": "xsd:string"
+    },
+    "AllocatedStorage": {
+      "@id": "neptune:AllocatedStorage",
+      "@type": "xsd:integer"
+    },
+    "ApplyImmediately": {
+      "@id": "neptune:ApplyImmediately",
+      "@type": "xsd:boolean"
+    },
+    "AssociatedRoles": {
+      "@id": "neptune:AssociatedRoles",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "AutoMinorVersionUpgrade": {
+      "@id": "neptune:AutoMinorVersionUpgrade",
+      "@type": "xsd:boolean"
+    },
+    "AvailabilityZone": {
+      "@id": "neptune:AvailabilityZone",
+      "@type": "xsd:string"
+    },
+    "BackupRetentionPeriod": {
+      "@id": "neptune:BackupRetentionPeriod",
+      "@type": "xsd:integer"
+    },
+    "ClusterCreateTime": {
+      "@id": "neptune:ClusterCreateTime",
+      "@type": "xsd:dateTime"
+    },
+    "DBClusterArn": {
+      "@id": "neptune:DBClusterArn",
+      "@type": "xsd:string"
+    },
+    "DBClusterIdentifier": {
+      "@id": "neptune:DBClusterIdentifier",
+      "@type": "xsd:string"
+    },
+    "DBClusterMembers": {
+      "@id": "neptune:DBClusterMembers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "DBClusterParameterGroup": {
+      "@id": "neptune:DBClusterParameterGroup",
+      "@type": "xsd:string"
+    },
+    "DBClusterParameterGroupName": {
+      "@id": "neptune:DBClusterParameterGroupName",
+      "@type": "xsd:string"
+    },
+    "DBClusterParameterGroupStatus": {
+      "@id": "neptune:DBClusterParameterGroupStatus",
+      "@type": "xsd:string"
+    },
+    "DBClusterSnapshotArn": {
+      "@id": "neptune:DBClusterSnapshotArn",
+      "@type": "xsd:string"
+    },
+    "DBClusterSnapshotIdentifier": {
+      "@id": "neptune:DBClusterSnapshotIdentifier",
+      "@type": "xsd:string"
+    },
+    "DBClusterSnapshots": {
+      "@id": "neptune:DBClusterSnapshots",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "DBClusters": {
+      "@id": "neptune:DBClusters",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "DBInstanceArn": {
+      "@id": "neptune:DBInstanceArn",
+      "@type": "xsd:string"
+    },
+    "DBInstanceClass": {
+      "@id": "neptune:DBInstanceClass",
+      "@type": "xsd:string"
+    },
+    "DBInstanceIdentifier": {
+      "@id": "neptune:DBInstanceIdentifier",
+      "@type": "xsd:string"
+    },
+    "DBInstanceStatus": {
+      "@id": "neptune:DBInstanceStatus",
+      "@type": "xsd:string"
+    },
+    "DBInstances": {
+      "@id": "neptune:DBInstances",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "DBSubnetGroupArn": {
+      "@id": "neptune:DBSubnetGroupArn",
+      "@type": "xsd:string"
+    },
+    "DBSubnetGroupDescription": {
+      "@id": "neptune:DBSubnetGroupDescription",
+      "@type": "xsd:string"
+    },
+    "DBSubnetGroupName": {
+      "@id": "neptune:DBSubnetGroupName",
+      "@type": "xsd:string"
+    },
+    "DBSubnetGroups": {
+      "@id": "neptune:DBSubnetGroups",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "DeletionProtection": {
+      "@id": "neptune:DeletionProtection",
+      "@type": "xsd:boolean"
+    },
+    "Endpoint": {
+      "@id": "neptune:Endpoint",
+      "@type": "@id"
+    },
+    "Engine": {
+      "@id": "neptune:Engine",
+      "@type": "xsd:string"
+    },
+    "EngineVersion": {
+      "@id": "neptune:EngineVersion",
+      "@type": "xsd:string"
+    },
+    "IAMDatabaseAuthenticationEnabled": {
+      "@id": "neptune:IAMDatabaseAuthenticationEnabled",
+      "@type": "xsd:boolean"
+    },
+    "IsClusterWriter": {
+      "@id": "neptune:IsClusterWriter",
+      "@type": "xsd:boolean"
+    },
+    "KmsKeyId": {
+      "@id": "neptune:KmsKeyId",
+      "@type": "xsd:string"
+    },
+    "Marker": {
+      "@id": "neptune:Marker",
+      "@type": "xsd:string"
+    },
+    "MasterUsername": {
+      "@id": "neptune:MasterUsername",
+      "@type": "xsd:string"
+    },
+    "MultiAZ": {
+      "@id": "neptune:MultiAZ",
+      "@type": "xsd:boolean"
+    },
+    "NewDBClusterIdentifier": {
+      "@id": "neptune:NewDBClusterIdentifier",
+      "@type": "xsd:string"
+    },
+    "NewDBInstanceIdentifier": {
+      "@id": "neptune:NewDBInstanceIdentifier",
+      "@type": "xsd:string"
+    },
+    "Port": {
+      "@id": "neptune:Port",
+      "@type": "xsd:integer"
+    },
+    "PreferredBackupWindow": {
+      "@id": "neptune:PreferredBackupWindow",
+      "@type": "xsd:string"
+    },
+    "PreferredMaintenanceWindow": {
+      "@id": "neptune:PreferredMaintenanceWindow",
+      "@type": "xsd:string"
+    },
+    "PromotionTier": {
+      "@id": "neptune:PromotionTier",
+      "@type": "xsd:integer"
+    },
+    "PubliclyAccessible": {
+      "@id": "neptune:PubliclyAccessible",
+      "@type": "xsd:boolean"
+    },
+    "ReaderEndpoint": {
+      "@id": "neptune:ReaderEndpoint",
+      "@type": "xsd:string"
+    },
+    "RoleArn": {
+      "@id": "neptune:RoleArn",
+      "@type": "xsd:string"
+    },
+    "SnapshotCreateTime": {
+      "@id": "neptune:SnapshotCreateTime",
+      "@type": "xsd:dateTime"
+    },
+    "SnapshotIdentifier": {
+      "@id": "neptune:SnapshotIdentifier",
+      "@type": "xsd:string"
+    },
+    "SnapshotType": {
+      "@id": "neptune:SnapshotType",
+      "@type": "xsd:string"
+    },
+    "Status": {
+      "@id": "neptune:Status",
+      "@type": "xsd:string"
+    },
+    "StorageEncrypted": {
+      "@id": "neptune:StorageEncrypted",
+      "@type": "xsd:boolean"
+    },
+    "SubnetGroupStatus": {
+      "@id": "neptune:SubnetGroupStatus",
+      "@type": "xsd:string"
+    },
+    "Subnets": {
+      "@id": "neptune:Subnets",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "VpcId": {
+      "@id": "neptune:VpcId",
+      "@type": "xsd:string"
+    },
+    "VpcSecurityGroupIds": {
+      "@id": "neptune:VpcSecurityGroupIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

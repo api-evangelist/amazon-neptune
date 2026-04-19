@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/ml-job-status-response-structure.json",
+  "name": "JobStatusResponse",
+  "description": "JobStatusResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The current status of the job."
+    },
+    "id": {
+      "type": "string",
+      "description": "The job identifier."
+    },
+    "processingJob": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "outputLocation": {
+          "type": "string"
+        },
+        "failureReason": {
+          "type": "string"
+        },
+        "cloudwatchLogUrl": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

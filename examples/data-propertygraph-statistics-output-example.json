@@ -1,0 +1,12 @@
+{
+  "status": "available",
+  "payload": {
+    "graphStatistics": {
+      "numNodes": 18,
+      "numEdges": 36,
+      "numNodeLabels": 9,
+      "numEdgeLabels": 26,
+      "numNodeProperties": 58
+    }
+  }
+}

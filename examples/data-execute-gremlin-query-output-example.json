@@ -1,0 +1,10 @@
+{
+  "requestId": "neptune-cluster-abc123",
+  "status": {
+    "message": "example-string",
+    "code": 51
+  },
+  "result": {
+    "data": "example-string"
+  }
+}

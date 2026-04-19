@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/streams-stream-event-id-structure.json",
+  "name": "StreamEventId",
+  "description": "A sequence identifier for a stream event.",
+  "type": "object",
+  "properties": {
+    "commitNum": {
+      "type": "int32",
+      "description": "The commit (transaction) number."
+    },
+    "opNum": {
+      "type": "int32",
+      "description": "The operation number within the commit."
+    }
+  }
+}

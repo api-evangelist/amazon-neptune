@@ -1,0 +1,7 @@
+{
+  "commitTimestamp": 49,
+  "eventId": "example-ref",
+  "data": "example-ref",
+  "op": "REMOVE",
+  "isLastOp": true
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/analytics-private-graph-endpoint-output-structure.json",
+  "name": "PrivateGraphEndpointOutput",
+  "description": "PrivateGraphEndpointOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "vpcId": {
+      "type": "string"
+    },
+    "subnetIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "AVAILABLE",
+        "DELETING",
+        "FAILED"
+      ]
+    },
+    "vpcEndpointId": {
+      "type": "string"
+    }
+  }
+}

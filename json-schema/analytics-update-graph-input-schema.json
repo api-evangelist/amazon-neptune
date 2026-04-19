@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/analytics-update-graph-input-schema.json",
+  "title": "UpdateGraphInput",
+  "description": "UpdateGraphInput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "provisionedMemory": {
+      "type": "integer",
+      "description": "The new provisioned memory size in NCUs."
+    },
+    "deletionProtection": {
+      "type": "boolean",
+      "description": "Whether deletion protection is enabled."
+    },
+    "publicConnectivity": {
+      "type": "boolean"
+    }
+  }
+}

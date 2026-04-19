@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/management-modify-db-cluster-request-structure.json",
+  "name": "ModifyDBClusterRequest",
+  "description": "ModifyDBClusterRequest schema from Neptune",
+  "type": "object",
+  "properties": {
+    "DBClusterIdentifier": {
+      "type": "string",
+      "description": "The DB cluster identifier."
+    },
+    "NewDBClusterIdentifier": {
+      "type": "string",
+      "description": "The new cluster identifier when renaming."
+    },
+    "EngineVersion": {
+      "type": "string",
+      "description": "The version of the Neptune engine to upgrade to."
+    },
+    "Port": {
+      "type": "int32",
+      "description": "The port number on which the cluster accepts connections."
+    },
+    "DBClusterParameterGroupName": {
+      "type": "string",
+      "description": "The name of the cluster parameter group to use."
+    },
+    "VpcSecurityGroupIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "BackupRetentionPeriod": {
+      "type": "int32"
+    },
+    "PreferredBackupWindow": {
+      "type": "string"
+    },
+    "PreferredMaintenanceWindow": {
+      "type": "string"
+    },
+    "DeletionProtection": {
+      "type": "boolean"
+    },
+    "ApplyImmediately": {
+      "type": "boolean",
+      "description": "Whether to apply changes immediately or during the next maintenance window."
+    }
+  },
+  "required": [
+    "DBClusterIdentifier"
+  ]
+}

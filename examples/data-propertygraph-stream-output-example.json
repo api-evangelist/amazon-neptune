@@ -1,0 +1,12 @@
+{
+  "lastEventId": {
+    "commitNum": 79,
+    "opNum": 74
+  },
+  "lastTrxTimestampInMillis": 65,
+  "format": "PG_JSON",
+  "records": [
+    "example-ref"
+  ],
+  "totalRecords": 22
+}

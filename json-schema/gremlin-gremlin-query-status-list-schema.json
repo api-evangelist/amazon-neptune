@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/gremlin-gremlin-query-status-list-schema.json",
+  "title": "GremlinQueryStatusList",
+  "description": "GremlinQueryStatusList schema from Neptune",
+  "type": "object",
+  "properties": {
+    "acceptedQueryCount": {
+      "type": "integer",
+      "description": "The total number of accepted queries."
+    },
+    "runningQueryCount": {
+      "type": "integer",
+      "description": "The number of currently running queries."
+    },
+    "queries": {
+      "type": "array",
+      "description": "The list of running and waiting queries.",
+      "items": {
+        "$ref": "#/components/schemas/GremlinQueryStatusDetail"
+      }
+    }
+  }
+}

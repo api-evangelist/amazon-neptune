@@ -1,0 +1,19 @@
+{
+  "DBInstanceIdentifier": "neptune-cluster-abc123",
+  "DBInstanceClass": "db.r6g.large",
+  "Engine": "neptune",
+  "DBInstanceStatus": "available",
+  "Endpoint": {
+    "Address": "example-string",
+    "Port": 2
+  },
+  "DBClusterIdentifier": "neptune-cluster-abc123",
+  "AvailabilityZone": "us-east-1a",
+  "PreferredMaintenanceWindow": "example-string",
+  "EngineVersion": "1.3.2.0",
+  "AutoMinorVersionUpgrade": false,
+  "PubliclyAccessible": false,
+  "DBInstanceArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "PromotionTier": 19,
+  "StorageEncrypted": true
+}

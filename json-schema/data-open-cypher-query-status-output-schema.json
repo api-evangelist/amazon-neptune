@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/data-open-cypher-query-status-output-schema.json",
+  "title": "OpenCypherQueryStatusOutput",
+  "description": "OpenCypherQueryStatusOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "acceptedQueryCount": {
+      "type": "integer"
+    },
+    "runningQueryCount": {
+      "type": "integer"
+    },
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "queryId": {
+            "type": "string"
+          },
+          "queryString": {
+            "type": "string"
+          },
+          "queryEvalStats": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

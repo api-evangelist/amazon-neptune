@@ -1,0 +1,6 @@
+{
+  "DBInstanceIdentifier": "neptune-cluster-abc123",
+  "IsClusterWriter": true,
+  "DBClusterParameterGroupStatus": "available",
+  "PromotionTier": 20
+}

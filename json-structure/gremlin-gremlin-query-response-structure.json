@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/gremlin-gremlin-query-response-structure.json",
+  "name": "GremlinQueryResponse",
+  "description": "GremlinQueryResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "uuid",
+      "description": "The unique request identifier."
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "int32",
+          "description": "The response status code (200 for success)."
+        },
+        "attributes": {
+          "type": "object",
+          "description": "Additional response attributes."
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The query result data. The shape depends on the traversal's terminal step (e.g., count, valueMap, path)."
+        },
+        "meta": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

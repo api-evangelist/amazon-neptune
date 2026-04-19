@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/opencypher-open-cypher-node-schema.json",
+  "title": "OpenCypherNode",
+  "description": "A property graph node as returned by openCypher queries.",
+  "type": "object",
+  "properties": {
+    "~id": {
+      "type": "string",
+      "description": "The unique identifier of the node."
+    },
+    "~entityType": {
+      "type": "string",
+      "enum": [
+        "node"
+      ],
+      "description": "The entity type (always 'node')."
+    },
+    "~labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The labels assigned to the node."
+    },
+    "~properties": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The node properties as key-value pairs."
+    }
+  }
+}

@@ -16,24 +16,24 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://{cluster-endpoint}:8182
-    description: Neptune openCypher HTTP REST endpoint
-    variables:
-      cluster-endpoint:
-        default: your-cluster-endpoint.region.neptune.amazonaws.com
-        description: The cluster endpoint DNS name for your Neptune DB cluster
+- url: https://{cluster-endpoint}:8182
+  description: Neptune openCypher HTTP REST endpoint
+  variables:
+    cluster-endpoint:
+      default: your-cluster-endpoint.region.neptune.amazonaws.com
+      description: The cluster endpoint DNS name for your Neptune DB cluster
 security:
-  - aws_sigv4: []
+- aws_sigv4: []
 tags:
-  - name: Query
-    description: Execute openCypher graph queries
-  - name: Status
-    description: Query status and cancellation operations
+- name: Query
+  description: Execute openCypher graph queries
+- name: Status
+  description: Query status and cancellation operations
 paths:
   /openCypher:
     post:
       operationId: executeOpenCypherQuery
-      summary: Amazon Neptune Execute an openCypher query via HTTP POST
+      summary: Amazon Neptune Execute an OpenCypher Query via HTTP POST
       description: >-
         Submits an openCypher query to the Neptune HTTP endpoint. The query
         is provided as a form-encoded parameter. Supports both read and write
@@ -41,17 +41,17 @@ paths:
         ~properties fields. Relationships include ~id, ~entityType, ~start,
         ~end, ~type, and ~properties fields.
       tags:
-        - Query
+      - Query
       parameters:
-        - name: TE
-          in: header
-          description: >-
-            Set to 'trailers' to enable trailing headers for better error
-            detection. Available in Neptune 1.4.5.0+.
-          schema:
-            type: string
-            enum:
-              - trailers
+      - name: TE
+        in: header
+        description: >-
+          Set to 'trailers' to enable trailing headers for better error
+          detection. Available in Neptune 1.4.5.0+.
+        schema:
+          type: string
+          enum:
+          - trailers
       requestBody:
         required: true
         content:
@@ -78,6 +78,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OpenCypherQueryResponse'
+              examples:
+                executeOpenCypherQuery200Example:
+                  summary: Default executeOpenCypherQuery 200 response
+                  x-microcks-default: true
+                  value:
+                    results:
+                    - {}
           headers:
             X-Neptune-Status:
               description: >-
@@ -96,33 +103,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OpenCypherErrorResponse'
+              examples:
+                executeOpenCypherQuery400Example:
+                  summary: Default executeOpenCypherQuery 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
         '408':
           description: Query timed out before completing.
         '500':
           description: Internal server error during query execution.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: executeOpenCypherQueryGet
-      summary: Amazon Neptune Execute an openCypher query via HTTP GET
+      summary: Amazon Neptune Execute an OpenCypher Query via HTTP GET
       description: >-
         Submits an openCypher query via URL query parameter. Supports both
         read and write queries.
       tags:
-        - Query
+      - Query
       parameters:
-        - name: query
-          in: query
-          required: true
-          description: The openCypher query string (URL-encoded).
-          schema:
-            type: string
-          example: MATCH (n1) RETURN n1 LIMIT 10
-        - name: TE
-          in: header
-          description: Set to 'trailers' for trailing headers.
-          schema:
-            type: string
-            enum:
-              - trailers
+      - name: query
+        in: query
+        required: true
+        description: The openCypher query string (URL-encoded).
+        schema:
+          type: string
+        example: MATCH (n1) RETURN n1 LIMIT 10
+      - name: TE
+        in: header
+        description: Set to 'trailers' for trailing headers.
+        schema:
+          type: string
+          enum:
+          - trailers
       responses:
         '200':
           description: openCypher query executed successfully.
@@ -130,17 +148,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OpenCypherQueryResponse'
+              examples:
+                executeOpenCypherQueryGet200Example:
+                  summary: Default executeOpenCypherQueryGet 200 response
+                  x-microcks-default: true
+                  value:
+                    results:
+                    - {}
         '400':
           description: Bad request - malformed openCypher query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /openCypher/status:
     get:
       operationId: getOpenCypherQueryStatus
-      summary: Amazon Neptune Get the status of all running openCypher queries
+      summary: Amazon Neptune Get the Status of All Running OpenCypher Queries
       description: >-
         Returns the status of all running and waiting openCypher queries,
         including query IDs and execution statistics.
       tags:
-        - Status
+      - Status
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -148,21 +176,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OpenCypherQueryStatusList'
+              examples:
+                getOpenCypherQueryStatus200Example:
+                  summary: Default getOpenCypherQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /openCypher/status/{queryId}:
     get:
       operationId: getOpenCypherQueryStatusById
-      summary: Amazon Neptune Get the status of a specific openCypher query
+      summary: Amazon Neptune Get the Status of a Specific OpenCypher Query
       description: >-
         Returns the status of a specific openCypher query by its query ID.
       tags:
-        - Status
+      - Status
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the openCypher query.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query.
+        schema:
+          type: string
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -170,27 +210,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
+              examples:
+                getOpenCypherQueryStatusById200Example:
+                  summary: Default getOpenCypherQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
         '404':
           description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: cancelOpenCypherQuery
-      summary: Amazon Neptune Cancel a running openCypher query
+      summary: Amazon Neptune Cancel a Running OpenCypher Query
       description: >-
         Cancels a running openCypher query by its query ID.
       tags:
-        - Status
+      - Status
       parameters:
-        - name: queryId
-          in: path
-          required: true
-          description: The unique identifier of the openCypher query to cancel.
-          schema:
-            type: string
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query to cancel.
+        schema:
+          type: string
       responses:
         '200':
           description: Query cancelled successfully.
         '404':
           description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     aws_sigv4:
@@ -202,7 +259,7 @@ components:
     OpenCypherQueryRequest:
       type: object
       required:
-        - query
+      - query
       properties:
         query:
           type: string
@@ -233,7 +290,7 @@ components:
         ~entityType:
           type: string
           enum:
-            - node
+          - node
           description: The entity type (always 'node').
         ~labels:
           type: array
@@ -254,7 +311,7 @@ components:
         ~entityType:
           type: string
           enum:
-            - relationship
+          - relationship
           description: The entity type (always 'relationship').
         ~start:
           type: string

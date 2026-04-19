@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/streams-sparql-stream-record-schema.json",
+  "title": "SparqlStreamRecord",
+  "description": "SparqlStreamRecord schema from Neptune",
+  "type": "object",
+  "properties": {
+    "commitTimestamp": {
+      "type": "integer",
+      "description": "Unix epoch timestamp in milliseconds of the transaction commit."
+    },
+    "eventId": {
+      "$ref": "#/components/schemas/StreamEventId"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "stmt": {
+          "type": "string",
+          "description": "The N-Quads statement representing the RDF triple or quad change."
+        }
+      }
+    },
+    "op": {
+      "type": "string",
+      "enum": [
+        "ADD",
+        "REMOVE"
+      ],
+      "description": "The operation type (ADD or REMOVE)."
+    },
+    "isLastOp": {
+      "type": "boolean",
+      "description": "True only if this is the last operation in the transaction."
+    }
+  }
+}

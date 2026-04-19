@@ -1,0 +1,9 @@
+{
+  "DBInstanceIdentifier": "neptune-cluster-abc123",
+  "DBInstanceClass": "db.r6g.large",
+  "PreferredMaintenanceWindow": "example-string",
+  "AutoMinorVersionUpgrade": true,
+  "NewDBInstanceIdentifier": "neptune-cluster-abc123",
+  "PromotionTier": 54,
+  "ApplyImmediately": false
+}

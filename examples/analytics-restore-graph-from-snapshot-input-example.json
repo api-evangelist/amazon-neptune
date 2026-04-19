@@ -1,0 +1,8 @@
+{
+  "graphName": "my-neptune-cluster",
+  "provisionedMemory": 33,
+  "deletionProtection": false,
+  "tags": {},
+  "replicaCount": 13,
+  "publicConnectivity": false
+}

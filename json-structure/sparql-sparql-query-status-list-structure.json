@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/sparql-sparql-query-status-list-structure.json",
+  "name": "SparqlQueryStatusList",
+  "description": "SparqlQueryStatusList schema from Neptune",
+  "type": "object",
+  "properties": {
+    "acceptedQueryCount": {
+      "type": "int32"
+    },
+    "runningQueryCount": {
+      "type": "int32"
+    },
+    "queries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SparqlQueryStatusDetail"
+      }
+    }
+  }
+}

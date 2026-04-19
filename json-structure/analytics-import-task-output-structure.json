@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/analytics-import-task-output-structure.json",
+  "name": "ImportTaskOutput",
+  "description": "ImportTaskOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "graphId": {
+      "type": "string"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "roleArn": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "INITIALIZING",
+        "EXPORTING",
+        "ANALYZING_DATA",
+        "IMPORTING",
+        "REPROVISIONING",
+        "ROLLING_BACK",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLING",
+        "CANCELLED"
+      ]
+    },
+    "importOptions": {
+      "type": "object"
+    },
+    "importTaskDetails": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "datetime"
+        },
+        "timeElapsedSeconds": {
+          "type": "int32"
+        },
+        "progressPercentage": {
+          "type": "int32"
+        },
+        "errorCount": {
+          "type": "int32"
+        },
+        "errorDetails": {
+          "type": "string"
+        },
+        "statementCount": {
+          "type": "int32"
+        },
+        "dictionaryEntryCount": {
+          "type": "int32"
+        }
+      }
+    }
+  }
+}

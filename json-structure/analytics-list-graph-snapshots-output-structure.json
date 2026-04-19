@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/analytics-list-graph-snapshots-output-structure.json",
+  "name": "ListGraphSnapshotsOutput",
+  "description": "ListGraphSnapshotsOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "graphSnapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "arn": {
+            "type": "string"
+          },
+          "sourceGraphId": {
+            "type": "string"
+          },
+          "snapshotCreateTime": {
+            "type": "datetime"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nextToken": {
+      "type": "string"
+    }
+  }
+}

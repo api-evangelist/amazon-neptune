@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/management-describe-db-subnet-groups-response-structure.json",
+  "name": "DescribeDBSubnetGroupsResponse",
+  "description": "DescribeDBSubnetGroupsResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "DBSubnetGroups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DBSubnetGroup"
+      }
+    },
+    "Marker": {
+      "type": "string"
+    }
+  }
+}

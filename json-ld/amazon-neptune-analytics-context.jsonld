@@ -1,0 +1,202 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "CreateGraphInput": "neptune:CreateGraphInput",
+    "CreateGraphSnapshotInput": "neptune:CreateGraphSnapshotInput",
+    "CreateGraphUsingImportTaskInput": "neptune:CreateGraphUsingImportTaskInput",
+    "CreatePrivateGraphEndpointInput": "neptune:CreatePrivateGraphEndpointInput",
+    "GraphOutput": "neptune:GraphOutput",
+    "GraphSnapshotOutput": "neptune:GraphSnapshotOutput",
+    "ImportTaskOutput": "neptune:ImportTaskOutput",
+    "ListGraphSnapshotsOutput": "neptune:ListGraphSnapshotsOutput",
+    "ListGraphsOutput": "neptune:ListGraphsOutput",
+    "ListImportTasksOutput": "neptune:ListImportTasksOutput",
+    "PrivateGraphEndpointOutput": "neptune:PrivateGraphEndpointOutput",
+    "RestoreGraphFromSnapshotInput": "neptune:RestoreGraphFromSnapshotInput",
+    "UpdateGraphInput": "neptune:UpdateGraphInput",
+    "arn": {
+      "@id": "neptune:arn",
+      "@type": "xsd:string"
+    },
+    "buildNumber": {
+      "@id": "neptune:buildNumber",
+      "@type": "xsd:string"
+    },
+    "createTime": {
+      "@id": "neptune:createTime",
+      "@type": "xsd:dateTime"
+    },
+    "deletionProtection": {
+      "@id": "neptune:deletionProtection",
+      "@type": "xsd:boolean"
+    },
+    "dictionaryEntryCount": {
+      "@id": "neptune:dictionaryEntryCount",
+      "@type": "xsd:integer"
+    },
+    "dimension": {
+      "@id": "neptune:dimension",
+      "@type": "xsd:integer"
+    },
+    "endpoint": {
+      "@id": "neptune:endpoint",
+      "@type": "xsd:string"
+    },
+    "errorCount": {
+      "@id": "neptune:errorCount",
+      "@type": "xsd:integer"
+    },
+    "errorDetails": {
+      "@id": "neptune:errorDetails",
+      "@type": "xsd:string"
+    },
+    "format": {
+      "@id": "neptune:format",
+      "@type": "xsd:string"
+    },
+    "graphId": {
+      "@id": "neptune:graphId",
+      "@type": "xsd:string"
+    },
+    "graphIdentifier": {
+      "@id": "neptune:graphIdentifier",
+      "@type": "xsd:string"
+    },
+    "graphName": {
+      "@id": "neptune:graphName",
+      "@type": "xsd:string"
+    },
+    "graphSnapshots": {
+      "@id": "neptune:graphSnapshots",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "graphs": {
+      "@id": "neptune:graphs",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "id": {
+      "@id": "neptune:id",
+      "@type": "xsd:string"
+    },
+    "importOptions": {
+      "@id": "neptune:importOptions",
+      "@type": "@id"
+    },
+    "importTaskDetails": {
+      "@id": "neptune:importTaskDetails",
+      "@type": "@id"
+    },
+    "kmsKeyIdentifier": {
+      "@id": "neptune:kmsKeyIdentifier",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "nextToken": {
+      "@id": "neptune:nextToken",
+      "@type": "xsd:string"
+    },
+    "progressPercentage": {
+      "@id": "neptune:progressPercentage",
+      "@type": "xsd:integer"
+    },
+    "provisionedMemory": {
+      "@id": "neptune:provisionedMemory",
+      "@type": "xsd:integer"
+    },
+    "publicConnectivity": {
+      "@id": "neptune:publicConnectivity",
+      "@type": "xsd:boolean"
+    },
+    "replicaCount": {
+      "@id": "neptune:replicaCount",
+      "@type": "xsd:integer"
+    },
+    "roleArn": {
+      "@id": "neptune:roleArn",
+      "@type": "xsd:string"
+    },
+    "snapshotCreateTime": {
+      "@id": "neptune:snapshotCreateTime",
+      "@type": "xsd:dateTime"
+    },
+    "snapshotName": {
+      "@id": "neptune:snapshotName",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "neptune:source",
+      "@type": "xsd:string"
+    },
+    "sourceGraphId": {
+      "@id": "neptune:sourceGraphId",
+      "@type": "xsd:string"
+    },
+    "sourceSnapshotId": {
+      "@id": "neptune:sourceSnapshotId",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "neptune:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "statementCount": {
+      "@id": "neptune:statementCount",
+      "@type": "xsd:integer"
+    },
+    "status": {
+      "@id": "neptune:status",
+      "@type": "xsd:string"
+    },
+    "statusReason": {
+      "@id": "neptune:statusReason",
+      "@type": "xsd:string"
+    },
+    "subnetIds": {
+      "@id": "neptune:subnetIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "neptune:tags",
+      "@type": "@id"
+    },
+    "taskId": {
+      "@id": "neptune:taskId",
+      "@type": "xsd:string"
+    },
+    "tasks": {
+      "@id": "neptune:tasks",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "timeElapsedSeconds": {
+      "@id": "neptune:timeElapsedSeconds",
+      "@type": "xsd:integer"
+    },
+    "vectorSearchConfiguration": {
+      "@id": "neptune:vectorSearchConfiguration",
+      "@type": "@id"
+    },
+    "vpcEndpointId": {
+      "@id": "neptune:vpcEndpointId",
+      "@type": "xsd:string"
+    },
+    "vpcId": {
+      "@id": "neptune:vpcId",
+      "@type": "xsd:string"
+    },
+    "vpcSecurityGroupIds": {
+      "@id": "neptune:vpcSecurityGroupIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

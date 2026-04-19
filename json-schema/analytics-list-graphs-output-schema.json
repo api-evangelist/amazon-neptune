@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/analytics-list-graphs-output-schema.json",
+  "title": "ListGraphsOutput",
+  "description": "ListGraphsOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "graphs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "arn": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "provisionedMemory": {
+            "type": "integer"
+          },
+          "publicConnectivity": {
+            "type": "boolean"
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "replicaCount": {
+            "type": "integer"
+          },
+          "deletionProtection": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "nextToken": {
+      "type": "string"
+    }
+  }
+}

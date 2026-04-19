@@ -1,0 +1,96 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Amazon Neptune Neptune SPARQL API
+  description: W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune. It provides an HTTP REST endpoint compatible with the SPARQL 1.1 protocol specification. Supports SELECT, ASK, 
+    CONSTRUCT, DESCRIBE
+  tags:
+  - Amazon Neptune
+  - AWS
+  - Graph Database
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_SIGV4_AUTH: AWS_SIGV4_AUTH
+capability:
+  consumes:
+  - type: http
+    namespace: sparql
+    baseUri: https://{cluster-endpoint}:8182
+    description: W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune. It provides an HTTP REST endpo
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_SIGV4_AUTH}}'
+      placement: header
+    resources:
+    - name: query
+      path: /query
+      description: Query operations for Amazon Neptune Neptune SPARQL API
+      operations:
+      - name: executeSparqlQueryGet
+        method: GET
+        description: Amazon Neptune Execute a SPARQL Query via HTTP GET
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: The SPARQL query string (URL-encoded).
+      - name: executeSparqlQuery
+        method: POST
+        description: Amazon Neptune Execute a SPARQL Query or Update via HTTP POST
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data: {}
+    - name: status
+      path: /status
+      description: Status operations for Amazon Neptune Neptune SPARQL API
+      operations:
+      - name: getSparqlQueryStatus
+        method: GET
+        description: Amazon Neptune Get the Status of All Running SPARQL Queries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getSparqlQueryStatusById
+        method: GET
+        description: Amazon Neptune Get the Status of a Specific SPARQL Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: queryId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the SPARQL query.
+      - name: cancelSparqlQuery
+        method: DELETE
+        description: Amazon Neptune Cancel a Running SPARQL Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: queryId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the SPARQL query to cancel.

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/data-loader-job-status-output-schema.json",
+  "title": "LoaderJobStatusOutput",
+  "description": "LoaderJobStatusOutput schema from Neptune",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "feedCount": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "overallStatus": {
+          "type": "object",
+          "properties": {
+            "fullUri": {
+              "type": "string"
+            },
+            "runNumber": {
+              "type": "integer"
+            },
+            "retryNumber": {
+              "type": "integer"
+            },
+            "status": {
+              "type": "string"
+            },
+            "totalTimeSpent": {
+              "type": "integer"
+            },
+            "startTime": {
+              "type": "integer"
+            },
+            "totalRecords": {
+              "type": "integer"
+            },
+            "totalDuplicates": {
+              "type": "integer"
+            },
+            "parsingErrors": {
+              "type": "integer"
+            },
+            "datatypeMismatchErrors": {
+              "type": "integer"
+            },
+            "insertErrors": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

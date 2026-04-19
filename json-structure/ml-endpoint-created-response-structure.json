@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/ml-endpoint-created-response-structure.json",
+  "name": "EndpointCreatedResponse",
+  "description": "EndpointCreatedResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the created endpoint."
+    }
+  }
+}

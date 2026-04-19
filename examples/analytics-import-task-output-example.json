@@ -1,0 +1,16 @@
+{
+  "graphId": "neptune-cluster-abc123",
+  "taskId": "neptune-cluster-abc123",
+  "source": "example-string",
+  "format": "example-string",
+  "roleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "status": "CANCELLED",
+  "importOptions": {},
+  "importTaskDetails": {
+    "status": "available",
+    "startTime": "2025-03-15T14:30:00Z",
+    "timeElapsedSeconds": 29,
+    "progressPercentage": 89,
+    "errorCount": 12
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "lastEventId": "example-ref",
+  "lastTrxTimestamp": 91,
+  "format": "NQUADS",
+  "records": [
+    "example-ref"
+  ],
+  "totalRecords": 38
+}

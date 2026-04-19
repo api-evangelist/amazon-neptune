@@ -1,0 +1,7 @@
+{
+  "gremlin": "example-string",
+  "results": true,
+  "chop": 17,
+  "serializer": "example-string",
+  "indexOps": false
+}

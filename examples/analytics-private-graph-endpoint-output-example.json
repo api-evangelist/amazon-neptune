@@ -1,0 +1,8 @@
+{
+  "vpcId": "neptune-cluster-abc123",
+  "subnetIds": [
+    "example-string"
+  ],
+  "status": "CREATING",
+  "vpcEndpointId": "neptune-cluster-abc123"
+}

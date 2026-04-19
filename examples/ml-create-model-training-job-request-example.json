@@ -1,0 +1,21 @@
+{
+  "id": "neptune-cluster-abc123",
+  "dataProcessingJobId": "neptune-cluster-abc123",
+  "trainModelS3Location": "example-string",
+  "previousModelTrainingJobId": "neptune-cluster-abc123",
+  "sagemakerIamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "neptuneIamRoleArn": "arn:aws:neptune:us-east-1:123456789012:cluster:neptune-1",
+  "modelName": "transe",
+  "baseProcessingInstanceType": "db.r6g.large",
+  "trainingInstanceType": "db.r6g.large",
+  "trainingInstanceVolumeSizeInGB": 16,
+  "trainingTimeOutInSeconds": 63,
+  "maxHPONumberOfTrainingJobs": 22,
+  "maxHPOParallelTrainingJobs": 17,
+  "subnets": [
+    "example-string"
+  ],
+  "securityGroupIds": [
+    "example-string"
+  ]
+}

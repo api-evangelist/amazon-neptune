@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-structure/management-db-cluster-role-structure.json",
+  "name": "DBClusterRole",
+  "description": "An IAM role associated with a Neptune DB cluster.",
+  "type": "object",
+  "properties": {
+    "RoleArn": {
+      "type": "string",
+      "description": "The ARN of the IAM role."
+    },
+    "Status": {
+      "type": "string",
+      "description": "The status of the association (active, pending, error)."
+    }
+  }
+}

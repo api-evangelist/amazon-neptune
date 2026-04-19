@@ -1,0 +1,100 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neptune": "https://neptune.dev/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "LoaderErrorResponse": "neptune:LoaderErrorResponse",
+    "LoaderListResponse": "neptune:LoaderListResponse",
+    "LoaderRequest": "neptune:LoaderRequest",
+    "LoaderStartResponse": "neptune:LoaderStartResponse",
+    "LoaderStatusResponse": "neptune:LoaderStatusResponse",
+    "allowEmptyStrings": {
+      "@id": "neptune:allowEmptyStrings",
+      "@type": "xsd:boolean"
+    },
+    "baseUri": {
+      "@id": "neptune:baseUri",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "neptune:code",
+      "@type": "xsd:string"
+    },
+    "dependencies": {
+      "@id": "neptune:dependencies",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "detailedMessage": {
+      "@id": "neptune:detailedMessage",
+      "@type": "xsd:string"
+    },
+    "failOnError": {
+      "@id": "neptune:failOnError",
+      "@type": "xsd:string"
+    },
+    "format": {
+      "@id": "neptune:format",
+      "@type": "xsd:string"
+    },
+    "iamRoleArn": {
+      "@id": "neptune:iamRoleArn",
+      "@type": "xsd:string"
+    },
+    "loadIds": {
+      "@id": "neptune:loadIds",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "mode": {
+      "@id": "neptune:mode",
+      "@type": "xsd:string"
+    },
+    "namedGraphUri": {
+      "@id": "neptune:namedGraphUri",
+      "@type": "xsd:string"
+    },
+    "parallelism": {
+      "@id": "neptune:parallelism",
+      "@type": "xsd:string"
+    },
+    "parserConfiguration": {
+      "@id": "neptune:parserConfiguration",
+      "@type": "@id"
+    },
+    "payload": {
+      "@id": "neptune:payload",
+      "@type": "@id"
+    },
+    "queueRequest": {
+      "@id": "neptune:queueRequest",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "neptune:region",
+      "@type": "xsd:string"
+    },
+    "requestId": {
+      "@id": "neptune:requestId",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "neptune:source",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "neptune:status",
+      "@type": "xsd:string"
+    },
+    "updateSingleCardinalityProperties": {
+      "@id": "neptune:updateSingleCardinalityProperties",
+      "@type": "xsd:string"
+    },
+    "userProvidedEdgeIds": {
+      "@id": "neptune:userProvidedEdgeIds",
+      "@type": "xsd:string"
+    }
+  }
+}

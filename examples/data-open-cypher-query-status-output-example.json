@@ -1,0 +1,11 @@
+{
+  "acceptedQueryCount": 91,
+  "runningQueryCount": 34,
+  "queries": [
+    {
+      "queryId": "neptune-cluster-abc123",
+      "queryString": "g.V().limit(10)",
+      "queryEvalStats": {}
+    }
+  ]
+}

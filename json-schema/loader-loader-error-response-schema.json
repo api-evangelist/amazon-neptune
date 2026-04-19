@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-neptune/refs/heads/main/json-schema/loader-loader-error-response-schema.json",
+  "title": "LoaderErrorResponse",
+  "description": "LoaderErrorResponse schema from Neptune",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "detailedMessage": {
+      "type": "string",
+      "description": "Detailed error message."
+    }
+  }
+}

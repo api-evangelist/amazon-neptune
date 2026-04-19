@@ -1,0 +1,8 @@
+{
+  "status": "available",
+  "payload": {
+    "loadIds": [
+      "example-string"
+    ]
+  }
+}
