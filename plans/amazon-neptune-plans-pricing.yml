@@ -4,165 +4,141 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Amazon Neptune
 providerId: amazon-neptune
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
+  - Amazon
   - AWS
   - Database
   - Graph Database
-  - Gremlin
-  - Neptune
-  - Property Graph
-  - RDF
-  - SPARQL
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Analytics
+description: Amazon Neptune is priced per database-instance-hour on either Standard (with separate I/O
+  charges) or I/O-Optimized (no I/O charges, higher instance and storage rates) configurations, plus
+  Neptune Serverless for variable workloads measured in NCUs (Neptune Capacity Units) billed per second.
+  Storage and backup are metered separately. Prices listed are us-east-1 on-demand.
+sources:
+  - https://aws.amazon.com/neptune/pricing/
 plans:
-  - id: amazon-neptune-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Amazon Neptune API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: amazon-neptune-provisioned-standard
+    name: Provisioned - Standard
+    type: usage-based
+    description: On-demand instance pricing with separate I/O charges. Storage at $0.10/GB-month plus per-million-IO
+      requests.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Amazon Neptune Management API
-      - name: Amazon Neptune Data API
-      - name: Neptune Gremlin API
-      - name: Neptune SPARQL API
-      - name: Neptune openCypher API
-      - name: Neptune Streams API
-      - name: Neptune Loader API
-      - name: Neptune ML API
-  - id: amazon-neptune-pro
-    name: Professional
-    type: paid
-    description: Production tier for Amazon Neptune. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: db.r5.large instance hour
+        name: db_r5_large_hour
         type: metered
-        metric: requests
+        metric: instance-hour
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.348'
+        userMultiplied: false
+      - label: db.r5d.2xlarge instance hour
+        name: db_r5d_2xlarge_hour
+        type: metered
+        metric: instance-hour
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '1.92'
+        userMultiplied: false
+      - label: Storage
+        name: storage_standard
+        type: metered
+        metric: gb-month
         limit: -1
         timeFrame: month
-        geo: global
-        domains: []
-        unit: 1000
-        price: TBD
+        geo: US
+        unit: 1
+        price: '0.10'
+        userMultiplied: false
+      - label: I/O requests
+        name: io_requests
+        type: metered
+        metric: io-request
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1000000
+        price: '0.20'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Amazon Neptune Management API
-      - name: Amazon Neptune Data API
-      - name: Neptune Gremlin API
-      - name: Neptune SPARQL API
-      - name: Neptune openCypher API
-      - name: Neptune Streams API
-      - name: Neptune Loader API
-      - name: Neptune ML API
-      - name: Neptune Analytics API
-  - id: amazon-neptune-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Amazon Neptune. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
+      - name: Pay-per-IO
+      - name: Lower per-instance hourly rate
+      - name: Multi-AZ replicas
+  - id: amazon-neptune-provisioned-io-optimized
+    name: Provisioned - I/O-Optimized
+    type: usage-based
+    description: Higher instance and storage rates with no separate I/O charges. Predictable cost for I/O-heavy
+      workloads.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: db.r5.large I/O-Optimized instance hour
+        name: db_r5_large_io_hour
+        type: metered
+        metric: instance-hour
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.4698'
+        userMultiplied: false
+      - label: Storage (I/O-Optimized)
+        name: storage_io_optimized
+        type: metered
+        metric: gb-month
         limit: -1
         timeFrame: month
-        geo: configurable
-        domains: []
+        geo: US
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
+        price: '0.225'
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Amazon Neptune Management API
-      - name: Amazon Neptune Data API
-      - name: Neptune Gremlin API
-      - name: Neptune SPARQL API
-      - name: Neptune openCypher API
-      - name: Neptune Streams API
-      - name: Neptune Loader API
-      - name: Neptune ML API
-      - name: Neptune Analytics API
+      - name: No per-IO charge
+      - name: Predictable cost at high IO
+  - id: amazon-neptune-serverless
+    name: Neptune Serverless
+    type: usage-based
+    description: Auto-scaling capacity measured in Neptune Capacity Units (NCUs) - 1 NCU is approximately
+      2 GB memory plus CPU/network. Billed per-second.
+    entries:
+      - label: NCU-hour
+        name: ncu_hour
+        type: metered
+        metric: ncu-hour
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: see vendor pricing calculator
+        userMultiplied: false
+    elements:
+      - name: Auto-scaling from 1 NCU
+      - name: Per-second billing
+      - name: No idle capacity charge below floor
+  - id: amazon-neptune-burstable-credits
+    name: Burstable CPU Credits (T3/T4g)
+    type: usage-based
+    description: Additional CPU credits charged when burstable instances exceed baseline.
+    entries:
+      - label: vCPU-hour over baseline
+        name: cpu_credit
+        type: metered
+        metric: vcpu-hour
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '0.15'
+        userMultiplied: false
+    elements:
+      - name: Applies to db.t3.medium and db.t4g.medium only
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
     url: https://apievangelist.com
+  - name: Amazon Web Services
+    email: support@aws.amazon.com
+    url: https://aws.amazon.com

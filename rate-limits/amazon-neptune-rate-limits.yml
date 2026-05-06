@@ -4,130 +4,68 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Amazon Neptune
 providerId: amazon-neptune
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
+  - Rate Limiting
   - AWS
   - Database
   - Graph Database
-  - Gremlin
   - Neptune
-  - Property Graph
-  - RDF
-  - SPARQL
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Amazon Neptune API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+description: Amazon Neptune has two distinct API surfaces. The control-plane (CreateDBCluster, etc.) is
+  throttled per-account/region under the standard AWS API throttling envelope. The data-plane (Gremlin/SPARQL/openCypher
+  endpoints) accepts queries up to the configured query timeout and concurrent-request limit on each
+  cluster, scaling with instance class. Use exponential backoff with jitter on ThrottlingException and
+  ConcurrentModificationException.
+sources:
+  - https://docs.aws.amazon.com/neptune/latest/userguide/limits.html
+  - https://docs.aws.amazon.com/general/latest/gr/api-retries.html
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
+  requestId: x-amzn-RequestId
   retryAfter: Retry-After
-  policy: RateLimit-Policy
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
+  throttled: 400
+  quotaExceeded: 400
   serviceUnavailable: 503
+  queryTimeout: 408
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Amazon Neptune Management API
-      - Amazon Neptune Data API
-      - Neptune Gremlin API
-      - Neptune SPARQL API
-      - Neptune openCypher API
-      - Neptune Streams API
-      - Neptune Loader API
-      - Neptune ML API
-      - Neptune Analytics API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Amazon Neptune Management API
-      - Amazon Neptune Data API
-      - Neptune Gremlin API
-      - Neptune SPARQL API
-      - Neptune openCypher API
-      - Neptune Streams API
-      - Neptune Loader API
-      - Neptune ML API
-      - Neptune Analytics API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Amazon Neptune Management API
-      - Amazon Neptune Data API
-      - Neptune Gremlin API
-      - Neptune SPARQL API
-      - Neptune openCypher API
-      - Neptune Streams API
-      - Neptune Loader API
-      - Neptune ML API
-      - Neptune Analytics API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Amazon Neptune Management API
-      - Amazon Neptune Data API
-      - Neptune Gremlin API
-      - Neptune SPARQL API
-      - Neptune openCypher API
-      - Neptune Streams API
-      - Neptune Loader API
-      - Neptune ML API
-      - Neptune Analytics API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Amazon Neptune Management API
-      - Amazon Neptune Data API
-      - Neptune Gremlin API
-      - Neptune SPARQL API
-      - Neptune openCypher API
-      - Neptune Streams API
-      - Neptune Loader API
-      - Neptune ML API
-      - Neptune Analytics API
+  - name: Neptune control-plane API throttling
+    scope: account/region
+    metric: varies
+    limit: see Service Quotas console for Neptune
+    notes: Standard AWS API throttling. Limits depend on action.
+  - name: Concurrent open queries (data-plane)
+    scope: cluster
+    metric: concurrent_requests
+    limit: varies by instance class
+    notes: Approximately 8 to 80 concurrent queries depending on instance type; configurable via DB cluster
+      parameter group.
+  - name: Default query timeout
+    scope: cluster
+    metric: seconds
+    limit: 120
+    timeFrame: second
+    notes: Configurable via neptune_query_timeout parameter (max 2,147,483,647 ms).
+  - name: Clusters per account/region
+    scope: account/region
+    metric: count
+    limit: 40
+    notes: Soft default; raisable via Service Quotas.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Backoff with jitter
+    description: AWS SDKs default to standard retry mode (truncated exponential backoff with jitter, max
+      20s, 3 attempts).
+  - name: Read scaling
+    description: Add up to 15 read replicas per cluster to absorb concurrent queries.
+  - name: Long-running queries
+    description: Use the Neptune Status API (/status) and explicit /gremlin/status endpoints to monitor
+      and cancel long-running queries.
+  - name: Quota increases
+    description: Most quotas are soft and can be raised via Service Quotas.
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
     url: https://apievangelist.com
+  - name: Amazon Web Services
+    email: support@aws.amazon.com
+    url: https://aws.amazon.com
