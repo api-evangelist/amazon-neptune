@@ -242,6 +242,15 @@ apis:
     url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: Getting Started
     url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+integrations:
+  - name: Partner Programs
+  - name: Resources
+  - name: Success Stories
+  - name: Work with an AWS Partner
+  - name: AWS Marketplace
+  - name: AWS Partner Central
+  - name: Partner Paths
+  - name: co-sell with AWS
 maintainers:
 - name: Kin Lane
   email: kin@apievangelist.com
@@ -415,3 +424,5 @@ common:
 - type: JSON-LD
   url: json-ld/amazon-neptune-streams-context.jsonld
   title: Streams Context
+- type: Integrations
+  url: https://aws.amazon.com/partners/
