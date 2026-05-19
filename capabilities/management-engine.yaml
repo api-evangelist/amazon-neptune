@@ -1,0 +1,115 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Management API — Engine
+  description: 'Amazon Neptune Management API — Engine. 1 operations. Lead operation: Amazon Neptune Describe Neptune DB Engine
+    Versions. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Engine
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-engine
+    baseUri: https://rds.{region}.amazonaws.com
+    description: Amazon Neptune Management API — Engine business capability. Self-contained, no shared references.
+    resources:
+    - name: ?Action=DescribeDBEngineVersions
+      path: /?Action=DescribeDBEngineVersions
+      operations:
+      - name: describedbengineversions
+        method: GET
+        description: Amazon Neptune Describe Neptune DB Engine Versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Engine
+          in: query
+          type: string
+          description: The database engine to return versions for.
+        - name: EngineVersion
+          in: query
+          type: string
+          description: A specific engine version to return details for.
+        - name: DBParameterGroupFamily
+          in: query
+          type: string
+          description: The parameter group family to filter versions by.
+        - name: MaxRecords
+          in: query
+          type: integer
+        - name: Marker
+          in: query
+          type: string
+        - name: Version
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: management-engine-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Management API — Engine. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/action-describedbengineversions
+      name: action-describedbengineversions
+      description: REST surface for ?Action=DescribeDBEngineVersions.
+      operations:
+      - method: GET
+        name: describedbengineversions
+        description: Amazon Neptune Describe Neptune DB Engine Versions
+        call: management-engine.describedbengineversions
+        with:
+          Action: rest.Action
+          Engine: rest.Engine
+          EngineVersion: rest.EngineVersion
+          DBParameterGroupFamily: rest.DBParameterGroupFamily
+          MaxRecords: rest.MaxRecords
+          Marker: rest.Marker
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-engine-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Management API — Engine. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-neptune-describe-neptune-db
+      description: Amazon Neptune Describe Neptune DB Engine Versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-engine.describedbengineversions
+      with:
+        Action: tools.Action
+        Engine: tools.Engine
+        EngineVersion: tools.EngineVersion
+        DBParameterGroupFamily: tools.DBParameterGroupFamily
+        MaxRecords: tools.MaxRecords
+        Marker: tools.Marker
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.

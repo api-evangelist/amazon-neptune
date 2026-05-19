@@ -1,0 +1,275 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Data API — Gremlin
+  description: 'Amazon Neptune Data API — Gremlin. 6 operations. Lead operation: Amazon Neptune Execute a Gremlin Query via
+    the Data API. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Gremlin
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-gremlin
+    baseUri: https://neptune-db.{region}.amazonaws.com
+    description: Amazon Neptune Data API — Gremlin business capability. Self-contained, no shared references.
+    resources:
+    - name: gremlin
+      path: /gremlin
+      operations:
+      - name: executegremlinquery
+        method: POST
+        description: Amazon Neptune Execute a Gremlin Query via the Data API
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: gremlin-explain
+      path: /gremlin/explain
+      operations:
+      - name: executegremlinexplainquery
+        method: POST
+        description: Amazon Neptune Get the Execution Plan for a Gremlin Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: gremlin-profile
+      path: /gremlin/profile
+      operations:
+      - name: executegremlinprofilequery
+        method: POST
+        description: Amazon Neptune Profile a Gremlin Query Execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: gremlin-status
+      path: /gremlin/status
+      operations:
+      - name: getgremlinquerystatus
+        method: GET
+        description: Amazon Neptune Get the Status of Gremlin Queries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gremlin-status-queryId
+      path: /gremlin/status/{queryId}
+      operations:
+      - name: getgremlinquerystatusbyid
+        method: GET
+        description: Amazon Neptune Get the Status of a Specific Gremlin Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: queryId
+          in: path
+          type: string
+          description: The unique identifier of the Gremlin query.
+          required: true
+      - name: cancelgremlinquery
+        method: DELETE
+        description: Amazon Neptune Cancel a Running Gremlin Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: queryId
+          in: path
+          type: string
+          description: The unique identifier of the Gremlin query to cancel.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: data-gremlin-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Data API — Gremlin. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/gremlin
+      name: gremlin
+      description: REST surface for gremlin.
+      operations:
+      - method: POST
+        name: executegremlinquery
+        description: Amazon Neptune Execute a Gremlin Query via the Data API
+        call: data-gremlin.executegremlinquery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gremlin/explain
+      name: gremlin-explain
+      description: REST surface for gremlin-explain.
+      operations:
+      - method: POST
+        name: executegremlinexplainquery
+        description: Amazon Neptune Get the Execution Plan for a Gremlin Query
+        call: data-gremlin.executegremlinexplainquery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gremlin/profile
+      name: gremlin-profile
+      description: REST surface for gremlin-profile.
+      operations:
+      - method: POST
+        name: executegremlinprofilequery
+        description: Amazon Neptune Profile a Gremlin Query Execution
+        call: data-gremlin.executegremlinprofilequery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gremlin/status
+      name: gremlin-status
+      description: REST surface for gremlin-status.
+      operations:
+      - method: GET
+        name: getgremlinquerystatus
+        description: Amazon Neptune Get the Status of Gremlin Queries
+        call: data-gremlin.getgremlinquerystatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gremlin/status/{queryid}
+      name: gremlin-status-queryid
+      description: REST surface for gremlin-status-queryId.
+      operations:
+      - method: GET
+        name: getgremlinquerystatusbyid
+        description: Amazon Neptune Get the Status of a Specific Gremlin Query
+        call: data-gremlin.getgremlinquerystatusbyid
+        with:
+          queryId: rest.queryId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelgremlinquery
+        description: Amazon Neptune Cancel a Running Gremlin Query
+        call: data-gremlin.cancelgremlinquery
+        with:
+          queryId: rest.queryId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-gremlin-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Data API — Gremlin. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-neptune-execute-gremlin-query
+      description: Amazon Neptune Execute a Gremlin Query via the Data API
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: data-gremlin.executegremlinquery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-execution-plan
+      description: Amazon Neptune Get the Execution Plan for a Gremlin Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: data-gremlin.executegremlinexplainquery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-profile-gremlin-query
+      description: Amazon Neptune Profile a Gremlin Query Execution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: data-gremlin.executegremlinprofilequery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-status-gremlin
+      description: Amazon Neptune Get the Status of Gremlin Queries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-gremlin.getgremlinquerystatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-status-specific
+      description: Amazon Neptune Get the Status of a Specific Gremlin Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-gremlin.getgremlinquerystatusbyid
+      with:
+        queryId: tools.queryId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-cancel-running-gremlin
+      description: Amazon Neptune Cancel a Running Gremlin Query
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: data-gremlin.cancelgremlinquery
+      with:
+        queryId: tools.queryId
+      outputParameters:
+      - type: object
+        mapping: $.

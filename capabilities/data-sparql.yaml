@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Data API — SPARQL
+  description: 'Amazon Neptune Data API — SPARQL. 2 operations. Lead operation: Amazon Neptune Execute a SPARQL Query via
+    the Data API. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - SPARQL
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-sparql
+    baseUri: https://neptune-db.{region}.amazonaws.com
+    description: Amazon Neptune Data API — SPARQL business capability. Self-contained, no shared references.
+    resources:
+    - name: sparql
+      path: /sparql
+      operations:
+      - name: executesparqlquery
+        method: POST
+        description: Amazon Neptune Execute a SPARQL Query via the Data API
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sparql-status
+      path: /sparql/status
+      operations:
+      - name: getsparqlquerystatus
+        method: GET
+        description: Amazon Neptune Get the Status of SPARQL Queries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: data-sparql-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Data API — SPARQL. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/sparql
+      name: sparql
+      description: REST surface for sparql.
+      operations:
+      - method: POST
+        name: executesparqlquery
+        description: Amazon Neptune Execute a SPARQL Query via the Data API
+        call: data-sparql.executesparqlquery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sparql/status
+      name: sparql-status
+      description: REST surface for sparql-status.
+      operations:
+      - method: GET
+        name: getsparqlquerystatus
+        description: Amazon Neptune Get the Status of SPARQL Queries
+        call: data-sparql.getsparqlquerystatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-sparql-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Data API — SPARQL. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-neptune-execute-sparql-query
+      description: Amazon Neptune Execute a SPARQL Query via the Data API
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: data-sparql.executesparqlquery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-status-sparql
+      description: Amazon Neptune Get the Status of SPARQL Queries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-sparql.getsparqlquerystatus
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,252 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Neptune Analytics API — Graph Snapshots
+  description: 'Amazon Neptune Neptune Analytics API — Graph Snapshots. 5 operations. Lead operation: Amazon Neptune Create
+    a Graph Snapshot. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Graph Snapshots
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: analytics-graph-snapshots
+    baseUri: https://neptune-graph.{region}.amazonaws.com
+    description: Amazon Neptune Neptune Analytics API — Graph Snapshots business capability. Self-contained, no shared references.
+    resources:
+    - name: snapshots
+      path: /snapshots
+      operations:
+      - name: creategraphsnapshot
+        method: POST
+        description: Amazon Neptune Create a Graph Snapshot
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listgraphsnapshots
+        method: GET
+        description: Amazon Neptune List Graph Snapshots
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: graphIdentifier
+          in: query
+          type: string
+          description: Filter snapshots by source graph identifier.
+        - name: maxResults
+          in: query
+          type: integer
+        - name: nextToken
+          in: query
+          type: string
+    - name: snapshots-snapshotIdentifier
+      path: /snapshots/{snapshotIdentifier}
+      operations:
+      - name: getgraphsnapshot
+        method: GET
+        description: Amazon Neptune Get Graph Snapshot Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: snapshotIdentifier
+          in: path
+          type: string
+          description: The unique identifier of the snapshot.
+          required: true
+      - name: deletegraphsnapshot
+        method: DELETE
+        description: Amazon Neptune Delete a Graph Snapshot
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: snapshotIdentifier
+          in: path
+          type: string
+          description: The unique identifier of the snapshot to delete.
+          required: true
+    - name: snapshots-snapshotIdentifier-restore
+      path: /snapshots/{snapshotIdentifier}/restore
+      operations:
+      - name: restoregraphfromsnapshot
+        method: POST
+        description: Amazon Neptune Restore a Graph from a Snapshot
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: snapshotIdentifier
+          in: path
+          type: string
+          description: The identifier of the snapshot to restore from.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: analytics-graph-snapshots-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Neptune Analytics API — Graph Snapshots. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/snapshots
+      name: snapshots
+      description: REST surface for snapshots.
+      operations:
+      - method: POST
+        name: creategraphsnapshot
+        description: Amazon Neptune Create a Graph Snapshot
+        call: analytics-graph-snapshots.creategraphsnapshot
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listgraphsnapshots
+        description: Amazon Neptune List Graph Snapshots
+        call: analytics-graph-snapshots.listgraphsnapshots
+        with:
+          graphIdentifier: rest.graphIdentifier
+          maxResults: rest.maxResults
+          nextToken: rest.nextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/snapshots/{snapshotidentifier}
+      name: snapshots-snapshotidentifier
+      description: REST surface for snapshots-snapshotIdentifier.
+      operations:
+      - method: GET
+        name: getgraphsnapshot
+        description: Amazon Neptune Get Graph Snapshot Details
+        call: analytics-graph-snapshots.getgraphsnapshot
+        with:
+          snapshotIdentifier: rest.snapshotIdentifier
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegraphsnapshot
+        description: Amazon Neptune Delete a Graph Snapshot
+        call: analytics-graph-snapshots.deletegraphsnapshot
+        with:
+          snapshotIdentifier: rest.snapshotIdentifier
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/snapshots/{snapshotidentifier}/restore
+      name: snapshots-snapshotidentifier-restore
+      description: REST surface for snapshots-snapshotIdentifier-restore.
+      operations:
+      - method: POST
+        name: restoregraphfromsnapshot
+        description: Amazon Neptune Restore a Graph from a Snapshot
+        call: analytics-graph-snapshots.restoregraphfromsnapshot
+        with:
+          snapshotIdentifier: rest.snapshotIdentifier
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: analytics-graph-snapshots-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Neptune Analytics API — Graph Snapshots. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: amazon-neptune-create-graph-snapshot
+      description: Amazon Neptune Create a Graph Snapshot
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: analytics-graph-snapshots.creategraphsnapshot
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-graph-snapshots
+      description: Amazon Neptune List Graph Snapshots
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-graph-snapshots.listgraphsnapshots
+      with:
+        graphIdentifier: tools.graphIdentifier
+        maxResults: tools.maxResults
+        nextToken: tools.nextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-graph-snapshot
+      description: Amazon Neptune Get Graph Snapshot Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-graph-snapshots.getgraphsnapshot
+      with:
+        snapshotIdentifier: tools.snapshotIdentifier
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-delete-graph-snapshot
+      description: Amazon Neptune Delete a Graph Snapshot
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: analytics-graph-snapshots.deletegraphsnapshot
+      with:
+        snapshotIdentifier: tools.snapshotIdentifier
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-restore-graph-snapshot
+      description: Amazon Neptune Restore a Graph from a Snapshot
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: analytics-graph-snapshots.restoregraphfromsnapshot
+      with:
+        snapshotIdentifier: tools.snapshotIdentifier
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,217 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Neptune ML API — Data Processing
+  description: 'Amazon Neptune Neptune ML API — Data Processing. 4 operations. Lead operation: Amazon Neptune Create an ML
+    Data Processing Job. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Data Processing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ml-data-processing
+    baseUri: https://{cluster-endpoint}:8182
+    description: Amazon Neptune Neptune ML API — Data Processing business capability. Self-contained, no shared references.
+    resources:
+    - name: ml-dataprocessing
+      path: /ml/dataprocessing
+      operations:
+      - name: createdataprocessingjob
+        method: POST
+        description: Amazon Neptune Create an ML Data Processing Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listdataprocessingjobs
+        method: GET
+        description: Amazon Neptune List Active Data Processing Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxItems
+          in: query
+          type: integer
+          description: Maximum number of items to return (default 10, max 1024).
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role for Neptune access.
+    - name: ml-dataprocessing-id
+      path: /ml/dataprocessing/{id}
+      operations:
+      - name: getdataprocessingjobstatus
+        method: GET
+        description: Amazon Neptune Get Data Processing Job Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the data processing job.
+          required: true
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role for Neptune access.
+      - name: stopdataprocessingjob
+        method: DELETE
+        description: Amazon Neptune Stop a Data Processing Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the data processing job.
+          required: true
+        - name: clean
+          in: query
+          type: boolean
+          description: Whether to delete all S3 artifacts when stopping.
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role for Neptune access.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: ml-data-processing-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Neptune ML API — Data Processing. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/ml/dataprocessing
+      name: ml-dataprocessing
+      description: REST surface for ml-dataprocessing.
+      operations:
+      - method: POST
+        name: createdataprocessingjob
+        description: Amazon Neptune Create an ML Data Processing Job
+        call: ml-data-processing.createdataprocessingjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listdataprocessingjobs
+        description: Amazon Neptune List Active Data Processing Jobs
+        call: ml-data-processing.listdataprocessingjobs
+        with:
+          maxItems: rest.maxItems
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/dataprocessing/{id}
+      name: ml-dataprocessing-id
+      description: REST surface for ml-dataprocessing-id.
+      operations:
+      - method: GET
+        name: getdataprocessingjobstatus
+        description: Amazon Neptune Get Data Processing Job Status
+        call: ml-data-processing.getdataprocessingjobstatus
+        with:
+          id: rest.id
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: stopdataprocessingjob
+        description: Amazon Neptune Stop a Data Processing Job
+        call: ml-data-processing.stopdataprocessingjob
+        with:
+          id: rest.id
+          clean: rest.clean
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ml-data-processing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Neptune ML API — Data Processing. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: amazon-neptune-create-ml-data
+      description: Amazon Neptune Create an ML Data Processing Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ml-data-processing.createdataprocessingjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-active-data
+      description: Amazon Neptune List Active Data Processing Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-data-processing.listdataprocessingjobs
+      with:
+        maxItems: tools.maxItems
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-data-processing
+      description: Amazon Neptune Get Data Processing Job Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-data-processing.getdataprocessingjobstatus
+      with:
+        id: tools.id
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-stop-data-processing
+      description: Amazon Neptune Stop a Data Processing Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ml-data-processing.stopdataprocessingjob
+      with:
+        id: tools.id
+        clean: tools.clean
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,333 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Management API — DB Instances
+  description: 'Amazon Neptune Management API — DB Instances. 5 operations. Lead operation: Amazon Neptune Create a New Neptune
+    DB Instance. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - DB Instances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-db-instances
+    baseUri: https://rds.{region}.amazonaws.com
+    description: Amazon Neptune Management API — DB Instances business capability. Self-contained, no shared references.
+    resources:
+    - name: ?Action=CreateDBInstance
+      path: /?Action=CreateDBInstance
+      operations:
+      - name: createdbinstance
+        method: POST
+        description: Amazon Neptune Create a New Neptune DB Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ?Action=DeleteDBInstance
+      path: /?Action=DeleteDBInstance
+      operations:
+      - name: deletedbinstance
+        method: POST
+        description: Amazon Neptune Delete a Neptune DB Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBInstanceIdentifier
+          in: query
+          type: string
+          description: The DB instance identifier for the instance to be deleted.
+          required: true
+        - name: SkipFinalSnapshot
+          in: query
+          type: boolean
+          description: Whether to skip creation of a final snapshot.
+        - name: Version
+          in: query
+          type: string
+          required: true
+    - name: ?Action=DescribeDBInstances
+      path: /?Action=DescribeDBInstances
+      operations:
+      - name: describedbinstances
+        method: GET
+        description: Amazon Neptune Describe Neptune DB Instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBInstanceIdentifier
+          in: query
+          type: string
+          description: The identifier of the DB instance to describe.
+        - name: MaxRecords
+          in: query
+          type: integer
+          description: Maximum number of records to include in the response.
+        - name: Marker
+          in: query
+          type: string
+          description: Pagination token from a previous request.
+        - name: Version
+          in: query
+          type: string
+          required: true
+    - name: ?Action=ModifyDBInstance
+      path: /?Action=ModifyDBInstance
+      operations:
+      - name: modifydbinstance
+        method: POST
+        description: Amazon Neptune Modify a Neptune DB Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ?Action=RebootDBInstance
+      path: /?Action=RebootDBInstance
+      operations:
+      - name: rebootdbinstance
+        method: POST
+        description: Amazon Neptune Reboot a Neptune DB Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBInstanceIdentifier
+          in: query
+          type: string
+          description: The identifier of the DB instance to reboot.
+          required: true
+        - name: ForceFailover
+          in: query
+          type: boolean
+          description: Whether to force a failover during the reboot.
+        - name: Version
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: management-db-instances-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Management API — DB Instances. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/action-createdbinstance
+      name: action-createdbinstance
+      description: REST surface for ?Action=CreateDBInstance.
+      operations:
+      - method: POST
+        name: createdbinstance
+        description: Amazon Neptune Create a New Neptune DB Instance
+        call: management-db-instances.createdbinstance
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-deletedbinstance
+      name: action-deletedbinstance
+      description: REST surface for ?Action=DeleteDBInstance.
+      operations:
+      - method: POST
+        name: deletedbinstance
+        description: Amazon Neptune Delete a Neptune DB Instance
+        call: management-db-instances.deletedbinstance
+        with:
+          Action: rest.Action
+          DBInstanceIdentifier: rest.DBInstanceIdentifier
+          SkipFinalSnapshot: rest.SkipFinalSnapshot
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-describedbinstances
+      name: action-describedbinstances
+      description: REST surface for ?Action=DescribeDBInstances.
+      operations:
+      - method: GET
+        name: describedbinstances
+        description: Amazon Neptune Describe Neptune DB Instances
+        call: management-db-instances.describedbinstances
+        with:
+          Action: rest.Action
+          DBInstanceIdentifier: rest.DBInstanceIdentifier
+          MaxRecords: rest.MaxRecords
+          Marker: rest.Marker
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-modifydbinstance
+      name: action-modifydbinstance
+      description: REST surface for ?Action=ModifyDBInstance.
+      operations:
+      - method: POST
+        name: modifydbinstance
+        description: Amazon Neptune Modify a Neptune DB Instance
+        call: management-db-instances.modifydbinstance
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-rebootdbinstance
+      name: action-rebootdbinstance
+      description: REST surface for ?Action=RebootDBInstance.
+      operations:
+      - method: POST
+        name: rebootdbinstance
+        description: Amazon Neptune Reboot a Neptune DB Instance
+        call: management-db-instances.rebootdbinstance
+        with:
+          Action: rest.Action
+          DBInstanceIdentifier: rest.DBInstanceIdentifier
+          ForceFailover: rest.ForceFailover
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-db-instances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Management API — DB Instances. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: amazon-neptune-create-new-neptune
+      description: Amazon Neptune Create a New Neptune DB Instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-instances.createdbinstance
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-delete-neptune-db
+      description: Amazon Neptune Delete a Neptune DB Instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-instances.deletedbinstance
+      with:
+        Action: tools.Action
+        DBInstanceIdentifier: tools.DBInstanceIdentifier
+        SkipFinalSnapshot: tools.SkipFinalSnapshot
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-describe-neptune-db
+      description: Amazon Neptune Describe Neptune DB Instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-db-instances.describedbinstances
+      with:
+        Action: tools.Action
+        DBInstanceIdentifier: tools.DBInstanceIdentifier
+        MaxRecords: tools.MaxRecords
+        Marker: tools.Marker
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-modify-neptune-db
+      description: Amazon Neptune Modify a Neptune DB Instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-instances.modifydbinstance
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-reboot-neptune-db
+      description: Amazon Neptune Reboot a Neptune DB Instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-instances.rebootdbinstance
+      with:
+        Action: tools.Action
+        DBInstanceIdentifier: tools.DBInstanceIdentifier
+        ForceFailover: tools.ForceFailover
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,210 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Neptune ML API — Model Transform
+  description: 'Amazon Neptune Neptune ML API — Model Transform. 4 operations. Lead operation: Amazon Neptune Create an ML
+    Model Transform Job. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Model Transform
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ml-model-transform
+    baseUri: https://{cluster-endpoint}:8182
+    description: Amazon Neptune Neptune ML API — Model Transform business capability. Self-contained, no shared references.
+    resources:
+    - name: ml-modeltransform
+      path: /ml/modeltransform
+      operations:
+      - name: createmodeltransformjob
+        method: POST
+        description: Amazon Neptune Create an ML Model Transform Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmodeltransformjobs
+        method: GET
+        description: Amazon Neptune List Active Model Transform Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxItems
+          in: query
+          type: integer
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    - name: ml-modeltransform-id
+      path: /ml/modeltransform/{id}
+      operations:
+      - name: getmodeltransformjobstatus
+        method: GET
+        description: Amazon Neptune Get Model Transform Job Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+      - name: stopmodeltransformjob
+        method: DELETE
+        description: Amazon Neptune Stop a Model Transform Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: clean
+          in: query
+          type: boolean
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: ml-model-transform-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Neptune ML API — Model Transform. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/ml/modeltransform
+      name: ml-modeltransform
+      description: REST surface for ml-modeltransform.
+      operations:
+      - method: POST
+        name: createmodeltransformjob
+        description: Amazon Neptune Create an ML Model Transform Job
+        call: ml-model-transform.createmodeltransformjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmodeltransformjobs
+        description: Amazon Neptune List Active Model Transform Jobs
+        call: ml-model-transform.listmodeltransformjobs
+        with:
+          maxItems: rest.maxItems
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/modeltransform/{id}
+      name: ml-modeltransform-id
+      description: REST surface for ml-modeltransform-id.
+      operations:
+      - method: GET
+        name: getmodeltransformjobstatus
+        description: Amazon Neptune Get Model Transform Job Status
+        call: ml-model-transform.getmodeltransformjobstatus
+        with:
+          id: rest.id
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: stopmodeltransformjob
+        description: Amazon Neptune Stop a Model Transform Job
+        call: ml-model-transform.stopmodeltransformjob
+        with:
+          id: rest.id
+          clean: rest.clean
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ml-model-transform-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Neptune ML API — Model Transform. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: amazon-neptune-create-ml-model
+      description: Amazon Neptune Create an ML Model Transform Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ml-model-transform.createmodeltransformjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-active-model
+      description: Amazon Neptune List Active Model Transform Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-model-transform.listmodeltransformjobs
+      with:
+        maxItems: tools.maxItems
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-model-transform
+      description: Amazon Neptune Get Model Transform Job Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-model-transform.getmodeltransformjobstatus
+      with:
+        id: tools.id
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-stop-model-transform
+      description: Amazon Neptune Stop a Model Transform Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ml-model-transform.stopmodeltransformjob
+      with:
+        id: tools.id
+        clean: tools.clean
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Data API — Status
+  description: 'Amazon Neptune Data API — Status. 5 operations. Lead operation: Amazon Neptune Get Property Graph Statistics.
+    Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Status
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-status
+    baseUri: https://neptune-db.{region}.amazonaws.com
+    description: Amazon Neptune Data API — Status business capability. Self-contained, no shared references.
+    resources:
+    - name: propertygraph-statistics
+      path: /propertygraph/statistics
+      operations:
+      - name: getpropertygraphstatistics
+        method: GET
+        description: Amazon Neptune Get Property Graph Statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: managepropertygraphstatistics
+        method: POST
+        description: Amazon Neptune Manage Property Graph Statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sparql-statistics
+      path: /sparql/statistics
+      operations:
+      - name: getsparqlstatistics
+        method: GET
+        description: Amazon Neptune Get SPARQL RDF Statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: managesparqlstatistics
+        method: POST
+        description: Amazon Neptune Manage SPARQL RDF Statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: status
+      path: /status
+      operations:
+      - name: getenginestatus
+        method: GET
+        description: Amazon Neptune Get Neptune Engine Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: data-status-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Data API — Status. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/propertygraph/statistics
+      name: propertygraph-statistics
+      description: REST surface for propertygraph-statistics.
+      operations:
+      - method: GET
+        name: getpropertygraphstatistics
+        description: Amazon Neptune Get Property Graph Statistics
+        call: data-status.getpropertygraphstatistics
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: managepropertygraphstatistics
+        description: Amazon Neptune Manage Property Graph Statistics
+        call: data-status.managepropertygraphstatistics
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sparql/statistics
+      name: sparql-statistics
+      description: REST surface for sparql-statistics.
+      operations:
+      - method: GET
+        name: getsparqlstatistics
+        description: Amazon Neptune Get SPARQL RDF Statistics
+        call: data-status.getsparqlstatistics
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: managesparqlstatistics
+        description: Amazon Neptune Manage SPARQL RDF Statistics
+        call: data-status.managesparqlstatistics
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/status
+      name: status
+      description: REST surface for status.
+      operations:
+      - method: GET
+        name: getenginestatus
+        description: Amazon Neptune Get Neptune Engine Status
+        call: data-status.getenginestatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-status-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Data API — Status. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-neptune-get-property-graph
+      description: Amazon Neptune Get Property Graph Statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-status.getpropertygraphstatistics
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-manage-property-graph
+      description: Amazon Neptune Manage Property Graph Statistics
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-status.managepropertygraphstatistics
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-sparql-rdf
+      description: Amazon Neptune Get SPARQL RDF Statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-status.getsparqlstatistics
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-manage-sparql-rdf
+      description: Amazon Neptune Manage SPARQL RDF Statistics
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-status.managesparqlstatistics
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-neptune-engine
+      description: Amazon Neptune Get Neptune Engine Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-status.getenginestatus
+      outputParameters:
+      - type: object
+        mapping: $.

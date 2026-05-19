@@ -1,0 +1,562 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Management API — DB Clusters
+  description: 'Amazon Neptune Management API — DB Clusters. 9 operations. Lead operation: Amazon Neptune Describe Neptune
+    DB Clusters. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - DB Clusters
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-db-clusters
+    baseUri: https://rds.{region}.amazonaws.com
+    description: Amazon Neptune Management API — DB Clusters business capability. Self-contained, no shared references.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: describedbclusters
+        method: GET
+        description: Amazon Neptune Describe Neptune DB Clusters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBClusterIdentifier
+          in: query
+          type: string
+          description: The identifier of the DB cluster to describe.
+        - name: MaxRecords
+          in: query
+          type: integer
+          description: Maximum number of records to include in the response (20-100).
+        - name: Marker
+          in: query
+          type: string
+          description: Pagination token from a previous request.
+        - name: Version
+          in: query
+          type: string
+          required: true
+      - name: createdbcluster
+        method: POST
+        description: Amazon Neptune Create a New Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ?Action=AddRoleToDBCluster
+      path: /?Action=AddRoleToDBCluster
+      operations:
+      - name: addroletodbcluster
+        method: POST
+        description: Amazon Neptune Associate an IAM Role with a Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBClusterIdentifier
+          in: query
+          type: string
+          description: The name of the DB cluster to associate the IAM role with.
+          required: true
+        - name: RoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role to associate with the cluster.
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+    - name: ?Action=DeleteDBCluster
+      path: /?Action=DeleteDBCluster
+      operations:
+      - name: deletedbcluster
+        method: POST
+        description: Amazon Neptune Delete a Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBClusterIdentifier
+          in: query
+          type: string
+          description: The DB cluster identifier for the cluster to be deleted.
+          required: true
+        - name: SkipFinalSnapshot
+          in: query
+          type: boolean
+          description: Whether to skip creation of a final snapshot before deletion.
+        - name: FinalDBSnapshotIdentifier
+          in: query
+          type: string
+          description: The identifier of the final snapshot to create before deletion.
+        - name: Version
+          in: query
+          type: string
+          required: true
+    - name: ?Action=FailoverDBCluster
+      path: /?Action=FailoverDBCluster
+      operations:
+      - name: failoverdbcluster
+        method: POST
+        description: Amazon Neptune Force a Failover for a Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBClusterIdentifier
+          in: query
+          type: string
+          description: The identifier of the cluster to force a failover for.
+          required: true
+        - name: TargetDBInstanceIdentifier
+          in: query
+          type: string
+          description: The name of the instance to promote to the primary instance.
+        - name: Version
+          in: query
+          type: string
+          required: true
+    - name: ?Action=ModifyDBCluster
+      path: /?Action=ModifyDBCluster
+      operations:
+      - name: modifydbcluster
+        method: POST
+        description: Amazon Neptune Modify a Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ?Action=RemoveRoleFromDBCluster
+      path: /?Action=RemoveRoleFromDBCluster
+      operations:
+      - name: removerolefromdbcluster
+        method: POST
+        description: Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBClusterIdentifier
+          in: query
+          type: string
+          description: The name of the DB cluster to disassociate the role from.
+          required: true
+        - name: RoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role to disassociate.
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+    - name: ?Action=StartDBCluster
+      path: /?Action=StartDBCluster
+      operations:
+      - name: startdbcluster
+        method: POST
+        description: Amazon Neptune Start a Stopped Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBClusterIdentifier
+          in: query
+          type: string
+          description: The identifier of the DB cluster to start.
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+    - name: ?Action=StopDBCluster
+      path: /?Action=StopDBCluster
+      operations:
+      - name: stopdbcluster
+        method: POST
+        description: Amazon Neptune Stop a Running Neptune DB Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: DBClusterIdentifier
+          in: query
+          type: string
+          description: The identifier of the DB cluster to stop.
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: management-db-clusters-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Management API — DB Clusters. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: GET
+        name: describedbclusters
+        description: Amazon Neptune Describe Neptune DB Clusters
+        call: management-db-clusters.describedbclusters
+        with:
+          Action: rest.Action
+          DBClusterIdentifier: rest.DBClusterIdentifier
+          MaxRecords: rest.MaxRecords
+          Marker: rest.Marker
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdbcluster
+        description: Amazon Neptune Create a New Neptune DB Cluster
+        call: management-db-clusters.createdbcluster
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-addroletodbcluster
+      name: action-addroletodbcluster
+      description: REST surface for ?Action=AddRoleToDBCluster.
+      operations:
+      - method: POST
+        name: addroletodbcluster
+        description: Amazon Neptune Associate an IAM Role with a Neptune DB Cluster
+        call: management-db-clusters.addroletodbcluster
+        with:
+          Action: rest.Action
+          DBClusterIdentifier: rest.DBClusterIdentifier
+          RoleArn: rest.RoleArn
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-deletedbcluster
+      name: action-deletedbcluster
+      description: REST surface for ?Action=DeleteDBCluster.
+      operations:
+      - method: POST
+        name: deletedbcluster
+        description: Amazon Neptune Delete a Neptune DB Cluster
+        call: management-db-clusters.deletedbcluster
+        with:
+          Action: rest.Action
+          DBClusterIdentifier: rest.DBClusterIdentifier
+          SkipFinalSnapshot: rest.SkipFinalSnapshot
+          FinalDBSnapshotIdentifier: rest.FinalDBSnapshotIdentifier
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-failoverdbcluster
+      name: action-failoverdbcluster
+      description: REST surface for ?Action=FailoverDBCluster.
+      operations:
+      - method: POST
+        name: failoverdbcluster
+        description: Amazon Neptune Force a Failover for a Neptune DB Cluster
+        call: management-db-clusters.failoverdbcluster
+        with:
+          Action: rest.Action
+          DBClusterIdentifier: rest.DBClusterIdentifier
+          TargetDBInstanceIdentifier: rest.TargetDBInstanceIdentifier
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-modifydbcluster
+      name: action-modifydbcluster
+      description: REST surface for ?Action=ModifyDBCluster.
+      operations:
+      - method: POST
+        name: modifydbcluster
+        description: Amazon Neptune Modify a Neptune DB Cluster
+        call: management-db-clusters.modifydbcluster
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-removerolefromdbcluster
+      name: action-removerolefromdbcluster
+      description: REST surface for ?Action=RemoveRoleFromDBCluster.
+      operations:
+      - method: POST
+        name: removerolefromdbcluster
+        description: Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster
+        call: management-db-clusters.removerolefromdbcluster
+        with:
+          Action: rest.Action
+          DBClusterIdentifier: rest.DBClusterIdentifier
+          RoleArn: rest.RoleArn
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-startdbcluster
+      name: action-startdbcluster
+      description: REST surface for ?Action=StartDBCluster.
+      operations:
+      - method: POST
+        name: startdbcluster
+        description: Amazon Neptune Start a Stopped Neptune DB Cluster
+        call: management-db-clusters.startdbcluster
+        with:
+          Action: rest.Action
+          DBClusterIdentifier: rest.DBClusterIdentifier
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/action-stopdbcluster
+      name: action-stopdbcluster
+      description: REST surface for ?Action=StopDBCluster.
+      operations:
+      - method: POST
+        name: stopdbcluster
+        description: Amazon Neptune Stop a Running Neptune DB Cluster
+        call: management-db-clusters.stopdbcluster
+        with:
+          Action: rest.Action
+          DBClusterIdentifier: rest.DBClusterIdentifier
+          Version: rest.Version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-db-clusters-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Management API — DB Clusters. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: amazon-neptune-describe-neptune-db
+      description: Amazon Neptune Describe Neptune DB Clusters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-db-clusters.describedbclusters
+      with:
+        Action: tools.Action
+        DBClusterIdentifier: tools.DBClusterIdentifier
+        MaxRecords: tools.MaxRecords
+        Marker: tools.Marker
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-create-new-neptune
+      description: Amazon Neptune Create a New Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.createdbcluster
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-associate-iam-role
+      description: Amazon Neptune Associate an IAM Role with a Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.addroletodbcluster
+      with:
+        Action: tools.Action
+        DBClusterIdentifier: tools.DBClusterIdentifier
+        RoleArn: tools.RoleArn
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-delete-neptune-db
+      description: Amazon Neptune Delete a Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.deletedbcluster
+      with:
+        Action: tools.Action
+        DBClusterIdentifier: tools.DBClusterIdentifier
+        SkipFinalSnapshot: tools.SkipFinalSnapshot
+        FinalDBSnapshotIdentifier: tools.FinalDBSnapshotIdentifier
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-force-failover-neptune
+      description: Amazon Neptune Force a Failover for a Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.failoverdbcluster
+      with:
+        Action: tools.Action
+        DBClusterIdentifier: tools.DBClusterIdentifier
+        TargetDBInstanceIdentifier: tools.TargetDBInstanceIdentifier
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-modify-neptune-db
+      description: Amazon Neptune Modify a Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.modifydbcluster
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-disassociate-iam-role
+      description: Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.removerolefromdbcluster
+      with:
+        Action: tools.Action
+        DBClusterIdentifier: tools.DBClusterIdentifier
+        RoleArn: tools.RoleArn
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-start-stopped-neptune
+      description: Amazon Neptune Start a Stopped Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.startdbcluster
+      with:
+        Action: tools.Action
+        DBClusterIdentifier: tools.DBClusterIdentifier
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-stop-running-neptune
+      description: Amazon Neptune Stop a Running Neptune DB Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-db-clusters.stopdbcluster
+      with:
+        Action: tools.Action
+        DBClusterIdentifier: tools.DBClusterIdentifier
+        Version: tools.Version
+      outputParameters:
+      - type: object
+        mapping: $.

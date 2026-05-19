@@ -1,9 +1,7 @@
 name: Amazon Neptune
-description: >-
-  Amazon Neptune is a fast, reliable, fully managed graph database service
-  that makes it easy to build and run applications that work with highly
-  connected datasets. It supports property graph and RDF models, with
-  multiple query languages including Gremlin, SPARQL, and openCypher.
+description: Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build and run
+  applications that work with highly connected datasets. It supports property graph and RDF models, with multiple query languages
+  including Gremlin, SPARQL, and openCypher.
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 tags:
 - AWS
@@ -15,14 +13,12 @@ tags:
 - RDF
 - SPARQL
 created: '2024'
-modified: '2026-04-19'
+modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
 - name: Amazon Neptune Management API
-  description: >-
-    Amazon Neptune Management API for creating, managing, and deleting Neptune
-    DB clusters, instances, parameter groups, snapshots, and related
-    infrastructure resources.
+  description: Amazon Neptune Management API for creating, managing, and deleting Neptune DB clusters, instances, parameter
+    groups, snapshots, and related infrastructure resources.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://aws.amazon.com/neptune/
   baseUrl: https://rds.{region}.amazonaws.com
@@ -44,11 +40,29 @@ apis:
     url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
   - type: SDKs
     url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
+  - type: NaftikoCapability
+    url: capabilities/management-general.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-db-clusters.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-db-instances.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-engine.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-events.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-global-clusters.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-maintenance.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-parameter-groups.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-snapshots.yaml
+  - type: NaftikoCapability
+    url: capabilities/management-subnet-groups.yaml
 - name: Amazon Neptune Data API
-  description: >-
-    Amazon Neptune Data API provides SDK support for more than 40 data
-    operations including data loading, query execution, data inquiry, and
-    machine learning. It supports Gremlin and openCypher query languages.
+  description: Amazon Neptune Data API provides SDK support for more than 40 data operations including data loading, query
+    execution, data inquiry, and machine learning. It supports Gremlin and openCypher query languages.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
   baseUrl: https://neptune-db.{region}.amazonaws.com
@@ -72,11 +86,23 @@ apis:
     url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
   - type: Go SDK
     url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
+  - type: NaftikoCapability
+    url: capabilities/data-gremlin.yaml
+  - type: NaftikoCapability
+    url: capabilities/data-loader.yaml
+  - type: NaftikoCapability
+    url: capabilities/data-ml.yaml
+  - type: NaftikoCapability
+    url: capabilities/data-sparql.yaml
+  - type: NaftikoCapability
+    url: capabilities/data-status.yaml
+  - type: NaftikoCapability
+    url: capabilities/data-streams.yaml
+  - type: NaftikoCapability
+    url: capabilities/data-opencypher.yaml
 - name: Neptune Gremlin API
-  description: >-
-    Apache TinkerPop Gremlin graph traversal language API for querying
-    property graphs in Neptune. It supports both WebSocket and HTTP REST
-    endpoints for submitting Gremlin traversals.
+  description: Apache TinkerPop Gremlin graph traversal language API for querying property graphs in Neptune. It supports
+    both WebSocket and HTTP REST endpoints for submitting Gremlin traversals.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
   baseUrl: wss://{cluster-endpoint}:8182/gremlin
@@ -98,11 +124,13 @@ apis:
     url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
   - type: REST Endpoint
     url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
+  - type: NaftikoCapability
+    url: capabilities/gremlin-query.yaml
+  - type: NaftikoCapability
+    url: capabilities/gremlin-status.yaml
 - name: Neptune SPARQL API
-  description: >-
-    W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune.
-    It provides an HTTP REST endpoint compatible with the SPARQL 1.1
-    protocol specification.
+  description: W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune. It provides an HTTP REST endpoint compatible
+    with the SPARQL 1.1 protocol specification.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
   baseUrl: https://{cluster-endpoint}:8182/sparql
@@ -122,11 +150,13 @@ apis:
     url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
   - type: REST Endpoint
     url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
+  - type: NaftikoCapability
+    url: capabilities/sparql-query.yaml
+  - type: NaftikoCapability
+    url: capabilities/sparql-status.yaml
 - name: Neptune openCypher API
-  description: >-
-    openCypher graph query language API for querying property graphs with
-    Cypher syntax in Neptune. It provides an HTTP endpoint for executing
-    openCypher queries against property graph data.
+  description: openCypher graph query language API for querying property graphs with Cypher syntax in Neptune. It provides
+    an HTTP endpoint for executing openCypher queries against property graph data.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
   baseUrl: https://{cluster-endpoint}:8182/openCypher
@@ -144,11 +174,13 @@ apis:
     url: https://opencypher.org/
   - type: Best Practices
     url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
+  - type: NaftikoCapability
+    url: capabilities/opencypher-query.yaml
+  - type: NaftikoCapability
+    url: capabilities/opencypher-status.yaml
 - name: Neptune Streams API
-  description: >-
-    Neptune Streams generates a complete sequence of change-log entries that
-    record every change made to graph data as it happens, enabling real-time
-    capture of graph mutations via a REST API.
+  description: Neptune Streams generates a complete sequence of change-log entries that record every change made to graph
+    data as it happens, enabling real-time capture of graph mutations via a REST API.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
   baseUrl: https://{cluster-endpoint}:8182
@@ -168,11 +200,13 @@ apis:
     url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
   - type: Data API Reference
     url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
+  - type: NaftikoCapability
+    url: capabilities/streams-property-graph-stream.yaml
+  - type: NaftikoCapability
+    url: capabilities/streams-sparql-stream.yaml
 - name: Neptune Loader API
-  description: >-
-    Neptune bulk loader API for ingesting large volumes of data from Amazon
-    S3 into a Neptune DB instance. It supports CSV formats for property
-    graphs and multiple RDF serialization formats.
+  description: Neptune bulk loader API for ingesting large volumes of data from Amazon S3 into a Neptune DB instance. It supports
+    CSV formats for property graphs and multiple RDF serialization formats.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
   baseUrl: https://{cluster-endpoint}:8182/loader
@@ -194,11 +228,11 @@ apis:
     url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
   - type: Data API Reference
     url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
+  - type: NaftikoCapability
+    url: capabilities/loader-loader.yaml
 - name: Neptune ML API
-  description: >-
-    Neptune ML enables machine learning on graph data using graph neural
-    networks. It provides APIs for data processing, model training, and
-    inference endpoint management powered by Amazon SageMaker.
+  description: Neptune ML enables machine learning on graph data using graph neural networks. It provides APIs for data processing,
+    model training, and inference endpoint management powered by Amazon SageMaker.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://aws.amazon.com/neptune/machine-learning/
   baseUrl: https://{cluster-endpoint}:8182/ml
@@ -218,11 +252,17 @@ apis:
     url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
+  - type: NaftikoCapability
+    url: capabilities/ml-data-processing.yaml
+  - type: NaftikoCapability
+    url: capabilities/ml-inference-endpoints.yaml
+  - type: NaftikoCapability
+    url: capabilities/ml-model-training.yaml
+  - type: NaftikoCapability
+    url: capabilities/ml-model-transform.yaml
 - name: Neptune Analytics API
-  description: >-
-    Neptune Analytics is a memory-optimized graph database engine for
-    analytics, providing optimized graph analytic algorithms, low-latency
-    queries, and vector search capabilities within graph traversals.
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic
+    algorithms, low-latency queries, and vector search capabilities within graph traversals.
   image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
   humanUrl: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   baseUrl: https://neptune-graph.{region}.amazonaws.com
@@ -242,15 +282,23 @@ apis:
     url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+  - type: NaftikoCapability
+    url: capabilities/analytics-graph-snapshots.yaml
+  - type: NaftikoCapability
+    url: capabilities/analytics-graphs.yaml
+  - type: NaftikoCapability
+    url: capabilities/analytics-import-tasks.yaml
+  - type: NaftikoCapability
+    url: capabilities/analytics-private-graph-endpoints.yaml
 integrations:
-  - name: Partner Programs
-  - name: Resources
-  - name: Success Stories
-  - name: Work with an AWS Partner
-  - name: AWS Marketplace
-  - name: AWS Partner Central
-  - name: Partner Paths
-  - name: co-sell with AWS
+- name: Partner Programs
+- name: Resources
+- name: Success Stories
+- name: Work with an AWS Partner
+- name: AWS Marketplace
+- name: AWS Partner Central
+- name: Partner Paths
+- name: co-sell with AWS
 maintainers:
 - name: Kin Lane
   email: kin@apievangelist.com
@@ -334,31 +382,39 @@ common:
   - name: Serverless Graph Database
     description: Automatically scales compute and memory resources based on workload demands without requiring capacity planning.
   - name: Multiple Query Language Support
-    description: Supports Apache TinkerPop Gremlin, openCypher, and SPARQL 1.1 query languages for property graph and RDF models.
+    description: Supports Apache TinkerPop Gremlin, openCypher, and SPARQL 1.1 query languages for property graph and RDF
+      models.
   - name: High Availability
-    description: Multi-AZ deployment with up to 15 read replicas, automated failover, and continuous backups with point-in-time recovery up to 35 days.
+    description: Multi-AZ deployment with up to 15 read replicas, automated failover, and continuous backups with point-in-time
+      recovery up to 35 days.
   - name: Global Database
     description: Multi-region replication with sub-second latency across up to five secondary clusters for global applications.
   - name: Neptune Analytics
-    description: Memory-optimized graph analytics engine for analyzing tens of billions of relationships within seconds with vector search capabilities.
+    description: Memory-optimized graph analytics engine for analyzing tens of billions of relationships within seconds with
+      vector search capabilities.
   - name: GraphRAG Support
     description: Fully managed GraphRAG with Amazon Bedrock Knowledge Bases for AI-enhanced graph retrieval augmented generation.
   - name: Machine Learning on Graphs
-    description: Native graph neural network support via Neptune ML powered by Amazon SageMaker for link prediction and node classification.
+    description: Native graph neural network support via Neptune ML powered by Amazon SageMaker for link prediction and node
+      classification.
   - name: ACID Transactions
     description: Full ACID transaction support ensuring data consistency and integrity across graph operations.
   - name: AWS Security Integration
-    description: VPC network isolation, IAM resource permissions, AWS KMS encryption, TLS in-transit encryption, and CloudWatch audit logging.
+    description: VPC network isolation, IAM resource permissions, AWS KMS encryption, TLS in-transit encryption, and CloudWatch
+      audit logging.
   - name: Auto-Expanding Storage
     description: Storage automatically grows up to 128 TiB with self-healing architecture spanning three availability zones.
 - type: UseCases
   data:
   - name: Knowledge Graphs and GraphRAG
-    description: Build knowledge graphs to enhance AI accuracy, comprehensiveness, and explainability using GraphRAG with Amazon Bedrock.
+    description: Build knowledge graphs to enhance AI accuracy, comprehensiveness, and explainability using GraphRAG with
+      Amazon Bedrock.
   - name: Fraud Detection
-    description: Model transaction and account relationship networks to detect fraudulent patterns in near real-time using graph traversals.
+    description: Model transaction and account relationship networks to detect fraudulent patterns in near real-time using
+      graph traversals.
   - name: Customer 360
-    description: Build unified customer profile graphs linking purchases, preferences, and interactions for personalization and marketing.
+    description: Build unified customer profile graphs linking purchases, preferences, and interactions for personalization
+      and marketing.
   - name: Cybersecurity and Threat Detection
     description: Model IT infrastructure as a connected graph to detect attack paths, anomalies, and proactive threats.
   - name: Recommendation Engines
@@ -393,10 +449,6 @@ common:
   url: rules/amazon-neptune-spectral-rules.yml
 - type: Vocabulary
   url: vocabulary/amazon-neptune-vocabulary.yaml
-- type: NaftikoCapability
-  url: capabilities/neptune-graph-management.yaml
-- type: NaftikoCapability
-  url: capabilities/neptune-analytics-ml.yaml
 - type: JSONLD
   url: json-ld/amazon-neptune-analytics-context.jsonld
   title: Analytics Context

@@ -1,0 +1,223 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Data API — Loader
+  description: 'Amazon Neptune Data API — Loader. 4 operations. Lead operation: Amazon Neptune Start a Bulk Loader Job. Self-contained
+    Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Loader
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-loader
+    baseUri: https://neptune-db.{region}.amazonaws.com
+    description: Amazon Neptune Data API — Loader business capability. Self-contained, no shared references.
+    resources:
+    - name: loader
+      path: /loader
+      operations:
+      - name: startloaderjob
+        method: POST
+        description: Amazon Neptune Start a Bulk Loader Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listloaderjobs
+        method: GET
+        description: Amazon Neptune List Bulk Loader Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of load IDs to return.
+        - name: includeQueuedLoads
+          in: query
+          type: boolean
+          description: Whether to include queued loads in the response.
+    - name: loader-loadId
+      path: /loader/{loadId}
+      operations:
+      - name: getloaderjobstatus
+        method: GET
+        description: Amazon Neptune Get the Status of a Bulk Loader Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: loadId
+          in: path
+          type: string
+          description: The unique identifier of the load job.
+          required: true
+        - name: details
+          in: query
+          type: boolean
+          description: Whether to include detailed status information.
+        - name: errors
+          in: query
+          type: boolean
+          description: Whether to include error details.
+        - name: page
+          in: query
+          type: integer
+          description: Error page number to retrieve.
+        - name: errorsPerPage
+          in: query
+          type: integer
+          description: Number of errors per page.
+      - name: cancelloaderjob
+        method: DELETE
+        description: Amazon Neptune Cancel a Bulk Loader Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: loadId
+          in: path
+          type: string
+          description: The unique identifier of the load job to cancel.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: data-loader-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Data API — Loader. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/loader
+      name: loader
+      description: REST surface for loader.
+      operations:
+      - method: POST
+        name: startloaderjob
+        description: Amazon Neptune Start a Bulk Loader Job
+        call: data-loader.startloaderjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listloaderjobs
+        description: Amazon Neptune List Bulk Loader Jobs
+        call: data-loader.listloaderjobs
+        with:
+          limit: rest.limit
+          includeQueuedLoads: rest.includeQueuedLoads
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/loader/{loadid}
+      name: loader-loadid
+      description: REST surface for loader-loadId.
+      operations:
+      - method: GET
+        name: getloaderjobstatus
+        description: Amazon Neptune Get the Status of a Bulk Loader Job
+        call: data-loader.getloaderjobstatus
+        with:
+          loadId: rest.loadId
+          details: rest.details
+          errors: rest.errors
+          page: rest.page
+          errorsPerPage: rest.errorsPerPage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelloaderjob
+        description: Amazon Neptune Cancel a Bulk Loader Job
+        call: data-loader.cancelloaderjob
+        with:
+          loadId: rest.loadId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-loader-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Data API — Loader. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-neptune-start-bulk-loader
+      description: Amazon Neptune Start a Bulk Loader Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-loader.startloaderjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-bulk-loader
+      description: Amazon Neptune List Bulk Loader Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-loader.listloaderjobs
+      with:
+        limit: tools.limit
+        includeQueuedLoads: tools.includeQueuedLoads
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-status-bulk
+      description: Amazon Neptune Get the Status of a Bulk Loader Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-loader.getloaderjobstatus
+      with:
+        loadId: tools.loadId
+        details: tools.details
+        errors: tools.errors
+        page: tools.page
+        errorsPerPage: tools.errorsPerPage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-cancel-bulk-loader
+      description: Amazon Neptune Cancel a Bulk Loader Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: data-loader.cancelloaderjob
+      with:
+        loadId: tools.loadId
+      outputParameters:
+      - type: object
+        mapping: $.

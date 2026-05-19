@@ -1,0 +1,297 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Neptune Analytics API — Graphs
+  description: 'Amazon Neptune Neptune Analytics API — Graphs. 6 operations. Lead operation: Amazon Neptune Create a Neptune
+    Analytics Graph. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Graphs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: analytics-graphs
+    baseUri: https://neptune-graph.{region}.amazonaws.com
+    description: Amazon Neptune Neptune Analytics API — Graphs business capability. Self-contained, no shared references.
+    resources:
+    - name: graphs
+      path: /graphs
+      operations:
+      - name: creategraph
+        method: POST
+        description: Amazon Neptune Create a Neptune Analytics Graph
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listgraphs
+        method: GET
+        description: Amazon Neptune List Neptune Analytics Graphs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxResults
+          in: query
+          type: integer
+          description: Maximum number of results to return.
+        - name: nextToken
+          in: query
+          type: string
+          description: Pagination token from a previous request.
+    - name: graphs-graphIdentifier
+      path: /graphs/{graphIdentifier}
+      operations:
+      - name: getgraph
+        method: GET
+        description: Amazon Neptune Get Neptune Analytics Graph Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: graphIdentifier
+          in: path
+          type: string
+          description: The unique identifier of the graph.
+          required: true
+      - name: updategraph
+        method: PATCH
+        description: Amazon Neptune Update a Neptune Analytics Graph
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: graphIdentifier
+          in: path
+          type: string
+          description: The unique identifier of the graph.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletegraph
+        method: DELETE
+        description: Amazon Neptune Delete a Neptune Analytics Graph
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: graphIdentifier
+          in: path
+          type: string
+          description: The unique identifier of the graph to delete.
+          required: true
+        - name: skipSnapshot
+          in: query
+          type: boolean
+          description: Whether to skip creating a final snapshot before deletion.
+          required: true
+    - name: graphs-graphIdentifier-reset
+      path: /graphs/{graphIdentifier}/reset
+      operations:
+      - name: resetgraph
+        method: PUT
+        description: Amazon Neptune Reset a Neptune Analytics Graph
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: graphIdentifier
+          in: path
+          type: string
+          description: The unique identifier of the graph to reset.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: analytics-graphs-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Neptune Analytics API — Graphs. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/graphs
+      name: graphs
+      description: REST surface for graphs.
+      operations:
+      - method: POST
+        name: creategraph
+        description: Amazon Neptune Create a Neptune Analytics Graph
+        call: analytics-graphs.creategraph
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listgraphs
+        description: Amazon Neptune List Neptune Analytics Graphs
+        call: analytics-graphs.listgraphs
+        with:
+          maxResults: rest.maxResults
+          nextToken: rest.nextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/graphs/{graphidentifier}
+      name: graphs-graphidentifier
+      description: REST surface for graphs-graphIdentifier.
+      operations:
+      - method: GET
+        name: getgraph
+        description: Amazon Neptune Get Neptune Analytics Graph Details
+        call: analytics-graphs.getgraph
+        with:
+          graphIdentifier: rest.graphIdentifier
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updategraph
+        description: Amazon Neptune Update a Neptune Analytics Graph
+        call: analytics-graphs.updategraph
+        with:
+          graphIdentifier: rest.graphIdentifier
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegraph
+        description: Amazon Neptune Delete a Neptune Analytics Graph
+        call: analytics-graphs.deletegraph
+        with:
+          graphIdentifier: rest.graphIdentifier
+          skipSnapshot: rest.skipSnapshot
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/graphs/{graphidentifier}/reset
+      name: graphs-graphidentifier-reset
+      description: REST surface for graphs-graphIdentifier-reset.
+      operations:
+      - method: PUT
+        name: resetgraph
+        description: Amazon Neptune Reset a Neptune Analytics Graph
+        call: analytics-graphs.resetgraph
+        with:
+          graphIdentifier: rest.graphIdentifier
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: analytics-graphs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Neptune Analytics API — Graphs. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: amazon-neptune-create-neptune-analytics
+      description: Amazon Neptune Create a Neptune Analytics Graph
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: analytics-graphs.creategraph
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-neptune-analytics
+      description: Amazon Neptune List Neptune Analytics Graphs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-graphs.listgraphs
+      with:
+        maxResults: tools.maxResults
+        nextToken: tools.nextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-neptune-analytics
+      description: Amazon Neptune Get Neptune Analytics Graph Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-graphs.getgraph
+      with:
+        graphIdentifier: tools.graphIdentifier
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-update-neptune-analytics
+      description: Amazon Neptune Update a Neptune Analytics Graph
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: analytics-graphs.updategraph
+      with:
+        graphIdentifier: tools.graphIdentifier
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-delete-neptune-analytics
+      description: Amazon Neptune Delete a Neptune Analytics Graph
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: analytics-graphs.deletegraph
+      with:
+        graphIdentifier: tools.graphIdentifier
+        skipSnapshot: tools.skipSnapshot
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-reset-neptune-analytics
+      description: Amazon Neptune Reset a Neptune Analytics Graph
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: analytics-graphs.resetgraph
+      with:
+        graphIdentifier: tools.graphIdentifier
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

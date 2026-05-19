@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Neptune openCypher API — Query
+  description: 'Amazon Neptune Neptune openCypher API — Query. 2 operations. Lead operation: Amazon Neptune Execute an OpenCypher
+    Query via HTTP POST. Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - Query
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: opencypher-query
+    baseUri: https://{cluster-endpoint}:8182
+    description: Amazon Neptune Neptune openCypher API — Query business capability. Self-contained, no shared references.
+    resources:
+    - name: openCypher
+      path: /openCypher
+      operations:
+      - name: executeopencypherquery
+        method: POST
+        description: Amazon Neptune Execute an OpenCypher Query via HTTP POST
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: TE
+          in: header
+          type: string
+          description: Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: executeopencypherqueryget
+        method: GET
+        description: Amazon Neptune Execute an OpenCypher Query via HTTP GET
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: The openCypher query string (URL-encoded).
+          required: true
+        - name: TE
+          in: header
+          type: string
+          description: Set to 'trailers' for trailing headers.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: opencypher-query-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Neptune openCypher API — Query. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/opencypher
+      name: opencypher
+      description: REST surface for openCypher.
+      operations:
+      - method: POST
+        name: executeopencypherquery
+        description: Amazon Neptune Execute an OpenCypher Query via HTTP POST
+        call: opencypher-query.executeopencypherquery
+        with:
+          TE: rest.TE
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: executeopencypherqueryget
+        description: Amazon Neptune Execute an OpenCypher Query via HTTP GET
+        call: opencypher-query.executeopencypherqueryget
+        with:
+          query: rest.query
+          TE: rest.TE
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: opencypher-query-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Neptune openCypher API — Query. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: amazon-neptune-execute-opencypher-query
+      description: Amazon Neptune Execute an OpenCypher Query via HTTP POST
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: opencypher-query.executeopencypherquery
+      with:
+        TE: tools.TE
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-execute-opencypher-query-2
+      description: Amazon Neptune Execute an OpenCypher Query via HTTP GET
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: opencypher-query.executeopencypherqueryget
+      with:
+        query: tools.query
+        TE: tools.TE
+      outputParameters:
+      - type: object
+        mapping: $.

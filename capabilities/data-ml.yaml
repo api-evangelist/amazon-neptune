@@ -1,0 +1,727 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Neptune Data API — ML
+  description: 'Amazon Neptune Data API — ML. 16 operations. Lead operation: Amazon Neptune Start an ML Data Processing Job.
+    Self-contained Naftiko capability covering one Amazon Neptune business surface.'
+  tags:
+  - Amazon Neptune
+  - ML
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_NEPTUNE_API_KEY: AMAZON_NEPTUNE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-ml
+    baseUri: https://neptune-db.{region}.amazonaws.com
+    description: Amazon Neptune Data API — ML business capability. Self-contained, no shared references.
+    resources:
+    - name: ml-dataprocessing
+      path: /ml/dataprocessing
+      operations:
+      - name: startmldataprocessingjob
+        method: POST
+        description: Amazon Neptune Start an ML Data Processing Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmldataprocessingjobs
+        method: GET
+        description: Amazon Neptune List ML Data Processing Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxItems
+          in: query
+          type: integer
+          description: Maximum number of items to return (default 10, max 1024).
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role for Neptune access.
+    - name: ml-dataprocessing-jobId
+      path: /ml/dataprocessing/{jobId}
+      operations:
+      - name: getmldataprocessingjobstatus
+        method: GET
+        description: Amazon Neptune Get ML Data Processing Job Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          description: The unique identifier of the data processing job.
+          required: true
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role for Neptune access.
+      - name: cancelmldataprocessingjob
+        method: DELETE
+        description: Amazon Neptune Cancel an ML Data Processing Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          description: The unique identifier of the data processing job.
+          required: true
+        - name: clean
+          in: query
+          type: boolean
+          description: Whether to delete all S3 artifacts when cancelling.
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+          description: The ARN of the IAM role for Neptune access.
+    - name: ml-endpoints
+      path: /ml/endpoints
+      operations:
+      - name: createmlendpoint
+        method: POST
+        description: Amazon Neptune Create an ML Inference Endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmlendpoints
+        method: GET
+        description: Amazon Neptune List ML Inference Endpoints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxItems
+          in: query
+          type: integer
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    - name: ml-endpoints-endpointId
+      path: /ml/endpoints/{endpointId}
+      operations:
+      - name: getmlendpointstatus
+        method: GET
+        description: Amazon Neptune Get ML Inference Endpoint Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: endpointId
+          in: path
+          type: string
+          required: true
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+      - name: deletemlendpoint
+        method: DELETE
+        description: Amazon Neptune Delete an ML Inference Endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: endpointId
+          in: path
+          type: string
+          required: true
+        - name: clean
+          in: query
+          type: boolean
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    - name: ml-modeltraining
+      path: /ml/modeltraining
+      operations:
+      - name: startmlmodeltrainingjob
+        method: POST
+        description: Amazon Neptune Start an ML Model Training Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmlmodeltrainingjobs
+        method: GET
+        description: Amazon Neptune List ML Model Training Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxItems
+          in: query
+          type: integer
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    - name: ml-modeltraining-jobId
+      path: /ml/modeltraining/{jobId}
+      operations:
+      - name: getmlmodeltrainingjobstatus
+        method: GET
+        description: Amazon Neptune Get ML Model Training Job Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          required: true
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+      - name: cancelmlmodeltrainingjob
+        method: DELETE
+        description: Amazon Neptune Cancel an ML Model Training Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          required: true
+        - name: clean
+          in: query
+          type: boolean
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    - name: ml-modeltransform
+      path: /ml/modeltransform
+      operations:
+      - name: startmlmodeltransformjob
+        method: POST
+        description: Amazon Neptune Start an ML Model Transform Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listmlmodeltransformjobs
+        method: GET
+        description: Amazon Neptune List ML Model Transform Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxItems
+          in: query
+          type: integer
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    - name: ml-modeltransform-jobId
+      path: /ml/modeltransform/{jobId}
+      operations:
+      - name: getmlmodeltransformjobstatus
+        method: GET
+        description: Amazon Neptune Get ML Model Transform Job Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          required: true
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+      - name: cancelmlmodeltransformjob
+        method: DELETE
+        description: Amazon Neptune Cancel an ML Model Transform Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          required: true
+        - name: clean
+          in: query
+          type: boolean
+        - name: neptuneIamRoleArn
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_NEPTUNE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: data-ml-rest
+    port: 8080
+    description: REST adapter for Amazon Neptune Data API — ML. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/ml/dataprocessing
+      name: ml-dataprocessing
+      description: REST surface for ml-dataprocessing.
+      operations:
+      - method: POST
+        name: startmldataprocessingjob
+        description: Amazon Neptune Start an ML Data Processing Job
+        call: data-ml.startmldataprocessingjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmldataprocessingjobs
+        description: Amazon Neptune List ML Data Processing Jobs
+        call: data-ml.listmldataprocessingjobs
+        with:
+          maxItems: rest.maxItems
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/dataprocessing/{jobid}
+      name: ml-dataprocessing-jobid
+      description: REST surface for ml-dataprocessing-jobId.
+      operations:
+      - method: GET
+        name: getmldataprocessingjobstatus
+        description: Amazon Neptune Get ML Data Processing Job Status
+        call: data-ml.getmldataprocessingjobstatus
+        with:
+          jobId: rest.jobId
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelmldataprocessingjob
+        description: Amazon Neptune Cancel an ML Data Processing Job
+        call: data-ml.cancelmldataprocessingjob
+        with:
+          jobId: rest.jobId
+          clean: rest.clean
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/endpoints
+      name: ml-endpoints
+      description: REST surface for ml-endpoints.
+      operations:
+      - method: POST
+        name: createmlendpoint
+        description: Amazon Neptune Create an ML Inference Endpoint
+        call: data-ml.createmlendpoint
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmlendpoints
+        description: Amazon Neptune List ML Inference Endpoints
+        call: data-ml.listmlendpoints
+        with:
+          maxItems: rest.maxItems
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/endpoints/{endpointid}
+      name: ml-endpoints-endpointid
+      description: REST surface for ml-endpoints-endpointId.
+      operations:
+      - method: GET
+        name: getmlendpointstatus
+        description: Amazon Neptune Get ML Inference Endpoint Status
+        call: data-ml.getmlendpointstatus
+        with:
+          endpointId: rest.endpointId
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletemlendpoint
+        description: Amazon Neptune Delete an ML Inference Endpoint
+        call: data-ml.deletemlendpoint
+        with:
+          endpointId: rest.endpointId
+          clean: rest.clean
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/modeltraining
+      name: ml-modeltraining
+      description: REST surface for ml-modeltraining.
+      operations:
+      - method: POST
+        name: startmlmodeltrainingjob
+        description: Amazon Neptune Start an ML Model Training Job
+        call: data-ml.startmlmodeltrainingjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmlmodeltrainingjobs
+        description: Amazon Neptune List ML Model Training Jobs
+        call: data-ml.listmlmodeltrainingjobs
+        with:
+          maxItems: rest.maxItems
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/modeltraining/{jobid}
+      name: ml-modeltraining-jobid
+      description: REST surface for ml-modeltraining-jobId.
+      operations:
+      - method: GET
+        name: getmlmodeltrainingjobstatus
+        description: Amazon Neptune Get ML Model Training Job Status
+        call: data-ml.getmlmodeltrainingjobstatus
+        with:
+          jobId: rest.jobId
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelmlmodeltrainingjob
+        description: Amazon Neptune Cancel an ML Model Training Job
+        call: data-ml.cancelmlmodeltrainingjob
+        with:
+          jobId: rest.jobId
+          clean: rest.clean
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/modeltransform
+      name: ml-modeltransform
+      description: REST surface for ml-modeltransform.
+      operations:
+      - method: POST
+        name: startmlmodeltransformjob
+        description: Amazon Neptune Start an ML Model Transform Job
+        call: data-ml.startmlmodeltransformjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listmlmodeltransformjobs
+        description: Amazon Neptune List ML Model Transform Jobs
+        call: data-ml.listmlmodeltransformjobs
+        with:
+          maxItems: rest.maxItems
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ml/modeltransform/{jobid}
+      name: ml-modeltransform-jobid
+      description: REST surface for ml-modeltransform-jobId.
+      operations:
+      - method: GET
+        name: getmlmodeltransformjobstatus
+        description: Amazon Neptune Get ML Model Transform Job Status
+        call: data-ml.getmlmodeltransformjobstatus
+        with:
+          jobId: rest.jobId
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: cancelmlmodeltransformjob
+        description: Amazon Neptune Cancel an ML Model Transform Job
+        call: data-ml.cancelmlmodeltransformjob
+        with:
+          jobId: rest.jobId
+          clean: rest.clean
+          neptuneIamRoleArn: rest.neptuneIamRoleArn
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-ml-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Neptune Data API — ML. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: amazon-neptune-start-ml-data
+      description: Amazon Neptune Start an ML Data Processing Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-ml.startmldataprocessingjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-ml-data
+      description: Amazon Neptune List ML Data Processing Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.listmldataprocessingjobs
+      with:
+        maxItems: tools.maxItems
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-ml-data
+      description: Amazon Neptune Get ML Data Processing Job Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.getmldataprocessingjobstatus
+      with:
+        jobId: tools.jobId
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-cancel-ml-data
+      description: Amazon Neptune Cancel an ML Data Processing Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: data-ml.cancelmldataprocessingjob
+      with:
+        jobId: tools.jobId
+        clean: tools.clean
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-create-ml-inference
+      description: Amazon Neptune Create an ML Inference Endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-ml.createmlendpoint
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-ml-inference
+      description: Amazon Neptune List ML Inference Endpoints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.listmlendpoints
+      with:
+        maxItems: tools.maxItems
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-ml-inference
+      description: Amazon Neptune Get ML Inference Endpoint Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.getmlendpointstatus
+      with:
+        endpointId: tools.endpointId
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-delete-ml-inference
+      description: Amazon Neptune Delete an ML Inference Endpoint
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: data-ml.deletemlendpoint
+      with:
+        endpointId: tools.endpointId
+        clean: tools.clean
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-start-ml-model
+      description: Amazon Neptune Start an ML Model Training Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-ml.startmlmodeltrainingjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-ml-model
+      description: Amazon Neptune List ML Model Training Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.listmlmodeltrainingjobs
+      with:
+        maxItems: tools.maxItems
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-ml-model
+      description: Amazon Neptune Get ML Model Training Job Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.getmlmodeltrainingjobstatus
+      with:
+        jobId: tools.jobId
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-cancel-ml-model
+      description: Amazon Neptune Cancel an ML Model Training Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: data-ml.cancelmlmodeltrainingjob
+      with:
+        jobId: tools.jobId
+        clean: tools.clean
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-start-ml-model-2
+      description: Amazon Neptune Start an ML Model Transform Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: data-ml.startmlmodeltransformjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-list-ml-model-2
+      description: Amazon Neptune List ML Model Transform Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.listmlmodeltransformjobs
+      with:
+        maxItems: tools.maxItems
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-get-ml-model-2
+      description: Amazon Neptune Get ML Model Transform Job Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-ml.getmlmodeltransformjobstatus
+      with:
+        jobId: tools.jobId
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-neptune-cancel-ml-model-2
+      description: Amazon Neptune Cancel an ML Model Transform Job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: data-ml.cancelmlmodeltransformjob
+      with:
+        jobId: tools.jobId
+        clean: tools.clean
+        neptuneIamRoleArn: tools.neptuneIamRoleArn
+      outputParameters:
+      - type: object
+        mapping: $.
