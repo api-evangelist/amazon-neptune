@@ -1,0 +1,19 @@
+{
+  "operationId": "listDataProcessingJobs",
+  "method": "GET",
+  "path": "/ml/dataprocessing",
+  "summary": "Amazon Neptune List Active Data Processing Jobs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "listDataProcessingJobs200Example",
+      "example": {
+        "ids": [
+          "example-value"
+        ]
+      }
+    }
+  ]
+}

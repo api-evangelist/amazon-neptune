@@ -1,0 +1,17 @@
+{
+  "operationId": "createDataProcessingJob",
+  "method": "POST",
+  "path": "/ml/dataprocessing",
+  "summary": "Amazon Neptune Create an ML Data Processing Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "createDataProcessingJob200Example",
+      "example": {
+        "id": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

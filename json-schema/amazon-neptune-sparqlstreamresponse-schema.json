@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparqlStreamResponse",
+  "title": "SparqlStreamResponse",
+  "type": "object",
+  "properties": {
+    "lastEventId": {
+      "$ref": "#/components/schemas/StreamEventId"
+    },
+    "lastTrxTimestamp": {
+      "type": "integer",
+      "description": "Unix epoch timestamp in milliseconds of the last commit."
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "NQUADS"
+      ],
+      "description": "The serialization format (always NQUADS for RDF)."
+    },
+    "records": {
+      "type": "array",
+      "description": "The array of change-log stream records.",
+      "items": {
+        "$ref": "#/components/schemas/SparqlStreamRecord"
+      }
+    },
+    "totalRecords": {
+      "type": "integer",
+      "description": "Total number of records in the response."
+    }
+  }
+}

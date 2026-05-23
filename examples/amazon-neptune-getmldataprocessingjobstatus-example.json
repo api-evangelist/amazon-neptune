@@ -1,0 +1,24 @@
+{
+  "operationId": "getMLDataProcessingJobStatus",
+  "method": "GET",
+  "path": "/ml/dataprocessing/{jobId}",
+  "summary": "Amazon Neptune Get ML Data Processing Job Status",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getMLDataProcessingJobStatus200Example",
+      "example": {
+        "status": "available",
+        "id": "neptune-cluster-abc123",
+        "processingJob": {
+          "name": "my-neptune-cluster",
+          "arn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1",
+          "status": "available",
+          "outputLocation": "example-value"
+        }
+      }
+    }
+  ]
+}

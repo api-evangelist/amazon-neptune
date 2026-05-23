@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PropertygraphStreamOutput",
+  "title": "PropertygraphStreamOutput",
+  "type": "object",
+  "properties": {
+    "lastEventId": {
+      "type": "object",
+      "properties": {
+        "commitNum": {
+          "type": "integer"
+        },
+        "opNum": {
+          "type": "integer"
+        }
+      }
+    },
+    "lastTrxTimestampInMillis": {
+      "type": "integer",
+      "description": "Timestamp of the last transaction in milliseconds."
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "PG_JSON"
+      ]
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PropertygraphStreamRecord"
+      }
+    },
+    "totalRecords": {
+      "type": "integer"
+    }
+  }
+}

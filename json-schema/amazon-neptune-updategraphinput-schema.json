@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateGraphInput",
+  "title": "UpdateGraphInput",
+  "type": "object",
+  "properties": {
+    "provisionedMemory": {
+      "type": "integer",
+      "description": "The new provisioned memory size in NCUs."
+    },
+    "deletionProtection": {
+      "type": "boolean",
+      "description": "Whether deletion protection is enabled."
+    },
+    "publicConnectivity": {
+      "type": "boolean"
+    }
+  }
+}

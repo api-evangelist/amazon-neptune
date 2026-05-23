@@ -1,0 +1,20 @@
+{
+  "operationId": "describeDBClusterSnapshots",
+  "method": "GET",
+  "path": "/?Action=DescribeDBClusterSnapshots",
+  "summary": "Amazon Neptune Describe Neptune DB Cluster Snapshots",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "describeDBClusterSnapshots200Example",
+      "example": {
+        "DBClusterSnapshots": [
+          {}
+        ],
+        "Marker": "example-value"
+      }
+    }
+  ]
+}

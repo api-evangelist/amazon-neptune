@@ -1,0 +1,26 @@
+{
+  "operationId": "listGraphSnapshots",
+  "method": "GET",
+  "path": "/snapshots",
+  "summary": "Amazon Neptune List Graph Snapshots",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "listGraphSnapshots200Example",
+      "example": {
+        "graphSnapshots": [
+          {
+            "id": "neptune-cluster-abc123",
+            "name": "my-neptune-cluster",
+            "arn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1",
+            "sourceGraphId": "neptune-cluster-abc123",
+            "snapshotCreateTime": "2025-03-15T14:30:00Z"
+          }
+        ],
+        "nextToken": "example-value"
+      }
+    }
+  ]
+}

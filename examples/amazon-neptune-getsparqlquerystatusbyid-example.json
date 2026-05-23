@@ -1,0 +1,23 @@
+{
+  "operationId": "getSparqlQueryStatusById",
+  "method": "GET",
+  "path": "/sparql/status/{queryId}",
+  "summary": "Amazon Neptune Get the Status of a Specific SPARQL Query",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getSparqlQueryStatusById200Example",
+      "example": {
+        "queryId": "neptune-cluster-abc123",
+        "queryString": "example-value",
+        "queryEvalStats": {
+          "waited": 1,
+          "elapsed": 1,
+          "cancelled": true
+        }
+      }
+    }
+  ]
+}

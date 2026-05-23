@@ -1,0 +1,17 @@
+{
+  "operationId": "startMLModelTrainingJob",
+  "method": "POST",
+  "path": "/ml/modeltraining",
+  "summary": "Amazon Neptune Start an ML Model Training Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "startMLModelTrainingJob200Example",
+      "example": {
+        "id": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

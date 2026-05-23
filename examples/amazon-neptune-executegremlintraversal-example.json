@@ -1,0 +1,58 @@
+{
+  "operationId": "executeGremlinTraversal",
+  "method": "POST",
+  "path": "/gremlin",
+  "summary": "Amazon Neptune Execute a Gremlin Traversal via HTTP POST",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "vertexCount",
+      "example": {
+        "gremlin": "g.V().count()"
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "limitedVertices",
+      "example": {
+        "gremlin": "g.V().limit(1)"
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "addVertex",
+      "example": {
+        "gremlin": "g.addV('person').property('name','John')"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "executeGremlinTraversal200Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "status": {
+          "message": "example-value",
+          "code": 1,
+          "attributes": {}
+        },
+        "result": {
+          "data": "example-value",
+          "meta": {}
+        }
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "executeGremlinTraversal400Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    }
+  ]
+}

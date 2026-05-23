@@ -1,0 +1,19 @@
+{
+  "operationId": "listMLModelTrainingJobs",
+  "method": "GET",
+  "path": "/ml/modeltraining",
+  "summary": "Amazon Neptune List ML Model Training Jobs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "listMLModelTrainingJobs200Example",
+      "example": {
+        "ids": [
+          "example-value"
+        ]
+      }
+    }
+  ]
+}

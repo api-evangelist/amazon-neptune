@@ -1,0 +1,20 @@
+{
+  "operationId": "describeDBInstances",
+  "method": "GET",
+  "path": "/?Action=DescribeDBInstances",
+  "summary": "Amazon Neptune Describe Neptune DB Instances",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "describeDBInstances200Example",
+      "example": {
+        "DBInstances": [
+          {}
+        ],
+        "Marker": "example-value"
+      }
+    }
+  ]
+}

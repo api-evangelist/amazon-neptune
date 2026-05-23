@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateGraphUsingImportTaskInput",
+  "title": "CreateGraphUsingImportTaskInput",
+  "type": "object",
+  "required": [
+    "graphName",
+    "source",
+    "roleArn"
+  ],
+  "properties": {
+    "graphName": {
+      "type": "string",
+      "description": "The name of the graph to create."
+    },
+    "source": {
+      "type": "string",
+      "description": "S3 URI of the source data to import."
+    },
+    "roleArn": {
+      "type": "string",
+      "description": "IAM role ARN with S3 access."
+    },
+    "provisionedMemory": {
+      "type": "integer"
+    },
+    "format": {
+      "type": "string",
+      "description": "The format of the source data.",
+      "enum": [
+        "CSV",
+        "OPEN_CYPHER",
+        "PARQUET",
+        "NTRIPLES"
+      ]
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "deletionProtection": {
+      "type": "boolean"
+    },
+    "publicConnectivity": {
+      "type": "boolean"
+    },
+    "kmsKeyIdentifier": {
+      "type": "string"
+    },
+    "vectorSearchConfiguration": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "integer"
+        }
+      }
+    },
+    "replicaCount": {
+      "type": "integer"
+    },
+    "importOptions": {
+      "type": "object",
+      "description": "Additional import configuration options."
+    }
+  }
+}

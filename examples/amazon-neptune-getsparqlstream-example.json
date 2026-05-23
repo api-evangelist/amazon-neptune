@@ -1,0 +1,37 @@
+{
+  "operationId": "getSparqlStream",
+  "method": "GET",
+  "path": "/sparql/stream",
+  "summary": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getSparqlStream200Example",
+      "example": {
+        "lastEventId": {
+          "commitNum": 1,
+          "opNum": 1
+        },
+        "lastTrxTimestampInMillis": 1,
+        "format": "NQUADS",
+        "records": [
+          {
+            "commitTimestampInMillis": 1,
+            "eventId": {
+              "commitNum": {},
+              "opNum": {}
+            },
+            "data": {
+              "stmt": {}
+            },
+            "op": "ADD",
+            "isLastOp": true
+          }
+        ],
+        "totalRecords": 1
+      }
+    }
+  ]
+}

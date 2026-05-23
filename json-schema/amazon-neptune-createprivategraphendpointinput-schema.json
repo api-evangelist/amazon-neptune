@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatePrivateGraphEndpointInput",
+  "title": "CreatePrivateGraphEndpointInput",
+  "type": "object",
+  "properties": {
+    "vpcId": {
+      "type": "string",
+      "description": "The VPC ID for the private endpoint."
+    },
+    "subnetIds": {
+      "type": "array",
+      "description": "The subnet IDs for the private endpoint.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "vpcSecurityGroupIds": {
+      "type": "array",
+      "description": "The security group IDs for the private endpoint.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

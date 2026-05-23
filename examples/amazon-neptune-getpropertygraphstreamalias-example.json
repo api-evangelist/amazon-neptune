@@ -1,0 +1,23 @@
+{
+  "operationId": "getPropertyGraphStreamAlias",
+  "method": "GET",
+  "path": "/pg/stream",
+  "summary": "Amazon Neptune Get Property Graph Change Stream Records (alias)",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getPropertyGraphStreamAlias200Example",
+      "example": {
+        "lastEventId": {},
+        "lastTrxTimestamp": 1,
+        "format": "PG_JSON",
+        "records": [
+          {}
+        ],
+        "totalRecords": 1
+      }
+    }
+  ]
+}

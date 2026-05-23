@@ -1,0 +1,17 @@
+{
+  "operationId": "startMLModelTransformJob",
+  "method": "POST",
+  "path": "/ml/modeltransform",
+  "summary": "Amazon Neptune Start an ML Model Transform Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "startMLModelTransformJob200Example",
+      "example": {
+        "id": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

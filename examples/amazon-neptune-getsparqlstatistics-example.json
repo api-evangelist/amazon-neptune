@@ -1,0 +1,24 @@
+{
+  "operationId": "getSparqlStatistics",
+  "method": "GET",
+  "path": "/sparql/statistics",
+  "summary": "Amazon Neptune Get SPARQL RDF Statistics",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getSparqlStatistics200Example",
+      "example": {
+        "status": "available",
+        "payload": {
+          "graphStatistics": {
+            "numStatements": 1,
+            "numDistinctSubjects": 1,
+            "numDistinctPredicates": 1
+          }
+        }
+      }
+    }
+  ]
+}

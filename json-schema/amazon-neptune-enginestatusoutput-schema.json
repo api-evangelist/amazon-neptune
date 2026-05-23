@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EngineStatusOutput",
+  "title": "EngineStatusOutput",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The status of the Neptune engine (healthy, recovery, etc.)."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "The start time of the engine."
+    },
+    "dbEngineVersion": {
+      "type": "string",
+      "description": "The Neptune engine version."
+    },
+    "role": {
+      "type": "string",
+      "description": "The cluster role (writer or reader)."
+    },
+    "dfeQueryEngine": {
+      "type": "string",
+      "description": "The DFE query engine status (enabled or viaQueryHint)."
+    },
+    "gremlin": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "sparql": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "opencypher": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "labMode": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  }
+}

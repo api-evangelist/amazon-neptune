@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecuteOpenCypherQueryInput",
+  "title": "ExecuteOpenCypherQueryInput",
+  "type": "object",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The openCypher query string to execute."
+    },
+    "parameters": {
+      "type": "string",
+      "description": "The openCypher query parameters as a JSON-serialized string."
+    }
+  }
+}

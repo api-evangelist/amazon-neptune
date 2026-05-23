@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobStatusResponse",
+  "title": "JobStatusResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The current status of the job."
+    },
+    "id": {
+      "type": "string",
+      "description": "The job identifier."
+    },
+    "processingJob": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "outputLocation": {
+          "type": "string"
+        },
+        "failureReason": {
+          "type": "string"
+        },
+        "cloudwatchLogUrl": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

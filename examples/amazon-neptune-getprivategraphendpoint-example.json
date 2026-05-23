@@ -1,0 +1,22 @@
+{
+  "operationId": "getPrivateGraphEndpoint",
+  "method": "GET",
+  "path": "/privategraphendpoints/{graphIdentifier}/{vpcId}",
+  "summary": "Amazon Neptune Get Private Graph Endpoint Details",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getPrivateGraphEndpoint200Example",
+      "example": {
+        "vpcId": "neptune-cluster-abc123",
+        "subnetIds": [
+          "example-value"
+        ],
+        "status": "CREATING",
+        "vpcEndpointId": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

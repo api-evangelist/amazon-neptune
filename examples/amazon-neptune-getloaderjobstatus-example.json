@@ -1,0 +1,29 @@
+{
+  "operationId": "getLoaderJobStatus",
+  "method": "GET",
+  "path": "/loader/{loadId}",
+  "summary": "Amazon Neptune Get the Status of a Bulk Loader Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getLoaderJobStatus200Example",
+      "example": {
+        "status": "available",
+        "payload": {
+          "feedCount": [
+            {}
+          ],
+          "overallStatus": {
+            "fullUri": "example-value",
+            "runNumber": 1,
+            "retryNumber": 1,
+            "status": "available",
+            "totalTimeSpent": 1
+          }
+        }
+      }
+    }
+  ]
+}

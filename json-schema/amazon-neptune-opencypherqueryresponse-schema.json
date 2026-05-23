@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpenCypherQueryResponse",
+  "title": "OpenCypherQueryResponse",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "The query result rows.",
+      "items": {
+        "type": "object",
+        "description": "A result row. Keys are the RETURN alias names. Values can be scalars, nodes, relationships, or paths.",
+        "additionalProperties": {
+          "description": "Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GremlinQueryStatusDetail",
+  "title": "GremlinQueryStatusDetail",
+  "type": "object",
+  "properties": {
+    "queryId": {
+      "type": "string",
+      "description": "The unique query identifier."
+    },
+    "queryString": {
+      "type": "string",
+      "description": "The Gremlin traversal query string."
+    },
+    "queryEvalStats": {
+      "type": "object",
+      "description": "Query execution statistics.",
+      "properties": {
+        "waited": {
+          "type": "integer",
+          "description": "The time the query waited in the queue (milliseconds)."
+        },
+        "elapsed": {
+          "type": "integer",
+          "description": "The elapsed execution time (milliseconds)."
+        },
+        "cancelled": {
+          "type": "boolean",
+          "description": "Whether the query was cancelled."
+        },
+        "subqueries": {
+          "type": "object",
+          "description": "Statistics for subqueries, if any."
+        }
+      }
+    }
+  }
+}

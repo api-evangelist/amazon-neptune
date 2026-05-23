@@ -1,0 +1,21 @@
+{
+  "operationId": "getSparqlQueryStatus",
+  "method": "GET",
+  "path": "/sparql/status",
+  "summary": "Amazon Neptune Get the Status of SPARQL Queries",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getSparqlQueryStatus200Example",
+      "example": {
+        "acceptedQueryCount": 1,
+        "runningQueryCount": 1,
+        "queries": [
+          {}
+        ]
+      }
+    }
+  ]
+}

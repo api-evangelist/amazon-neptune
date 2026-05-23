@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecuteOpenCypherQueryOutput",
+  "title": "ExecuteOpenCypherQueryOutput",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "The query result rows."
+    }
+  }
+}

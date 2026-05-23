@@ -1,0 +1,34 @@
+{
+  "operationId": "executeGremlinQuery",
+  "method": "POST",
+  "path": "/gremlin",
+  "summary": "Amazon Neptune Execute a Gremlin Query via the Data API",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "executeGremlinQuery200Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "status": {
+          "message": "example-value",
+          "code": 1
+        },
+        "result": {
+          "data": "example-value"
+        }
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "executeGremlinQuery400Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    }
+  ]
+}

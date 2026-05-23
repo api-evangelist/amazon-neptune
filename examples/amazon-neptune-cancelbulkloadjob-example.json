@@ -1,0 +1,49 @@
+{
+  "operationId": "cancelBulkLoadJob",
+  "method": "DELETE",
+  "path": "/loader/{loadId}",
+  "summary": "Amazon Neptune Cancel an In-progress Bulk Load Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "cancelBulkLoadJob400Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "cancelBulkLoadJob404Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    },
+    {
+      "status": "405",
+      "contentType": "application/json",
+      "name": "cancelBulkLoadJob405Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "cancelBulkLoadJob500Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    }
+  ]
+}

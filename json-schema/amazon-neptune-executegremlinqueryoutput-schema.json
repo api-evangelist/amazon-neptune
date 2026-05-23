@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecuteGremlinQueryOutput",
+  "title": "ExecuteGremlinQueryOutput",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer"
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The query result data."
+        }
+      }
+    }
+  }
+}

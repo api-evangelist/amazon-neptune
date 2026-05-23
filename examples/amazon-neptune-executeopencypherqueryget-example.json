@@ -1,0 +1,19 @@
+{
+  "operationId": "executeOpenCypherQueryGet",
+  "method": "GET",
+  "path": "/openCypher",
+  "summary": "Amazon Neptune Execute an OpenCypher Query via HTTP GET",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "executeOpenCypherQueryGet200Example",
+      "example": {
+        "results": [
+          {}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StartLoaderJobInput",
+  "title": "StartLoaderJobInput",
+  "type": "object",
+  "required": [
+    "source",
+    "format",
+    "iamRoleArn",
+    "region"
+  ],
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Amazon S3 URI identifying files or folders to load (s3://bucket/key)."
+    },
+    "format": {
+      "type": "string",
+      "description": "The data format of the files to load.",
+      "enum": [
+        "csv",
+        "opencypher",
+        "ntriples",
+        "nquads",
+        "rdfxml",
+        "turtle"
+      ]
+    },
+    "iamRoleArn": {
+      "type": "string",
+      "description": "The ARN of the IAM role with S3 access."
+    },
+    "region": {
+      "type": "string",
+      "description": "The AWS Region of the S3 bucket."
+    },
+    "mode": {
+      "type": "string",
+      "description": "The load mode.",
+      "enum": [
+        "NEW",
+        "RESUME",
+        "AUTO"
+      ],
+      "default": "AUTO"
+    },
+    "failOnError": {
+      "type": "string",
+      "description": "Whether to stop the load job on error.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ],
+      "default": "TRUE"
+    },
+    "parallelism": {
+      "type": "string",
+      "description": "The degree of parallelism for loading.",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "OVERSUBSCRIBE"
+      ],
+      "default": "HIGH"
+    },
+    "parserConfiguration": {
+      "type": "object",
+      "description": "Optional parser configuration settings.",
+      "properties": {
+        "baseUri": {
+          "type": "string"
+        },
+        "namedGraphUri": {
+          "type": "string"
+        },
+        "allowEmptyStrings": {
+          "type": "boolean"
+        }
+      }
+    },
+    "updateSingleCardinalityProperties": {
+      "type": "string",
+      "description": "Whether to update existing single-cardinality properties.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ],
+      "default": "FALSE"
+    },
+    "queueRequest": {
+      "type": "string",
+      "description": "Whether to queue the request if a load is already running.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ],
+      "default": "FALSE"
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Load job IDs that must complete before this job runs.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "userProvidedEdgeIds": {
+      "type": "string",
+      "description": "For openCypher format, whether edge IDs are provided.",
+      "enum": [
+        "TRUE",
+        "FALSE"
+      ]
+    }
+  }
+}

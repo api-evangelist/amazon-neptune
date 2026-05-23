@@ -1,0 +1,26 @@
+{
+  "operationId": "getPropertygraphStatistics",
+  "method": "GET",
+  "path": "/propertygraph/statistics",
+  "summary": "Amazon Neptune Get Property Graph Statistics",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getPropertygraphStatistics200Example",
+      "example": {
+        "status": "available",
+        "payload": {
+          "graphStatistics": {
+            "numNodes": 1,
+            "numEdges": 1,
+            "numNodeLabels": 1,
+            "numEdgeLabels": 1,
+            "numNodeProperties": 1
+          }
+        }
+      }
+    }
+  ]
+}

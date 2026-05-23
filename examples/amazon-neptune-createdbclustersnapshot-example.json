@@ -1,0 +1,26 @@
+{
+  "operationId": "createDBClusterSnapshot",
+  "method": "POST",
+  "path": "/?Action=CreateDBClusterSnapshot",
+  "summary": "Amazon Neptune Create a Snapshot of a Neptune DB Cluster",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "createDBClusterSnapshot200Example",
+      "example": {
+        "DBClusterSnapshotIdentifier": "neptune-cluster-abc123",
+        "DBClusterIdentifier": "neptune-cluster-abc123",
+        "SnapshotCreateTime": "2025-03-15T14:30:00Z",
+        "Engine": "example-value",
+        "EngineVersion": "1.3.2.0",
+        "Status": "available",
+        "AllocatedStorage": 1,
+        "VpcId": "neptune-cluster-abc123",
+        "Port": 1,
+        "StorageEncrypted": true
+      }
+    }
+  ]
+}

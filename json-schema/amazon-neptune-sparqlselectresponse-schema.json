@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparqlSelectResponse",
+  "title": "SparqlSelectResponse",
+  "type": "object",
+  "description": "SPARQL 1.1 Query Results JSON Format as defined by W3C.",
+  "properties": {
+    "head": {
+      "type": "object",
+      "properties": {
+        "vars": {
+          "type": "array",
+          "description": "The list of variable names in the result set.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "link": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "results": {
+      "type": "object",
+      "properties": {
+        "bindings": {
+          "type": "array",
+          "description": "The result bindings for each solution.",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "uri",
+                    "literal",
+                    "bnode"
+                  ]
+                },
+                "value": {
+                  "type": "string"
+                },
+                "datatype": {
+                  "type": "string"
+                },
+                "xml:lang": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "boolean": {
+      "type": "boolean",
+      "description": "The result for ASK queries."
+    }
+  }
+}

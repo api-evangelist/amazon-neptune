@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateMLEndpointInput",
+  "title": "CreateMLEndpointInput",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the endpoint."
+    },
+    "mlModelTrainingJobId": {
+      "type": "string",
+      "description": "Job ID from a completed training job."
+    },
+    "mlModelTransformJobId": {
+      "type": "string",
+      "description": "Job ID from a completed transform job."
+    },
+    "update": {
+      "type": "boolean",
+      "description": "Whether this is an update request.",
+      "default": false
+    },
+    "neptuneIamRoleArn": {
+      "type": "string"
+    },
+    "modelName": {
+      "type": "string",
+      "enum": [
+        "rgcn",
+        "kge",
+        "transe",
+        "distmult",
+        "rotate"
+      ]
+    },
+    "instanceType": {
+      "type": "string",
+      "default": "ml.m5.xlarge"
+    },
+    "instanceCount": {
+      "type": "integer",
+      "default": 1
+    },
+    "volumeEncryptionKMSKey": {
+      "type": "string"
+    }
+  }
+}

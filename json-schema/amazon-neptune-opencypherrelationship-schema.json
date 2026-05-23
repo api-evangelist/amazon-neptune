@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpenCypherRelationship",
+  "title": "OpenCypherRelationship",
+  "type": "object",
+  "description": "A property graph relationship as returned by openCypher queries.",
+  "properties": {
+    "~id": {
+      "type": "string",
+      "description": "The unique identifier of the relationship."
+    },
+    "~entityType": {
+      "type": "string",
+      "enum": [
+        "relationship"
+      ],
+      "description": "The entity type (always 'relationship')."
+    },
+    "~start": {
+      "type": "string",
+      "description": "The ID of the source node."
+    },
+    "~end": {
+      "type": "string",
+      "description": "The ID of the target node."
+    },
+    "~type": {
+      "type": "string",
+      "description": "The relationship type."
+    },
+    "~properties": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The relationship properties as key-value pairs."
+    }
+  }
+}

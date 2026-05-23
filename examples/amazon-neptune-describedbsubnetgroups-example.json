@@ -1,0 +1,20 @@
+{
+  "operationId": "describeDBSubnetGroups",
+  "method": "GET",
+  "path": "/?Action=DescribeDBSubnetGroups",
+  "summary": "Amazon Neptune Describe DB Subnet Groups",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "describeDBSubnetGroups200Example",
+      "example": {
+        "DBSubnetGroups": [
+          {}
+        ],
+        "Marker": "example-value"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "operationId": "startMLDataProcessingJob",
+  "method": "POST",
+  "path": "/ml/dataprocessing",
+  "summary": "Amazon Neptune Start an ML Data Processing Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "startMLDataProcessingJob200Example",
+      "example": {
+        "id": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

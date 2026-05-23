@@ -1,0 +1,32 @@
+{
+  "operationId": "getEngineStatus",
+  "method": "GET",
+  "path": "/status",
+  "summary": "Amazon Neptune Get Neptune Engine Status",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getEngineStatus200Example",
+      "example": {
+        "status": "available",
+        "startTime": "example-value",
+        "dbEngineVersion": "1.3.2.0",
+        "role": "example-value",
+        "dfeQueryEngine": "example-value",
+        "gremlin": {
+          "version": "1.3.2.0"
+        },
+        "sparql": {
+          "version": "1.3.2.0"
+        },
+        "opencypher": {
+          "version": "1.3.2.0"
+        },
+        "labMode": {},
+        "features": {}
+      }
+    }
+  ]
+}

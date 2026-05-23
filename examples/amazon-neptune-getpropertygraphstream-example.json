@@ -1,0 +1,26 @@
+{
+  "operationId": "getPropertygraphStream",
+  "method": "GET",
+  "path": "/propertygraph/stream",
+  "summary": "Amazon Neptune Get Property Graph Change Stream Records",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getPropertygraphStream200Example",
+      "example": {
+        "lastEventId": {
+          "commitNum": 1,
+          "opNum": 1
+        },
+        "lastTrxTimestampInMillis": 1,
+        "format": "PG_JSON",
+        "records": [
+          {}
+        ],
+        "totalRecords": 1
+      }
+    }
+  ]
+}

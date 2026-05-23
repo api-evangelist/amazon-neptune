@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StreamEventId",
+  "title": "StreamEventId",
+  "type": "object",
+  "description": "A sequence identifier for a stream event.",
+  "properties": {
+    "commitNum": {
+      "type": "integer",
+      "description": "The commit (transaction) number."
+    },
+    "opNum": {
+      "type": "integer",
+      "description": "The operation number within the commit."
+    }
+  }
+}

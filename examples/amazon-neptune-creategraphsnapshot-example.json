@@ -1,0 +1,23 @@
+{
+  "operationId": "createGraphSnapshot",
+  "method": "POST",
+  "path": "/snapshots",
+  "summary": "Amazon Neptune Create a Graph Snapshot",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "createGraphSnapshot201Example",
+      "example": {
+        "id": "neptune-cluster-abc123",
+        "name": "my-neptune-cluster",
+        "arn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1",
+        "sourceGraphId": "neptune-cluster-abc123",
+        "snapshotCreateTime": "2025-03-15T14:30:00Z",
+        "status": "CREATING",
+        "kmsKeyIdentifier": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

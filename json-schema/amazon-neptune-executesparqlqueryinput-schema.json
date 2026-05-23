@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecuteSparqlQueryInput",
+  "title": "ExecuteSparqlQueryInput",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE)."
+    },
+    "update": {
+      "type": "string",
+      "description": "The SPARQL update string (for INSERT, DELETE operations)."
+    }
+  }
+}

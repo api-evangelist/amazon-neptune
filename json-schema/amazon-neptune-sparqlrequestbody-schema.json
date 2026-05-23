@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparqlRequestBody",
+  "title": "SparqlRequestBody",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update."
+    },
+    "update": {
+      "type": "string",
+      "description": "A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query."
+    },
+    "using-graph-uri": {
+      "type": "string",
+      "description": "Default graph URI for the query."
+    },
+    "using-named-graph-uri": {
+      "type": "string",
+      "description": "Named graph URI for the query."
+    }
+  }
+}

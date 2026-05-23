@@ -1,0 +1,20 @@
+{
+  "operationId": "startLoaderJob",
+  "method": "POST",
+  "path": "/loader",
+  "summary": "Amazon Neptune Start a Bulk Loader Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "startLoaderJob200Example",
+      "example": {
+        "status": "available",
+        "payload": {
+          "loadId": "neptune-cluster-abc123"
+        }
+      }
+    }
+  ]
+}

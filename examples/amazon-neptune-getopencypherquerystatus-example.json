@@ -1,0 +1,25 @@
+{
+  "operationId": "getOpenCypherQueryStatus",
+  "method": "GET",
+  "path": "/opencypher/status",
+  "summary": "Amazon Neptune Get the Status of OpenCypher Queries",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getOpenCypherQueryStatus200Example",
+      "example": {
+        "acceptedQueryCount": 1,
+        "runningQueryCount": 1,
+        "queries": [
+          {
+            "queryId": "neptune-cluster-abc123",
+            "queryString": "example-value",
+            "queryEvalStats": {}
+          }
+        ]
+      }
+    }
+  ]
+}

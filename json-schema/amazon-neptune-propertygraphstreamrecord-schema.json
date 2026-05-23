@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PropertygraphStreamRecord",
+  "title": "PropertygraphStreamRecord",
+  "type": "object",
+  "properties": {
+    "commitTimestampInMillis": {
+      "type": "integer"
+    },
+    "eventId": {
+      "type": "object",
+      "properties": {
+        "commitNum": {
+          "type": "integer"
+        },
+        "opNum": {
+          "type": "integer"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the element (v=vertex, vl=vertex label, vp=vertex property, e=edge, ep=edge property)."
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "description": "The property value."
+            },
+            "dataType": {
+              "type": "string"
+            }
+          }
+        },
+        "from": {
+          "type": "string",
+          "description": "Source vertex ID (for edges only)."
+        },
+        "to": {
+          "type": "string",
+          "description": "Target vertex ID (for edges only)."
+        }
+      }
+    },
+    "op": {
+      "type": "string",
+      "enum": [
+        "ADD",
+        "REMOVE"
+      ]
+    },
+    "isLastOp": {
+      "type": "boolean"
+    }
+  }
+}

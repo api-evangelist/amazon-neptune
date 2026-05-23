@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PrivateGraphEndpointOutput",
+  "title": "PrivateGraphEndpointOutput",
+  "type": "object",
+  "properties": {
+    "vpcId": {
+      "type": "string"
+    },
+    "subnetIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "AVAILABLE",
+        "DELETING",
+        "FAILED"
+      ]
+    },
+    "vpcEndpointId": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DBClusterRole",
+  "title": "DBClusterRole",
+  "type": "object",
+  "description": "An IAM role associated with a Neptune DB cluster.",
+  "properties": {
+    "RoleArn": {
+      "type": "string",
+      "description": "The ARN of the IAM role."
+    },
+    "Status": {
+      "type": "string",
+      "description": "The status of the association (active, pending, error)."
+    }
+  }
+}

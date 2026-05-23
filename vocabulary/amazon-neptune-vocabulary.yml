@@ -1,0 +1,23 @@
+name: Amazon Neptune Domain Vocabulary
+provider: Amazon Neptune
+providerId: amazon-neptune
+description: Tag-derived vocabulary for the Amazon Neptune API surface; sourced from openapi/ tags.
+terms:
+- term: DB Clusters
+  description: Operations for managing Neptune DB clusters
+- term: DB Instances
+  description: Operations for managing Neptune DB instances
+- term: Engine
+  description: Operations for querying engine version information
+- term: Events
+  description: Operations for managing event subscriptions and viewing events
+- term: Global Clusters
+  description: Operations for managing Neptune global database clusters
+- term: Maintenance
+  description: Operations for managing pending maintenance actions
+- term: Parameter Groups
+  description: Operations for managing DB and cluster parameter groups
+- term: Snapshots
+  description: Operations for managing cluster snapshots
+- term: Subnet Groups
+  description: Operations for managing DB subnet groups

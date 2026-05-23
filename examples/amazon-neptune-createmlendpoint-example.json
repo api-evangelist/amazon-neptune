@@ -1,0 +1,17 @@
+{
+  "operationId": "createMLEndpoint",
+  "method": "POST",
+  "path": "/ml/endpoints",
+  "summary": "Amazon Neptune Create an ML Inference Endpoint",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "createMLEndpoint200Example",
+      "example": {
+        "id": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

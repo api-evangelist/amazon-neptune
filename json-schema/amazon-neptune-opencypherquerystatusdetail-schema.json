@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpenCypherQueryStatusDetail",
+  "title": "OpenCypherQueryStatusDetail",
+  "type": "object",
+  "properties": {
+    "queryId": {
+      "type": "string"
+    },
+    "queryString": {
+      "type": "string"
+    },
+    "queryEvalStats": {
+      "type": "object",
+      "properties": {
+        "waited": {
+          "type": "integer",
+          "description": "Time waited in queue (milliseconds)."
+        },
+        "elapsed": {
+          "type": "integer",
+          "description": "Elapsed execution time (milliseconds)."
+        },
+        "cancelled": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

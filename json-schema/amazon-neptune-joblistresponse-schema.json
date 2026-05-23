@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobListResponse",
+  "title": "JobListResponse",
+  "type": "object",
+  "properties": {
+    "ids": {
+      "type": "array",
+      "description": "List of job IDs.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

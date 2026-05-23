@@ -1,0 +1,26 @@
+{
+  "operationId": "listGraphs",
+  "method": "GET",
+  "path": "/graphs",
+  "summary": "Amazon Neptune List Neptune Analytics Graphs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "listGraphs200Example",
+      "example": {
+        "graphs": [
+          {
+            "id": "neptune-cluster-abc123",
+            "name": "my-neptune-cluster",
+            "arn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1",
+            "status": "available",
+            "provisionedMemory": 1
+          }
+        ],
+        "nextToken": "example-value"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PropertygraphStatisticsOutput",
+  "title": "PropertygraphStatisticsOutput",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "graphStatistics": {
+          "type": "object",
+          "properties": {
+            "numNodes": {
+              "type": "integer"
+            },
+            "numEdges": {
+              "type": "integer"
+            },
+            "numNodeLabels": {
+              "type": "integer"
+            },
+            "numEdgeLabels": {
+              "type": "integer"
+            },
+            "numNodeProperties": {
+              "type": "integer"
+            },
+            "numEdgeProperties": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

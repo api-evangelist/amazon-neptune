@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StartMLModelTransformJobInput",
+  "title": "StartMLModelTransformJobInput",
+  "type": "object",
+  "required": [
+    "modelTransformOutputS3Location"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "dataProcessingJobId": {
+      "type": "string"
+    },
+    "mlModelTrainingJobId": {
+      "type": "string"
+    },
+    "trainingJobName": {
+      "type": "string"
+    },
+    "modelTransformOutputS3Location": {
+      "type": "string",
+      "description": "S3 location for transform output."
+    },
+    "sagemakerIamRoleArn": {
+      "type": "string"
+    },
+    "neptuneIamRoleArn": {
+      "type": "string"
+    },
+    "baseProcessingInstanceType": {
+      "type": "string"
+    },
+    "baseProcessingInstanceVolumeSizeInGB": {
+      "type": "integer"
+    },
+    "subnets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "securityGroupIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "volumeEncryptionKMSKey": {
+      "type": "string"
+    },
+    "s3OutputEncryptionKMSKey": {
+      "type": "string"
+    },
+    "enableInterContainerTrafficEncryption": {
+      "type": "boolean",
+      "default": true
+    },
+    "customModelTransformParameters": {
+      "type": "object",
+      "properties": {
+        "sourceS3DirectoryPath": {
+          "type": "string"
+        },
+        "transformEntryPointScript": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

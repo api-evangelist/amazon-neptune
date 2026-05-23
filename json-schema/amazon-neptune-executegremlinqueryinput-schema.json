@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecuteGremlinQueryInput",
+  "title": "ExecuteGremlinQueryInput",
+  "type": "object",
+  "required": [
+    "gremlin"
+  ],
+  "properties": {
+    "gremlin": {
+      "type": "string",
+      "description": "The Gremlin traversal query string to execute."
+    }
+  }
+}

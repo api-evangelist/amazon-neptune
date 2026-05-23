@@ -1,0 +1,20 @@
+{
+  "operationId": "describeDBClusters",
+  "method": "GET",
+  "path": "/",
+  "summary": "Amazon Neptune Describe Neptune DB Clusters",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/xml",
+      "name": "describeDBClusters200Example",
+      "example": {
+        "DBClusters": [
+          {}
+        ],
+        "Marker": "example-value"
+      }
+    }
+  ]
+}

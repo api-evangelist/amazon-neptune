@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RestoreDBClusterFromSnapshotRequest",
+  "title": "RestoreDBClusterFromSnapshotRequest",
+  "type": "object",
+  "required": [
+    "DBClusterIdentifier",
+    "SnapshotIdentifier",
+    "Engine"
+  ],
+  "properties": {
+    "DBClusterIdentifier": {
+      "type": "string",
+      "description": "The name of the new DB cluster."
+    },
+    "SnapshotIdentifier": {
+      "type": "string",
+      "description": "The identifier of the snapshot to restore from."
+    },
+    "Engine": {
+      "type": "string",
+      "description": "The database engine to use.",
+      "default": "neptune"
+    },
+    "EngineVersion": {
+      "type": "string"
+    },
+    "Port": {
+      "type": "integer"
+    },
+    "DBSubnetGroupName": {
+      "type": "string"
+    },
+    "VpcSecurityGroupIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "DeletionProtection": {
+      "type": "boolean"
+    },
+    "IAMDatabaseAuthenticationEnabled": {
+      "type": "boolean"
+    }
+  }
+}

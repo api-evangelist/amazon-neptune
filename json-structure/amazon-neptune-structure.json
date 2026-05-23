@@ -1,0 +1,411 @@
+{
+  "provider": "Amazon Neptune",
+  "providerId": "amazon-neptune",
+  "kind": "json-structure",
+  "description": "Structural overview of the Amazon Neptune API surface; extracted from openapi/.",
+  "schemaCount": 15,
+  "operationCount": 33,
+  "schemas": [
+    {
+      "name": "DBCluster",
+      "type": "object",
+      "propertyCount": 22,
+      "required": []
+    },
+    {
+      "name": "DBClusterMember",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "DBClusterRole",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DBInstance",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "DBClusterSnapshot",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "DBSubnetGroup",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CreateDBClusterRequest",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "DBClusterIdentifier",
+        "Engine"
+      ]
+    },
+    {
+      "name": "ModifyDBClusterRequest",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "DBClusterIdentifier"
+      ]
+    },
+    {
+      "name": "CreateDBInstanceRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "DBInstanceIdentifier",
+        "DBInstanceClass",
+        "Engine",
+        "DBClusterIdentifier"
+      ]
+    },
+    {
+      "name": "ModifyDBInstanceRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "DBInstanceIdentifier"
+      ]
+    },
+    {
+      "name": "RestoreDBClusterFromSnapshotRequest",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "DBClusterIdentifier",
+        "SnapshotIdentifier",
+        "Engine"
+      ]
+    },
+    {
+      "name": "DescribeDBClustersResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DescribeDBInstancesResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DescribeDBClusterSnapshotsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DescribeDBSubnetGroupsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/",
+      "operationId": "describeDBClusters",
+      "summary": "Amazon Neptune Describe Neptune DB Clusters",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/",
+      "operationId": "createDBCluster",
+      "summary": "Amazon Neptune Create a New Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=DeleteDBCluster",
+      "operationId": "deleteDBCluster",
+      "summary": "Amazon Neptune Delete a Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=ModifyDBCluster",
+      "operationId": "modifyDBCluster",
+      "summary": "Amazon Neptune Modify a Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=StartDBCluster",
+      "operationId": "startDBCluster",
+      "summary": "Amazon Neptune Start a Stopped Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=StopDBCluster",
+      "operationId": "stopDBCluster",
+      "summary": "Amazon Neptune Stop a Running Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=FailoverDBCluster",
+      "operationId": "failoverDBCluster",
+      "summary": "Amazon Neptune Force a Failover for a Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=AddRoleToDBCluster",
+      "operationId": "addRoleToDBCluster",
+      "summary": "Amazon Neptune Associate an IAM Role with a Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=RemoveRoleFromDBCluster",
+      "operationId": "removeRoleFromDBCluster",
+      "summary": "Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster",
+      "tags": [
+        "DB Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=CreateDBInstance",
+      "operationId": "createDBInstance",
+      "summary": "Amazon Neptune Create a New Neptune DB Instance",
+      "tags": [
+        "DB Instances"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=DeleteDBInstance",
+      "operationId": "deleteDBInstance",
+      "summary": "Amazon Neptune Delete a Neptune DB Instance",
+      "tags": [
+        "DB Instances"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeDBInstances",
+      "operationId": "describeDBInstances",
+      "summary": "Amazon Neptune Describe Neptune DB Instances",
+      "tags": [
+        "DB Instances"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=ModifyDBInstance",
+      "operationId": "modifyDBInstance",
+      "summary": "Amazon Neptune Modify a Neptune DB Instance",
+      "tags": [
+        "DB Instances"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=RebootDBInstance",
+      "operationId": "rebootDBInstance",
+      "summary": "Amazon Neptune Reboot a Neptune DB Instance",
+      "tags": [
+        "DB Instances"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=CreateDBClusterSnapshot",
+      "operationId": "createDBClusterSnapshot",
+      "summary": "Amazon Neptune Create a Snapshot of a Neptune DB Cluster",
+      "tags": [
+        "Snapshots"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeDBClusterSnapshots",
+      "operationId": "describeDBClusterSnapshots",
+      "summary": "Amazon Neptune Describe Neptune DB Cluster Snapshots",
+      "tags": [
+        "Snapshots"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=DeleteDBClusterSnapshot",
+      "operationId": "deleteDBClusterSnapshot",
+      "summary": "Amazon Neptune Delete a Neptune DB Cluster Snapshot",
+      "tags": [
+        "Snapshots"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=RestoreDBClusterFromSnapshot",
+      "operationId": "restoreDBClusterFromSnapshot",
+      "summary": "Amazon Neptune Restore a Neptune DB Cluster from a Snapshot",
+      "tags": [
+        "Snapshots"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=CreateDBSubnetGroup",
+      "operationId": "createDBSubnetGroup",
+      "summary": "Amazon Neptune Create a New DB Subnet Group",
+      "tags": [
+        "Subnet Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeDBSubnetGroups",
+      "operationId": "describeDBSubnetGroups",
+      "summary": "Amazon Neptune Describe DB Subnet Groups",
+      "tags": [
+        "Subnet Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=CreateDBParameterGroup",
+      "operationId": "createDBParameterGroup",
+      "summary": "Amazon Neptune Create a New DB Parameter Group",
+      "tags": [
+        "Parameter Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=CreateDBClusterParameterGroup",
+      "operationId": "createDBClusterParameterGroup",
+      "summary": "Amazon Neptune Create a New DB Cluster Parameter Group",
+      "tags": [
+        "Parameter Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeDBParameterGroups",
+      "operationId": "describeDBParameterGroups",
+      "summary": "Amazon Neptune Describe DB Parameter Groups",
+      "tags": [
+        "Parameter Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeDBClusterParameterGroups",
+      "operationId": "describeDBClusterParameterGroups",
+      "summary": "Amazon Neptune Describe DB Cluster Parameter Groups",
+      "tags": [
+        "Parameter Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=CreateEventSubscription",
+      "operationId": "createEventSubscription",
+      "summary": "Amazon Neptune Create a Neptune Event Notification Subscription",
+      "tags": [
+        "Events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeEvents",
+      "operationId": "describeEvents",
+      "summary": "Amazon Neptune Describe Neptune Events",
+      "tags": [
+        "Events"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=AddTagsToResource",
+      "operationId": "addTagsToResource",
+      "summary": "Amazon Neptune Add Tags to a Neptune Resource",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=ListTagsForResource",
+      "operationId": "listTagsForResource",
+      "summary": "Amazon Neptune List Tags for a Neptune Resource",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeDBEngineVersions",
+      "operationId": "describeDBEngineVersions",
+      "summary": "Amazon Neptune Describe Neptune DB Engine Versions",
+      "tags": [
+        "Engine"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=CreateGlobalCluster",
+      "operationId": "createGlobalCluster",
+      "summary": "Amazon Neptune Create a Neptune Global Database Cluster",
+      "tags": [
+        "Global Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribeGlobalClusters",
+      "operationId": "describeGlobalClusters",
+      "summary": "Amazon Neptune Describe Neptune Global Database Clusters",
+      "tags": [
+        "Global Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/?Action=DescribePendingMaintenanceActions",
+      "operationId": "describePendingMaintenanceActions",
+      "summary": "Amazon Neptune Describe Pending Maintenance Actions",
+      "tags": [
+        "Maintenance"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/?Action=ApplyPendingMaintenanceAction",
+      "operationId": "applyPendingMaintenanceAction",
+      "summary": "Amazon Neptune Apply a Pending Maintenance Action",
+      "tags": [
+        "Maintenance"
+      ]
+    }
+  ]
+}

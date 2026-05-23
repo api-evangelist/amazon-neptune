@@ -1,0 +1,22 @@
+{
+  "operationId": "createPrivateGraphEndpoint",
+  "method": "POST",
+  "path": "/privategraphendpoints/{graphIdentifier}",
+  "summary": "Amazon Neptune Create a Private Graph Endpoint",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "createPrivateGraphEndpoint201Example",
+      "example": {
+        "vpcId": "neptune-cluster-abc123",
+        "subnetIds": [
+          "example-value"
+        ],
+        "status": "CREATING",
+        "vpcEndpointId": "neptune-cluster-abc123"
+      }
+    }
+  ]
+}

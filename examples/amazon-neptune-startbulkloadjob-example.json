@@ -1,0 +1,63 @@
+{
+  "operationId": "startBulkLoadJob",
+  "method": "POST",
+  "path": "/loader",
+  "summary": "Amazon Neptune Start a Bulk Data Load Job from S3",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "csvLoad",
+      "example": {
+        "source": "s3://my-bucket/graph-data/",
+        "format": "csv",
+        "iamRoleArn": "arn:aws:iam::123456789012:role/NeptuneLoadRole",
+        "region": "us-east-1",
+        "failOnError": "FALSE",
+        "parallelism": "MEDIUM"
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "rdfLoad",
+      "example": {
+        "source": "s3://my-bucket/rdf-data/data.nt",
+        "format": "ntriples",
+        "iamRoleArn": "arn:aws:iam::123456789012:role/NeptuneLoadRole",
+        "region": "us-east-1"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "startBulkLoadJob200Example",
+      "example": {
+        "status": "available",
+        "payload": {
+          "loadId": "neptune-cluster-abc123"
+        }
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "startBulkLoadJob400Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "startBulkLoadJob500Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    }
+  ]
+}

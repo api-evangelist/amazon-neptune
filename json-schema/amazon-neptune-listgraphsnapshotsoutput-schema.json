@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ListGraphSnapshotsOutput",
+  "title": "ListGraphSnapshotsOutput",
+  "type": "object",
+  "properties": {
+    "graphSnapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "arn": {
+            "type": "string"
+          },
+          "sourceGraphId": {
+            "type": "string"
+          },
+          "snapshotCreateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nextToken": {
+      "type": "string"
+    }
+  }
+}

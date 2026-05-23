@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparqlStatisticsOutput",
+  "title": "SparqlStatisticsOutput",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "graphStatistics": {
+          "type": "object",
+          "properties": {
+            "numStatements": {
+              "type": "integer"
+            },
+            "numDistinctSubjects": {
+              "type": "integer"
+            },
+            "numDistinctPredicates": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

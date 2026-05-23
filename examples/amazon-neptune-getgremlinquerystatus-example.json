@@ -1,0 +1,21 @@
+{
+  "operationId": "getGremlinQueryStatus",
+  "method": "GET",
+  "path": "/gremlin/status",
+  "summary": "Amazon Neptune Get the Status of Gremlin Queries",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getGremlinQueryStatus200Example",
+      "example": {
+        "acceptedQueryCount": 1,
+        "runningQueryCount": 1,
+        "queries": [
+          {}
+        ]
+      }
+    }
+  ]
+}

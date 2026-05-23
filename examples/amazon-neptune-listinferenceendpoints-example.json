@@ -1,0 +1,19 @@
+{
+  "operationId": "listInferenceEndpoints",
+  "method": "GET",
+  "path": "/ml/endpoints",
+  "summary": "Amazon Neptune List ML Inference Endpoints",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "listInferenceEndpoints200Example",
+      "example": {
+        "ids": [
+          "example-value"
+        ]
+      }
+    }
+  ]
+}

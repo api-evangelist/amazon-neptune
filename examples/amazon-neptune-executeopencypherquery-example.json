@@ -1,0 +1,19 @@
+{
+  "operationId": "executeOpenCypherQuery",
+  "method": "POST",
+  "path": "/opencypher",
+  "summary": "Amazon Neptune Execute an OpenCypher Query via the Data API",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "executeOpenCypherQuery200Example",
+      "example": {
+        "results": [
+          {}
+        ]
+      }
+    }
+  ]
+}

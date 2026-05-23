@@ -1,0 +1,22 @@
+{
+  "operationId": "listBulkLoadJobs",
+  "method": "GET",
+  "path": "/loader",
+  "summary": "Amazon Neptune List Bulk Load Job IDs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "listBulkLoadJobs200Example",
+      "example": {
+        "status": "available",
+        "payload": {
+          "loadIds": [
+            "example-value"
+          ]
+        }
+      }
+    }
+  ]
+}

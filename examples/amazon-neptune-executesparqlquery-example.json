@@ -1,0 +1,34 @@
+{
+  "operationId": "executeSparqlQuery",
+  "method": "POST",
+  "path": "/sparql",
+  "summary": "Amazon Neptune Execute a SPARQL Query or Update via HTTP POST",
+  "requestExamples": [
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "name": "selectQuery",
+      "example": {
+        "query": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+      }
+    },
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "name": "insertData",
+      "example": {
+        "update": "INSERT DATA { <https://example.org/s> <https://example.org/p> <https://example.org/o> . }"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "executeSparqlQuery400Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    }
+  ]
+}

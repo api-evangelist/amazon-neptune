@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DBClusterMember",
+  "title": "DBClusterMember",
+  "type": "object",
+  "description": "A member instance of a Neptune DB cluster.",
+  "properties": {
+    "DBInstanceIdentifier": {
+      "type": "string",
+      "description": "The instance identifier."
+    },
+    "IsClusterWriter": {
+      "type": "boolean",
+      "description": "Whether the instance is the primary (writer) instance."
+    },
+    "DBClusterParameterGroupStatus": {
+      "type": "string",
+      "description": "The status of the parameter group for this member."
+    },
+    "PromotionTier": {
+      "type": "integer",
+      "description": "Failover priority for the instance."
+    }
+  }
+}

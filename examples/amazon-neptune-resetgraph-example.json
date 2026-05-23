@@ -1,0 +1,28 @@
+{
+  "operationId": "resetGraph",
+  "method": "PUT",
+  "path": "/graphs/{graphIdentifier}/reset",
+  "summary": "Amazon Neptune Reset a Neptune Analytics Graph",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "resetGraph200Example",
+      "example": {
+        "id": "neptune-cluster-abc123",
+        "name": "my-neptune-cluster",
+        "arn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1",
+        "status": "CREATING",
+        "statusReason": "available",
+        "createTime": "2025-03-15T14:30:00Z",
+        "provisionedMemory": 1,
+        "endpoint": "neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com",
+        "publicConnectivity": true,
+        "vectorSearchConfiguration": {
+          "dimension": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DBInstance",
+  "title": "DBInstance",
+  "type": "object",
+  "description": "Contains the details of an Amazon Neptune DB instance.",
+  "properties": {
+    "DBInstanceIdentifier": {
+      "type": "string",
+      "description": "The user-supplied database identifier."
+    },
+    "DBInstanceClass": {
+      "type": "string",
+      "description": "The compute and memory capacity of the instance."
+    },
+    "Engine": {
+      "type": "string",
+      "description": "The database engine (neptune)."
+    },
+    "DBInstanceStatus": {
+      "type": "string",
+      "description": "Current state of the instance."
+    },
+    "Endpoint": {
+      "type": "object",
+      "properties": {
+        "Address": {
+          "type": "string"
+        },
+        "Port": {
+          "type": "integer"
+        }
+      }
+    },
+    "DBClusterIdentifier": {
+      "type": "string",
+      "description": "The cluster this instance belongs to."
+    },
+    "AvailabilityZone": {
+      "type": "string",
+      "description": "The Availability Zone of the instance."
+    },
+    "PreferredMaintenanceWindow": {
+      "type": "string",
+      "description": "The weekly time range for system maintenance."
+    },
+    "EngineVersion": {
+      "type": "string",
+      "description": "The version of the database engine."
+    },
+    "AutoMinorVersionUpgrade": {
+      "type": "boolean",
+      "description": "Whether minor version upgrades are applied automatically."
+    },
+    "PubliclyAccessible": {
+      "type": "boolean",
+      "description": "Whether the instance is publicly accessible."
+    },
+    "DBInstanceArn": {
+      "type": "string",
+      "description": "The ARN of the DB instance."
+    },
+    "PromotionTier": {
+      "type": "integer",
+      "description": "The failover priority for the instance."
+    },
+    "StorageEncrypted": {
+      "type": "boolean",
+      "description": "Whether the instance storage is encrypted."
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpenCypherQueryRequest",
+  "title": "OpenCypherQueryRequest",
+  "type": "object",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The openCypher query string."
+    }
+  }
+}

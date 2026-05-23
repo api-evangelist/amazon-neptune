@@ -1,0 +1,26 @@
+{
+  "operationId": "listImportTasks",
+  "method": "GET",
+  "path": "/importtasks",
+  "summary": "Amazon Neptune List Import Tasks",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "listImportTasks200Example",
+      "example": {
+        "tasks": [
+          {
+            "graphId": "neptune-cluster-abc123",
+            "taskId": "neptune-cluster-abc123",
+            "source": "example-value",
+            "format": "example-value",
+            "roleArn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1"
+          }
+        ],
+        "nextToken": "example-value"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "operationId": "executeGremlinTraversalGet",
+  "method": "GET",
+  "path": "/gremlin",
+  "summary": "Amazon Neptune Execute a Gremlin Traversal via HTTP GET",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "executeGremlinTraversalGet200Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "status": {
+          "message": "example-value",
+          "code": 1,
+          "attributes": {}
+        },
+        "result": {
+          "data": "example-value",
+          "meta": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "operationId": "createGraphUsingImportTask",
+  "method": "POST",
+  "path": "/importtasks",
+  "summary": "Amazon Neptune Create a Graph Using an Import Task",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "createGraphUsingImportTask201Example",
+      "example": {
+        "graphId": "neptune-cluster-abc123",
+        "taskId": "neptune-cluster-abc123",
+        "source": "example-value",
+        "format": "example-value",
+        "roleArn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1",
+        "status": "INITIALIZING",
+        "importOptions": {},
+        "importTaskDetails": {
+          "status": "available",
+          "startTime": "2025-03-15T14:30:00Z",
+          "timeElapsedSeconds": 1,
+          "progressPercentage": 1,
+          "errorCount": 1
+        }
+      }
+    }
+  ]
+}

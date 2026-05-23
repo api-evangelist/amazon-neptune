@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GremlinQueryStatusList",
+  "title": "GremlinQueryStatusList",
+  "type": "object",
+  "properties": {
+    "acceptedQueryCount": {
+      "type": "integer",
+      "description": "The total number of accepted queries."
+    },
+    "runningQueryCount": {
+      "type": "integer",
+      "description": "The number of currently running queries."
+    },
+    "queries": {
+      "type": "array",
+      "description": "The list of running and waiting queries.",
+      "items": {
+        "$ref": "#/components/schemas/GremlinQueryStatusDetail"
+      }
+    }
+  }
+}

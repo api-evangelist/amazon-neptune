@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpenCypherErrorResponse",
+  "title": "OpenCypherErrorResponse",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "detailedMessage": {
+      "type": "string"
+    }
+  }
+}

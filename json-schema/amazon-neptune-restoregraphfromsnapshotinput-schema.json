@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RestoreGraphFromSnapshotInput",
+  "title": "RestoreGraphFromSnapshotInput",
+  "type": "object",
+  "required": [
+    "graphName"
+  ],
+  "properties": {
+    "graphName": {
+      "type": "string",
+      "description": "The name of the restored graph."
+    },
+    "provisionedMemory": {
+      "type": "integer"
+    },
+    "deletionProtection": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "replicaCount": {
+      "type": "integer"
+    },
+    "publicConnectivity": {
+      "type": "boolean"
+    }
+  }
+}

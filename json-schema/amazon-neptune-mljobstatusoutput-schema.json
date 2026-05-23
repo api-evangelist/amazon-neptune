@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MLJobStatusOutput",
+  "title": "MLJobStatusOutput",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "processingJob": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "outputLocation": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DBSubnetGroup",
+  "title": "DBSubnetGroup",
+  "type": "object",
+  "description": "Contains the details of a Neptune DB subnet group.",
+  "properties": {
+    "DBSubnetGroupName": {
+      "type": "string"
+    },
+    "DBSubnetGroupDescription": {
+      "type": "string"
+    },
+    "VpcId": {
+      "type": "string"
+    },
+    "SubnetGroupStatus": {
+      "type": "string"
+    },
+    "Subnets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "SubnetIdentifier": {
+            "type": "string"
+          },
+          "SubnetAvailabilityZone": {
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string"
+              }
+            }
+          },
+          "SubnetStatus": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DBSubnetGroupArn": {
+      "type": "string"
+    }
+  }
+}

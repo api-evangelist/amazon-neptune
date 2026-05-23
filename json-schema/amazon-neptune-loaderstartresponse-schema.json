@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LoaderStartResponse",
+  "title": "LoaderStartResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The HTTP status (e.g., '200 OK')."
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "loadId": {
+          "type": "string",
+          "description": "The unique identifier for the initiated load job."
+        }
+      }
+    }
+  }
+}

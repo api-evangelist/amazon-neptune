@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecuteOpenCypherExplainInput",
+  "title": "ExecuteOpenCypherExplainInput",
+  "type": "object",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The openCypher query to explain."
+    },
+    "parameters": {
+      "type": "string"
+    },
+    "explainMode": {
+      "type": "string",
+      "enum": [
+        "static",
+        "dynamic",
+        "details"
+      ],
+      "description": "The explain mode (static, dynamic, or details)."
+    }
+  }
+}

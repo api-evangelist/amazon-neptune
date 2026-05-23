@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GremlinQueryRequest",
+  "title": "GremlinQueryRequest",
+  "type": "object",
+  "required": [
+    "gremlin"
+  ],
+  "properties": {
+    "gremlin": {
+      "type": "string",
+      "description": "The Gremlin traversal query string. Must be a valid Gremlin traversal starting with g. The bindings property is not supported by Neptune.",
+      "examples": [
+        "g.V().count()",
+        "g.V().has('name','John').out('knows')"
+      ]
+    }
+  }
+}

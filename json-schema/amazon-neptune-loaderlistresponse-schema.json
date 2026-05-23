@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LoaderListResponse",
+  "title": "LoaderListResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "loadIds": {
+          "type": "array",
+          "description": "The list of load job IDs.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

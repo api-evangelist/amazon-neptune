@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MLEndpointStatusOutput",
+  "title": "MLEndpointStatusOutput",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "endpoint": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "arn": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "endpointConfig": {
+      "type": "object"
+    }
+  }
+}

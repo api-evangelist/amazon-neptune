@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparqlErrorResponse",
+  "title": "SparqlErrorResponse",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "detailedMessage": {
+      "type": "string",
+      "description": "Detailed error message explaining the issue."
+    }
+  }
+}

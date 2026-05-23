@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DescribeDBClustersResponse",
+  "title": "DescribeDBClustersResponse",
+  "type": "object",
+  "properties": {
+    "DBClusters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DBCluster"
+      }
+    },
+    "Marker": {
+      "type": "string"
+    }
+  }
+}

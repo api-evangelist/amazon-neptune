@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparqlQueryStatusList",
+  "title": "SparqlQueryStatusList",
+  "type": "object",
+  "properties": {
+    "acceptedQueryCount": {
+      "type": "integer"
+    },
+    "runningQueryCount": {
+      "type": "integer"
+    },
+    "queries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SparqlQueryStatusDetail"
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SparqlStreamOutput",
+  "title": "SparqlStreamOutput",
+  "type": "object",
+  "properties": {
+    "lastEventId": {
+      "type": "object",
+      "properties": {
+        "commitNum": {
+          "type": "integer"
+        },
+        "opNum": {
+          "type": "integer"
+        }
+      }
+    },
+    "lastTrxTimestampInMillis": {
+      "type": "integer"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "NQUADS"
+      ]
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "commitTimestampInMillis": {
+            "type": "integer"
+          },
+          "eventId": {
+            "type": "object",
+            "properties": {
+              "commitNum": {
+                "type": "integer"
+              },
+              "opNum": {
+                "type": "integer"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "stmt": {
+                "type": "string",
+                "description": "The N-Quads statement."
+              }
+            }
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "ADD",
+              "REMOVE"
+            ]
+          },
+          "isLastOp": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "totalRecords": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GremlinQueryStatus",
+  "title": "GremlinQueryStatus",
+  "type": "object",
+  "properties": {
+    "queryId": {
+      "type": "string"
+    },
+    "queryString": {
+      "type": "string"
+    },
+    "queryEvalStats": {
+      "type": "object",
+      "properties": {
+        "waited": {
+          "type": "integer"
+        },
+        "elapsed": {
+          "type": "integer"
+        },
+        "cancelled": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

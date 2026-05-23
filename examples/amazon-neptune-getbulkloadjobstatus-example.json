@@ -1,0 +1,53 @@
+{
+  "operationId": "getBulkLoadJobStatus",
+  "method": "GET",
+  "path": "/loader/{loadId}",
+  "summary": "Amazon Neptune Get the Status of a Bulk Load Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getBulkLoadJobStatus200Example",
+      "example": {
+        "status": "available",
+        "payload": {
+          "feedCount": [
+            {}
+          ],
+          "overallStatus": {
+            "fullUri": "example-value",
+            "runNumber": 1,
+            "retryNumber": 1,
+            "status": "LOAD_NOT_STARTED",
+            "totalTimeSpent": 1
+          },
+          "failedFeeds": [
+            {}
+          ],
+          "errors": {}
+        }
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "getBulkLoadJobStatus400Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "getBulkLoadJobStatus404Example",
+      "example": {
+        "requestId": "neptune-cluster-abc123",
+        "code": "example-value",
+        "detailedMessage": "example-value"
+      }
+    }
+  ]
+}

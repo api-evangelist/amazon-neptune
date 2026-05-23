@@ -1,0 +1,24 @@
+{
+  "operationId": "getMLEndpointStatus",
+  "method": "GET",
+  "path": "/ml/endpoints/{endpointId}",
+  "summary": "Amazon Neptune Get ML Inference Endpoint Status",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "getMLEndpointStatus200Example",
+      "example": {
+        "status": "available",
+        "id": "neptune-cluster-abc123",
+        "endpoint": {
+          "name": "my-neptune-cluster",
+          "arn": "arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1",
+          "status": "available"
+        },
+        "endpointConfig": {}
+      }
+    }
+  ]
+}
