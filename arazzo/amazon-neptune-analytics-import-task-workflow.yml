@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Analytics Create Graph from Import Task
+  summary: Create a Neptune Analytics graph populated from S3 and poll the import task to completion.
+  description: >-
+    Creates a Neptune Analytics graph and loads it from an Amazon S3 source in a
+    single import task, then waits for the import to finish. The workflow starts
+    the import task, polls its details on a loop while the status is one of the
+    in-progress states, branches to a failure end if the import fails, and ends
+    successfully once the status is SUCCEEDED. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneAnalyticsApi
+  url: ../openapi/amazon-neptune-analytics-openapi.yml
+  type: openapi
+workflows:
+- workflowId: analytics-import-task
+  summary: Create a graph from an S3 import task and poll until the import succeeds.
+  description: >-
+    Starts an import task that creates and populates a graph from S3, then polls
+    until the task status is SUCCEEDED or FAILED.
+  inputs:
+    type: object
+    required:
+    - graphName
+    - source
+    - roleArn
+    properties:
+      graphName:
+        type: string
+        description: The name of the graph to create.
+      source:
+        type: string
+        description: The S3 URI of the source data to import.
+      roleArn:
+        type: string
+        description: The IAM role ARN with S3 access.
+      format:
+        type: string
+        description: The source data format (CSV, OPEN_CYPHER, PARQUET, NTRIPLES).
+      provisionedMemory:
+        type: integer
+        description: The provisioned memory size in NCUs.
+  steps:
+  - stepId: startImport
+    description: >-
+      Start an import task that creates a new graph and loads it from the S3
+      source. Capture both the graph id and task id.
+    operationId: createGraphUsingImportTask
+    requestBody:
+      contentType: application/json
+      payload:
+        graphName: $inputs.graphName
+        source: $inputs.source
+        roleArn: $inputs.roleArn
+        format: $inputs.format
+        provisionedMemory: $inputs.provisionedMemory
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      taskId: $response.body#/taskId
+      graphId: $response.body#/graphId
+  - stepId: pollImport
+    description: >-
+      Poll the import task. Retry while it is still importing, branch to a
+      failure end if it fails, and finish successfully once it SUCCEEDED.
+    operationId: getImportTask
+    parameters:
+    - name: taskIdentifier
+      in: path
+      value: $steps.startImport.outputs.taskId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      progressPercentage: $response.body#/importTaskDetails/progressPercentage
+    onSuccess:
+    - name: importRunning
+      type: retry
+      retryAfter: 30
+      retryLimit: 120
+      criteria:
+      - context: $response.body
+        condition: $.status != "SUCCEEDED" && $.status != "FAILED"
+        type: jsonpath
+    - name: importFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "FAILED"
+        type: jsonpath
+    - name: importSucceeded
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "SUCCEEDED"
+        type: jsonpath
+  outputs:
+    graphId: $steps.startImport.outputs.graphId
+    taskId: $steps.startImport.outputs.taskId
+    status: $steps.pollImport.outputs.status

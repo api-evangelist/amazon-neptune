@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Analytics Create Graph and Wait
+  summary: Create a Neptune Analytics graph and poll until it becomes AVAILABLE.
+  description: >-
+    Provisions a memory-optimized Neptune Analytics graph and waits for it to be
+    usable. The workflow creates the graph with the requested provisioned memory,
+    polls its details on a loop while the status is CREATING, and finishes once
+    the status is AVAILABLE, returning the graph endpoint. The poll loop uses a
+    retry delay to handle provisioning. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneAnalyticsApi
+  url: ../openapi/amazon-neptune-analytics-openapi.yml
+  type: openapi
+workflows:
+- workflowId: analytics-create-graph
+  summary: Create an analytics graph and poll until it is AVAILABLE.
+  description: >-
+    Creates a Neptune Analytics graph, then polls until its status is AVAILABLE
+    and returns the endpoint.
+  inputs:
+    type: object
+    required:
+    - graphName
+    - provisionedMemory
+    properties:
+      graphName:
+        type: string
+        description: The name of the graph (1-63 alphanumeric characters or hyphens).
+      provisionedMemory:
+        type: integer
+        description: The provisioned memory size in Neptune Capacity Units (NCUs).
+      publicConnectivity:
+        type: boolean
+        description: Whether the graph can be reached over the internet.
+      deletionProtection:
+        type: boolean
+        description: Whether deletion protection is enabled.
+  steps:
+  - stepId: createGraph
+    description: >-
+      Create the Neptune Analytics graph with the requested provisioned memory
+      and capture its identifier.
+    operationId: createGraph
+    requestBody:
+      contentType: application/json
+      payload:
+        graphName: $inputs.graphName
+        provisionedMemory: $inputs.provisionedMemory
+        publicConnectivity: $inputs.publicConnectivity
+        deletionProtection: $inputs.deletionProtection
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      graphId: $response.body#/id
+      initialStatus: $response.body#/status
+  - stepId: pollGraph
+    description: >-
+      Poll the graph details. Retry while the status is CREATING and finish
+      once the status is AVAILABLE.
+    operationId: getGraph
+    parameters:
+    - name: graphIdentifier
+      in: path
+      value: $steps.createGraph.outputs.graphId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      endpoint: $response.body#/endpoint
+    onSuccess:
+    - name: graphCreating
+      type: retry
+      retryAfter: 30
+      retryLimit: 60
+      criteria:
+      - context: $response.body
+        condition: $.status == "CREATING"
+        type: jsonpath
+    - name: graphAvailable
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "AVAILABLE"
+        type: jsonpath
+  outputs:
+    graphId: $steps.createGraph.outputs.graphId
+    status: $steps.pollGraph.outputs.status
+    endpoint: $steps.pollGraph.outputs.endpoint

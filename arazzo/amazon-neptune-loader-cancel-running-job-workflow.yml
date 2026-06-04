@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Cancel a Running Bulk Load
+  summary: Look up a bulk load job's status and cancel it only if it is still in progress.
+  description: >-
+    A guarded cancellation flow for the Neptune bulk Loader endpoint. The
+    workflow reads the current status of a load job, and then branches: when the
+    overall status is LOAD_IN_PROGRESS it cancels the job against the read/write
+    cluster endpoint, and when the load has already finished it ends without
+    issuing a cancel. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneLoaderApi
+  url: ../openapi/amazon-neptune-loader-openapi.yml
+  type: openapi
+workflows:
+- workflowId: loader-cancel-running-job
+  summary: Cancel a bulk load job only when it is still in progress.
+  description: >-
+    Reads a load job's status, and cancels it only if the overall status is
+    LOAD_IN_PROGRESS; otherwise ends without action.
+  inputs:
+    type: object
+    required:
+    - loadId
+    properties:
+      loadId:
+        type: string
+        description: The unique identifier of the bulk load job to inspect and cancel.
+  steps:
+  - stepId: getStatus
+    description: >-
+      Read the current status of the load job and capture the overall status so
+      the cancel decision can be made.
+    operationId: getBulkLoadJobStatus
+    parameters:
+    - name: loadId
+      in: path
+      value: $inputs.loadId
+    - name: details
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      overallStatus: $response.body#/payload/overallStatus/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: cancelLoad
+      criteria:
+      - context: $response.body
+        condition: $.payload.overallStatus.status == "LOAD_IN_PROGRESS"
+        type: jsonpath
+    - name: alreadyDone
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.payload.overallStatus.status != "LOAD_IN_PROGRESS"
+        type: jsonpath
+  - stepId: cancelLoad
+    description: >-
+      Cancel the in-progress load job. Must run against the read/write cluster
+      endpoint, not a read replica.
+    operationId: cancelBulkLoadJob
+    parameters:
+    - name: loadId
+      in: path
+      value: $inputs.loadId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelStatus: $statusCode
+  outputs:
+    overallStatus: $steps.getStatus.outputs.overallStatus
+    cancelStatus: $steps.cancelLoad.outputs.cancelStatus

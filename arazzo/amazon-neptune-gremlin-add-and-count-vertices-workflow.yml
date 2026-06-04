@@ -1,0 +1,64 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Gremlin Add and Count Vertices
+  summary: Add a labeled vertex over the Gremlin HTTP endpoint, then count vertices to confirm the write landed.
+  description: >-
+    A write-then-verify pattern over the Neptune Gremlin HTTP REST endpoint. The
+    workflow adds a vertex with the supplied label and name property, then runs a
+    vertex count traversal so a caller can confirm the mutation was committed.
+    Both traversals are submitted as JSON bodies to the same /gremlin endpoint.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneGremlinApi
+  url: ../openapi/amazon-neptune-gremlin-openapi.yml
+  type: openapi
+workflows:
+- workflowId: gremlin-add-and-count-vertices
+  summary: Add a vertex via Gremlin HTTP, then count all vertices.
+  description: >-
+    Adds a labeled vertex with a name property, then counts vertices to confirm
+    the write.
+  inputs:
+    type: object
+    required:
+    - label
+    - name
+    properties:
+      label:
+        type: string
+        description: The label to assign to the new vertex (e.g. person).
+      name:
+        type: string
+        description: The value for the new vertex's name property.
+  steps:
+  - stepId: addVertex
+    description: >-
+      Add a vertex with the supplied label and name property over the Gremlin
+      HTTP endpoint.
+    operationId: executeGremlinTraversal
+    requestBody:
+      contentType: application/json
+      payload:
+        gremlin: "g.addV('$inputs.label').property('name','$inputs.name')"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requestId: $response.body#/requestId
+      addResult: $response.body#/result/data
+  - stepId: countVertices
+    description: >-
+      Run a vertex count traversal to confirm the new vertex was committed.
+    operationId: executeGremlinTraversal
+    requestBody:
+      contentType: application/json
+      payload:
+        gremlin: g.V().count()
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      count: $response.body#/result/data
+  outputs:
+    requestId: $steps.addVertex.outputs.requestId
+    count: $steps.countVertices.outputs.count

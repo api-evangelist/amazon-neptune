@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Cancel a Running Gremlin Query
+  summary: Look up a specific Gremlin query's status, then cancel it if it has not already been cancelled.
+  description: >-
+    A guarded query-cancellation flow over the Neptune Data API. The workflow
+    reads the status of a specific Gremlin query by id, and then branches: when
+    the query has not yet been cancelled it issues a delete to cancel it, and when
+    it was already cancelled it ends without action. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: gremlin-cancel-query
+  summary: Cancel a specific Gremlin query only if it is still active.
+  description: >-
+    Reads a Gremlin query's status by id and cancels it only when it has not
+    already been cancelled.
+  inputs:
+    type: object
+    required:
+    - queryId
+    properties:
+      queryId:
+        type: string
+        description: The unique identifier of the Gremlin query to inspect and cancel.
+  steps:
+  - stepId: getStatus
+    description: >-
+      Read the status of the specific Gremlin query and capture its evaluation
+      statistics so the cancel decision can be made.
+    operationId: getGremlinQueryStatusById
+    parameters:
+    - name: queryId
+      in: path
+      value: $inputs.queryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelled: $response.body#/queryEvalStats/cancelled
+      elapsed: $response.body#/queryEvalStats/elapsed
+    onSuccess:
+    - name: stillActive
+      type: goto
+      stepId: cancelQuery
+      criteria:
+      - context: $response.body
+        condition: $.queryEvalStats.cancelled == false
+        type: jsonpath
+    - name: alreadyCancelled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.queryEvalStats.cancelled == true
+        type: jsonpath
+  - stepId: cancelQuery
+    description: >-
+      Cancel the still-running Gremlin query by its query id.
+    operationId: cancelGremlinQuery
+    parameters:
+    - name: queryId
+      in: path
+      value: $inputs.queryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelStatus: $statusCode
+  outputs:
+    elapsed: $steps.getStatus.outputs.elapsed
+    cancelStatus: $steps.cancelQuery.outputs.cancelStatus

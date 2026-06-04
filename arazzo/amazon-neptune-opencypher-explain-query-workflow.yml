@@ -1,0 +1,68 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune openCypher Explain then Execute
+  summary: Inspect an openCypher query's execution plan, then run it for real.
+  description: >-
+    A query-tuning workflow for openCypher. It first retrieves the execution plan
+    for a query through the explain endpoint, using the supplied explain mode,
+    without running the query against the data, then executes the same query so a
+    caller can compare the planned and actual behaviour. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: opencypher-explain-execute
+  summary: Explain an openCypher query's plan, then execute the same query.
+  description: >-
+    Retrieves the openCypher execution plan with the requested explain mode, then
+    runs the query so plan and result can be compared.
+  inputs:
+    type: object
+    required:
+    - query
+    properties:
+      query:
+        type: string
+        description: The openCypher query string to explain and execute.
+      explainMode:
+        type: string
+        description: The explain mode (static, dynamic, or details).
+      parameters:
+        type: string
+        description: openCypher query parameters as a JSON-serialized string.
+  steps:
+  - stepId: explainQuery
+    description: >-
+      Retrieve the execution plan for the query in the requested explain mode
+      without running it against the graph data.
+    operationId: executeOpenCypherExplainQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+        explainMode: $inputs.explainMode
+        parameters: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      plan: $response.body
+  - stepId: runQuery
+    description: >-
+      Execute the same openCypher query and capture the result rows.
+    operationId: executeOpenCypherQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+        parameters: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/results
+  outputs:
+    plan: $steps.explainQuery.outputs.plan
+    results: $steps.runQuery.outputs.results

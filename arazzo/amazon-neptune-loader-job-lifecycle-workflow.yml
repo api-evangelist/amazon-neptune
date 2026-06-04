@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Bulk Load Job Lifecycle
+  summary: Start a bulk load via the Loader endpoint, verify it appears in the job list, and poll its status.
+  description: >-
+    Drives the full lifecycle of a Neptune bulk load through the dedicated Loader
+    REST endpoint. The workflow starts a bulk load job from Amazon S3, lists the
+    recent load job ids to confirm the new job is tracked, and then polls the job
+    status on a loop until the overall status reaches LOAD_COMPLETED. A poll loop
+    handles LOAD_IN_PROGRESS. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneLoaderApi
+  url: ../openapi/amazon-neptune-loader-openapi.yml
+  type: openapi
+workflows:
+- workflowId: loader-job-lifecycle
+  summary: Start a load, confirm it is listed, and poll its status to completion.
+  description: >-
+    Starts a bulk load job, lists recent load ids to verify it is tracked, and
+    polls the job status until it completes.
+  inputs:
+    type: object
+    required:
+    - source
+    - format
+    - iamRoleArn
+    - region
+    properties:
+      source:
+        type: string
+        description: The S3 URI of the data files or folders to load.
+      format:
+        type: string
+        description: The data format (csv, opencypher, ntriples, nquads, rdfxml, turtle).
+      iamRoleArn:
+        type: string
+        description: The ARN of the IAM role with S3 access.
+      region:
+        type: string
+        description: The AWS Region of the S3 bucket.
+      failOnError:
+        type: string
+        description: Whether to stop the load on error (TRUE or FALSE).
+  steps:
+  - stepId: startLoad
+    description: >-
+      Start a bulk load job from the supplied S3 source and capture the load id.
+    operationId: startBulkLoadJob
+    requestBody:
+      contentType: application/json
+      payload:
+        source: $inputs.source
+        format: $inputs.format
+        iamRoleArn: $inputs.iamRoleArn
+        region: $inputs.region
+        failOnError: $inputs.failOnError
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      loadId: $response.body#/payload/loadId
+  - stepId: listJobs
+    description: >-
+      List the recent bulk load job ids, including queued loads, to confirm the
+      new job is being tracked by Neptune.
+    operationId: listBulkLoadJobs
+    parameters:
+    - name: includeQueuedLoads
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      loadIds: $response.body#/payload/loadIds
+  - stepId: pollStatus
+    description: >-
+      Poll the load job status with detailed feed counts. Repeat while the
+      overall status is LOAD_IN_PROGRESS and finish once it is LOAD_COMPLETED.
+    operationId: getBulkLoadJobStatus
+    parameters:
+    - name: loadId
+      in: path
+      value: $steps.startLoad.outputs.loadId
+    - name: details
+      in: query
+      value: true
+    - name: errors
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      overallStatus: $response.body#/payload/overallStatus/status
+      parsingErrors: $response.body#/payload/overallStatus/parsingErrors
+    onSuccess:
+    - name: loadStillRunning
+      type: retry
+      retryAfter: 30
+      retryLimit: 60
+      criteria:
+      - context: $response.body
+        condition: $.payload.overallStatus.status == "LOAD_IN_PROGRESS"
+        type: jsonpath
+    - name: loadComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.payload.overallStatus.status == "LOAD_COMPLETED"
+        type: jsonpath
+  outputs:
+    loadId: $steps.startLoad.outputs.loadId
+    loadIds: $steps.listJobs.outputs.loadIds
+    overallStatus: $steps.pollStatus.outputs.overallStatus

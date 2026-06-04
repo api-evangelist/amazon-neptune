@@ -1,0 +1,90 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune ML Model Transform Job
+  summary: Launch a Neptune ML model transform job from a trained model and poll it to completion.
+  description: >-
+    Generates model artifacts for inference from a completed model training job.
+    The workflow creates a model transform job that reads a training job's output,
+    polls the transform job status on a loop until it is Completed, and then lists
+    the active transform jobs to confirm the job ran. The poll loop uses a retry
+    delay to handle the in-progress state. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneMlApi
+  url: ../openapi/amazon-neptune-ml-openapi.yml
+  type: openapi
+workflows:
+- workflowId: ml-model-transform
+  summary: Create a model transform job, poll until Completed, and confirm it is listed.
+  description: >-
+    Creates a model transform job from a training job, polls until it completes,
+    and lists transform jobs.
+  inputs:
+    type: object
+    required:
+    - mlModelTrainingJobId
+    - modelTransformOutputS3Location
+    properties:
+      mlModelTrainingJobId:
+        type: string
+        description: Job ID of the completed model training job.
+      modelTransformOutputS3Location:
+        type: string
+        description: S3 location for transform output artifacts.
+  steps:
+  - stepId: startTransform
+    description: >-
+      Create a model transform job that reads the training job's output and
+      writes transform artifacts to S3.
+    operationId: createModelTransformJob
+    requestBody:
+      contentType: application/json
+      payload:
+        mlModelTrainingJobId: $inputs.mlModelTrainingJobId
+        modelTransformOutputS3Location: $inputs.modelTransformOutputS3Location
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transformJobId: $response.body#/id
+  - stepId: pollTransform
+    description: >-
+      Poll the transform job status. Retry while it is still in progress and
+      continue once its status is Completed.
+    operationId: getModelTransformJobStatus
+    parameters:
+    - name: id
+      in: path
+      value: $steps.startTransform.outputs.transformJobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transformStatus: $response.body#/status
+    onSuccess:
+    - name: transformRunning
+      type: retry
+      retryAfter: 60
+      retryLimit: 120
+      criteria:
+      - context: $response.body
+        condition: $.status != "Completed"
+        type: jsonpath
+    - name: transformDone
+      type: goto
+      stepId: listTransforms
+      criteria:
+      - context: $response.body
+        condition: $.status == "Completed"
+        type: jsonpath
+  - stepId: listTransforms
+    description: >-
+      List the active model transform jobs to confirm the transform job ran.
+    operationId: listModelTransformJobs
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transformJobIds: $response.body#/ids
+  outputs:
+    transformJobId: $steps.startTransform.outputs.transformJobId
+    transformStatus: $steps.pollTransform.outputs.transformStatus

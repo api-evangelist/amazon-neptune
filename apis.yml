@@ -304,6 +304,84 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/amazon-neptune-analytics-cancel-import-task-workflow.yml
+    name: Amazon Neptune Analytics Cancel Import Task
+    summary: Inspect a Neptune Analytics import task and cancel it only if it is still running.
+  - url: arazzo/amazon-neptune-analytics-create-graph-workflow.yml
+    name: Amazon Neptune Analytics Create Graph and Wait
+    summary: Create a Neptune Analytics graph and poll until it becomes AVAILABLE.
+  - url: arazzo/amazon-neptune-analytics-import-task-workflow.yml
+    name: Amazon Neptune Analytics Create Graph from Import Task
+    summary: Create a Neptune Analytics graph populated from S3 and poll the import task to completion.
+  - url: arazzo/amazon-neptune-analytics-private-endpoint-workflow.yml
+    name: Amazon Neptune Analytics Create Private Graph Endpoint
+    summary: Create a VPC private endpoint for a Neptune Analytics graph and poll until it is AVAILABLE.
+  - url: arazzo/amazon-neptune-analytics-reset-graph-workflow.yml
+    name: Amazon Neptune Analytics Reset Graph
+    summary: Empty a Neptune Analytics graph of all data, then wait until it is AVAILABLE again.
+  - url: arazzo/amazon-neptune-analytics-snapshot-and-restore-workflow.yml
+    name: Amazon Neptune Analytics Snapshot and Restore
+    summary: Snapshot a Neptune Analytics graph, wait for the snapshot, then restore it into a new graph.
+  - url: arazzo/amazon-neptune-bulk-loader-poll-workflow.yml
+    name: Amazon Neptune Bulk Loader Start and Poll
+    summary: Start a bulk loader job from S3 and poll its status until the load completes.
+  - url: arazzo/amazon-neptune-gremlin-add-and-count-vertices-workflow.yml
+    name: Amazon Neptune Gremlin Add and Count Vertices
+    summary: Add a labeled vertex over the Gremlin HTTP endpoint, then count vertices to confirm the write landed.
+  - url: arazzo/amazon-neptune-gremlin-cancel-query-workflow.yml
+    name: Amazon Neptune Cancel a Running Gremlin Query
+    summary: Look up a specific Gremlin query's status, then cancel it if it has not already been cancelled.
+  - url: arazzo/amazon-neptune-gremlin-explain-profile-workflow.yml
+    name: Amazon Neptune Gremlin Explain then Profile
+    summary: Inspect a Gremlin query's execution plan, then profile it with runtime statistics.
+  - url: arazzo/amazon-neptune-gremlin-query-with-status-workflow.yml
+    name: Amazon Neptune Gremlin Query with Status Check
+    summary: Run a Gremlin traversal via the Data API and confirm the engine and query queue are healthy.
+  - url: arazzo/amazon-neptune-loader-cancel-running-job-workflow.yml
+    name: Amazon Neptune Cancel a Running Bulk Load
+    summary: Look up a bulk load job's status and cancel it only if it is still in progress.
+  - url: arazzo/amazon-neptune-loader-job-lifecycle-workflow.yml
+    name: Amazon Neptune Bulk Load Job Lifecycle
+    summary: Start a bulk load via the Loader endpoint, verify it appears in the job list, and poll its status.
+  - url: arazzo/amazon-neptune-ml-create-inference-endpoint-workflow.yml
+    name: Amazon Neptune ML Create and Verify Inference Endpoint
+    summary: Create an ML inference endpoint from a trained model and poll it until it is in service.
+  - url: arazzo/amazon-neptune-ml-dataprocessing-to-training-workflow.yml
+    name: Amazon Neptune ML Data Processing to Model Training
+    summary: Run a Neptune ML data processing job to completion, then launch and poll model training.
+  - url: arazzo/amazon-neptune-ml-model-transform-workflow.yml
+    name: Amazon Neptune ML Model Transform Job
+    summary: Launch a Neptune ML model transform job from a trained model and poll it to completion.
+  - url: arazzo/amazon-neptune-ml-stop-dataprocessing-job-workflow.yml
+    name: Amazon Neptune ML Stop Data Processing Job
+    summary: Inspect a Neptune ML data processing job and stop it with cleanup only if it is still running.
+  - url: arazzo/amazon-neptune-opencypher-create-and-read-node-workflow.yml
+    name: Amazon Neptune openCypher Create and Read Node
+    summary: Create a node over the openCypher HTTP endpoint, then read nodes back to confirm the write.
+  - url: arazzo/amazon-neptune-opencypher-explain-query-workflow.yml
+    name: Amazon Neptune openCypher Explain then Execute
+    summary: Inspect an openCypher query's execution plan, then run it for real.
+  - url: arazzo/amazon-neptune-opencypher-query-with-status-workflow.yml
+    name: Amazon Neptune openCypher Query with Status Check
+    summary: Run an openCypher query via the Data API and inspect the openCypher query queue.
+  - url: arazzo/amazon-neptune-propertygraph-statistics-refresh-workflow.yml
+    name: Amazon Neptune Property Graph Statistics Refresh
+    summary: Trigger a property graph statistics refresh and read back the updated graph summary counts.
+  - url: arazzo/amazon-neptune-propertygraph-stream-replay-workflow.yml
+    name: Amazon Neptune Property Graph Stream Replay
+    summary: Read property graph change records from the start of the stream, then continue from the last event id.
+  - url: arazzo/amazon-neptune-sparql-query-with-status-workflow.yml
+    name: Amazon Neptune SPARQL Query with Status Check
+    summary: Run a SPARQL query via the Data API and inspect the SPARQL query queue.
+  - url: arazzo/amazon-neptune-sparql-statistics-refresh-workflow.yml
+    name: Amazon Neptune SPARQL Statistics Refresh
+    summary: Trigger an RDF statistics refresh and read back the updated triple-store counts.
+  - url: arazzo/amazon-neptune-sparql-update-and-verify-workflow.yml
+    name: Amazon Neptune SPARQL Update and Verify
+    summary: Run a SPARQL INSERT DATA update, then run a SELECT query to confirm the triples landed.
 - type: Portal
   url: https://aws.amazon.com/neptune/
 - type: Documentation

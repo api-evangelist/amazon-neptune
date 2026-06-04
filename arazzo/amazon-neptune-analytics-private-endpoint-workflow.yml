@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Analytics Create Private Graph Endpoint
+  summary: Create a VPC private endpoint for a Neptune Analytics graph and poll until it is AVAILABLE.
+  description: >-
+    Wires a Neptune Analytics graph into a VPC so it can be reached without going
+    over the public internet. The workflow confirms the target graph is AVAILABLE,
+    creates a private graph endpoint in the supplied VPC and subnets, and then
+    polls the endpoint by its VPC id until its status is AVAILABLE. The poll loop
+    uses a retry delay to handle the CREATING state. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneAnalyticsApi
+  url: ../openapi/amazon-neptune-analytics-openapi.yml
+  type: openapi
+workflows:
+- workflowId: analytics-private-endpoint
+  summary: Create a private graph endpoint and poll until it is AVAILABLE.
+  description: >-
+    Confirms the graph is available, creates a private graph endpoint in a VPC,
+    and polls the endpoint until AVAILABLE.
+  inputs:
+    type: object
+    required:
+    - graphIdentifier
+    - vpcId
+    properties:
+      graphIdentifier:
+        type: string
+        description: The unique identifier of the graph.
+      vpcId:
+        type: string
+        description: The VPC ID for the private endpoint.
+      subnetIds:
+        type: array
+        description: The subnet IDs for the private endpoint.
+        items:
+          type: string
+      vpcSecurityGroupIds:
+        type: array
+        description: The security group IDs for the private endpoint.
+        items:
+          type: string
+  steps:
+  - stepId: confirmGraph
+    description: >-
+      Confirm the target graph exists and is AVAILABLE before attaching a
+      private endpoint.
+    operationId: getGraph
+    parameters:
+    - name: graphIdentifier
+      in: path
+      value: $inputs.graphIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      graphStatus: $response.body#/status
+  - stepId: createEndpoint
+    description: >-
+      Create a private graph endpoint in the supplied VPC and subnets.
+    operationId: createPrivateGraphEndpoint
+    parameters:
+    - name: graphIdentifier
+      in: path
+      value: $inputs.graphIdentifier
+    requestBody:
+      contentType: application/json
+      payload:
+        vpcId: $inputs.vpcId
+        subnetIds: $inputs.subnetIds
+        vpcSecurityGroupIds: $inputs.vpcSecurityGroupIds
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      endpointVpcId: $response.body#/vpcId
+      initialStatus: $response.body#/status
+  - stepId: pollEndpoint
+    description: >-
+      Poll the private endpoint by its VPC id. Retry while it is CREATING and
+      finish once its status is AVAILABLE.
+    operationId: getPrivateGraphEndpoint
+    parameters:
+    - name: graphIdentifier
+      in: path
+      value: $inputs.graphIdentifier
+    - name: vpcId
+      in: path
+      value: $steps.createEndpoint.outputs.endpointVpcId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      vpcEndpointId: $response.body#/vpcEndpointId
+    onSuccess:
+    - name: endpointCreating
+      type: retry
+      retryAfter: 20
+      retryLimit: 60
+      criteria:
+      - context: $response.body
+        condition: $.status == "CREATING"
+        type: jsonpath
+    - name: endpointReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "AVAILABLE"
+        type: jsonpath
+  outputs:
+    endpointVpcId: $steps.createEndpoint.outputs.endpointVpcId
+    status: $steps.pollEndpoint.outputs.status
+    vpcEndpointId: $steps.pollEndpoint.outputs.vpcEndpointId

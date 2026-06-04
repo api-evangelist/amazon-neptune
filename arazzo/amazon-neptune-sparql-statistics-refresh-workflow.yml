@@ -1,0 +1,67 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune SPARQL Statistics Refresh
+  summary: Trigger an RDF statistics refresh and read back the updated triple-store counts.
+  description: >-
+    Keeps the DFE statistics for the RDF (SPARQL) data current. The workflow
+    confirms the engine is healthy, triggers a refresh of the SPARQL RDF
+    statistics, and then reads back the statistics payload to report statement and
+    distinct subject/predicate counts. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sparql-statistics-refresh
+  summary: Refresh SPARQL RDF statistics and read the updated counts.
+  description: >-
+    Checks engine health, refreshes SPARQL RDF statistics, and reads back the
+    triple-store statistics counts.
+  inputs:
+    type: object
+    properties:
+      mode:
+        type: string
+        description: >-
+          The statistics management mode (refresh, enableAutoCompute, or
+          disableAutoCompute).
+  steps:
+  - stepId: checkEngine
+    description: >-
+      Confirm the Neptune engine is available before managing statistics.
+    operationId: getEngineStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      engineStatus: $response.body#/status
+  - stepId: refreshStats
+    description: >-
+      Trigger a SPARQL RDF statistics operation using the supplied mode
+      (refresh by default).
+    operationId: manageSparqlStatistics
+    requestBody:
+      contentType: application/json
+      payload:
+        mode: $inputs.mode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      manageStatus: $statusCode
+  - stepId: readStats
+    description: >-
+      Read back the SPARQL RDF statistics payload and report the statement and
+      distinct subject/predicate counts.
+    operationId: getSparqlStatistics
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      numStatements: $response.body#/payload/graphStatistics/numStatements
+      numDistinctSubjects: $response.body#/payload/graphStatistics/numDistinctSubjects
+      numDistinctPredicates: $response.body#/payload/graphStatistics/numDistinctPredicates
+  outputs:
+    engineStatus: $steps.checkEngine.outputs.engineStatus
+    numStatements: $steps.readStats.outputs.numStatements
+    numDistinctSubjects: $steps.readStats.outputs.numDistinctSubjects

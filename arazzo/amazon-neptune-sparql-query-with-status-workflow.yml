@@ -1,0 +1,68 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune SPARQL Query with Status Check
+  summary: Run a SPARQL query via the Data API and inspect the SPARQL query queue.
+  description: >-
+    Executes a SPARQL query against the Neptune RDF store through the Data API and
+    pairs it with the SPARQL query-status surface. The workflow first confirms the
+    engine is healthy, then submits the supplied SPARQL query as a form-encoded
+    request body per the SPARQL 1.1 Protocol, and finally reads the running and
+    accepted query counts. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sparql-query-with-status
+  summary: Confirm engine health, run a SPARQL query, and inspect the query queue.
+  description: >-
+    Checks engine status, executes a SPARQL query through the Data API using a
+    form-encoded body, and reads the SPARQL query status surface.
+  inputs:
+    type: object
+    required:
+    - query
+    properties:
+      query:
+        type: string
+        description: The SPARQL query string (SELECT, ASK, CONSTRUCT, or DESCRIBE).
+  steps:
+  - stepId: checkEngine
+    description: >-
+      Confirm the Neptune engine is available and report its SPARQL engine
+      version before running the query.
+    operationId: getEngineStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      engineStatus: $response.body#/status
+      sparqlVersion: $response.body#/sparql/version
+  - stepId: runSparql
+    description: >-
+      Execute the supplied SPARQL query against the RDF store using a
+      form-encoded request body and capture the result bindings.
+    operationId: executeSparqlQuery
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        query: $inputs.query
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bindings: $response.body#/results/bindings
+  - stepId: inspectQueue
+    description: >-
+      Read the SPARQL query status surface to report how many queries are
+      running and accepted right now.
+    operationId: getSparqlQueryStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runningQueryCount: $response.body#/runningQueryCount
+      acceptedQueryCount: $response.body#/acceptedQueryCount
+  outputs:
+    engineStatus: $steps.checkEngine.outputs.engineStatus
+    bindings: $steps.runSparql.outputs.bindings
+    runningQueryCount: $steps.inspectQueue.outputs.runningQueryCount

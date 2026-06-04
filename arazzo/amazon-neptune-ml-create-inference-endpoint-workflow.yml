@@ -1,0 +1,94 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune ML Create and Verify Inference Endpoint
+  summary: Create an ML inference endpoint from a trained model and poll it until it is in service.
+  description: >-
+    Stands up a Neptune ML inference endpoint from a completed model training
+    job. The workflow creates the endpoint, polls its status on a loop until it
+    reaches InService, and then lists the active inference endpoints to confirm
+    the new endpoint is registered. The poll loop uses a retry delay to handle the
+    Creating state. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneMlApi
+  url: ../openapi/amazon-neptune-ml-openapi.yml
+  type: openapi
+workflows:
+- workflowId: ml-create-inference-endpoint
+  summary: Create an inference endpoint, poll until InService, and confirm it is listed.
+  description: >-
+    Creates an ML inference endpoint from a training job, polls until it is
+    InService, and lists endpoints to confirm registration.
+  inputs:
+    type: object
+    required:
+    - mlModelTrainingJobId
+    properties:
+      mlModelTrainingJobId:
+        type: string
+        description: Job ID from a completed model training job.
+      instanceType:
+        type: string
+        description: ML instance type for the inference endpoint.
+      instanceCount:
+        type: integer
+        description: Minimum number of EC2 instances to deploy.
+  steps:
+  - stepId: createEndpoint
+    description: >-
+      Create an inference endpoint backed by the trained model and capture the
+      endpoint id.
+    operationId: createInferenceEndpoint
+    requestBody:
+      contentType: application/json
+      payload:
+        mlModelTrainingJobId: $inputs.mlModelTrainingJobId
+        instanceType: $inputs.instanceType
+        instanceCount: $inputs.instanceCount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      endpointId: $response.body#/id
+  - stepId: pollEndpoint
+    description: >-
+      Poll the endpoint status. Retry while it is not yet InService and continue
+      once it reaches InService.
+    operationId: getInferenceEndpointStatus
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createEndpoint.outputs.endpointId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      endpointStatus: $response.body#/status
+    onSuccess:
+    - name: endpointCreating
+      type: retry
+      retryAfter: 60
+      retryLimit: 120
+      criteria:
+      - context: $response.body
+        condition: $.status != "InService"
+        type: jsonpath
+    - name: endpointReady
+      type: goto
+      stepId: listEndpoints
+      criteria:
+      - context: $response.body
+        condition: $.status == "InService"
+        type: jsonpath
+  - stepId: listEndpoints
+    description: >-
+      List the active inference endpoints to confirm the newly created endpoint
+      is registered.
+    operationId: listInferenceEndpoints
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      endpointIds: $response.body#/ids
+  outputs:
+    endpointId: $steps.createEndpoint.outputs.endpointId
+    endpointStatus: $steps.pollEndpoint.outputs.endpointStatus
+    endpointIds: $steps.listEndpoints.outputs.endpointIds

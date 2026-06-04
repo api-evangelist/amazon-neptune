@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Gremlin Query with Status Check
+  summary: Run a Gremlin traversal via the Data API and confirm the engine and query queue are healthy.
+  description: >-
+    Submits a Gremlin traversal to the Neptune Data API and pairs it with the
+    query-engine status surface so the result can be trusted. The workflow first
+    confirms the Neptune engine is healthy, then executes the supplied Gremlin
+    traversal, and finally inspects the running/accepted query counts so a caller
+    can tell whether the cluster is saturated. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: gremlin-query-with-status
+  summary: Verify engine health, execute a Gremlin traversal, and inspect the query queue.
+  description: >-
+    Checks Neptune engine status, runs a Gremlin traversal through the Data API,
+    and reads the Gremlin query status surface to report queue depth.
+  inputs:
+    type: object
+    required:
+    - gremlin
+    properties:
+      gremlin:
+        type: string
+        description: The Gremlin traversal string to execute (e.g. g.V().count()).
+  steps:
+  - stepId: checkEngine
+    description: >-
+      Confirm the Neptune engine is available and report its role and version
+      before running the traversal.
+    operationId: getEngineStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      engineStatus: $response.body#/status
+      role: $response.body#/role
+  - stepId: runGremlin
+    description: >-
+      Execute the supplied Gremlin traversal against the property graph and
+      capture the request id and result payload.
+    operationId: executeGremlinQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        gremlin: $inputs.gremlin
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requestId: $response.body#/requestId
+      result: $response.body#/result/data
+  - stepId: inspectQueue
+    description: >-
+      Read the Gremlin query status surface to see how many queries are running
+      and accepted right now.
+    operationId: getGremlinQueryStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runningQueryCount: $response.body#/runningQueryCount
+      acceptedQueryCount: $response.body#/acceptedQueryCount
+  outputs:
+    engineStatus: $steps.checkEngine.outputs.engineStatus
+    requestId: $steps.runGremlin.outputs.requestId
+    result: $steps.runGremlin.outputs.result
+    runningQueryCount: $steps.inspectQueue.outputs.runningQueryCount

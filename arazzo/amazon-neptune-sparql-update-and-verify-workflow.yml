@@ -1,0 +1,64 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune SPARQL Update and Verify
+  summary: Run a SPARQL INSERT DATA update, then run a SELECT query to confirm the triples landed.
+  description: >-
+    A mutate-then-verify pattern over the Neptune SPARQL HTTP endpoint. The
+    workflow submits a SPARQL Update operation (such as INSERT DATA) using the
+    update parameter, then runs a SPARQL SELECT query using the query parameter to
+    read the data back and confirm the change. Both requests use the
+    application/x-www-form-urlencoded content type required by the SPARQL 1.1
+    Protocol. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneSparqlApi
+  url: ../openapi/amazon-neptune-sparql-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sparql-update-and-verify
+  summary: Apply a SPARQL update, then verify it with a SELECT query.
+  description: >-
+    Runs a SPARQL update operation, then runs a SELECT query to confirm the
+    resulting triples.
+  inputs:
+    type: object
+    required:
+    - update
+    - verifyQuery
+    properties:
+      update:
+        type: string
+        description: The SPARQL Update operation (e.g. an INSERT DATA statement).
+      verifyQuery:
+        type: string
+        description: The SPARQL SELECT query used to confirm the update.
+  steps:
+  - stepId: applyUpdate
+    description: >-
+      Submit the SPARQL Update operation using the update parameter on the
+      form-encoded SPARQL endpoint.
+    operationId: executeSparqlQuery
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        update: $inputs.update
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updateStatus: $statusCode
+  - stepId: verify
+    description: >-
+      Run the SPARQL SELECT verification query and capture the result bindings.
+    operationId: executeSparqlQuery
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        query: $inputs.verifyQuery
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bindings: $response.body#/results/bindings
+  outputs:
+    updateStatus: $steps.applyUpdate.outputs.updateStatus
+    bindings: $steps.verify.outputs.bindings

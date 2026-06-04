@@ -1,0 +1,106 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Analytics Snapshot and Restore
+  summary: Snapshot a Neptune Analytics graph, wait for the snapshot, then restore it into a new graph.
+  description: >-
+    A backup-and-clone workflow for Neptune Analytics. It creates a snapshot of a
+    source graph, polls the snapshot until its status is AVAILABLE, and then
+    restores a brand-new graph from that snapshot. The snapshot poll loop uses a
+    retry delay to handle the CREATING state. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneAnalyticsApi
+  url: ../openapi/amazon-neptune-analytics-openapi.yml
+  type: openapi
+workflows:
+- workflowId: analytics-snapshot-and-restore
+  summary: Create a snapshot, wait until AVAILABLE, then restore a new graph from it.
+  description: >-
+    Snapshots a source graph, polls the snapshot to AVAILABLE, and restores a
+    new graph from the snapshot.
+  inputs:
+    type: object
+    required:
+    - graphIdentifier
+    - snapshotName
+    - restoredGraphName
+    properties:
+      graphIdentifier:
+        type: string
+        description: The identifier of the source graph to snapshot.
+      snapshotName:
+        type: string
+        description: The name of the snapshot to create.
+      restoredGraphName:
+        type: string
+        description: The name of the new graph restored from the snapshot.
+      provisionedMemory:
+        type: integer
+        description: The provisioned memory size in NCUs for the restored graph.
+  steps:
+  - stepId: createSnapshot
+    description: >-
+      Create a snapshot of the source graph and capture the snapshot identifier.
+    operationId: createGraphSnapshot
+    requestBody:
+      contentType: application/json
+      payload:
+        graphIdentifier: $inputs.graphIdentifier
+        snapshotName: $inputs.snapshotName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      snapshotId: $response.body#/id
+  - stepId: pollSnapshot
+    description: >-
+      Poll the snapshot. Retry while it is CREATING and continue once its
+      status is AVAILABLE.
+    operationId: getGraphSnapshot
+    parameters:
+    - name: snapshotIdentifier
+      in: path
+      value: $steps.createSnapshot.outputs.snapshotId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      snapshotStatus: $response.body#/status
+    onSuccess:
+    - name: snapshotCreating
+      type: retry
+      retryAfter: 30
+      retryLimit: 60
+      criteria:
+      - context: $response.body
+        condition: $.status == "CREATING"
+        type: jsonpath
+    - name: snapshotReady
+      type: goto
+      stepId: restoreGraph
+      criteria:
+      - context: $response.body
+        condition: $.status == "AVAILABLE"
+        type: jsonpath
+  - stepId: restoreGraph
+    description: >-
+      Restore a new graph from the available snapshot.
+    operationId: restoreGraphFromSnapshot
+    parameters:
+    - name: snapshotIdentifier
+      in: path
+      value: $steps.createSnapshot.outputs.snapshotId
+    requestBody:
+      contentType: application/json
+      payload:
+        graphName: $inputs.restoredGraphName
+        provisionedMemory: $inputs.provisionedMemory
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      restoredGraphId: $response.body#/id
+      restoredStatus: $response.body#/status
+  outputs:
+    snapshotId: $steps.createSnapshot.outputs.snapshotId
+    restoredGraphId: $steps.restoreGraph.outputs.restoredGraphId
+    restoredStatus: $steps.restoreGraph.outputs.restoredStatus

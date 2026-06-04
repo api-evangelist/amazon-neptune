@@ -1,0 +1,64 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Gremlin Explain then Profile
+  summary: Inspect a Gremlin query's execution plan, then profile it with runtime statistics.
+  description: >-
+    A query-tuning workflow for Gremlin. It first retrieves the static execution
+    plan for a traversal via the explain endpoint without touching the data, then
+    runs the same traversal through the profile endpoint to capture the plan plus
+    actual runtime statistics such as execution time and intermediate result
+    counts. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: gremlin-explain-profile
+  summary: Explain a Gremlin traversal's plan, then profile its real execution.
+  description: >-
+    Retrieves the Gremlin execution plan with explain, then profiles the same
+    traversal so plan and runtime statistics can be compared side by side.
+  inputs:
+    type: object
+    required:
+    - gremlin
+    properties:
+      gremlin:
+        type: string
+        description: The Gremlin traversal string to explain and profile.
+      includeResults:
+        type: boolean
+        description: Whether the profile output should include query results.
+  steps:
+  - stepId: explainQuery
+    description: >-
+      Retrieve the static execution plan for the traversal without running it
+      against the graph data.
+    operationId: executeGremlinExplainQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        gremlin: $inputs.gremlin
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      plan: $response.body
+  - stepId: profileQuery
+    description: >-
+      Run the same traversal through the profile endpoint to capture the plan
+      together with actual runtime statistics.
+    operationId: executeGremlinProfileQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        gremlin: $inputs.gremlin
+        results: $inputs.includeResults
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      profile: $response.body
+  outputs:
+    plan: $steps.explainQuery.outputs.plan
+    profile: $steps.profileQuery.outputs.profile

@@ -1,0 +1,67 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune Property Graph Statistics Refresh
+  summary: Trigger a property graph statistics refresh and read back the updated graph summary counts.
+  description: >-
+    Keeps the DFE statistics that drive Neptune query planning current. The
+    workflow confirms the engine is healthy, triggers a refresh of the property
+    graph statistics, and then reads back the statistics payload to report the
+    node, edge, and label counts. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: propertygraph-statistics-refresh
+  summary: Refresh property graph statistics and read the updated counts.
+  description: >-
+    Checks engine health, refreshes property graph statistics, and reads back
+    the graph statistics counts.
+  inputs:
+    type: object
+    properties:
+      mode:
+        type: string
+        description: >-
+          The statistics management mode (refresh, enableAutoCompute, or
+          disableAutoCompute).
+  steps:
+  - stepId: checkEngine
+    description: >-
+      Confirm the Neptune engine is available before managing statistics.
+    operationId: getEngineStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      engineStatus: $response.body#/status
+  - stepId: refreshStats
+    description: >-
+      Trigger a property graph statistics operation using the supplied mode
+      (refresh by default).
+    operationId: managePropertygraphStatistics
+    requestBody:
+      contentType: application/json
+      payload:
+        mode: $inputs.mode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      manageStatus: $statusCode
+  - stepId: readStats
+    description: >-
+      Read back the property graph statistics payload and report the node,
+      edge, and label counts.
+    operationId: getPropertygraphStatistics
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      numNodes: $response.body#/payload/graphStatistics/numNodes
+      numEdges: $response.body#/payload/graphStatistics/numEdges
+      numNodeLabels: $response.body#/payload/graphStatistics/numNodeLabels
+  outputs:
+    engineStatus: $steps.checkEngine.outputs.engineStatus
+    numNodes: $steps.readStats.outputs.numNodes
+    numEdges: $steps.readStats.outputs.numEdges

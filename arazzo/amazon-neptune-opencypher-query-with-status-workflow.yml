@@ -1,0 +1,72 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune openCypher Query with Status Check
+  summary: Run an openCypher query via the Data API and inspect the openCypher query queue.
+  description: >-
+    Executes an openCypher query against the Neptune property graph through the
+    Data API and pairs it with the openCypher query-status surface. The workflow
+    first confirms the engine is healthy, then runs the supplied openCypher query
+    with optional JSON-serialized parameters, and finally reads the running and
+    accepted query counts. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneDataApi
+  url: ../openapi/amazon-neptune-data-openapi.yml
+  type: openapi
+workflows:
+- workflowId: opencypher-query-with-status
+  summary: Confirm engine health, run an openCypher query, and inspect the query queue.
+  description: >-
+    Checks engine status, executes an openCypher query through the Data API, and
+    reads the openCypher query status surface to report queue depth.
+  inputs:
+    type: object
+    required:
+    - query
+    properties:
+      query:
+        type: string
+        description: The openCypher query string to execute.
+      parameters:
+        type: string
+        description: openCypher query parameters as a JSON-serialized string.
+  steps:
+  - stepId: checkEngine
+    description: >-
+      Confirm the Neptune engine is available and report its openCypher engine
+      version before running the query.
+    operationId: getEngineStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      engineStatus: $response.body#/status
+      opencypherVersion: $response.body#/opencypher/version
+  - stepId: runOpenCypher
+    description: >-
+      Execute the supplied openCypher query against the property graph and
+      capture the result rows.
+    operationId: executeOpenCypherQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+        parameters: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/results
+  - stepId: inspectQueue
+    description: >-
+      Read the openCypher query status surface to report how many queries are
+      running and accepted right now.
+    operationId: getOpenCypherQueryStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runningQueryCount: $response.body#/runningQueryCount
+      acceptedQueryCount: $response.body#/acceptedQueryCount
+  outputs:
+    engineStatus: $steps.checkEngine.outputs.engineStatus
+    results: $steps.runOpenCypher.outputs.results
+    runningQueryCount: $steps.inspectQueue.outputs.runningQueryCount

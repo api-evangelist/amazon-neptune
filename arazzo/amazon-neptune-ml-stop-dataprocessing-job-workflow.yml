@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: Amazon Neptune ML Stop Data Processing Job
+  summary: Inspect a Neptune ML data processing job and stop it with cleanup only if it is still running.
+  description: >-
+    A guarded stop flow for Neptune ML data processing jobs. The workflow reads
+    the current status of a data processing job, and then branches: when the job
+    is not yet Completed or Failed it stops the job and deletes its S3 artifacts
+    via the clean flag, and when the job has already reached a terminal state it
+    ends without action. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: neptuneMlApi
+  url: ../openapi/amazon-neptune-ml-openapi.yml
+  type: openapi
+workflows:
+- workflowId: ml-stop-dataprocessing-job
+  summary: Stop a data processing job and clean its artifacts only if still running.
+  description: >-
+    Reads a data processing job's status and stops it with cleanup only when it
+    is not yet Completed or Failed.
+  inputs:
+    type: object
+    required:
+    - id
+    properties:
+      id:
+        type: string
+        description: The unique identifier of the data processing job.
+  steps:
+  - stepId: getStatus
+    description: >-
+      Read the current status of the data processing job so the stop decision
+      can be made.
+    operationId: getDataProcessingJobStatus
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.id
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: stopJob
+      criteria:
+      - context: $response.body
+        condition: $.status != "Completed" && $.status != "Failed"
+        type: jsonpath
+    - name: alreadyTerminal
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "Completed" || $.status == "Failed"
+        type: jsonpath
+  - stepId: stopJob
+    description: >-
+      Stop the running data processing job and delete its S3 artifacts via the
+      clean flag.
+    operationId: stopDataProcessingJob
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.id
+    - name: clean
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stopStatus: $statusCode
+  outputs:
+    status: $steps.getStatus.outputs.status
+    stopStatus: $steps.stopJob.outputs.stopStatus
