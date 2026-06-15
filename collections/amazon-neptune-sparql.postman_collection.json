@@ -1,0 +1,957 @@
+{
+  "item": [
+    {
+      "id": "424903c3-0209-4966-a45f-abb0ca1c49a6",
+      "name": "Query",
+      "description": {
+        "content": "Execute SPARQL queries and updates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e85e3ed8-2ccf-4396-b6d3-982baa16e3eb",
+          "name": "Amazon Neptune Execute a SPARQL Query or Update via HTTP POST",
+          "request": {
+            "name": "Amazon Neptune Execute a SPARQL Query or Update via HTTP POST",
+            "description": {
+              "content": "Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL endpoint. For queries, use the 'query' parameter with SELECT, ASK, CONSTRUCT, or DESCRIBE forms. For mutations, use the 'update' parameter with INSERT DATA or DELETE DATA operations. The request body is form-encoded per the SPARQL 1.1 Protocol specification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/sparql-results+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update."
+                },
+                {
+                  "disabled": false,
+                  "key": "update",
+                  "value": "<string>",
+                  "description": "A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query."
+                },
+                {
+                  "disabled": false,
+                  "key": "using-graph-uri",
+                  "value": "<string>",
+                  "description": "Default graph URI for the query."
+                },
+                {
+                  "disabled": false,
+                  "key": "using-named-graph-uri",
+                  "value": "<string>",
+                  "description": "Named graph URI for the query."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a69558f-47de-4f2a-8993-e03ebcb60103",
+              "name": "SPARQL query or update executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/sparql-results+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/sparql-results+json"
+                }
+              ],
+              "body": "{\n  \"head\": {\n    \"vars\": [\n      \"string\",\n      \"string\"\n    ],\n    \"link\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"results\": {\n    \"bindings\": [\n      {\n        \"key_0\": {\n          \"type\": \"bnode\",\n          \"value\": \"string\",\n          \"datatype\": \"string\",\n          \"xml:lang\": \"string\"\n        }\n      },\n      {\n        \"key_0\": {\n          \"type\": \"bnode\",\n          \"value\": \"string\",\n          \"datatype\": \"string\",\n          \"xml:lang\": \"string\"\n        },\n        \"key_1\": {\n          \"type\": \"uri\",\n          \"value\": \"string\",\n          \"datatype\": \"string\",\n          \"xml:lang\": \"string\"\n        }\n      }\n    ]\n  },\n  \"boolean\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4be7b66e-877f-4def-93bd-488a080acfb2",
+              "name": "Bad request - malformed SPARQL query or update.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d660cdc0-23f1-46b0-b640-3de97eb62998",
+              "name": "Query timed out before completing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e0d624b-17cb-499d-86e0-c41c4dcbbdbd",
+              "name": "Internal server error during query execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "046125a7-beab-4782-b320-ac82886ca1df",
+          "name": "Amazon Neptune Execute a SPARQL Query via HTTP GET",
+          "request": {
+            "name": "Amazon Neptune Execute a SPARQL Query via HTTP GET",
+            "description": {
+              "content": "Submits a read-only SPARQL 1.1 query via URL query parameters. Only SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via GET. Update operations require POST.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The SPARQL query string (URL-encoded)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/sparql-results+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f94fc77f-e369-48bb-9dda-0e75532a5a6c",
+              "name": "SPARQL query executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/sparql-results+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/sparql-results+json"
+                }
+              ],
+              "body": "{\n  \"head\": {\n    \"vars\": [\n      \"string\",\n      \"string\"\n    ],\n    \"link\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"results\": {\n    \"bindings\": [\n      {\n        \"key_0\": {\n          \"type\": \"bnode\",\n          \"value\": \"string\",\n          \"datatype\": \"string\",\n          \"xml:lang\": \"string\"\n        }\n      },\n      {\n        \"key_0\": {\n          \"type\": \"bnode\",\n          \"value\": \"string\",\n          \"datatype\": \"string\",\n          \"xml:lang\": \"string\"\n        },\n        \"key_1\": {\n          \"type\": \"uri\",\n          \"value\": \"string\",\n          \"datatype\": \"string\",\n          \"xml:lang\": \"string\"\n        }\n      }\n    ]\n  },\n  \"boolean\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "072bce6d-6efa-4dee-b69c-3b56ea5cdb75",
+              "name": "Bad request - malformed SPARQL query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3ca93998-7900-4b33-b3ca-6be3fcf831ca",
+      "name": "Status",
+      "description": {
+        "content": "Query status and cancellation operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fdf1163-2c54-4c54-a4f5-68f1ffd05746",
+          "name": "Amazon Neptune Get the Status of All Running SPARQL Queries",
+          "request": {
+            "name": "Amazon Neptune Get the Status of All Running SPARQL Queries",
+            "description": {
+              "content": "Returns the status of all running and waiting SPARQL queries, including query IDs and execution statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08dd0426-869b-4112-b5e2-1cc2f804bbb1",
+              "name": "Query status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"acceptedQueryCount\": 1,\n  \"runningQueryCount\": 1,\n  \"queries\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b5d3f75-1f01-4eec-ba12-9911f83b6844",
+          "name": "Amazon Neptune Get the Status of a Specific SPARQL Query",
+          "request": {
+            "name": "Amazon Neptune Get the Status of a Specific SPARQL Query",
+            "description": {
+              "content": "Returns the status of a specific SPARQL query by its query ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql",
+                "status",
+                ":queryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryId",
+                  "description": "(Required) The unique identifier of the SPARQL query."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4fe4db0-a224-4c99-8e83-d2eecc608f47",
+              "name": "Query status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the SPARQL query."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"queryId\": \"neptune-cluster-abc123\",\n  \"queryString\": \"example-value\",\n  \"queryEvalStats\": {\n    \"waited\": 1,\n    \"elapsed\": 1,\n    \"cancelled\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80b9bd5a-4096-443c-9845-0684772f0492",
+              "name": "Query with the specified ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the SPARQL query."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe7d33c7-a3c7-4ce9-b860-63ff55d1ccdf",
+          "name": "Amazon Neptune Cancel a Running SPARQL Query",
+          "request": {
+            "name": "Amazon Neptune Cancel a Running SPARQL Query",
+            "description": {
+              "content": "Cancels a running SPARQL query by its query ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql",
+                "status",
+                ":queryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryId",
+                  "description": "(Required) The unique identifier of the SPARQL query to cancel."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a57ff24-e309-4532-bb12-d22fed14a2b6",
+              "name": "Query cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the SPARQL query to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de52f138-f30c-4736-b3ee-21f4e80955ec",
+              "name": "Query with the specified ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the SPARQL query to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The cluster endpoint DNS name for your Neptune DB cluster",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com",
+      "key": "cluster-endpoint"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster-endpoint}}:8182",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9fed7a2e-0f11-4684-bbe5-e7f7049f4f6c",
+    "name": "Amazon Neptune Neptune SPARQL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune. It provides an HTTP REST endpoint compatible with the SPARQL 1.1 protocol specification. Supports SELECT, ASK, CONSTRUCT, DESCRIBE query forms and INSERT/DELETE update operations. Uses HTTP/1.1 with HTTPS only.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

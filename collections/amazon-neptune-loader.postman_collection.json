@@ -1,0 +1,1037 @@
+{
+  "item": [
+    {
+      "id": "d0e70acd-20e1-4f93-9a1e-9dfc9b2277be",
+      "name": "Loader",
+      "description": {
+        "content": "Bulk data loading operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2985c65-bc98-4f42-ae9c-7356badf9449",
+          "name": "Amazon Neptune Start a Bulk Data Load Job from S3",
+          "request": {
+            "name": "Amazon Neptune Start a Bulk Data Load Job from S3",
+            "description": {
+              "content": "Initiates a bulk data loading job from Amazon S3 into the Neptune database. The source data can be in CSV format for property graphs or in N-Triples, N-Quads, RDF/XML, or Turtle formats for RDF data. The loader requires an IAM role with access to the S3 bucket. Neptune queues up to 64 jobs in FIFO order when queueRequest is enabled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"<string>\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0205b0e0-ec83-4d0d-b6c2-93412b1b2a83",
+              "name": "Bulk load job started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"s3://my-bucket/graph-data/\",\n  \"format\": \"csv\",\n  \"iamRoleArn\": \"arn:aws:iam::123456789012:role/NeptuneLoadRole\",\n  \"region\": \"us-east-1\",\n  \"failOnError\": \"FALSE\",\n  \"parallelism\": \"MEDIUM\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"payload\": {\n    \"loadId\": \"neptune-cluster-abc123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00927699-fd5f-4680-9d3e-c4a415e98ea5",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"s3://my-bucket/graph-data/\",\n  \"format\": \"csv\",\n  \"iamRoleArn\": \"arn:aws:iam::123456789012:role/NeptuneLoadRole\",\n  \"region\": \"us-east-1\",\n  \"failOnError\": \"FALSE\",\n  \"parallelism\": \"MEDIUM\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d8d84be-ca90-40f1-8175-42f55d1bfb60",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"s3://my-bucket/graph-data/\",\n  \"format\": \"csv\",\n  \"iamRoleArn\": \"arn:aws:iam::123456789012:role/NeptuneLoadRole\",\n  \"region\": \"us-east-1\",\n  \"failOnError\": \"FALSE\",\n  \"parallelism\": \"MEDIUM\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f29603b2-1205-4d4e-9ec9-187b9aad3361",
+          "name": "Amazon Neptune List Bulk Load Job IDs",
+          "request": {
+            "name": "Amazon Neptune List Bulk Load Job IDs",
+            "description": {
+              "content": "Returns a list of bulk load job IDs. Neptune tracks the most recent 1,024 bulk load jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of load IDs to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeQueuedLoads",
+                  "value": "<boolean>",
+                  "description": "Whether to include queued load jobs in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85cc183d-cfc5-46bf-8cfe-a084785a0a39",
+              "name": "Load job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeQueuedLoads",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"payload\": {\n    \"loadIds\": [\n      \"example-value\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d74c3b8-09f2-4cfa-aaf3-7189d47fa5be",
+          "name": "Amazon Neptune Get the Status of a Bulk Load Job",
+          "request": {
+            "name": "Amazon Neptune Get the Status of a Bulk Load Job",
+            "description": {
+              "content": "Returns the status of a specific bulk load job by its load ID. Includes overall status, feed counts, and optionally detailed error information. Neptune stores the last 10,000 error details per job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader",
+                ":loadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "details",
+                  "value": "<boolean>",
+                  "description": "Whether to include detailed feed-level status information."
+                },
+                {
+                  "disabled": false,
+                  "key": "errors",
+                  "value": "<boolean>",
+                  "description": "Whether to include error details in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The error page number to retrieve (when errors=true)."
+                },
+                {
+                  "disabled": false,
+                  "key": "errorsPerPage",
+                  "value": "<integer>",
+                  "description": "The number of errors per page (when errors=true)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "loadId",
+                  "description": "(Required) The unique identifier of the bulk load job."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4f0c032-1504-4e32-98fb-a6e27a5a3139",
+              "name": "Load job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "errorsPerPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the bulk load job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"payload\": {\n    \"feedCount\": [\n      {}\n    ],\n    \"overallStatus\": {\n      \"fullUri\": \"example-value\",\n      \"runNumber\": 1,\n      \"retryNumber\": 1,\n      \"status\": \"LOAD_NOT_STARTED\",\n      \"totalTimeSpent\": 1\n    },\n    \"failedFeeds\": [\n      {}\n    ],\n    \"errors\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f19e9dc-ba0c-4fd6-b085-f864faed7d29",
+              "name": "Invalid loadId format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "errorsPerPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the bulk load job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bab8ad2-2bfa-475f-8afb-9db2a7ecf36a",
+              "name": "Load job with the specified ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "errorsPerPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the bulk load job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e47de824-ad54-45f2-a7fc-f36879dd1457",
+          "name": "Amazon Neptune Cancel an In-progress Bulk Load Job",
+          "request": {
+            "name": "Amazon Neptune Cancel an In-progress Bulk Load Job",
+            "description": {
+              "content": "Cancels an in-progress bulk load job by its load ID. Must be executed against the read/write cluster endpoint (not a read replica).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader",
+                ":loadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "loadId",
+                  "description": "(Required) The unique identifier of the load job to cancel."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5a00865-4322-4b1b-83df-e32de7794d74",
+              "name": "Load job cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46846a69-e76a-4076-a504-d7845ddeb275",
+              "name": "Invalid loadId format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82b9b0ef-265a-4fb1-b83f-5d43cb97310b",
+              "name": "Load job with the specified ID does not exist or is not active.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a2d1c78-a0c8-4518-89d5-eecaf4ef3997",
+              "name": "Load cancellation attempted on a read replica instance. Use the read/write cluster endpoint instead.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38996b34-b1b4-40f5-a99b-05d3addbce75",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The cluster endpoint DNS name for your Neptune DB cluster",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com",
+      "key": "cluster-endpoint"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster-endpoint}}:8182",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2620c2ce-f9fd-4eac-86bf-b726e647ea7b",
+    "name": "Amazon Neptune Neptune Loader API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune bulk loader API for ingesting large volumes of data from Amazon S3 into a Neptune DB instance. It supports CSV formats for property graphs and multiple RDF serialization formats including N-Triples, N-Quads, RDF/XML, and Turtle. The loader operates from the HTTP endpoint of a Neptune DB instance and tracks the most recent 1,024 bulk load jobs.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

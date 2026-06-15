@@ -1,0 +1,459 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Graphs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Neptune Analytics Graphs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              }
+            ]
+          },
+          "docs": "Returns a list of Neptune Analytics graph resources in the account."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune Analytics graph resource. The graph is a memory-optimized database instance optimized for analytical workloads with support for openCypher queries and vector search."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Neptune Analytics Graph Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific Neptune Analytics graph resource."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Update a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing Neptune Analytics graph, such as provisioned memory or deletion protection settings."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph to delete."
+              },
+              {
+                "name": "skipSnapshot",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip creating a final snapshot before deletion."
+              }
+            ]
+          },
+          "docs": "Deletes a Neptune Analytics graph resource. The graph must not have deletion protection enabled."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Reset a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier/reset",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph to reset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Empties the data from a Neptune Analytics graph, removing all nodes and edges while preserving the graph resource and its configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Graph Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Graph Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter snapshots by source graph identifier."
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of graph snapshots in the account."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Graph Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a snapshot of a Neptune Analytics graph for backup purposes."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Graph Snapshot Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots/:snapshotIdentifier",
+            "params": [
+              {
+                "name": "snapshotIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the snapshot."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific graph snapshot."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Graph Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots/:snapshotIdentifier",
+            "params": [
+              {
+                "name": "snapshotIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the snapshot to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a Neptune Analytics graph snapshot."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Restore a Graph from a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots/:snapshotIdentifier/restore",
+            "params": [
+              {
+                "name": "snapshotIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the snapshot to restore from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune Analytics graph by restoring from an existing snapshot."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Import Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Import Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of import tasks in the account."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Graph Using an Import Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune Analytics graph and populates it with data from an Amazon S3 source in a single operation."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Import Task Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks/:taskIdentifier",
+            "params": [
+              {
+                "name": "taskIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the import task."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific import task."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel an Import Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks/:taskIdentifier",
+            "params": [
+              {
+                "name": "taskIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the import task to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running import task."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Private Graph Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Private Graph Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of private graph endpoints for a specific graph."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Private Graph Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a private graph endpoint in a VPC for accessing a Neptune Analytics graph without going over the public internet."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Private Graph Endpoint Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier/:vpcId",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "vpcId",
+                "value": "",
+                "type": "path",
+                "description": "The VPC ID of the private endpoint."
+              }
+            ]
+          },
+          "docs": "Returns details of a specific private graph endpoint."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Private Graph Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier/:vpcId",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "vpcId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a private graph endpoint from a VPC."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

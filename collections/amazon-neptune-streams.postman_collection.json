@@ -1,0 +1,777 @@
+{
+  "item": [
+    {
+      "id": "6259c18a-aab4-4bca-9fa7-6a50a3092ce2",
+      "name": "Property Graph Stream",
+      "description": {
+        "content": "Change data capture for property graph (Gremlin/openCypher) data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d3e7c10-6252-453e-83ce-d5b2dd5b7d3e",
+          "name": "Amazon Neptune Get Property Graph Change Stream Records",
+          "request": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records",
+            "description": {
+              "content": "Gets a stream of change-log entries for property graph (Gremlin/openCypher) data. Each entry records a mutation (ADD or REMOVE) made to vertices, edges, or their properties. The response format is PG_JSON. This is the recommended endpoint for property graph streams, replacing the deprecated /gremlin/stream endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "propertygraph",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return (1-100,000). Default is 10. The 10 MB response size limit takes precedence over this value."
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "AT_SEQUENCE_NUMBER",
+                  "description": "Determines the starting point for reading the stream."
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>",
+                  "description": "The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER."
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "1",
+                  "description": "The operation sequence number within the specified commit. Default is 1."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to 'gzip' to receive compressed responses.",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a886b49-f90a-4181-8cfd-98ad4efde206",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "propertygraph",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {},\n  \"lastTrxTimestamp\": 1,\n  \"format\": \"PG_JSON\",\n  \"records\": [\n    {}\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9b6a2e1-fd7e-46db-99eb-e7fa962a14dd",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "propertygraph",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10a83bc7-e59c-45d1-8828-c3fa6611a6ce",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "propertygraph",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b838caa-1f74-4d17-9d69-df7daea34bc8",
+          "name": "Amazon Neptune Get Property Graph Change Stream Records (alias)",
+          "request": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records (alias)",
+            "description": {
+              "content": "Alias for /propertygraph/stream. Gets a stream of change-log entries for property graph data. Supports the same parameters and returns the same response format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pg",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "1"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63253484-ab60-4395-b08d-afdf8b818ffd",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pg",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {},\n  \"lastTrxTimestamp\": 1,\n  \"format\": \"PG_JSON\",\n  \"records\": [\n    {}\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5282d5e5-0456-4a0f-a1e3-f56d337b3638",
+      "name": "SPARQL Stream",
+      "description": {
+        "content": "Change data capture for RDF (SPARQL) data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eee5b71e-d7ed-46fd-912c-852f73855f80",
+          "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+          "request": {
+            "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+            "description": {
+              "content": "Gets a stream of change-log entries for RDF (SPARQL) data. Each entry records a mutation (ADD or REMOVE) of an RDF triple or quad. The response format is NQUADS, with each change represented as an N-Quads statement string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return (1-100,000). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "AT_SEQUENCE_NUMBER",
+                  "description": "Determines the starting point for reading the stream."
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>",
+                  "description": "The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER."
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "1",
+                  "description": "The operation sequence number within the specified commit."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to 'gzip' to receive compressed responses.",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "102d0494-8cd4-4fd6-954c-2a00bfbc253e",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {},\n  \"lastTrxTimestamp\": 1,\n  \"format\": \"NQUADS\",\n  \"records\": [\n    {}\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d99400c-43ef-4396-ace7-a7627b43ea59",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ddd1b562-0934-44df-a44c-e48f51254e1f",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The cluster endpoint DNS name for your Neptune DB cluster",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com",
+      "key": "cluster-endpoint"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster-endpoint}}:8182",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a69ed317-1352-4efb-9f5f-e1855fc0ea74",
+    "name": "Amazon Neptune Neptune Streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Streams generates a complete sequence of change-log entries that record every change made to graph data as it happens, enabling real-time capture of graph mutations via a REST API. Streams must be enabled by setting the neptune_streams DB cluster parameter to 1. The API supports both property graph (Gremlin/openCypher) and RDF (SPARQL) stream endpoints. Only HTTP GET operations are allowed. Maximum response size is 10 MB. Supports gzip compression via Accept-Encoding header.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

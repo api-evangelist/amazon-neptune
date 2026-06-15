@@ -1,0 +1,2577 @@
+{
+  "info": {
+    "_postman_id": "a3d60e8a-0819-4daf-be4c-6778011d9fea",
+    "name": "Amazon Neptune Neptune Analytics API",
+    "description": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:45.000Z",
+    "updatedAt": "2026-06-05T15:00:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a3d60e8a-0819-4daf-be4c-6778011d9fea"
+  },
+  "item": [
+    {
+      "name": "graphs",
+      "item": [
+        {
+          "name": "{graphIdentifier}",
+          "item": [
+            {
+              "name": "reset",
+              "item": [
+                {
+                  "name": "Amazon Neptune Reset a Neptune Analytics Graph",
+                  "id": "50736554-0614-4b84-bc90-4a8c212ef339",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"performCleanData\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier/reset",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier",
+                        "reset"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a9903c08-556a-433e-b18e-d57e24435f27",
+                          "key": "graphIdentifier",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the graph to reset."
+                        }
+                      ]
+                    },
+                    "description": "Empties the data from a Neptune Analytics graph, removing all nodes and edges while preserving the graph resource and its configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "da7cc155-addc-483e-9126-f53eb8e625e6",
+                      "name": "Graph reset initiated successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"performCleanData\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/graphs/:graphIdentifier/reset",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "graphs",
+                            ":graphIdentifier",
+                            "reset"
+                          ],
+                          "variable": [
+                            {
+                              "key": "graphIdentifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"statusReason\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"endpoint\": \"<string>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"sourceSnapshotId\": \"<string>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"buildNumber\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:00:46.000Z",
+                      "updatedAt": "2026-06-05T15:00:46.000Z",
+                      "uid": "35240-da7cc155-addc-483e-9126-f53eb8e625e6"
+                    },
+                    {
+                      "id": "8c7c66aa-f02c-4b1a-9adc-701916b8a76a",
+                      "name": "Graph not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"performCleanData\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/graphs/:graphIdentifier/reset",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "graphs",
+                            ":graphIdentifier",
+                            "reset"
+                          ],
+                          "variable": [
+                            {
+                              "key": "graphIdentifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:46.000Z",
+                      "updatedAt": "2026-06-05T15:00:46.000Z",
+                      "uid": "35240-8c7c66aa-f02c-4b1a-9adc-701916b8a76a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-50736554-0614-4b84-bc90-4a8c212ef339"
+                }
+              ],
+              "id": "500f2ccf-5460-41d3-9b4b-69e0bb906140",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-500f2ccf-5460-41d3-9b4b-69e0bb906140"
+            },
+            {
+              "name": "Amazon Neptune Get Neptune Analytics Graph Details",
+              "id": "709b6a94-262a-448b-ba97-ce1f4ecfa644",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/graphs/:graphIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3d6e38ac-92b2-4996-9528-d32a3be0a7c1",
+                      "key": "graphIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the graph."
+                    }
+                  ]
+                },
+                "description": "Returns detailed information about a specific Neptune Analytics graph resource."
+              },
+              "response": [
+                {
+                  "id": "4ed380c5-cc77-485e-a918-e0fc78590d3c",
+                  "name": "Graph details retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"statusReason\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"endpoint\": \"<string>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"sourceSnapshotId\": \"<string>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"buildNumber\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-4ed380c5-cc77-485e-a918-e0fc78590d3c"
+                },
+                {
+                  "id": "cc70ce37-e84c-4416-bea8-2140b8f5f878",
+                  "name": "Graph not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-cc70ce37-e84c-4416-bea8-2140b8f5f878"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-709b6a94-262a-448b-ba97-ce1f4ecfa644"
+            },
+            {
+              "name": "Amazon Neptune Update a Neptune Analytics Graph",
+              "id": "d7866732-977b-4def-87e3-4116ddae2ea2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphs/:graphIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "37f24833-9bcc-4e47-8847-1c465674118b",
+                      "key": "graphIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the graph."
+                    }
+                  ]
+                },
+                "description": "Updates the configuration of an existing Neptune Analytics graph, such as provisioned memory or deletion protection settings."
+              },
+              "response": [
+                {
+                  "id": "ae4d5d60-cb0c-4115-85dc-455ffd1bfeee",
+                  "name": "Graph updated successfully.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"statusReason\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"endpoint\": \"<string>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"sourceSnapshotId\": \"<string>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"buildNumber\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-ae4d5d60-cb0c-4115-85dc-455ffd1bfeee"
+                },
+                {
+                  "id": "3c92de33-67f7-4e57-b2f2-761c4559ba39",
+                  "name": "Graph not found.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-3c92de33-67f7-4e57-b2f2-761c4559ba39"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-d7866732-977b-4def-87e3-4116ddae2ea2"
+            },
+            {
+              "name": "Amazon Neptune Delete a Neptune Analytics Graph",
+              "id": "3b174f92-1f9b-4d21-b18e-809406ed496d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/graphs/:graphIdentifier?skipSnapshot=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Whether to skip creating a final snapshot before deletion.",
+                      "key": "skipSnapshot",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "a5a3aa55-4baa-435c-9cbb-311f18c7b3e8",
+                      "key": "graphIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the graph to delete."
+                    }
+                  ]
+                },
+                "description": "Deletes a Neptune Analytics graph resource. The graph must not have deletion protection enabled."
+              },
+              "response": [
+                {
+                  "id": "118b11a7-8199-49d7-a802-122e6aaa1899",
+                  "name": "Graph deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier?skipSnapshot=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Whether to skip creating a final snapshot before deletion.",
+                          "key": "skipSnapshot",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"statusReason\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"endpoint\": \"<string>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"sourceSnapshotId\": \"<string>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"buildNumber\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-118b11a7-8199-49d7-a802-122e6aaa1899"
+                },
+                {
+                  "id": "bc84dd1a-b13e-421d-a1d3-8e385d13994b",
+                  "name": "Graph not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier?skipSnapshot=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Whether to skip creating a final snapshot before deletion.",
+                          "key": "skipSnapshot",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-bc84dd1a-b13e-421d-a1d3-8e385d13994b"
+                },
+                {
+                  "id": "9f9385d3-17e9-4ca8-b419-0567205a979f",
+                  "name": "Graph has deletion protection enabled.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/graphs/:graphIdentifier?skipSnapshot=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "graphs",
+                        ":graphIdentifier"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Whether to skip creating a final snapshot before deletion.",
+                          "key": "skipSnapshot",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-9f9385d3-17e9-4ca8-b419-0567205a979f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-3b174f92-1f9b-4d21-b18e-809406ed496d"
+            }
+          ],
+          "id": "26877747-3c11-49ac-a322-5fc206358a14",
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-26877747-3c11-49ac-a322-5fc206358a14"
+        },
+        {
+          "name": "Amazon Neptune Create a Neptune Analytics Graph",
+          "id": "ab481306-2f37-4a1f-bad7-1091d7445f2a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"etf\": \"<string>\",\n    \"in__\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphs"
+              ]
+            },
+            "description": "Creates a new Neptune Analytics graph resource. The graph is a memory-optimized database instance optimized for analytical workloads with support for openCypher queries and vector search."
+          },
+          "response": [
+            {
+              "id": "a853c9f1-226a-470a-9308-8f18358644ee",
+              "name": "Graph created successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"etf\": \"<string>\",\n    \"in__\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphs"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"statusReason\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"endpoint\": \"<string>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"sourceSnapshotId\": \"<string>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"buildNumber\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-a853c9f1-226a-470a-9308-8f18358644ee"
+            },
+            {
+              "id": "fb954dd3-d9b8-4566-ad0f-979a5da3303e",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"etf\": \"<string>\",\n    \"in__\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphs"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-fb954dd3-d9b8-4566-ad0f-979a5da3303e"
+            },
+            {
+              "id": "251f8d95-f82a-4c57-8c81-8d0a6f7940b0",
+              "name": "A graph with the specified name already exists.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"etf\": \"<string>\",\n    \"in__\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphs"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-251f8d95-f82a-4c57-8c81-8d0a6f7940b0"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-ab481306-2f37-4a1f-bad7-1091d7445f2a"
+        },
+        {
+          "name": "Amazon Neptune List Neptune Analytics Graphs",
+          "id": "5a7e048c-6f51-489f-b514-9b7eb4e615f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphs?maxResults=<integer>&nextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphs"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return.",
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous request.",
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of Neptune Analytics graph resources in the account."
+          },
+          "response": [
+            {
+              "id": "98ae7f59-a405-4a99-a784-7638134ca06f",
+              "name": "Graph list retrieved successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/graphs?maxResults=<integer>&nextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous request.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"graphs\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"arn\": \"<string>\",\n      \"status\": \"<string>\",\n      \"provisionedMemory\": \"<integer>\",\n      \"publicConnectivity\": \"<boolean>\",\n      \"endpoint\": \"<string>\",\n      \"replicaCount\": \"<integer>\",\n      \"deletionProtection\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"arn\": \"<string>\",\n      \"status\": \"<string>\",\n      \"provisionedMemory\": \"<integer>\",\n      \"publicConnectivity\": \"<boolean>\",\n      \"endpoint\": \"<string>\",\n      \"replicaCount\": \"<integer>\",\n      \"deletionProtection\": \"<boolean>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-98ae7f59-a405-4a99-a784-7638134ca06f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-5a7e048c-6f51-489f-b514-9b7eb4e615f7"
+        }
+      ],
+      "id": "522d7c3e-8091-4376-8d09-7a8795d00515",
+      "createdAt": "2026-06-05T15:00:46.000Z",
+      "updatedAt": "2026-06-05T15:00:46.000Z",
+      "uid": "35240-522d7c3e-8091-4376-8d09-7a8795d00515"
+    },
+    {
+      "name": "snapshots",
+      "item": [
+        {
+          "name": "{snapshotIdentifier}",
+          "item": [
+            {
+              "name": "restore",
+              "item": [
+                {
+                  "name": "Amazon Neptune Restore a Graph from a Snapshot",
+                  "id": "7ff472b9-88f1-4275-a523-d6bdd6244889",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"tags\": {\n    \"in_3\": \"<string>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier/restore",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "snapshots",
+                        ":snapshotIdentifier",
+                        "restore"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9bb3491a-9053-47a9-a166-e255c67a8e08",
+                          "key": "snapshotIdentifier",
+                          "value": "<string>",
+                          "description": "(Required) The identifier of the snapshot to restore from."
+                        }
+                      ]
+                    },
+                    "description": "Creates a new Neptune Analytics graph by restoring from an existing snapshot."
+                  },
+                  "response": [
+                    {
+                      "id": "44d5fe9a-6647-4ac1-b637-cb40e68a70ae",
+                      "name": "Graph restore initiated successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"tags\": {\n    \"in_3\": \"<string>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier/restore",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "snapshots",
+                            ":snapshotIdentifier",
+                            "restore"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshotIdentifier"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"statusReason\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"endpoint\": \"<string>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"sourceSnapshotId\": \"<string>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"buildNumber\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:00:46.000Z",
+                      "updatedAt": "2026-06-05T15:00:46.000Z",
+                      "uid": "35240-44d5fe9a-6647-4ac1-b637-cb40e68a70ae"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-7ff472b9-88f1-4275-a523-d6bdd6244889"
+                }
+              ],
+              "id": "cb05f035-b105-435b-85a4-b9602f5716ea",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-cb05f035-b105-435b-85a4-b9602f5716ea"
+            },
+            {
+              "name": "Amazon Neptune Get Graph Snapshot Details",
+              "id": "94ad9041-82b2-4dab-8545-f3cd65dd1370",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "snapshots",
+                    ":snapshotIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f3f3e49d-7544-4ed0-b8ba-05d1a3e31d5c",
+                      "key": "snapshotIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the snapshot."
+                    }
+                  ]
+                },
+                "description": "Returns detailed information about a specific graph snapshot."
+              },
+              "response": [
+                {
+                  "id": "5cff4180-4d01-4ef8-8574-a0dea1839d2c",
+                  "name": "Snapshot details retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "snapshots",
+                        ":snapshotIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "snapshotIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"sourceGraphId\": \"<string>\",\n  \"snapshotCreateTime\": \"<dateTime>\",\n  \"status\": \"CREATING\",\n  \"kmsKeyIdentifier\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-5cff4180-4d01-4ef8-8574-a0dea1839d2c"
+                },
+                {
+                  "id": "e5192f9e-ad90-4ae4-9c6e-6159f25dc592",
+                  "name": "Snapshot not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "snapshots",
+                        ":snapshotIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "snapshotIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-e5192f9e-ad90-4ae4-9c6e-6159f25dc592"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-94ad9041-82b2-4dab-8545-f3cd65dd1370"
+            },
+            {
+              "name": "Amazon Neptune Delete a Graph Snapshot",
+              "id": "bf262596-c26f-48c8-823d-aa7408a39cbe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "snapshots",
+                    ":snapshotIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b4a98078-802f-4bd9-b7f7-6e1f70312fc3",
+                      "key": "snapshotIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the snapshot to delete."
+                    }
+                  ]
+                },
+                "description": "Deletes a Neptune Analytics graph snapshot."
+              },
+              "response": [
+                {
+                  "id": "524289ce-29b6-46dd-a62c-ddf68b42f279",
+                  "name": "Snapshot deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "snapshots",
+                        ":snapshotIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "snapshotIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-524289ce-29b6-46dd-a62c-ddf68b42f279"
+                },
+                {
+                  "id": "fccca16c-43ca-4383-849c-070f4d01b033",
+                  "name": "Snapshot not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/snapshots/:snapshotIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "snapshots",
+                        ":snapshotIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "snapshotIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-fccca16c-43ca-4383-849c-070f4d01b033"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-bf262596-c26f-48c8-823d-aa7408a39cbe"
+            }
+          ],
+          "id": "c46323ab-1dc8-4799-87f8-802e11458651",
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-c46323ab-1dc8-4799-87f8-802e11458651"
+        },
+        {
+          "name": "Amazon Neptune Create a Graph Snapshot",
+          "id": "f59bb02e-4971-4acb-a945-a3d49dd4f2c3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"graphIdentifier\": \"<string>\",\n  \"snapshotName\": \"<string>\",\n  \"tags\": {\n    \"enim88a\": \"<string>\",\n    \"ad9e\": \"<string>\",\n    \"nullaad_\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/snapshots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "snapshots"
+              ]
+            },
+            "description": "Creates a snapshot of a Neptune Analytics graph for backup purposes."
+          },
+          "response": [
+            {
+              "id": "fec00d3a-8e98-441a-8fc6-62adaf3b9f0f",
+              "name": "Snapshot created successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphIdentifier\": \"<string>\",\n  \"snapshotName\": \"<string>\",\n  \"tags\": {\n    \"enim88a\": \"<string>\",\n    \"ad9e\": \"<string>\",\n    \"nullaad_\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/snapshots",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "snapshots"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"sourceGraphId\": \"<string>\",\n  \"snapshotCreateTime\": \"<dateTime>\",\n  \"status\": \"CREATING\",\n  \"kmsKeyIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-fec00d3a-8e98-441a-8fc6-62adaf3b9f0f"
+            },
+            {
+              "id": "c7427752-8ecd-4bc5-818c-582deb8371d2",
+              "name": "Source graph not found.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphIdentifier\": \"<string>\",\n  \"snapshotName\": \"<string>\",\n  \"tags\": {\n    \"enim88a\": \"<string>\",\n    \"ad9e\": \"<string>\",\n    \"nullaad_\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/snapshots",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "snapshots"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-c7427752-8ecd-4bc5-818c-582deb8371d2"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-f59bb02e-4971-4acb-a945-a3d49dd4f2c3"
+        },
+        {
+          "name": "Amazon Neptune List Graph Snapshots",
+          "id": "907e4d3b-239d-4999-bf12-9a0639c1ee30",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/snapshots?graphIdentifier=<string>&maxResults=<integer>&nextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "snapshots"
+              ],
+              "query": [
+                {
+                  "description": "Filter snapshots by source graph identifier.",
+                  "key": "graphIdentifier",
+                  "value": "<string>"
+                },
+                {
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of graph snapshots in the account."
+          },
+          "response": [
+            {
+              "id": "d8586791-0999-47eb-abb3-e4d951950295",
+              "name": "Snapshot list retrieved successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/snapshots?graphIdentifier=<string>&maxResults=<integer>&nextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "snapshots"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter snapshots by source graph identifier.",
+                      "key": "graphIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"graphSnapshots\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"arn\": \"<string>\",\n      \"sourceGraphId\": \"<string>\",\n      \"snapshotCreateTime\": \"<dateTime>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"arn\": \"<string>\",\n      \"sourceGraphId\": \"<string>\",\n      \"snapshotCreateTime\": \"<dateTime>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-d8586791-0999-47eb-abb3-e4d951950295"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-907e4d3b-239d-4999-bf12-9a0639c1ee30"
+        }
+      ],
+      "id": "d529895f-141d-4e88-a982-b90d10a9314e",
+      "createdAt": "2026-06-05T15:00:46.000Z",
+      "updatedAt": "2026-06-05T15:00:46.000Z",
+      "uid": "35240-d529895f-141d-4e88-a982-b90d10a9314e"
+    },
+    {
+      "name": "importtasks",
+      "item": [
+        {
+          "name": "{taskIdentifier}",
+          "item": [
+            {
+              "name": "Amazon Neptune Get Import Task Details",
+              "id": "c787c562-b71c-47e4-9a2a-4eb0e514907f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/importtasks/:taskIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "importtasks",
+                    ":taskIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "164e2f20-5736-4094-8c00-83ee2b259a5f",
+                      "key": "taskIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the import task."
+                    }
+                  ]
+                },
+                "description": "Returns detailed information about a specific import task."
+              },
+              "response": [
+                {
+                  "id": "b2866b67-2728-4983-9a84-44c4514eeec9",
+                  "name": "Import task details retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/importtasks/:taskIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "importtasks",
+                        ":taskIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"graphId\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"source\": \"<string>\",\n  \"format\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"status\": \"ANALYZING_DATA\",\n  \"importOptions\": {},\n  \"importTaskDetails\": {\n    \"status\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"timeElapsedSeconds\": \"<integer>\",\n    \"progressPercentage\": \"<integer>\",\n    \"errorCount\": \"<integer>\",\n    \"errorDetails\": \"<string>\",\n    \"statementCount\": \"<integer>\",\n    \"dictionaryEntryCount\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-b2866b67-2728-4983-9a84-44c4514eeec9"
+                },
+                {
+                  "id": "8c99c8d3-feb9-441e-a66e-d780af97abc8",
+                  "name": "Import task not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/importtasks/:taskIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "importtasks",
+                        ":taskIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-8c99c8d3-feb9-441e-a66e-d780af97abc8"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-c787c562-b71c-47e4-9a2a-4eb0e514907f"
+            },
+            {
+              "name": "Amazon Neptune Cancel an Import Task",
+              "id": "de9ac73e-7ea2-4f64-bdba-f9028d9a7092",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/importtasks/:taskIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "importtasks",
+                    ":taskIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f817a996-cf8a-4922-96df-6a731e36176a",
+                      "key": "taskIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the import task to cancel."
+                    }
+                  ]
+                },
+                "description": "Cancels a running import task."
+              },
+              "response": [
+                {
+                  "id": "caa3d564-8cff-4361-a5aa-4e522170f97f",
+                  "name": "Import task cancelled successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/importtasks/:taskIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "importtasks",
+                        ":taskIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-caa3d564-8cff-4361-a5aa-4e522170f97f"
+                },
+                {
+                  "id": "86fcd991-dc1a-48e4-8e1f-d0fdbc046521",
+                  "name": "Import task not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/importtasks/:taskIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "importtasks",
+                        ":taskIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-86fcd991-dc1a-48e4-8e1f-d0fdbc046521"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-de9ac73e-7ea2-4f64-bdba-f9028d9a7092"
+            }
+          ],
+          "id": "d3264ac9-d339-4b29-84d7-55ac10a3b5c3",
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-d3264ac9-d339-4b29-84d7-55ac10a3b5c3"
+        },
+        {
+          "name": "Amazon Neptune Create a Graph Using an Import Task",
+          "id": "077b1385-aaad-4c91-a164-df5c9bd47c94",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"graphName\": \"<string>\",\n  \"source\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"format\": \"PARQUET\",\n  \"tags\": {\n    \"non_42\": \"<string>\",\n    \"sint_c\": \"<string>\",\n    \"consectetur_c\": \"<string>\"\n  },\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"importOptions\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/importtasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "importtasks"
+              ]
+            },
+            "description": "Creates a new Neptune Analytics graph and populates it with data from an Amazon S3 source in a single operation."
+          },
+          "response": [
+            {
+              "id": "453282f0-d2f1-46c6-82e8-6fdf0ab11652",
+              "name": "Import task created successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"source\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"format\": \"PARQUET\",\n  \"tags\": {\n    \"non_42\": \"<string>\",\n    \"sint_c\": \"<string>\",\n    \"consectetur_c\": \"<string>\"\n  },\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"importOptions\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/importtasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "importtasks"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"graphId\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"source\": \"<string>\",\n  \"format\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"status\": \"ANALYZING_DATA\",\n  \"importOptions\": {},\n  \"importTaskDetails\": {\n    \"status\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"timeElapsedSeconds\": \"<integer>\",\n    \"progressPercentage\": \"<integer>\",\n    \"errorCount\": \"<integer>\",\n    \"errorDetails\": \"<string>\",\n    \"statementCount\": \"<integer>\",\n    \"dictionaryEntryCount\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-453282f0-d2f1-46c6-82e8-6fdf0ab11652"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-077b1385-aaad-4c91-a164-df5c9bd47c94"
+        },
+        {
+          "name": "Amazon Neptune List Import Tasks",
+          "id": "2e892dd4-f3bc-46d6-9226-e8550b7e1478",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/importtasks?maxResults=<integer>&nextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "importtasks"
+              ],
+              "query": [
+                {
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of import tasks in the account."
+          },
+          "response": [
+            {
+              "id": "767b243a-d431-4506-be0e-874bf462aefc",
+              "name": "Import task list retrieved successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/importtasks?maxResults=<integer>&nextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "importtasks"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"tasks\": [\n    {\n      \"graphId\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"source\": \"<string>\",\n      \"format\": \"<string>\",\n      \"roleArn\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"source\": \"<string>\",\n      \"format\": \"<string>\",\n      \"roleArn\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-767b243a-d431-4506-be0e-874bf462aefc"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-2e892dd4-f3bc-46d6-9226-e8550b7e1478"
+        }
+      ],
+      "id": "eac69da6-4262-436e-9c00-cba0cd17efaf",
+      "createdAt": "2026-06-05T15:00:46.000Z",
+      "updatedAt": "2026-06-05T15:00:46.000Z",
+      "uid": "35240-eac69da6-4262-436e-9c00-cba0cd17efaf"
+    },
+    {
+      "name": "privategraphendpoints",
+      "item": [
+        {
+          "name": "{graphIdentifier}",
+          "item": [
+            {
+              "name": "{vpcId}",
+              "item": [
+                {
+                  "name": "Amazon Neptune Get Private Graph Endpoint Details",
+                  "id": "5a4fe202-5fb2-4ae0-b0ec-b110d24ca342",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier/:vpcId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "privategraphendpoints",
+                        ":graphIdentifier",
+                        ":vpcId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e14d207a-97c0-4803-9c8f-9ee26d05a728",
+                          "key": "graphIdentifier",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        },
+                        {
+                          "id": "3ce95510-f8b9-42f6-8e71-107984e40648",
+                          "key": "vpcId",
+                          "value": "<string>",
+                          "description": "(Required) The VPC ID of the private endpoint."
+                        }
+                      ]
+                    },
+                    "description": "Returns details of a specific private graph endpoint."
+                  },
+                  "response": [
+                    {
+                      "id": "112af164-6755-488c-b13d-6657bc8f3281",
+                      "name": "Private endpoint details retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier/:vpcId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "privategraphendpoints",
+                            ":graphIdentifier",
+                            ":vpcId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "graphIdentifier"
+                            },
+                            {
+                              "key": "vpcId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"vpcId\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"AVAILABLE\",\n  \"vpcEndpointId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:00:46.000Z",
+                      "updatedAt": "2026-06-05T15:00:46.000Z",
+                      "uid": "35240-112af164-6755-488c-b13d-6657bc8f3281"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-5a4fe202-5fb2-4ae0-b0ec-b110d24ca342"
+                },
+                {
+                  "name": "Amazon Neptune Delete a Private Graph Endpoint",
+                  "id": "d8d6c0b9-f26f-403d-b624-407033ddb83f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier/:vpcId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "privategraphendpoints",
+                        ":graphIdentifier",
+                        ":vpcId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7740338c-1e7c-4732-9283-63c3cbdda5ac",
+                          "key": "graphIdentifier",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        },
+                        {
+                          "id": "c084e569-53ed-458a-b046-49e10d206146",
+                          "key": "vpcId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes a private graph endpoint from a VPC."
+                  },
+                  "response": [
+                    {
+                      "id": "63531486-218c-4f37-8b26-ec00805ff0bd",
+                      "name": "Private endpoint deleted successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier/:vpcId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "privategraphendpoints",
+                            ":graphIdentifier",
+                            ":vpcId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "graphIdentifier"
+                            },
+                            {
+                              "key": "vpcId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:46.000Z",
+                      "updatedAt": "2026-06-05T15:00:46.000Z",
+                      "uid": "35240-63531486-218c-4f37-8b26-ec00805ff0bd"
+                    },
+                    {
+                      "id": "bfe183c3-0b69-4698-a49f-17925d84a323",
+                      "name": "Private endpoint not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier/:vpcId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "privategraphendpoints",
+                            ":graphIdentifier",
+                            ":vpcId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "graphIdentifier"
+                            },
+                            {
+                              "key": "vpcId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:46.000Z",
+                      "updatedAt": "2026-06-05T15:00:46.000Z",
+                      "uid": "35240-bfe183c3-0b69-4698-a49f-17925d84a323"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-d8d6c0b9-f26f-403d-b624-407033ddb83f"
+                }
+              ],
+              "id": "7b10cc90-e263-4ed6-bac4-b768278dbbce",
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-7b10cc90-e263-4ed6-bac4-b768278dbbce"
+            },
+            {
+              "name": "Amazon Neptune Create a Private Graph Endpoint",
+              "id": "ad633179-2e75-4d43-b6b0-556033d02609",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vpcId\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vpcSecurityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "privategraphendpoints",
+                    ":graphIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b4207c48-b4e1-41f0-ae18-de375ea8ec4d",
+                      "key": "graphIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the graph."
+                    }
+                  ]
+                },
+                "description": "Creates a private graph endpoint in a VPC for accessing a Neptune Analytics graph without going over the public internet."
+              },
+              "response": [
+                {
+                  "id": "0177e5b1-b583-4c24-97dc-6dafd63b15e6",
+                  "name": "Private endpoint created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"vpcId\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vpcSecurityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "privategraphendpoints",
+                        ":graphIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"vpcId\": \"<string>\",\n  \"subnetIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"AVAILABLE\",\n  \"vpcEndpointId\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-0177e5b1-b583-4c24-97dc-6dafd63b15e6"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-ad633179-2e75-4d43-b6b0-556033d02609"
+            },
+            {
+              "name": "Amazon Neptune List Private Graph Endpoints",
+              "id": "4b0f6d0f-cc8a-46a6-9e96-6b77dcc4856e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier?maxResults=<integer>&nextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "privategraphendpoints",
+                    ":graphIdentifier"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "89251c55-f10b-486c-89f0-57b8364a4b78",
+                      "key": "graphIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns a list of private graph endpoints for a specific graph."
+              },
+              "response": [
+                {
+                  "id": "a160224f-c9c5-483f-ba01-5aea4998e089",
+                  "name": "Private endpoint list retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/privategraphendpoints/:graphIdentifier?maxResults=<integer>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "privategraphendpoints",
+                        ":graphIdentifier"
+                      ],
+                      "query": [
+                        {
+                          "key": "maxResults",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "graphIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:46.000Z",
+                  "updatedAt": "2026-06-05T15:00:46.000Z",
+                  "uid": "35240-a160224f-c9c5-483f-ba01-5aea4998e089"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:46.000Z",
+              "updatedAt": "2026-06-05T15:00:46.000Z",
+              "uid": "35240-4b0f6d0f-cc8a-46a6-9e96-6b77dcc4856e"
+            }
+          ],
+          "id": "1d277d3d-acb3-4947-be10-0b14562aed12",
+          "createdAt": "2026-06-05T15:00:46.000Z",
+          "updatedAt": "2026-06-05T15:00:46.000Z",
+          "uid": "35240-1d277d3d-acb3-4947-be10-0b14562aed12"
+        }
+      ],
+      "id": "fccb7049-97a8-49da-8a89-9606d308aff6",
+      "createdAt": "2026-06-05T15:00:46.000Z",
+      "updatedAt": "2026-06-05T15:00:46.000Z",
+      "uid": "35240-fccb7049-97a8-49da-8a89-9606d308aff6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com"
+    }
+  ]
+}

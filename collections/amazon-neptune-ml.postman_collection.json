@@ -1,0 +1,2804 @@
+{
+  "item": [
+    {
+      "id": "58946abd-6cdd-440d-a7a3-c1a0748165c9",
+      "name": "Data Processing",
+      "description": {
+        "content": "ML data processing job operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ed0a55e-4b2a-43a6-9b35-9478ce33523b",
+          "name": "Amazon Neptune Create an ML Data Processing Job",
+          "request": {
+            "name": "Amazon Neptune Create an ML Data Processing Job",
+            "description": {
+              "content": "Creates a new Neptune ML data processing job that exports and prepares graph data from Neptune for model training using Amazon SageMaker. The job reads data from Neptune and writes processed output to the specified S3 location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inputDataS3Location\": \"<string>\",\n  \"processedDataS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousDataProcessingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"processingInstanceType\": \"<string>\",\n  \"processingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"processingTimeOutInSeconds\": 86400,\n  \"modelType\": \"<string>\",\n  \"configFileName\": \"training-data-configuration.json\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f0f2cd2-3bea-455e-a6f3-310e3a50c102",
+              "name": "Data processing job created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputDataS3Location\": \"<string>\",\n  \"processedDataS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousDataProcessingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"processingInstanceType\": \"<string>\",\n  \"processingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"processingTimeOutInSeconds\": 86400,\n  \"modelType\": \"<string>\",\n  \"configFileName\": \"training-data-configuration.json\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33d3e1cd-e6b4-4186-809e-c87bcd61efe7",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputDataS3Location\": \"<string>\",\n  \"processedDataS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousDataProcessingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"processingInstanceType\": \"<string>\",\n  \"processingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"processingTimeOutInSeconds\": 86400,\n  \"modelType\": \"<string>\",\n  \"configFileName\": \"training-data-configuration.json\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f1a298d-8dc7-4c03-9194-3e7fc5f7a48f",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputDataS3Location\": \"<string>\",\n  \"processedDataS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousDataProcessingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"processingInstanceType\": \"<string>\",\n  \"processingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"processingTimeOutInSeconds\": 86400,\n  \"modelType\": \"<string>\",\n  \"configFileName\": \"training-data-configuration.json\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2fb77ca-18e5-462c-b6df-a5106889020b",
+          "name": "Amazon Neptune List Active Data Processing Jobs",
+          "request": {
+            "name": "Amazon Neptune List Active Data Processing Jobs",
+            "description": {
+              "content": "Returns a list of active Neptune ML data processing job IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10",
+                  "description": "Maximum number of items to return (default 10, max 1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>",
+                  "description": "The ARN of the IAM role for Neptune access."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a3ce8d1-192a-4049-ba3e-36eef80de8ab",
+              "name": "Job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ids\": [\n    \"example-value\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4b0bc4d-9f18-4a3a-a98f-4c47bcdc7d54",
+          "name": "Amazon Neptune Get Data Processing Job Status",
+          "request": {
+            "name": "Amazon Neptune Get Data Processing Job Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML data processing job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>",
+                  "description": "The ARN of the IAM role for Neptune access."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the data processing job."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6cde6e1-9f45-422c-a93e-a2d99acaf81e",
+              "name": "Job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the data processing job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"processingJob\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\",\n    \"outputLocation\": \"example-value\",\n    \"failureReason\": \"example-value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd1d5fd8-abc0-402e-91ac-5efe953ae725",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the data processing job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96c01134-0ca8-4521-bc2e-54bf567e9d26",
+          "name": "Amazon Neptune Stop a Data Processing Job",
+          "request": {
+            "name": "Amazon Neptune Stop a Data Processing Job",
+            "description": {
+              "content": "Stops a running Neptune ML data processing job. Optionally deletes all S3 artifacts when the clean parameter is set to true.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false",
+                  "description": "Whether to delete all S3 artifacts when stopping."
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>",
+                  "description": "The ARN of the IAM role for Neptune access."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the data processing job."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdd06c6e-9c96-4cfa-b2f3-784db580fe5b",
+              "name": "Job stopped successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the data processing job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8aeacec2-db38-4eef-a067-291f652f97c0",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the data processing job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "965811aa-2f30-45ea-9002-9436f63ef84c",
+      "name": "Inference Endpoints",
+      "description": {
+        "content": "ML inference endpoint management operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "deb0930a-a8eb-4b6e-ad9e-51396f1e0778",
+          "name": "Amazon Neptune Create an ML Inference Endpoint",
+          "request": {
+            "name": "Amazon Neptune Create an ML Inference Endpoint",
+            "description": {
+              "content": "Creates a new Neptune ML inference endpoint backed by Amazon SageMaker. The endpoint can be used to make real-time predictions on graph data using a trained model. Can also be used to update an existing endpoint by setting the update parameter to true.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"mlModelTransformJobId\": \"<string>\",\n  \"update\": false,\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"instanceType\": \"ml.m5.xlarge\",\n  \"instanceCount\": 1,\n  \"volumeEncryptionKMSKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15d212c1-390b-44d2-8c18-2ca3e2fd595b",
+              "name": "Inference endpoint created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"mlModelTransformJobId\": \"<string>\",\n  \"update\": false,\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"instanceType\": \"ml.m5.xlarge\",\n  \"instanceCount\": 1,\n  \"volumeEncryptionKMSKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e557ddab-df71-4eff-89a1-005ebe13db3f",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"mlModelTransformJobId\": \"<string>\",\n  \"update\": false,\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"instanceType\": \"ml.m5.xlarge\",\n  \"instanceCount\": 1,\n  \"volumeEncryptionKMSKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f356446b-7a27-4a36-ad0b-3003ddddd795",
+          "name": "Amazon Neptune List ML Inference Endpoints",
+          "request": {
+            "name": "Amazon Neptune List ML Inference Endpoints",
+            "description": {
+              "content": "Returns a list of active Neptune ML inference endpoint IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "572bf66f-a9b0-4154-a778-e132f8b5a775",
+              "name": "Endpoint list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ids\": [\n    \"example-value\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2db30f84-bc67-4ca1-9479-18451da26236",
+          "name": "Amazon Neptune Get ML Inference Endpoint Status",
+          "request": {
+            "name": "Amazon Neptune Get ML Inference Endpoint Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML inference endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the inference endpoint."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "519c5b09-33b4-4cbe-94bc-503fa2d28e76",
+              "name": "Endpoint status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the inference endpoint."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"endpoint\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\"\n  },\n  \"endpointConfig\": {},\n  \"outputLocation\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c56848c8-3581-4ce1-baf5-9ec1b48c0370",
+              "name": "Endpoint not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the inference endpoint."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4641aa45-0ecf-4a31-9419-48e668ba6a17",
+          "name": "Amazon Neptune Delete an ML Inference Endpoint",
+          "request": {
+            "name": "Amazon Neptune Delete an ML Inference Endpoint",
+            "description": {
+              "content": "Deletes a Neptune ML inference endpoint. Optionally cleans up all related S3 artifacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false",
+                  "description": "Whether to delete all related S3 artifacts."
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d773d00-d546-4139-b367-91955097945a",
+              "name": "Endpoint deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96b5f0d7-0b60-4764-9172-0c994a0c1359",
+              "name": "Endpoint not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a4f7bfea-de15-4089-8179-a780ecb32302",
+      "name": "Model Training",
+      "description": {
+        "content": "ML model training job operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c3371016-a5e9-4713-a1e2-21fa47ad263e",
+          "name": "Amazon Neptune Create an ML Model Training Job",
+          "request": {
+            "name": "Amazon Neptune Create an ML Model Training Job",
+            "description": {
+              "content": "Creates a new Neptune ML model training job using Amazon SageMaker. The job trains a graph neural network model using the output from a completed data processing job. Supports relational graph convolutional network (RGCN) and knowledge graph embedding (KGE) models, as well as custom training scripts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataProcessingJobId\": \"<string>\",\n  \"trainModelS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousModelTrainingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"trainingInstanceType\": \"ml.p3.2xlarge\",\n  \"trainingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"trainingTimeOutInSeconds\": 86400,\n  \"maxHPONumberOfTrainingJobs\": 2,\n  \"maxHPOParallelTrainingJobs\": 2,\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"enableManagedSpotTraining\": false,\n  \"customModelTrainingParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"trainingEntryPointScript\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9b7e63e-9abc-405b-ab83-e5f5501ca62a",
+              "name": "Model training job created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataProcessingJobId\": \"<string>\",\n  \"trainModelS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousModelTrainingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"trainingInstanceType\": \"ml.p3.2xlarge\",\n  \"trainingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"trainingTimeOutInSeconds\": 86400,\n  \"maxHPONumberOfTrainingJobs\": 2,\n  \"maxHPOParallelTrainingJobs\": 2,\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"enableManagedSpotTraining\": false,\n  \"customModelTrainingParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"trainingEntryPointScript\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0ed7eff-31ab-456c-be73-2b442a684d74",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataProcessingJobId\": \"<string>\",\n  \"trainModelS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousModelTrainingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"trainingInstanceType\": \"ml.p3.2xlarge\",\n  \"trainingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"trainingTimeOutInSeconds\": 86400,\n  \"maxHPONumberOfTrainingJobs\": 2,\n  \"maxHPOParallelTrainingJobs\": 2,\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"enableManagedSpotTraining\": false,\n  \"customModelTrainingParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"trainingEntryPointScript\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c0c3396-ed92-45ea-974e-e81cafcd034a",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataProcessingJobId\": \"<string>\",\n  \"trainModelS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousModelTrainingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"trainingInstanceType\": \"ml.p3.2xlarge\",\n  \"trainingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"trainingTimeOutInSeconds\": 86400,\n  \"maxHPONumberOfTrainingJobs\": 2,\n  \"maxHPOParallelTrainingJobs\": 2,\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"enableManagedSpotTraining\": false,\n  \"customModelTrainingParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"trainingEntryPointScript\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a865c618-483c-4ac3-9665-39a92ab6443d",
+          "name": "Amazon Neptune List Active Model Training Jobs",
+          "request": {
+            "name": "Amazon Neptune List Active Model Training Jobs",
+            "description": {
+              "content": "Returns a list of active Neptune ML model training job IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10",
+                  "description": "Maximum number of items to return (default 10, max 1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f23cbfb-c66a-4acc-b01a-2149ad034b35",
+              "name": "Job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ids\": [\n    \"example-value\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9295313e-b54f-4d03-bd79-c6c2284d7ab3",
+          "name": "Amazon Neptune Get Model Training Job Status",
+          "request": {
+            "name": "Amazon Neptune Get Model Training Job Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML model training job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the model training job."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a888480-9f4b-4c14-8ee8-c19b44fc7d68",
+              "name": "Job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the model training job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"processingJob\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\",\n    \"outputLocation\": \"example-value\",\n    \"failureReason\": \"example-value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94fcfc95-ff7f-4902-994a-6f27a186a5e5",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the model training job."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d26eb945-a295-4dd5-b92e-9d10cc3bd9b4",
+          "name": "Amazon Neptune Stop a Model Training Job",
+          "request": {
+            "name": "Amazon Neptune Stop a Model Training Job",
+            "description": {
+              "content": "Stops a running Neptune ML model training job. Optionally deletes all S3 artifacts when the clean parameter is set to true.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79d62300-018f-485d-b954-27af8d991cd3",
+              "name": "Job stopped successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf8d5e4f-bf04-4b51-af73-d05877720815",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "842ee7e8-ae75-40ad-b344-db47e5f1f52e",
+      "name": "Model Transform",
+      "description": {
+        "content": "ML model transform job operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22a91a37-d6c8-4692-934b-8cfaac98e156",
+          "name": "Amazon Neptune Create an ML Model Transform Job",
+          "request": {
+            "name": "Amazon Neptune Create an ML Model Transform Job",
+            "description": {
+              "content": "Creates a new Neptune ML model transform job that generates model artifacts for inference. The transform job creates the embeddings and other artifacts needed to deploy the model to an inference endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modelTransformOutputS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"dataProcessingJobId\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"trainingJobName\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"baseProcessingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"customModelTransformParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a4d2044-e87d-4492-813c-8e49de764a73",
+              "name": "Model transform job created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelTransformOutputS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"dataProcessingJobId\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"trainingJobName\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"baseProcessingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"customModelTransformParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0c8bf13-a1fd-4c36-9ada-502d0b831800",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelTransformOutputS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"dataProcessingJobId\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"trainingJobName\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"baseProcessingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"customModelTransformParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdc5cadd-a102-4805-a40c-44a64fa5fcf2",
+          "name": "Amazon Neptune List Active Model Transform Jobs",
+          "request": {
+            "name": "Amazon Neptune List Active Model Transform Jobs",
+            "description": {
+              "content": "Returns a list of active Neptune ML model transform job IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df8baeca-f730-4e3d-91e7-09da392ed707",
+              "name": "Job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ids\": [\n    \"example-value\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f2acc37-4e19-4cb1-b93a-5ee53d7184f8",
+          "name": "Amazon Neptune Get Model Transform Job Status",
+          "request": {
+            "name": "Amazon Neptune Get Model Transform Job Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML model transform job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57821d56-e885-4cd5-b96d-36e1edaf67b2",
+              "name": "Job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"processingJob\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\",\n    \"outputLocation\": \"example-value\",\n    \"failureReason\": \"example-value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc0c8ff2-f2fb-4f5e-8df5-1b805e7e65a0",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13a69a5f-601c-4414-a464-6d1574ae4df4",
+          "name": "Amazon Neptune Stop a Model Transform Job",
+          "request": {
+            "name": "Amazon Neptune Stop a Model Transform Job",
+            "description": {
+              "content": "Stops a running Neptune ML model transform job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9424f3cd-a573-48ff-889b-1ebbce3acddf",
+              "name": "Job stopped successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7715a297-c8a3-4f5d-a181-ea37487d8399",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The cluster endpoint DNS name for your Neptune DB cluster",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com",
+      "key": "cluster-endpoint"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster-endpoint}}:8182",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebd75342-610b-4ffb-9226-e0851b3b2e9b",
+    "name": "Amazon Neptune Neptune ML API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune ML enables machine learning on graph data using graph neural networks. It provides APIs for data processing, model training, model transform, and inference endpoint management powered by Amazon SageMaker. The ML API endpoints are available on the Neptune DB instance HTTP endpoint under the /ml path prefix.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

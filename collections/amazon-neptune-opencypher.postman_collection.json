@@ -1,0 +1,999 @@
+{
+  "item": [
+    {
+      "id": "850de048-3413-49f4-8315-b3eefa403aea",
+      "name": "Query",
+      "description": {
+        "content": "Execute openCypher graph queries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "19f51a17-7a4a-4fe4-afd6-372fe8f588e1",
+          "name": "Amazon Neptune Execute an OpenCypher Query via HTTP POST",
+          "request": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via HTTP POST",
+            "description": {
+              "content": "Submits an openCypher query to the Neptune HTTP endpoint. The query is provided as a form-encoded parameter. Supports both read and write queries. Nodes are returned with ~id, ~entityType, ~labels, and ~properties fields. Relationships include ~id, ~entityType, ~start, ~end, ~type, and ~properties fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openCypher"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                "key": "TE",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The openCypher query string."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d6b0250d-d0c0-4b96-aa4e-88b35b96a063",
+              "name": "openCypher query executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The openCypher query string.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "MATCH (n) RETURN n LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Response code and status (only when TE: trailers was sent).",
+                  "key": "X-Neptune-Status",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "URL-encoded JSON error details (only when TE: trailers was sent). Empty on success.",
+                  "key": "X-Neptune-Detail",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08e94b6a-5514-4162-93d8-cd999535fd22",
+              "name": "Bad request - malformed openCypher query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The openCypher query string.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "MATCH (n) RETURN n LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"neptune-cluster-abc123\",\n  \"code\": \"example-value\",\n  \"detailedMessage\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2722dda0-02e9-4360-bcf0-c336bc57c686",
+              "name": "Query timed out before completing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The openCypher query string.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "MATCH (n) RETURN n LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4801c30-f103-4c59-86e3-017d8c25e252",
+              "name": "Internal server error during query execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The openCypher query string.",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "MATCH (n) RETURN n LIMIT 10"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ded73623-c490-4b5d-a2eb-0654d39946af",
+          "name": "Amazon Neptune Execute an OpenCypher Query via HTTP GET",
+          "request": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via HTTP GET",
+            "description": {
+              "content": "Submits an openCypher query via URL query parameter. Supports both read and write queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openCypher"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The openCypher query string (URL-encoded)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to 'trailers' for trailing headers.",
+                "key": "TE",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "839ee56e-bb05-41ad-bd5f-59a2bb1c6acb",
+              "name": "openCypher query executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "MATCH (n1) RETURN n1 LIMIT 10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'trailers' for trailing headers.",
+                    "key": "TE",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73416b6d-8b3e-4619-b61f-118b30f3e22f",
+              "name": "Bad request - malformed openCypher query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "MATCH (n1) RETURN n1 LIMIT 10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'trailers' for trailing headers.",
+                    "key": "TE",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "78006e4d-1499-4e55-8320-29ddcca6045f",
+      "name": "Status",
+      "description": {
+        "content": "Query status and cancellation operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85bbfd39-89e7-4fbe-975a-ab804c1df4cc",
+          "name": "Amazon Neptune Get the Status of All Running OpenCypher Queries",
+          "request": {
+            "name": "Amazon Neptune Get the Status of All Running OpenCypher Queries",
+            "description": {
+              "content": "Returns the status of all running and waiting openCypher queries, including query IDs and execution statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openCypher",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1841607e-de45-41db-90d8-804590ef4ad8",
+              "name": "Query status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"acceptedQueryCount\": 1,\n  \"runningQueryCount\": 1,\n  \"queries\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ca7c4f9-8a78-44d3-8f88-eda8e631b62e",
+          "name": "Amazon Neptune Get the Status of a Specific OpenCypher Query",
+          "request": {
+            "name": "Amazon Neptune Get the Status of a Specific OpenCypher Query",
+            "description": {
+              "content": "Returns the status of a specific openCypher query by its query ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openCypher",
+                "status",
+                ":queryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryId",
+                  "description": "(Required) The unique identifier of the openCypher query."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e53453ad-31e8-411c-8d8c-7d4732a42414",
+              "name": "Query status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the openCypher query."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"queryId\": \"neptune-cluster-abc123\",\n  \"queryString\": \"example-value\",\n  \"queryEvalStats\": {\n    \"waited\": 1,\n    \"elapsed\": 1,\n    \"cancelled\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b92de1e-5738-4698-9629-1c64b19b0f7f",
+              "name": "Query with the specified ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the openCypher query."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "847c3c8e-d9f5-4076-ad4c-880f482fb78b",
+          "name": "Amazon Neptune Cancel a Running OpenCypher Query",
+          "request": {
+            "name": "Amazon Neptune Cancel a Running OpenCypher Query",
+            "description": {
+              "content": "Cancels a running openCypher query by its query ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openCypher",
+                "status",
+                ":queryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryId",
+                  "description": "(Required) The unique identifier of the openCypher query to cancel."
+                },
+                {
+                  "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                  "type": "any",
+                  "value": "{{cluster-endpoint}}",
+                  "key": "cluster-endpoint"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c7e86dc-e4f9-4e1c-a081-c08497a7f005",
+              "name": "Query cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the openCypher query to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5dad0f0-e9bd-4d9b-a2ac-cb3bace1931d",
+              "name": "Query with the specified ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openCypher",
+                    "status",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier of the openCypher query to cancel."
+                    },
+                    {
+                      "description": "The cluster endpoint DNS name for your Neptune DB cluster",
+                      "type": "any",
+                      "value": "{{cluster-endpoint}}",
+                      "key": "cluster-endpoint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The cluster endpoint DNS name for your Neptune DB cluster",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com",
+      "key": "cluster-endpoint"
+    },
+    {
+      "type": "string",
+      "value": "https://{{cluster-endpoint}}:8182",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f91aa27b-6336-4b53-9888-07a8a9f2b538",
+    "name": "Amazon Neptune Neptune openCypher API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "openCypher graph query language API for querying property graphs with Cypher syntax in Neptune. It provides an HTTP endpoint for executing openCypher queries against property graph data. Neptune supports openCypher as a declarative query language with SQL-inspired syntax using MATCH, WHERE, WITH, and RETURN clauses. Production-ready since Neptune engine release 1.1.1.0. Uses HTTP/1.1 with HTTPS only.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

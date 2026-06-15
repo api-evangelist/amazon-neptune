@@ -1,0 +1,810 @@
+{
+  "info": {
+    "_postman_id": "22cf665c-a1f8-4d56-a8e9-6d4699ddb15c",
+    "name": "Amazon Neptune Neptune Gremlin API",
+    "description": "Apache TinkerPop Gremlin graph traversal language API for querying property graphs in Neptune. It supports both WebSocket and HTTP REST endpoints for submitting Gremlin traversals. This spec covers the HTTP REST endpoint. Neptune supports Gremlin as defined in Apache TinkerPop and uses HTTP/1.1 with HTTPS only.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:33.000Z",
+    "updatedAt": "2026-06-05T15:00:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-22cf665c-a1f8-4d56-a8e9-6d4699ddb15c"
+  },
+  "item": [
+    {
+      "name": "gremlin",
+      "item": [
+        {
+          "name": "status",
+          "item": [
+            {
+              "name": "{queryId}",
+              "item": [
+                {
+                  "name": "Amazon Neptune Get the Status of a Specific Gremlin Query",
+                  "id": "91d541e8-cd9d-4b38-8209-fc88a2286ed2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/gremlin/status/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gremlin",
+                        "status",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eac4b39f-1e93-4b2b-b0f3-493b30322380",
+                          "key": "queryId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Gremlin query."
+                        }
+                      ]
+                    },
+                    "description": "Returns the status of a specific Gremlin query identified by its query ID, including the query string and execution statistics."
+                  },
+                  "response": [
+                    {
+                      "id": "9b8f3be9-fd98-46a2-b985-b83df5986e5c",
+                      "name": "Query status retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gremlin/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gremlin",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"queryId\": \"<string>\",\n  \"queryString\": \"<string>\",\n  \"queryEvalStats\": {\n    \"waited\": \"<integer>\",\n    \"elapsed\": \"<integer>\",\n    \"cancelled\": \"<boolean>\",\n    \"subqueries\": {}\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-9b8f3be9-fd98-46a2-b985-b83df5986e5c"
+                    },
+                    {
+                      "id": "4356173a-16cf-4ee3-ae25-7a7c8a4efbe4",
+                      "name": "Query with the specified ID was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gremlin/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gremlin",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-4356173a-16cf-4ee3-ae25-7a7c8a4efbe4"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-91d541e8-cd9d-4b38-8209-fc88a2286ed2"
+                },
+                {
+                  "name": "Amazon Neptune Cancel a Running Gremlin Query",
+                  "id": "664ea2ee-ae4b-4e41-b616-cba06670c2c6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/gremlin/status/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gremlin",
+                        "status",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f8d488f8-c25b-4b82-897f-66915aacee09",
+                          "key": "queryId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Gremlin query to cancel."
+                        }
+                      ]
+                    },
+                    "description": "Cancels a running Gremlin query by its query ID. The query must be currently running or waiting in the queue."
+                  },
+                  "response": [
+                    {
+                      "id": "8e2fcbfe-78c0-458e-8de4-784f17a3cb44",
+                      "name": "Query cancelled successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gremlin/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gremlin",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-8e2fcbfe-78c0-458e-8de4-784f17a3cb44"
+                    },
+                    {
+                      "id": "ef754835-352e-423c-a7f7-216495965bbd",
+                      "name": "Query with the specified ID was not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gremlin/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gremlin",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-ef754835-352e-423c-a7f7-216495965bbd"
+                    },
+                    {
+                      "id": "65a3f966-a4c0-4bf5-8ea8-133cf629bf89",
+                      "name": "Failed to cancel the query.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gremlin/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gremlin",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:34.000Z",
+                      "updatedAt": "2026-06-05T15:00:34.000Z",
+                      "uid": "35240-65a3f966-a4c0-4bf5-8ea8-133cf629bf89"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-664ea2ee-ae4b-4e41-b616-cba06670c2c6"
+                }
+              ],
+              "id": "823cf959-a4d7-4f4c-b055-aca5a78c8364",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-823cf959-a4d7-4f4c-b055-aca5a78c8364"
+            },
+            {
+              "name": "Amazon Neptune Get the Status of All Running Gremlin Queries",
+              "id": "3d9cfa4c-40ba-4611-9cc8-ab3c641b1767",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gremlin/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gremlin",
+                    "status"
+                  ]
+                },
+                "description": "Returns the status of all running and waiting Gremlin queries, including query IDs, query strings, and execution statistics."
+              },
+              "response": [
+                {
+                  "id": "ebc33b0e-383c-426d-84ac-63eb540958e6",
+                  "name": "Query status retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/gremlin/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gremlin",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"acceptedQueryCount\": \"<integer>\",\n  \"runningQueryCount\": \"<integer>\",\n  \"queries\": [\n    {\n      \"queryId\": \"<string>\",\n      \"queryString\": \"<string>\",\n      \"queryEvalStats\": {\n        \"waited\": \"<integer>\",\n        \"elapsed\": \"<integer>\",\n        \"cancelled\": \"<boolean>\",\n        \"subqueries\": {}\n      }\n    },\n    {\n      \"queryId\": \"<string>\",\n      \"queryString\": \"<string>\",\n      \"queryEvalStats\": {\n        \"waited\": \"<integer>\",\n        \"elapsed\": \"<integer>\",\n        \"cancelled\": \"<boolean>\",\n        \"subqueries\": {}\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:00:34.000Z",
+                  "updatedAt": "2026-06-05T15:00:34.000Z",
+                  "uid": "35240-ebc33b0e-383c-426d-84ac-63eb540958e6"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-3d9cfa4c-40ba-4611-9cc8-ab3c641b1767"
+            }
+          ],
+          "id": "74240dee-6780-4724-b240-348fd11ec0b3",
+          "createdAt": "2026-06-05T15:00:34.000Z",
+          "updatedAt": "2026-06-05T15:00:34.000Z",
+          "uid": "35240-74240dee-6780-4724-b240-348fd11ec0b3"
+        },
+        {
+          "name": "Amazon Neptune Execute a Gremlin Traversal via HTTP POST",
+          "id": "89617462-70a5-4271-9210-21bfdd690699",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gremlin\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/gremlin",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gremlin"
+              ]
+            },
+            "description": "Submits a Gremlin traversal query to the Neptune HTTP REST endpoint. The query is provided as a JSON body with a gremlin property containing the traversal string. All results are returned in a single JSON response by default. For large result sets, chunked responses can be enabled to avoid OutOfMemoryError."
+          },
+          "response": [
+            {
+              "id": "3d735444-761f-45f8-b59a-a545c1318a82",
+              "name": "Gremlin traversal executed successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gremlin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gremlin",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gremlin"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<uuid>\",\n  \"status\": {\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"attributes\": {}\n  },\n  \"result\": {\n    \"data\": {\n      \"description\": \"The query result data. The shape depends on the traversal's terminal step (e.g., count, valueMap, path).\"\n    },\n    \"meta\": {}\n  }\n}",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-3d735444-761f-45f8-b59a-a545c1318a82"
+            },
+            {
+              "id": "f353a233-f830-47f2-bb00-79cf204fe526",
+              "name": "Bad request - malformed Gremlin traversal.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gremlin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gremlin",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gremlin"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-f353a233-f830-47f2-bb00-79cf204fe526"
+            },
+            {
+              "id": "a9ee027d-037c-4c5f-877c-3da0e1fd0dc6",
+              "name": "Query timed out before completing.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gremlin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gremlin",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gremlin"
+                  ]
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-a9ee027d-037c-4c5f-877c-3da0e1fd0dc6"
+            },
+            {
+              "id": "1f8234bb-06d8-425c-94e9-6aed36c2de2d",
+              "name": "Internal server error during query execution.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gremlin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/gremlin",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gremlin"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-1f8234bb-06d8-425c-94e9-6aed36c2de2d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:34.000Z",
+          "updatedAt": "2026-06-05T15:00:34.000Z",
+          "uid": "35240-89617462-70a5-4271-9210-21bfdd690699"
+        },
+        {
+          "name": "Amazon Neptune Execute a Gremlin Traversal via HTTP GET",
+          "id": "0a91e272-6dda-4adc-85bc-b9c2cea552f8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gremlin?gremlin=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gremlin"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The Gremlin traversal query string (URL-encoded).",
+                  "key": "gremlin",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Submits a Gremlin traversal query via a URL query parameter. This is an alternative to the POST method for simple queries."
+          },
+          "response": [
+            {
+              "id": "f753ec8f-abe9-48fc-ac1a-374c36db57e1",
+              "name": "Gremlin traversal executed successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gremlin?gremlin=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gremlin"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Gremlin traversal query string (URL-encoded).",
+                      "key": "gremlin",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<uuid>\",\n  \"status\": {\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"attributes\": {}\n  },\n  \"result\": {\n    \"data\": {\n      \"description\": \"The query result data. The shape depends on the traversal's terminal step (e.g., count, valueMap, path).\"\n    },\n    \"meta\": {}\n  }\n}",
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-f753ec8f-abe9-48fc-ac1a-374c36db57e1"
+            },
+            {
+              "id": "bfc6634e-7710-48bb-995c-fb1566ac386f",
+              "name": "Bad request - malformed Gremlin traversal.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gremlin?gremlin=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gremlin"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Gremlin traversal query string (URL-encoded).",
+                      "key": "gremlin",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:34.000Z",
+              "updatedAt": "2026-06-05T15:00:34.000Z",
+              "uid": "35240-bfc6634e-7710-48bb-995c-fb1566ac386f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:34.000Z",
+          "updatedAt": "2026-06-05T15:00:34.000Z",
+          "uid": "35240-0a91e272-6dda-4adc-85bc-b9c2cea552f8"
+        }
+      ],
+      "id": "024c441d-8dd8-4288-88d2-e6be60a0b996",
+      "createdAt": "2026-06-05T15:00:34.000Z",
+      "updatedAt": "2026-06-05T15:00:34.000Z",
+      "uid": "35240-024c441d-8dd8-4288-88d2-e6be60a0b996"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster-endpoint",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{cluster-endpoint}}:8182"
+    }
+  ]
+}

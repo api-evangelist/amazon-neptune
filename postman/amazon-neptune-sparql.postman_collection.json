@@ -1,0 +1,845 @@
+{
+  "info": {
+    "_postman_id": "5edc2634-eb72-4666-95e2-0643215b41ec",
+    "name": "Amazon Neptune Neptune SPARQL API",
+    "description": "W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune. It provides an HTTP REST endpoint compatible with the SPARQL 1.1 protocol specification. Supports SELECT, ASK, CONSTRUCT, DESCRIBE query forms and INSERT/DELETE update operations. Uses HTTP/1.1 with HTTPS only.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:37.000Z",
+    "updatedAt": "2026-06-05T15:00:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5edc2634-eb72-4666-95e2-0643215b41ec"
+  },
+  "item": [
+    {
+      "name": "sparql",
+      "item": [
+        {
+          "name": "status",
+          "item": [
+            {
+              "name": "{queryId}",
+              "item": [
+                {
+                  "name": "Amazon Neptune Get the Status of a Specific SPARQL Query",
+                  "id": "fc952e79-df17-47f7-af81-5bf6c34e9b6a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sparql/status/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sparql",
+                        "status",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e60e274f-be2d-4b12-84ee-6e5d8cf51176",
+                          "key": "queryId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SPARQL query."
+                        }
+                      ]
+                    },
+                    "description": "Returns the status of a specific SPARQL query by its query ID."
+                  },
+                  "response": [
+                    {
+                      "id": "bcd083a9-29e5-49bb-a9fd-7c499a7b6398",
+                      "name": "Query status retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sparql/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sparql",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"queryId\": \"<string>\",\n  \"queryString\": \"<string>\",\n  \"queryEvalStats\": {\n    \"waited\": \"<integer>\",\n    \"elapsed\": \"<integer>\",\n    \"cancelled\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:37.000Z",
+                      "updatedAt": "2026-06-05T15:00:37.000Z",
+                      "uid": "35240-bcd083a9-29e5-49bb-a9fd-7c499a7b6398"
+                    },
+                    {
+                      "id": "af8ae06b-ad1f-495b-af1f-61a2500bc7ae",
+                      "name": "Query with the specified ID was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sparql/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sparql",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:37.000Z",
+                      "updatedAt": "2026-06-05T15:00:37.000Z",
+                      "uid": "35240-af8ae06b-ad1f-495b-af1f-61a2500bc7ae"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:37.000Z",
+                  "updatedAt": "2026-06-05T15:00:37.000Z",
+                  "uid": "35240-fc952e79-df17-47f7-af81-5bf6c34e9b6a"
+                },
+                {
+                  "name": "Amazon Neptune Cancel a Running SPARQL Query",
+                  "id": "eb060ad5-cf27-4603-8e0f-4fc6c67a5207",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/sparql/status/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sparql",
+                        "status",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "63fc8ac2-002c-4d4d-95f2-7565216c0bef",
+                          "key": "queryId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the SPARQL query to cancel."
+                        }
+                      ]
+                    },
+                    "description": "Cancels a running SPARQL query by its query ID."
+                  },
+                  "response": [
+                    {
+                      "id": "4d63ec44-6748-411d-bf96-017e1c4e2a21",
+                      "name": "Query cancelled successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sparql/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sparql",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:37.000Z",
+                      "updatedAt": "2026-06-05T15:00:37.000Z",
+                      "uid": "35240-4d63ec44-6748-411d-bf96-017e1c4e2a21"
+                    },
+                    {
+                      "id": "27b5af3c-22ae-4921-9938-c61ef3b114a5",
+                      "name": "Query with the specified ID was not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sparql/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sparql",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:37.000Z",
+                      "updatedAt": "2026-06-05T15:00:37.000Z",
+                      "uid": "35240-27b5af3c-22ae-4921-9938-c61ef3b114a5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:37.000Z",
+                  "updatedAt": "2026-06-05T15:00:37.000Z",
+                  "uid": "35240-eb060ad5-cf27-4603-8e0f-4fc6c67a5207"
+                }
+              ],
+              "id": "7bdaa73a-81e6-41f6-8240-5db9e9d4c50b",
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-7bdaa73a-81e6-41f6-8240-5db9e9d4c50b"
+            },
+            {
+              "name": "Amazon Neptune Get the Status of All Running SPARQL Queries",
+              "id": "a7a65c0b-2e6a-4212-bf15-c1e3589c592e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sparql/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sparql",
+                    "status"
+                  ]
+                },
+                "description": "Returns the status of all running and waiting SPARQL queries, including query IDs and execution statistics."
+              },
+              "response": [
+                {
+                  "id": "08c2677b-314e-4e67-ac95-cdb1c30302ca",
+                  "name": "Query status retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sparql/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sparql",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"acceptedQueryCount\": \"<integer>\",\n  \"runningQueryCount\": \"<integer>\",\n  \"queries\": [\n    {\n      \"queryId\": \"<string>\",\n      \"queryString\": \"<string>\",\n      \"queryEvalStats\": {\n        \"waited\": \"<integer>\",\n        \"elapsed\": \"<integer>\",\n        \"cancelled\": \"<boolean>\"\n      }\n    },\n    {\n      \"queryId\": \"<string>\",\n      \"queryString\": \"<string>\",\n      \"queryEvalStats\": {\n        \"waited\": \"<integer>\",\n        \"elapsed\": \"<integer>\",\n        \"cancelled\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:00:37.000Z",
+                  "updatedAt": "2026-06-05T15:00:37.000Z",
+                  "uid": "35240-08c2677b-314e-4e67-ac95-cdb1c30302ca"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-a7a65c0b-2e6a-4212-bf15-c1e3589c592e"
+            }
+          ],
+          "id": "6cd20bbc-c334-47d2-9d6a-9eb7c73a9a65",
+          "createdAt": "2026-06-05T15:00:37.000Z",
+          "updatedAt": "2026-06-05T15:00:37.000Z",
+          "uid": "35240-6cd20bbc-c334-47d2-9d6a-9eb7c73a9a65"
+        },
+        {
+          "name": "Amazon Neptune Execute a SPARQL Query or Update via HTTP POST",
+          "id": "180cbd78-3a0c-48c6-b831-da4f0da9c076",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/sparql-results+json"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                  "key": "query",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.",
+                  "key": "update",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Default graph URI for the query.",
+                  "key": "using-graph-uri",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Named graph URI for the query.",
+                  "key": "using-named-graph-uri",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sparql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sparql"
+              ]
+            },
+            "description": "Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL endpoint. For queries, use the 'query' parameter with SELECT, ASK, CONSTRUCT, or DESCRIBE forms. For mutations, use the 'update' parameter with INSERT DATA or DELETE DATA operations. The request body is form-encoded per the SPARQL 1.1 Protocol specification."
+          },
+          "response": [
+            {
+              "id": "5ab2093a-3237-4c44-9afe-d3746a4d4e3f",
+              "name": "SPARQL query or update executed successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/sparql-results+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.",
+                      "key": "update",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Default graph URI for the query.",
+                      "key": "using-graph-uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Named graph URI for the query.",
+                      "key": "using-named-graph-uri",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sparql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sparql"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/sparql-results+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"head\": {\n    \"vars\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"link\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"results\": {\n    \"bindings\": [\n      {\n        \"qui_4c\": {\n          \"type\": \"bnode\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"non_3_9\": {\n          \"type\": \"literal\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"uta0\": {\n          \"type\": \"uri\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        }\n      },\n      {\n        \"sinte10\": {\n          \"type\": \"uri\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"laboris_e0\": {\n          \"type\": \"literal\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"in_0\": {\n          \"type\": \"bnode\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"boolean\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-5ab2093a-3237-4c44-9afe-d3746a4d4e3f"
+            },
+            {
+              "id": "67f8d329-57c3-4ac0-bf5e-061e60a65695",
+              "name": "Bad request - malformed SPARQL query or update.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.",
+                      "key": "update",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Default graph URI for the query.",
+                      "key": "using-graph-uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Named graph URI for the query.",
+                      "key": "using-named-graph-uri",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sparql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sparql"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-67f8d329-57c3-4ac0-bf5e-061e60a65695"
+            },
+            {
+              "id": "d7275176-5971-4515-9622-a1fa33957f49",
+              "name": "Query timed out before completing.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.",
+                      "key": "update",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Default graph URI for the query.",
+                      "key": "using-graph-uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Named graph URI for the query.",
+                      "key": "using-named-graph-uri",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sparql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sparql"
+                  ]
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-d7275176-5971-4515-9622-a1fa33957f49"
+            },
+            {
+              "id": "a151b4ab-863a-4d1b-bbe6-642713dd2d72",
+              "name": "Internal server error during query execution.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.",
+                      "key": "update",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Default graph URI for the query.",
+                      "key": "using-graph-uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Named graph URI for the query.",
+                      "key": "using-named-graph-uri",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sparql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sparql"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-a151b4ab-863a-4d1b-bbe6-642713dd2d72"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:37.000Z",
+          "updatedAt": "2026-06-05T15:00:37.000Z",
+          "uid": "35240-180cbd78-3a0c-48c6-b831-da4f0da9c076"
+        },
+        {
+          "name": "Amazon Neptune Execute a SPARQL Query via HTTP GET",
+          "id": "ecb0aa8b-2a87-468a-a18a-c35f1f21ef31",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/sparql-results+json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sparql?query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sparql"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The SPARQL query string (URL-encoded).",
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Submits a read-only SPARQL 1.1 query via URL query parameters. Only SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via GET. Update operations require POST."
+          },
+          "response": [
+            {
+              "id": "9827245b-7c44-47e0-bdc8-42999b37a183",
+              "name": "SPARQL query executed successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/sparql-results+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sparql?query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sparql"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SPARQL query string (URL-encoded).",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/sparql-results+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"head\": {\n    \"vars\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"link\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"results\": {\n    \"bindings\": [\n      {\n        \"qui_4c\": {\n          \"type\": \"bnode\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"non_3_9\": {\n          \"type\": \"literal\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"uta0\": {\n          \"type\": \"uri\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        }\n      },\n      {\n        \"sinte10\": {\n          \"type\": \"uri\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"laboris_e0\": {\n          \"type\": \"literal\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        },\n        \"in_0\": {\n          \"type\": \"bnode\",\n          \"value\": \"<string>\",\n          \"datatype\": \"<string>\",\n          \"xml:lang\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"boolean\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-9827245b-7c44-47e0-bdc8-42999b37a183"
+            },
+            {
+              "id": "a859c551-c349-4b36-8724-17c74075377f",
+              "name": "Bad request - malformed SPARQL query.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sparql?query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sparql"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SPARQL query string (URL-encoded).",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:37.000Z",
+              "updatedAt": "2026-06-05T15:00:37.000Z",
+              "uid": "35240-a859c551-c349-4b36-8724-17c74075377f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:37.000Z",
+          "updatedAt": "2026-06-05T15:00:37.000Z",
+          "uid": "35240-ecb0aa8b-2a87-468a-a18a-c35f1f21ef31"
+        }
+      ],
+      "id": "3936e37b-fc8c-4d93-b012-90011143d768",
+      "createdAt": "2026-06-05T15:00:37.000Z",
+      "updatedAt": "2026-06-05T15:00:37.000Z",
+      "uid": "35240-3936e37b-fc8c-4d93-b012-90011143d768"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster-endpoint",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{cluster-endpoint}}:8182"
+    }
+  ]
+}

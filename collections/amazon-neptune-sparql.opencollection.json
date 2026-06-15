@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune SPARQL API",
+    "version": "2024-01-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a SPARQL Query via HTTP GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/sparql",
+            "params": [
+              {
+                "name": "query",
+                "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10",
+                "type": "query",
+                "description": "The SPARQL query string (URL-encoded)."
+              }
+            ]
+          },
+          "docs": "Submits a read-only SPARQL 1.1 query via URL query parameters. Only SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via GET. Update operations require POST."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a SPARQL Query or Update via HTTP POST",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster-endpoint}:8182/sparql",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL endpoint. For queries, use the 'query' parameter with SELECT, ASK, CONSTRUCT, or DESCRIBE forms. For mutations, use the 'update' parameter with INSERT DATA or DELETE DATA operations. The request body is form-encoded per the SPARQL 1.1 Protocol specification."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of All Running SPARQL Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/sparql/status"
+          },
+          "docs": "Returns the status of all running and waiting SPARQL queries, including query IDs and execution statistics."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific SPARQL Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/sparql/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SPARQL query."
+              }
+            ]
+          },
+          "docs": "Returns the status of a specific SPARQL query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running SPARQL Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster-endpoint}:8182/sparql/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SPARQL query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running SPARQL query by its query ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

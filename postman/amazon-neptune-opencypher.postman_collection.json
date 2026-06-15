@@ -1,0 +1,828 @@
+{
+  "info": {
+    "_postman_id": "cb3e019e-9364-45ce-a108-059433fe4280",
+    "name": "Amazon Neptune Neptune openCypher API",
+    "description": "openCypher graph query language API for querying property graphs with Cypher syntax in Neptune. It provides an HTTP endpoint for executing openCypher queries against property graph data. Neptune supports openCypher as a declarative query language with SQL-inspired syntax using MATCH, WHERE, WITH, and RETURN clauses. Production-ready since Neptune engine release 1.1.1.0. Uses HTTP/1.1 with HTTPS only.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:38.000Z",
+    "updatedAt": "2026-06-05T15:00:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cb3e019e-9364-45ce-a108-059433fe4280"
+  },
+  "item": [
+    {
+      "name": "openCypher",
+      "item": [
+        {
+          "name": "status",
+          "item": [
+            {
+              "name": "{queryId}",
+              "item": [
+                {
+                  "name": "Amazon Neptune Get the Status of a Specific OpenCypher Query",
+                  "id": "c79f591c-e6bc-46bf-9f19-758954d49550",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/openCypher/status/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "openCypher",
+                        "status",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "856af889-f266-4f43-85ad-c78adc6183bb",
+                          "key": "queryId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the openCypher query."
+                        }
+                      ]
+                    },
+                    "description": "Returns the status of a specific openCypher query by its query ID."
+                  },
+                  "response": [
+                    {
+                      "id": "917b8d50-9bad-4088-99d1-a5a0d8fe0c7f",
+                      "name": "Query status retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openCypher/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openCypher",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"queryId\": \"<string>\",\n  \"queryString\": \"<string>\",\n  \"queryEvalStats\": {\n    \"waited\": \"<integer>\",\n    \"elapsed\": \"<integer>\",\n    \"cancelled\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:00:38.000Z",
+                      "updatedAt": "2026-06-05T15:00:38.000Z",
+                      "uid": "35240-917b8d50-9bad-4088-99d1-a5a0d8fe0c7f"
+                    },
+                    {
+                      "id": "5c6e63b9-d316-4039-83a4-50196f502b90",
+                      "name": "Query with the specified ID was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openCypher/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openCypher",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:38.000Z",
+                      "updatedAt": "2026-06-05T15:00:38.000Z",
+                      "uid": "35240-5c6e63b9-d316-4039-83a4-50196f502b90"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-c79f591c-e6bc-46bf-9f19-758954d49550"
+                },
+                {
+                  "name": "Amazon Neptune Cancel a Running OpenCypher Query",
+                  "id": "ade23437-a2a0-47a2-b984-2ed47d527e13",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/openCypher/status/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "openCypher",
+                        "status",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bc2c74e3-c42c-4f05-be4f-52b36b3e6769",
+                          "key": "queryId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the openCypher query to cancel."
+                        }
+                      ]
+                    },
+                    "description": "Cancels a running openCypher query by its query ID."
+                  },
+                  "response": [
+                    {
+                      "id": "923553ba-4608-4cbc-b53e-792e0bc637c0",
+                      "name": "Query cancelled successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openCypher/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openCypher",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:38.000Z",
+                      "updatedAt": "2026-06-05T15:00:38.000Z",
+                      "uid": "35240-923553ba-4608-4cbc-b53e-792e0bc637c0"
+                    },
+                    {
+                      "id": "b6569030-5693-46e7-bc23-3e07a6a42e09",
+                      "name": "Query with the specified ID was not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openCypher/status/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openCypher",
+                            "status",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "queryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:00:38.000Z",
+                      "updatedAt": "2026-06-05T15:00:38.000Z",
+                      "uid": "35240-b6569030-5693-46e7-bc23-3e07a6a42e09"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-ade23437-a2a0-47a2-b984-2ed47d527e13"
+                }
+              ],
+              "id": "8efd297a-c78e-4f65-b125-b1510ff7ec9b",
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-8efd297a-c78e-4f65-b125-b1510ff7ec9b"
+            },
+            {
+              "name": "Amazon Neptune Get the Status of All Running OpenCypher Queries",
+              "id": "3b80951d-abf5-4c83-a5c6-2a785152c226",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/openCypher/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "openCypher",
+                    "status"
+                  ]
+                },
+                "description": "Returns the status of all running and waiting openCypher queries, including query IDs and execution statistics."
+              },
+              "response": [
+                {
+                  "id": "f3ff1d41-de78-402e-bfd0-b0cc9b22e581",
+                  "name": "Query status retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/openCypher/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "openCypher",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"acceptedQueryCount\": \"<integer>\",\n  \"runningQueryCount\": \"<integer>\",\n  \"queries\": [\n    {\n      \"queryId\": \"<string>\",\n      \"queryString\": \"<string>\",\n      \"queryEvalStats\": {\n        \"waited\": \"<integer>\",\n        \"elapsed\": \"<integer>\",\n        \"cancelled\": \"<boolean>\"\n      }\n    },\n    {\n      \"queryId\": \"<string>\",\n      \"queryString\": \"<string>\",\n      \"queryEvalStats\": {\n        \"waited\": \"<integer>\",\n        \"elapsed\": \"<integer>\",\n        \"cancelled\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:00:38.000Z",
+                  "updatedAt": "2026-06-05T15:00:38.000Z",
+                  "uid": "35240-f3ff1d41-de78-402e-bfd0-b0cc9b22e581"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-3b80951d-abf5-4c83-a5c6-2a785152c226"
+            }
+          ],
+          "id": "079bfe6b-a5c1-4f45-ac01-252d2278a4ef",
+          "createdAt": "2026-06-05T15:00:38.000Z",
+          "updatedAt": "2026-06-05T15:00:38.000Z",
+          "uid": "35240-079bfe6b-a5c1-4f45-ac01-252d2278a4ef"
+        },
+        {
+          "name": "Amazon Neptune Execute an OpenCypher Query via HTTP POST",
+          "id": "a3199241-263f-469a-a476-030a04d0d050",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                "key": "TE",
+                "value": "trailers"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The openCypher query string.",
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/openCypher",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "openCypher"
+              ]
+            },
+            "description": "Submits an openCypher query to the Neptune HTTP endpoint. The query is provided as a form-encoded parameter. Supports both read and write queries. Nodes are returned with ~id, ~entityType, ~labels, and ~properties fields. Relationships include ~id, ~entityType, ~start, ~end, ~type, and ~properties fields."
+          },
+          "response": [
+            {
+              "id": "ca1dc706-74f6-4b4b-9a4e-edf5ef8d23da",
+              "name": "openCypher query executed successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "trailers"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The openCypher query string.",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/openCypher",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "openCypher"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Response code and status (only when TE: trailers was sent).",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Neptune-Status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "URL-encoded JSON error details (only when TE: trailers was sent). Empty on success.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Neptune-Detail",
+                  "value": "<string>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"results\": [\n    {\n      \"enim_a\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      },\n      \"mollit_59f\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      }\n    },\n    {\n      \"in_c\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      },\n      \"ex__9\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-ca1dc706-74f6-4b4b-9a4e-edf5ef8d23da"
+            },
+            {
+              "id": "587421e3-8073-458a-a03a-0ddc2be27b66",
+              "name": "Bad request - malformed openCypher query.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "trailers"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The openCypher query string.",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/openCypher",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "openCypher"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-587421e3-8073-458a-a03a-0ddc2be27b66"
+            },
+            {
+              "id": "7eef202d-f0f9-4238-9e32-3af372fa79a6",
+              "name": "Query timed out before completing.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "trailers"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The openCypher query string.",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/openCypher",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "openCypher"
+                  ]
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-7eef202d-f0f9-4238-9e32-3af372fa79a6"
+            },
+            {
+              "id": "eadcd6bb-8d29-479f-9724-cb1f8b4a2406",
+              "name": "Internal server error during query execution.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.",
+                    "key": "TE",
+                    "value": "trailers"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The openCypher query string.",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/openCypher",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "openCypher"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-eadcd6bb-8d29-479f-9724-cb1f8b4a2406"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:38.000Z",
+          "updatedAt": "2026-06-05T15:00:38.000Z",
+          "uid": "35240-a3199241-263f-469a-a476-030a04d0d050"
+        },
+        {
+          "name": "Amazon Neptune Execute an OpenCypher Query via HTTP GET",
+          "id": "f26ea916-1c50-43bd-8728-b47e3588e5c9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "Set to 'trailers' for trailing headers.",
+                "key": "TE",
+                "value": "trailers"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/openCypher?query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "openCypher"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The openCypher query string (URL-encoded).",
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Submits an openCypher query via URL query parameter. Supports both read and write queries."
+          },
+          "response": [
+            {
+              "id": "cf142099-2f5c-4d65-9a02-1f2dfe2cedd5",
+              "name": "openCypher query executed successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Set to 'trailers' for trailing headers.",
+                    "key": "TE",
+                    "value": "trailers"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/openCypher?query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "openCypher"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The openCypher query string (URL-encoded).",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"results\": [\n    {\n      \"enim_a\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      },\n      \"mollit_59f\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      }\n    },\n    {\n      \"in_c\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      },\n      \"ex__9\": {\n        \"description\": \"Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-cf142099-2f5c-4d65-9a02-1f2dfe2cedd5"
+            },
+            {
+              "id": "f6af7069-d519-4fa6-bdc7-4bfb8579cbb2",
+              "name": "Bad request - malformed openCypher query.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Set to 'trailers' for trailing headers.",
+                    "key": "TE",
+                    "value": "trailers"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/openCypher?query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "openCypher"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The openCypher query string (URL-encoded).",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:00:38.000Z",
+              "updatedAt": "2026-06-05T15:00:38.000Z",
+              "uid": "35240-f6af7069-d519-4fa6-bdc7-4bfb8579cbb2"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:38.000Z",
+          "updatedAt": "2026-06-05T15:00:38.000Z",
+          "uid": "35240-f26ea916-1c50-43bd-8728-b47e3588e5c9"
+        }
+      ],
+      "id": "a79cd952-004f-4064-ae15-27763974abef",
+      "createdAt": "2026-06-05T15:00:38.000Z",
+      "updatedAt": "2026-06-05T15:00:38.000Z",
+      "uid": "35240-a79cd952-004f-4064-ae15-27763974abef"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster-endpoint",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{cluster-endpoint}}:8182"
+    }
+  ]
+}

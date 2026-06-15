@@ -1,0 +1,915 @@
+{
+  "info": {
+    "_postman_id": "e70a7a65-1aec-4496-9c3f-35cba41c8de6",
+    "name": "Amazon Neptune Neptune Loader API",
+    "description": "Neptune bulk loader API for ingesting large volumes of data from Amazon S3 into a Neptune DB instance. It supports CSV formats for property graphs and multiple RDF serialization formats including N-Triples, N-Quads, RDF/XML, and Turtle. The loader operates from the HTTP endpoint of a Neptune DB instance and tracks the most recent 1,024 bulk load jobs.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:00:42.000Z",
+    "updatedAt": "2026-06-05T15:00:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e70a7a65-1aec-4496-9c3f-35cba41c8de6"
+  },
+  "item": [
+    {
+      "name": "loader",
+      "item": [
+        {
+          "name": "{loadId}",
+          "item": [
+            {
+              "name": "Amazon Neptune Get the Status of a Bulk Load Job",
+              "id": "d440f29c-7766-4237-9937-78a00c28e5c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/loader/:loadId?details=<boolean>&errors=<boolean>&page=<integer>&errorsPerPage=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "query": [
+                    {
+                      "description": "Whether to include detailed feed-level status information.",
+                      "key": "details",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Whether to include error details in the response.",
+                      "key": "errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The error page number to retrieve (when errors=true).",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of errors per page (when errors=true).",
+                      "key": "errorsPerPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "90e057c4-376d-4a62-af70-b048d924531e",
+                      "key": "loadId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the bulk load job."
+                    }
+                  ]
+                },
+                "description": "Returns the status of a specific bulk load job by its load ID. Includes overall status, feed counts, and optionally detailed error information. Neptune stores the last 10,000 error details per job."
+              },
+              "response": [
+                {
+                  "id": "d765a282-0cae-45fb-b48e-2ec2ecb53d03",
+                  "name": "Load job status retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId?details=<boolean>&errors=<boolean>&page=<integer>&errorsPerPage=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to include detailed feed-level status information.",
+                          "key": "details",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Whether to include error details in the response.",
+                          "key": "errors",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The error page number to retrieve (when errors=true).",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of errors per page (when errors=true).",
+                          "key": "errorsPerPage",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"payload\": {\n    \"overallStatus\": {\n      \"fullUri\": \"<string>\",\n      \"runNumber\": \"<integer>\",\n      \"retryNumber\": \"<integer>\",\n      \"status\": \"LOAD_UNEXPECTED_ERROR\",\n      \"totalTimeSpent\": \"<integer>\",\n      \"startTime\": \"<integer>\",\n      \"totalRecords\": \"<integer>\",\n      \"totalDuplicates\": \"<integer>\",\n      \"parsingErrors\": \"<integer>\",\n      \"datatypeMismatchErrors\": \"<integer>\",\n      \"insertErrors\": \"<integer>\"\n    },\n    \"errors\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-d765a282-0cae-45fb-b48e-2ec2ecb53d03"
+                },
+                {
+                  "id": "1fba4857-f5e1-4e82-9825-d7cf14ebc07d",
+                  "name": "Invalid loadId format.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId?details=<boolean>&errors=<boolean>&page=<integer>&errorsPerPage=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to include detailed feed-level status information.",
+                          "key": "details",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Whether to include error details in the response.",
+                          "key": "errors",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The error page number to retrieve (when errors=true).",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of errors per page (when errors=true).",
+                          "key": "errorsPerPage",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-1fba4857-f5e1-4e82-9825-d7cf14ebc07d"
+                },
+                {
+                  "id": "553942d8-8c88-4b8e-879f-18d0cc73dfdf",
+                  "name": "Load job with the specified ID was not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId?details=<boolean>&errors=<boolean>&page=<integer>&errorsPerPage=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to include detailed feed-level status information.",
+                          "key": "details",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Whether to include error details in the response.",
+                          "key": "errors",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The error page number to retrieve (when errors=true).",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of errors per page (when errors=true).",
+                          "key": "errorsPerPage",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-553942d8-8c88-4b8e-879f-18d0cc73dfdf"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:43.000Z",
+              "updatedAt": "2026-06-05T15:00:43.000Z",
+              "uid": "35240-d440f29c-7766-4237-9937-78a00c28e5c7"
+            },
+            {
+              "name": "Amazon Neptune Cancel an In-progress Bulk Load Job",
+              "id": "7a562264-9159-44e1-8acd-bc4057240aea",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/loader/:loadId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4da5492b-b178-44df-bcac-b1efb943d92b",
+                      "key": "loadId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    }
+                  ]
+                },
+                "description": "Cancels an in-progress bulk load job by its load ID. Must be executed against the read/write cluster endpoint (not a read replica)."
+              },
+              "response": [
+                {
+                  "id": "cc71bf61-dec0-46ff-bac1-8e8999b55351",
+                  "name": "Load job cancelled successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-cc71bf61-dec0-46ff-bac1-8e8999b55351"
+                },
+                {
+                  "id": "8bfea6db-d8ea-4ac5-aedd-32905f146a19",
+                  "name": "Invalid loadId format.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-8bfea6db-d8ea-4ac5-aedd-32905f146a19"
+                },
+                {
+                  "id": "8cda91cb-c703-434f-a844-fe7ce27f01d5",
+                  "name": "Load job with the specified ID does not exist or is not active.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-8cda91cb-c703-434f-a844-fe7ce27f01d5"
+                },
+                {
+                  "id": "3ba83887-042e-496c-b92a-c5f85df12a59",
+                  "name": "Load cancellation attempted on a read replica instance. Use the read/write cluster endpoint instead.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Method Not Allowed",
+                  "code": 405,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-3ba83887-042e-496c-b92a-c5f85df12a59"
+                },
+                {
+                  "id": "352e6720-e0a7-4bcf-99d8-f493d4f0426d",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/loader/:loadId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "loader",
+                        ":loadId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "loadId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:00:43.000Z",
+                  "updatedAt": "2026-06-05T15:00:43.000Z",
+                  "uid": "35240-352e6720-e0a7-4bcf-99d8-f493d4f0426d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:00:43.000Z",
+              "updatedAt": "2026-06-05T15:00:43.000Z",
+              "uid": "35240-7a562264-9159-44e1-8acd-bc4057240aea"
+            }
+          ],
+          "id": "52887cbc-4a42-4876-b001-824ce76e492a",
+          "createdAt": "2026-06-05T15:00:43.000Z",
+          "updatedAt": "2026-06-05T15:00:43.000Z",
+          "uid": "35240-52887cbc-4a42-4876-b001-824ce76e492a"
+        },
+        {
+          "name": "Amazon Neptune Start a Bulk Data Load Job from S3",
+          "id": "aa3d8512-885b-4ff8-9b7e-5b9baa78bf66",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"opencypher\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"TRUE\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/loader",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "loader"
+              ]
+            },
+            "description": "Initiates a bulk data loading job from Amazon S3 into the Neptune database. The source data can be in CSV format for property graphs or in N-Triples, N-Quads, RDF/XML, or Turtle formats for RDF data. The loader requires an IAM role with access to the S3 bucket. Neptune queues up to 64 jobs in FIFO order when queueRequest is enabled."
+          },
+          "response": [
+            {
+              "id": "f5d7cf41-b34b-43e4-8e8c-d45c5f351725",
+              "name": "Bulk load job started successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"opencypher\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"TRUE\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/loader",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "loader"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"payload\": {\n    \"loadId\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:00:43.000Z",
+              "updatedAt": "2026-06-05T15:00:43.000Z",
+              "uid": "35240-f5d7cf41-b34b-43e4-8e8c-d45c5f351725"
+            },
+            {
+              "id": "95b10b6d-b5c3-4cda-8f0d-39f674c49ebb",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"opencypher\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"TRUE\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/loader",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "loader"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:43.000Z",
+              "updatedAt": "2026-06-05T15:00:43.000Z",
+              "uid": "35240-95b10b6d-b5c3-4cda-8f0d-39f674c49ebb"
+            },
+            {
+              "id": "01ab78cd-240a-42e8-b0ae-fad64ae8604b",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"opencypher\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"TRUE\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/loader",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "loader"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<string>\",\n  \"code\": \"<string>\",\n  \"detailedMessage\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:00:43.000Z",
+              "updatedAt": "2026-06-05T15:00:43.000Z",
+              "uid": "35240-01ab78cd-240a-42e8-b0ae-fad64ae8604b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:43.000Z",
+          "updatedAt": "2026-06-05T15:00:43.000Z",
+          "uid": "35240-aa3d8512-885b-4ff8-9b7e-5b9baa78bf66"
+        },
+        {
+          "name": "Amazon Neptune List Bulk Load Job IDs",
+          "id": "5eac6739-db44-4b1e-8c02-d08304275e4b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/loader?limit=<integer>&includeQueuedLoads=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "loader"
+              ],
+              "query": [
+                {
+                  "description": "The maximum number of load IDs to return.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Whether to include queued load jobs in the response.",
+                  "key": "includeQueuedLoads",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Returns a list of bulk load job IDs. Neptune tracks the most recent 1,024 bulk load jobs."
+          },
+          "response": [
+            {
+              "id": "46ceba82-30de-4b10-bfa7-730c86d5e96b",
+              "name": "Load job list retrieved successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/loader?limit=<integer>&includeQueuedLoads=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "loader"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of load IDs to return.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Whether to include queued load jobs in the response.",
+                      "key": "includeQueuedLoads",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"payload\": {\n    \"loadIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-06-05T15:00:43.000Z",
+              "updatedAt": "2026-06-05T15:00:43.000Z",
+              "uid": "35240-46ceba82-30de-4b10-bfa7-730c86d5e96b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:00:43.000Z",
+          "updatedAt": "2026-06-05T15:00:43.000Z",
+          "uid": "35240-5eac6739-db44-4b1e-8c02-d08304275e4b"
+        }
+      ],
+      "id": "63ccdb10-88e0-4e7d-9f24-629471f64da6",
+      "createdAt": "2026-06-05T15:00:43.000Z",
+      "updatedAt": "2026-06-05T15:00:43.000Z",
+      "uid": "35240-63ccdb10-88e0-4e7d-9f24-629471f64da6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "cluster-endpoint",
+      "value": "your-cluster-endpoint.region.neptune.amazonaws.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{cluster-endpoint}}:8182"
+    }
+  ]
+}

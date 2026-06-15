@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Streams API",
+    "version": "2024-01-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Property Graph Stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/propertygraph/stream",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (1-100,000). Default is 10. The 10 MB response size limit takes precedence over this value."
+              },
+              {
+                "name": "iteratorType",
+                "value": "",
+                "type": "query",
+                "description": "Determines the starting point for reading the stream."
+              },
+              {
+                "name": "commitNum",
+                "value": "",
+                "type": "query",
+                "description": "The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER."
+              },
+              {
+                "name": "opNum",
+                "value": "",
+                "type": "query",
+                "description": "The operation sequence number within the specified commit. Default is 1."
+              }
+            ]
+          },
+          "docs": "Gets a stream of change-log entries for property graph (Gremlin/openCypher) data. Each entry records a mutation (ADD or REMOVE) made to vertices, edges, or their properties. The response format is PG_JSON. This is the recommended endpoint for property graph streams, replacing the deprecated /gremlin/stream endpoint."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records (alias)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/pg/stream",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "iteratorType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "commitNum",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "opNum",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Alias for /propertygraph/stream. Gets a stream of change-log entries for property graph data. Supports the same parameters and returns the same response format."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SPARQL Stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/sparql/stream",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (1-100,000). Default is 10."
+              },
+              {
+                "name": "iteratorType",
+                "value": "",
+                "type": "query",
+                "description": "Determines the starting point for reading the stream."
+              },
+              {
+                "name": "commitNum",
+                "value": "",
+                "type": "query",
+                "description": "The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER."
+              },
+              {
+                "name": "opNum",
+                "value": "",
+                "type": "query",
+                "description": "The operation sequence number within the specified commit."
+              }
+            ]
+          },
+          "docs": "Gets a stream of change-log entries for RDF (SPARQL) data. Each entry records a mutation (ADD or REMOVE) of an RDF triple or quad. The response format is NQUADS, with each change represented as an N-Quads statement string."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

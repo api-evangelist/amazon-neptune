@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune openCypher API",
+    "version": "2024-01-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via HTTP GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/openCypher",
+            "headers": [
+              {
+                "name": "TE",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "query",
+                "value": "MATCH (n1) RETURN n1 LIMIT 10",
+                "type": "query",
+                "description": "The openCypher query string (URL-encoded)."
+              }
+            ]
+          },
+          "docs": "Submits an openCypher query via URL query parameter. Supports both read and write queries."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via HTTP POST",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{cluster-endpoint}:8182/openCypher",
+            "headers": [
+              {
+                "name": "TE",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submits an openCypher query to the Neptune HTTP endpoint. The query is provided as a form-encoded parameter. Supports both read and write queries. Nodes are returned with ~id, ~entityType, ~labels, and ~properties fields. Relationships include ~id, ~entityType, ~start, ~end, ~type, and ~properties fields."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of All Running OpenCypher Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/openCypher/status"
+          },
+          "docs": "Returns the status of all running and waiting openCypher queries, including query IDs and execution statistics."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{cluster-endpoint}:8182/openCypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query."
+              }
+            ]
+          },
+          "docs": "Returns the status of a specific openCypher query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{cluster-endpoint}:8182/openCypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running openCypher query by its query ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,875 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Data API",
+    "version": "2023-08-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gremlin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a Gremlin Query via the Data API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/gremlin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Gremlin query against the Neptune graph database using the Data API. The query is submitted as a JSON payload and results are returned synchronously."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Execution Plan for a Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/gremlin/explain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Gremlin explain query against the Neptune graph database. Returns the query execution plan without actually running the query against the data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Profile a Gremlin Query Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/gremlin/profile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Gremlin profile query against the Neptune graph database. Returns the query execution plan along with actual runtime statistics including execution time and intermediate result counts."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of Gremlin Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/gremlin/status"
+          },
+          "docs": "Gets the status of running and waiting Gremlin queries. Returns a list of active queries with their query IDs and statuses."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/gremlin/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Gremlin query."
+              }
+            ]
+          },
+          "docs": "Gets the status of a specific Gremlin query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-db.{region}.amazonaws.com/gremlin/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Gremlin query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running Gremlin query by its query ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "openCypher",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via the Data API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/opencypher",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an openCypher query against the Neptune property graph database using the Data API. Returns the results in JSON format."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Execution Plan for an OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/opencypher/explain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an openCypher explain query. Returns the query execution plan without actually running the query against the data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of OpenCypher Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/opencypher/status"
+          },
+          "docs": "Gets the status of running and waiting openCypher queries."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/opencypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query."
+              }
+            ]
+          },
+          "docs": "Gets the status of a specific openCypher query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-db.{region}.amazonaws.com/opencypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running openCypher query by its query ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SPARQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a SPARQL Query via the Data API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/sparql",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Executes a SPARQL query against the Neptune RDF graph database using the Data API. Supports SELECT, ASK, CONSTRUCT, and DESCRIBE queries."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of SPARQL Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/sparql/status"
+          },
+          "docs": "Gets the status of running and waiting SPARQL queries."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get Neptune Engine Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/status"
+          },
+          "docs": "Returns the status of the Neptune DB instance including engine version, cluster role, and instance health information."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Property Graph Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/propertygraph/statistics"
+          },
+          "docs": "Returns statistics for the property graph data stored in the Neptune database, including node and edge counts and label distributions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Manage Property Graph Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/propertygraph/statistics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or deletes statistics generation for the property graph data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get SPARQL RDF Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/sparql/statistics"
+          },
+          "docs": "Returns statistics for the RDF data stored in the Neptune database, including triple counts and predicate distributions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Manage SPARQL RDF Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/sparql/statistics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or deletes statistics generation for the RDF data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Loader",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Bulk Loader Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/loader",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of load IDs to return."
+              },
+              {
+                "name": "includeQueuedLoads",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include queued loads in the response."
+              }
+            ]
+          },
+          "docs": "Returns a list of Neptune bulk loader job IDs. Neptune tracks the most recent 1,024 bulk load jobs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Start a Bulk Loader Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/loader",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a bulk data loading job from Amazon S3 into the Neptune database. Supports CSV for property graphs and multiple RDF formats."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Bulk Loader Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/loader/:loadId",
+            "params": [
+              {
+                "name": "loadId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the load job."
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include detailed status information."
+              },
+              {
+                "name": "errors",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include error details."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Error page number to retrieve."
+              },
+              {
+                "name": "errorsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of errors per page."
+              }
+            ]
+          },
+          "docs": "Returns the status of a specific bulk loader job including overall progress and any error details."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Bulk Loader Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-db.{region}.amazonaws.com/loader/:loadId",
+            "params": [
+              {
+                "name": "loadId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the load job to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels an in-progress bulk loader job by its load ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/propertygraph/stream",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (1-100000, default 10)."
+              },
+              {
+                "name": "iteratorType",
+                "value": "",
+                "type": "query",
+                "description": "The stream position to start reading from."
+              },
+              {
+                "name": "commitNum",
+                "value": "",
+                "type": "query",
+                "description": "The commit number to start from."
+              },
+              {
+                "name": "opNum",
+                "value": "",
+                "type": "query",
+                "description": "The operation sequence number within the commit."
+              }
+            ]
+          },
+          "docs": "Gets a stream of change-log entries for property graph data. Each entry records a mutation (add, remove) made to the graph data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/sparql/stream",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (1-100000, default 10)."
+              },
+              {
+                "name": "iteratorType",
+                "value": "",
+                "type": "query",
+                "description": "The stream position to start reading from."
+              },
+              {
+                "name": "commitNum",
+                "value": "",
+                "type": "query",
+                "description": "The commit number to start from."
+              },
+              {
+                "name": "opNum",
+                "value": "",
+                "type": "query",
+                "description": "The operation sequence number within the commit."
+              }
+            ]
+          },
+          "docs": "Gets a stream of change-log entries for RDF data. Each entry records a mutation (add, remove) made to the RDF triples."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ML",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List ML Data Processing Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/dataprocessing",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (default 10, max 1024)."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role for Neptune access."
+              }
+            ]
+          },
+          "docs": "Returns a list of active Neptune ML data processing job IDs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Start an ML Data Processing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/dataprocessing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune ML data processing job that prepares graph data for model training using Amazon SageMaker."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get ML Data Processing Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/dataprocessing/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data processing job."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role for Neptune access."
+              }
+            ]
+          },
+          "docs": "Returns the status of a Neptune ML data processing job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel an ML Data Processing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/dataprocessing/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data processing job."
+              },
+              {
+                "name": "clean",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all S3 artifacts when cancelling."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role for Neptune access."
+              }
+            ]
+          },
+          "docs": "Cancels a running Neptune ML data processing job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune List ML Model Training Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltraining",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of active Neptune ML model training job IDs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Start an ML Model Training Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltraining",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune ML model training job using Amazon SageMaker."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get ML Model Training Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltraining/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the status of a Neptune ML model training job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel an ML Model Training Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltraining/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clean",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancels a running Neptune ML model training job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune List ML Model Transform Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltransform",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of active Neptune ML model transform job IDs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Start an ML Model Transform Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltransform",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune ML model transform job that generates model artifacts for inference."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get ML Model Transform Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltransform/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the status of a Neptune ML model transform job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel an ML Model Transform Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/modeltransform/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clean",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancels a running Neptune ML model transform job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune List ML Inference Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/endpoints",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of active Neptune ML inference endpoint IDs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create an ML Inference Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/endpoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune ML inference endpoint backed by Amazon SageMaker."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get ML Inference Endpoint Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/endpoints/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the status of a Neptune ML inference endpoint."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete an ML Inference Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-db.{region}.amazonaws.com/ml/endpoints/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clean",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a Neptune ML inference endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1301 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Management API",
+    "version": "2014-10-31"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DB Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in the response (20-100)."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about provisioned Neptune DB clusters. If a cluster identifier is supplied, details for that specific cluster are returned. Otherwise, details for up to 100 clusters are returned."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new Amazon Neptune DB cluster. You can use the ReplicationSourceIdentifier parameter to create the DB cluster as a read replica of another DB cluster."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DeleteDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The DB cluster identifier for the cluster to be deleted."
+              },
+              {
+                "name": "SkipFinalSnapshot",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip creation of a final snapshot before deletion."
+              },
+              {
+                "name": "FinalDBSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the final snapshot to create before deletion."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups are deleted and cannot be recovered. Manual snapshots are not deleted."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Modify a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=ModifyDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Modifies settings for a DB cluster. You can change one or more database configuration parameters by specifying them and their new values."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Start a Stopped Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=StartDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to start."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Starts a stopped Neptune DB cluster. When you start a cluster, Neptune restores the cluster to the state it was in when it was stopped."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Stop a Running Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=StopDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to stop."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Stops a running Neptune DB cluster. While the cluster is stopped, you are charged only for storage. A stopped cluster automatically restarts after 7 days."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Force a Failover for a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=FailoverDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the cluster to force a failover for."
+              },
+              {
+                "name": "TargetDBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The name of the instance to promote to the primary instance."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Forces a failover for a DB cluster. A failover for a DB cluster promotes one of the read replicas in the cluster to be the new primary instance."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Associate an IAM Role with a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=AddRoleToDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB cluster to associate the IAM role with."
+              },
+              {
+                "name": "RoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role to associate with the cluster."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Associates an Identity and Access Management (IAM) role with a Neptune DB cluster so that the cluster can access other AWS services on your behalf."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=RemoveRoleFromDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB cluster to disassociate the role from."
+              },
+              {
+                "name": "RoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role to disassociate."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Disassociates an Identity and Access Management (IAM) role from a Neptune DB cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DB Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=CreateDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new DB instance in a Neptune DB cluster. The DB instance inherits the cluster's storage and high availability configuration."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DeleteDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The DB instance identifier for the instance to be deleted."
+              },
+              {
+                "name": "SkipFinalSnapshot",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip creation of a final snapshot."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a previously provisioned DB instance. When you delete an instance, all automated backups for that instance are deleted and cannot be recovered."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeDBInstances",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB instance to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in the response."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about provisioned Neptune DB instances. If a specific instance identifier is supplied, details for that instance are returned."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Modify a Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=ModifyDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Modifies settings for a DB instance. You can change one or more database configuration parameters by specifying them and their new values."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Reboot a Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=RebootDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB instance to reboot."
+              },
+              {
+                "name": "ForceFailover",
+                "value": "",
+                "type": "query",
+                "description": "Whether to force a failover during the reboot."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Reboots a DB instance. When you reboot an instance, the instance is restarted. Rebooting results in a momentary outage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Snapshot of a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=CreateDBClusterSnapshot",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to create a snapshot for."
+              },
+              {
+                "name": "DBClusterSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier for the DB cluster snapshot."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a snapshot of a DB cluster. Manual snapshots can be used to restore a DB cluster to a specific state."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Cluster Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeDBClusterSnapshots",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of a specific snapshot to describe."
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the cluster to filter snapshots by."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in the response."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about DB cluster snapshots. If a specific snapshot identifier is supplied, details for that snapshot are returned."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune DB Cluster Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DeleteDBClusterSnapshot",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the cluster snapshot to delete."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a DB cluster snapshot. If the snapshot is being copied, the copy operation is terminated."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Restore a Neptune DB Cluster from a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=RestoreDBClusterFromSnapshot",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new DB cluster from a DB snapshot or DB cluster snapshot. The new DB cluster is created from the source snapshot with a default configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subnet Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New DB Subnet Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=CreateDBSubnetGroup",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBSubnetGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name for the DB subnet group."
+              },
+              {
+                "name": "DBSubnetGroupDescription",
+                "value": "",
+                "type": "query",
+                "description": "The description for the DB subnet group."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two Availability Zones in the AWS Region."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe DB Subnet Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeDBSubnetGroups",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBSubnetGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of a specific DB subnet group to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of DB subnet group descriptions. If a specific subnet group name is supplied, the description for that group is returned."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Parameter Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New DB Parameter Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=CreateDBParameterGroup",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB parameter group."
+              },
+              {
+                "name": "DBParameterGroupFamily",
+                "value": "",
+                "type": "query",
+                "description": "The DB parameter group family name (e.g., neptune1, neptune1.2, neptune1.3)."
+              },
+              {
+                "name": "Description",
+                "value": "",
+                "type": "query",
+                "description": "The description for the DB parameter group."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a new DB parameter group. A DB parameter group is initially created with the default parameters for the database engine used."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New DB Cluster Parameter Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=CreateDBClusterParameterGroup",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB cluster parameter group."
+              },
+              {
+                "name": "DBParameterGroupFamily",
+                "value": "",
+                "type": "query",
+                "description": "The DB parameter group family name."
+              },
+              {
+                "name": "Description",
+                "value": "",
+                "type": "query",
+                "description": "The description for the DB cluster parameter group."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a new DB cluster parameter group. Parameters in a DB cluster parameter group apply to all of the instances in a DB cluster."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe DB Parameter Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeDBParameterGroups",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of a specific DB parameter group to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of DB parameter group descriptions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe DB Cluster Parameter Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeDBClusterParameterGroups",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of a specific cluster parameter group to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of DB cluster parameter group descriptions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Neptune Event Notification Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=CreateEventSubscription",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "SubscriptionName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the subscription."
+              },
+              {
+                "name": "SnsTopicArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the SNS topic to send notifications to."
+              },
+              {
+                "name": "SourceType",
+                "value": "",
+                "type": "query",
+                "description": "The type of source that triggers notifications (db-instance, db-cluster, db-parameter-group, db-cluster-snapshot)."
+              },
+              {
+                "name": "Enabled",
+                "value": "",
+                "type": "query",
+                "description": "Whether the subscription is enabled."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates an event notification subscription. This action requires an Amazon SNS topic ARN. Notifications are sent to the SNS topic when specified events occur."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeEvents",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "SourceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the event source to filter events."
+              },
+              {
+                "name": "SourceType",
+                "value": "",
+                "type": "query",
+                "description": "The event source type to filter events."
+              },
+              {
+                "name": "Duration",
+                "value": "",
+                "type": "query",
+                "description": "The number of minutes to retrieve events for."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns events related to DB instances, DB clusters, DB parameter groups, and DB cluster snapshots for the past 14 days."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Add Tags to a Neptune Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=AddTagsToResource",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ResourceName",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the resource to add tags to."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Adds metadata tags to an Amazon Neptune resource. Tags are key-value pairs that you can use to categorize and manage your resources."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune List Tags for a Neptune Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=ListTagsForResource",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ResourceName",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the resource to list tags for."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists all tags on an Amazon Neptune resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Engine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Engine Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeDBEngineVersions",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Engine",
+                "value": "",
+                "type": "query",
+                "description": "The database engine to return versions for."
+              },
+              {
+                "name": "EngineVersion",
+                "value": "",
+                "type": "query",
+                "description": "A specific engine version to return details for."
+              },
+              {
+                "name": "DBParameterGroupFamily",
+                "value": "",
+                "type": "query",
+                "description": "The parameter group family to filter versions by."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of the available DB engine versions. The output shows the supported features and parameter group families for each version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Global Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Neptune Global Database Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=CreateGlobalCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "GlobalClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The cluster identifier of the new global cluster."
+              },
+              {
+                "name": "SourceDBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of an existing Neptune cluster to use as the primary cluster."
+              },
+              {
+                "name": "DeletionProtection",
+                "value": "",
+                "type": "query",
+                "description": "Whether the global cluster has deletion protection enabled."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a Neptune global database spread across multiple AWS Regions. The global database contains a single primary cluster with read-write capability."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune Global Database Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribeGlobalClusters",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "GlobalClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the global cluster to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about Neptune global database clusters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Maintenance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Pending Maintenance Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rds.{region}.amazonaws.com/?Action=DescribePendingMaintenanceActions",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ResourceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of a resource to filter maintenance actions."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of resources with pending maintenance actions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Apply a Pending Maintenance Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rds.{region}.amazonaws.com/?Action=ApplyPendingMaintenanceAction",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ResourceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the resource to apply the action to."
+              },
+              {
+                "name": "ApplyAction",
+                "value": "",
+                "type": "query",
+                "description": "The pending maintenance action to apply."
+              },
+              {
+                "name": "OptInType",
+                "value": "",
+                "type": "query",
+                "description": "The type of opt-in request (immediate, next-maintenance, undo-opt-in)."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Applies a pending maintenance action to a resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
