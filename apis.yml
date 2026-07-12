@@ -246,6 +246,14 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+  - type: TrustCenter
+    url: security/amazon-neptune-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-neptune-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-neptune-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-neptune-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-neptune/overview
   - type: Arazzo

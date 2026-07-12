@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/amazon-neptune-analytics-openapi.yml, openapi/amazon-neptune-data-openapi.yml,
+  openapi/amazon-neptune-gremlin-openapi.yml, openapi/amazon-neptune-loader-openapi.yml, openapi/amazon-neptune-management-openapi.yml,
+  openapi/amazon-neptune-ml-openapi.yml, openapi/amazon-neptune-opencypher-openapi.yml, openapi/amazon-neptune-sparql-openapi.yml,
+  openapi/amazon-neptune-streams-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: aws_sigv4
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: AWS Signature Version 4 authentication
+  sources:
+  - openapi/amazon-neptune-analytics-openapi.yml
+  - openapi/amazon-neptune-data-openapi.yml
+  - openapi/amazon-neptune-gremlin-openapi.yml
+  - openapi/amazon-neptune-loader-openapi.yml
+  - openapi/amazon-neptune-management-openapi.yml
+  - openapi/amazon-neptune-ml-openapi.yml
+  - openapi/amazon-neptune-opencypher-openapi.yml
+  - openapi/amazon-neptune-sparql-openapi.yml
+  - openapi/amazon-neptune-streams-openapi.yml
