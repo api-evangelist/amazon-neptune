@@ -246,6 +246,8 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-neptune-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-neptune-trust-center.yml
   - type: VulnerabilityDisclosure
