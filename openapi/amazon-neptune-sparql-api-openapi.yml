@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource SPARQL API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: SPARQL
+  description: Execute SPARQL queries against RDF data
+paths:
+  /sparql:
+    post:
+      operationId: executeSparqlQuery
+      summary: Amazon Neptune Execute a SPARQL Query via the Data API
+      description: Executes a SPARQL query against the Neptune RDF graph database using the Data API. Supports SELECT, ASK, CONSTRUCT, and DESCRIBE queries.
+      tags:
+      - SPARQL
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExecuteSparqlQueryInput'
+      responses:
+        '200':
+          description: Query executed successfully.
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SparqlQueryOutput'
+        '400':
+          description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sparql/status:
+    get:
+      operationId: getSparqlQueryStatus
+      summary: Amazon Neptune Get the Status of SPARQL Queries
+      description: Gets the status of running and waiting SPARQL queries.
+      tags:
+      - SPARQL
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  acceptedQueryCount:
+                    type: integer
+                  runningQueryCount:
+                    type: integer
+                  queries:
+                    type: array
+                    items:
+                      type: object
+              examples:
+                getSparqlQueryStatus200Example:
+                  summary: Default getSparqlQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SparqlQueryOutput:
+      type: object
+      properties:
+        head:
+          type: object
+          properties:
+            vars:
+              type: array
+              items:
+                type: string
+        results:
+          type: object
+          properties:
+            bindings:
+              type: array
+              items:
+                type: object
+    ExecuteSparqlQueryInput:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).
+        update:
+          type: string
+          description: The SPARQL update string (for INSERT, DELETE operations).
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

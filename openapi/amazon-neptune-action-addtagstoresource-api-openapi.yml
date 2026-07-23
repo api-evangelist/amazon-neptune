@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource ?Action=AddTagsToResource API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: ?Action=AddTagsToResource
+paths:
+  /?Action=AddTagsToResource:
+    post:
+      operationId: addTagsToResource
+      summary: Amazon Neptune Add Tags to a Neptune Resource
+      description: Adds metadata tags to an Amazon Neptune resource. Tags are key-value pairs that you can use to categorize and manage your resources.
+      tags:
+      - ?Action=AddTagsToResource
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - AddTagsToResource
+      - name: ResourceName
+        in: query
+        required: true
+        description: The ARN of the resource to add tags to.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Tags added successfully.
+        '404':
+          description: The specified resource was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

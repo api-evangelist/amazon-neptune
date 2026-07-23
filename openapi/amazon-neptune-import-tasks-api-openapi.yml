@@ -1,0 +1,291 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Import Tasks API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Import Tasks
+  description: Operations for importing data into graphs
+paths:
+  /importtasks:
+    post:
+      operationId: createGraphUsingImportTask
+      summary: Amazon Neptune Create a Graph Using an Import Task
+      description: Creates a new Neptune Analytics graph and populates it with data from an Amazon S3 source in a single operation.
+      tags:
+      - Import Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGraphUsingImportTaskInput'
+      responses:
+        '201':
+          description: Import task created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportTaskOutput'
+              examples:
+                createGraphUsingImportTask201Example:
+                  summary: Default createGraphUsingImportTask 201 response
+                  x-microcks-default: true
+                  value:
+                    graphId: neptune-cluster-abc123
+                    taskId: neptune-cluster-abc123
+                    source: example-value
+                    format: example-value
+                    roleArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: INITIALIZING
+                    importOptions: {}
+                    importTaskDetails:
+                      status: available
+                      startTime: '2025-03-15T14:30:00Z'
+                      timeElapsedSeconds: 1
+                      progressPercentage: 1
+                      errorCount: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listImportTasks
+      summary: Amazon Neptune List Import Tasks
+      description: Returns a list of import tasks in the account.
+      tags:
+      - Import Tasks
+      parameters:
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Import task list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListImportTasksOutput'
+              examples:
+                listImportTasks200Example:
+                  summary: Default listImportTasks 200 response
+                  x-microcks-default: true
+                  value:
+                    tasks:
+                    - graphId: neptune-cluster-abc123
+                      taskId: neptune-cluster-abc123
+                      source: example-value
+                      format: example-value
+                      roleArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    nextToken: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /importtasks/{taskIdentifier}:
+    get:
+      operationId: getImportTask
+      summary: Amazon Neptune Get Import Task Details
+      description: Returns detailed information about a specific import task.
+      tags:
+      - Import Tasks
+      parameters:
+      - name: taskIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the import task.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Import task details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportTaskOutput'
+              examples:
+                getImportTask200Example:
+                  summary: Default getImportTask 200 response
+                  x-microcks-default: true
+                  value:
+                    graphId: neptune-cluster-abc123
+                    taskId: neptune-cluster-abc123
+                    source: example-value
+                    format: example-value
+                    roleArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: INITIALIZING
+                    importOptions: {}
+                    importTaskDetails:
+                      status: available
+                      startTime: '2025-03-15T14:30:00Z'
+                      timeElapsedSeconds: 1
+                      progressPercentage: 1
+                      errorCount: 1
+        '404':
+          description: Import task not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelImportTask
+      summary: Amazon Neptune Cancel an Import Task
+      description: Cancels a running import task.
+      tags:
+      - Import Tasks
+      parameters:
+      - name: taskIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the import task to cancel.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Import task cancelled successfully.
+        '404':
+          description: Import task not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ListImportTasksOutput:
+      type: object
+      properties:
+        tasks:
+          type: array
+          items:
+            type: object
+            properties:
+              graphId:
+                type: string
+              taskId:
+                type: string
+              source:
+                type: string
+              format:
+                type: string
+              roleArn:
+                type: string
+              status:
+                type: string
+        nextToken:
+          type: string
+    CreateGraphUsingImportTaskInput:
+      type: object
+      required:
+      - graphName
+      - source
+      - roleArn
+      properties:
+        graphName:
+          type: string
+          description: The name of the graph to create.
+        source:
+          type: string
+          description: S3 URI of the source data to import.
+        roleArn:
+          type: string
+          description: IAM role ARN with S3 access.
+        provisionedMemory:
+          type: integer
+        format:
+          type: string
+          description: The format of the source data.
+          enum:
+          - CSV
+          - OPEN_CYPHER
+          - PARQUET
+          - NTRIPLES
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        deletionProtection:
+          type: boolean
+        publicConnectivity:
+          type: boolean
+        kmsKeyIdentifier:
+          type: string
+        vectorSearchConfiguration:
+          type: object
+          properties:
+            dimension:
+              type: integer
+        replicaCount:
+          type: integer
+        importOptions:
+          type: object
+          description: Additional import configuration options.
+    ImportTaskOutput:
+      type: object
+      properties:
+        graphId:
+          type: string
+        taskId:
+          type: string
+        source:
+          type: string
+        format:
+          type: string
+        roleArn:
+          type: string
+        status:
+          type: string
+          enum:
+          - INITIALIZING
+          - EXPORTING
+          - ANALYZING_DATA
+          - IMPORTING
+          - REPROVISIONING
+          - ROLLING_BACK
+          - SUCCEEDED
+          - FAILED
+          - CANCELLING
+          - CANCELLED
+        importOptions:
+          type: object
+        importTaskDetails:
+          type: object
+          properties:
+            status:
+              type: string
+            startTime:
+              type: string
+              format: date-time
+            timeElapsedSeconds:
+              type: integer
+            progressPercentage:
+              type: integer
+            errorCount:
+              type: integer
+            errorDetails:
+              type: string
+            statementCount:
+              type: integer
+            dictionaryEntryCount:
+              type: integer
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

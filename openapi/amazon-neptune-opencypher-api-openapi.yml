@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource openCypher API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: openCypher
+  description: Execute openCypher graph queries
+paths:
+  /opencypher:
+    post:
+      operationId: executeOpenCypherQuery
+      summary: Amazon Neptune Execute an OpenCypher Query via the Data API
+      description: Executes an openCypher query against the Neptune property graph database using the Data API. Returns the results in JSON format.
+      tags:
+      - openCypher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteOpenCypherQueryInput'
+      responses:
+        '200':
+          description: Query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecuteOpenCypherQueryOutput'
+              examples:
+                executeOpenCypherQuery200Example:
+                  summary: Default executeOpenCypherQuery 200 response
+                  x-microcks-default: true
+                  value:
+                    results:
+                    - {}
+        '400':
+          description: Bad request - malformed query or invalid parameters.
+        '500':
+          description: Internal server error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /opencypher/explain:
+    post:
+      operationId: executeOpenCypherExplainQuery
+      summary: Amazon Neptune Get the Execution Plan for an OpenCypher Query
+      description: Executes an openCypher explain query. Returns the query execution plan without actually running the query against the data.
+      tags:
+      - openCypher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteOpenCypherExplainInput'
+      responses:
+        '200':
+          description: Explain plan returned successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /opencypher/status:
+    get:
+      operationId: getOpenCypherQueryStatus
+      summary: Amazon Neptune Get the Status of OpenCypher Queries
+      description: Gets the status of running and waiting openCypher queries.
+      tags:
+      - openCypher
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryStatusOutput'
+              examples:
+                getOpenCypherQueryStatus200Example:
+                  summary: Default getOpenCypherQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - queryId: neptune-cluster-abc123
+                      queryString: example-value
+                      queryEvalStats: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /opencypher/status/{queryId}:
+    get:
+      operationId: getOpenCypherQueryStatusById
+      summary: Amazon Neptune Get the Status of a Specific OpenCypher Query
+      description: Gets the status of a specific openCypher query by its query ID.
+      tags:
+      - openCypher
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+        '404':
+          description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelOpenCypherQuery
+      summary: Amazon Neptune Cancel a Running OpenCypher Query
+      description: Cancels a running openCypher query by its query ID.
+      tags:
+      - openCypher
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query to cancel.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ExecuteOpenCypherExplainInput:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The openCypher query to explain.
+        parameters:
+          type: string
+        explainMode:
+          type: string
+          enum:
+          - static
+          - dynamic
+          - details
+          description: The explain mode (static, dynamic, or details).
+    OpenCypherQueryStatusOutput:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            type: object
+            properties:
+              queryId:
+                type: string
+              queryString:
+                type: string
+              queryEvalStats:
+                type: object
+    ExecuteOpenCypherQueryOutput:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+          description: The query result rows.
+    ExecuteOpenCypherQueryInput:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The openCypher query string to execute.
+        parameters:
+          type: string
+          description: The openCypher query parameters as a JSON-serialized string.
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

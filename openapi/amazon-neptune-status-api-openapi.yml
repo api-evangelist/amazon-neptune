@@ -1,0 +1,608 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Status API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Status
+  description: Query engine status and statistics
+paths:
+  /status:
+    get:
+      operationId: getEngineStatus
+      summary: Amazon Neptune Get Neptune Engine Status
+      description: Returns the status of the Neptune DB instance including engine version, cluster role, and instance health information.
+      tags:
+      - Status
+      responses:
+        '200':
+          description: Engine status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngineStatusOutput'
+              examples:
+                getEngineStatus200Example:
+                  summary: Default getEngineStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    startTime: example-value
+                    dbEngineVersion: 1.3.2.0
+                    role: example-value
+                    dfeQueryEngine: example-value
+                    gremlin:
+                      version: 1.3.2.0
+                    sparql:
+                      version: 1.3.2.0
+                    opencypher:
+                      version: 1.3.2.0
+                    labMode: {}
+                    features: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /propertygraph/statistics:
+    get:
+      operationId: getPropertygraphStatistics
+      summary: Amazon Neptune Get Property Graph Statistics
+      description: Returns statistics for the property graph data stored in the Neptune database, including node and edge counts and label distributions.
+      tags:
+      - Status
+      responses:
+        '200':
+          description: Statistics retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertygraphStatisticsOutput'
+              examples:
+                getPropertygraphStatistics200Example:
+                  summary: Default getPropertygraphStatistics 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      graphStatistics:
+                        numNodes: 1
+                        numEdges: 1
+                        numNodeLabels: 1
+                        numEdgeLabels: 1
+                        numNodeProperties: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: managePropertygraphStatistics
+      summary: Amazon Neptune Manage Property Graph Statistics
+      description: Starts or deletes statistics generation for the property graph data.
+      tags:
+      - Status
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                  - disableAutoCompute
+                  - enableAutoCompute
+                  - refresh
+      responses:
+        '200':
+          description: Statistics operation completed successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sparql/statistics:
+    get:
+      operationId: getSparqlStatistics
+      summary: Amazon Neptune Get SPARQL RDF Statistics
+      description: Returns statistics for the RDF data stored in the Neptune database, including triple counts and predicate distributions.
+      tags:
+      - Status
+      responses:
+        '200':
+          description: Statistics retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlStatisticsOutput'
+              examples:
+                getSparqlStatistics200Example:
+                  summary: Default getSparqlStatistics 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      graphStatistics:
+                        numStatements: 1
+                        numDistinctSubjects: 1
+                        numDistinctPredicates: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: manageSparqlStatistics
+      summary: Amazon Neptune Manage SPARQL RDF Statistics
+      description: Starts or deletes statistics generation for the RDF data.
+      tags:
+      - Status
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                  - disableAutoCompute
+                  - enableAutoCompute
+                  - refresh
+      responses:
+        '200':
+          description: Statistics operation completed successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gremlin/status:
+    get:
+      operationId: getGremlinQueryStatus
+      summary: Amazon Neptune Get the Status of All Running Gremlin Queries
+      description: Returns the status of all running and waiting Gremlin queries, including query IDs, query strings, and execution statistics.
+      tags:
+      - Status
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatusList'
+              examples:
+                getGremlinQueryStatus200Example:
+                  summary: Default getGremlinQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gremlin/status/{queryId}:
+    get:
+      operationId: getGremlinQueryStatusById
+      summary: Amazon Neptune Get the Status of a Specific Gremlin Query
+      description: Returns the status of a specific Gremlin query identified by its query ID, including the query string and execution statistics.
+      tags:
+      - Status
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatusDetail'
+              examples:
+                getGremlinQueryStatusById200Example:
+                  summary: Default getGremlinQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
+                      subqueries: {}
+        '404':
+          description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelGremlinQuery
+      summary: Amazon Neptune Cancel a Running Gremlin Query
+      description: Cancels a running Gremlin query by its query ID. The query must be currently running or waiting in the queue.
+      tags:
+      - Status
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query to cancel.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query with the specified ID was not found.
+        '500':
+          description: Failed to cancel the query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /openCypher/status:
+    get:
+      operationId: getOpenCypherQueryStatus
+      summary: Amazon Neptune Get the Status of All Running OpenCypher Queries
+      description: Returns the status of all running and waiting openCypher queries, including query IDs and execution statistics.
+      tags:
+      - Status
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryStatusList'
+              examples:
+                getOpenCypherQueryStatus200Example:
+                  summary: Default getOpenCypherQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /openCypher/status/{queryId}:
+    get:
+      operationId: getOpenCypherQueryStatusById
+      summary: Amazon Neptune Get the Status of a Specific OpenCypher Query
+      description: Returns the status of a specific openCypher query by its query ID.
+      tags:
+      - Status
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
+              examples:
+                getOpenCypherQueryStatusById200Example:
+                  summary: Default getOpenCypherQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
+        '404':
+          description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelOpenCypherQuery
+      summary: Amazon Neptune Cancel a Running OpenCypher Query
+      description: Cancels a running openCypher query by its query ID.
+      tags:
+      - Status
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the openCypher query to cancel.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sparql/status:
+    get:
+      operationId: getSparqlQueryStatus
+      summary: Amazon Neptune Get the Status of All Running SPARQL Queries
+      description: Returns the status of all running and waiting SPARQL queries, including query IDs and execution statistics.
+      tags:
+      - Status
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlQueryStatusList'
+              examples:
+                getSparqlQueryStatus200Example:
+                  summary: Default getSparqlQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sparql/status/{queryId}:
+    get:
+      operationId: getSparqlQueryStatusById
+      summary: Amazon Neptune Get the Status of a Specific SPARQL Query
+      description: Returns the status of a specific SPARQL query by its query ID.
+      tags:
+      - Status
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the SPARQL query.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlQueryStatusDetail'
+              examples:
+                getSparqlQueryStatusById200Example:
+                  summary: Default getSparqlQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
+        '404':
+          description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelSparqlQuery
+      summary: Amazon Neptune Cancel a Running SPARQL Query
+      description: Cancels a running SPARQL query by its query ID.
+      tags:
+      - Status
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the SPARQL query to cancel.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query with the specified ID was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    EngineStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the Neptune engine (healthy, recovery, etc.).
+        startTime:
+          type: string
+          description: The start time of the engine.
+        dbEngineVersion:
+          type: string
+          description: The Neptune engine version.
+        role:
+          type: string
+          description: The cluster role (writer or reader).
+        dfeQueryEngine:
+          type: string
+          description: The DFE query engine status (enabled or viaQueryHint).
+        gremlin:
+          type: object
+          properties:
+            version:
+              type: string
+        sparql:
+          type: object
+          properties:
+            version:
+              type: string
+        opencypher:
+          type: object
+          properties:
+            version:
+              type: string
+        labMode:
+          type: object
+          additionalProperties:
+            type: string
+        features:
+          type: object
+          additionalProperties:
+            type: object
+    OpenCypherQueryStatusDetail:
+      type: object
+      properties:
+        queryId:
+          type: string
+        queryString:
+          type: string
+        queryEvalStats:
+          type: object
+          properties:
+            waited:
+              type: integer
+              description: Time waited in queue (milliseconds).
+            elapsed:
+              type: integer
+              description: Elapsed execution time (milliseconds).
+            cancelled:
+              type: boolean
+    GremlinQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+          description: The total number of accepted queries.
+        runningQueryCount:
+          type: integer
+          description: The number of currently running queries.
+        queries:
+          type: array
+          description: The list of running and waiting queries.
+          items:
+            $ref: '#/components/schemas/GremlinQueryStatusDetail'
+    OpenCypherQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
+    SparqlQueryStatusDetail:
+      type: object
+      properties:
+        queryId:
+          type: string
+        queryString:
+          type: string
+        queryEvalStats:
+          type: object
+          properties:
+            waited:
+              type: integer
+              description: Time waited in queue (milliseconds).
+            elapsed:
+              type: integer
+              description: Elapsed execution time (milliseconds).
+            cancelled:
+              type: boolean
+    PropertygraphStatisticsOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            graphStatistics:
+              type: object
+              properties:
+                numNodes:
+                  type: integer
+                numEdges:
+                  type: integer
+                numNodeLabels:
+                  type: integer
+                numEdgeLabels:
+                  type: integer
+                numNodeProperties:
+                  type: integer
+                numEdgeProperties:
+                  type: integer
+    SparqlQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SparqlQueryStatusDetail'
+    SparqlStatisticsOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            graphStatistics:
+              type: object
+              properties:
+                numStatements:
+                  type: integer
+                numDistinctSubjects:
+                  type: integer
+                numDistinctPredicates:
+                  type: integer
+    GremlinQueryStatusDetail:
+      type: object
+      properties:
+        queryId:
+          type: string
+          description: The unique query identifier.
+        queryString:
+          type: string
+          description: The Gremlin traversal query string.
+        queryEvalStats:
+          type: object
+          description: Query execution statistics.
+          properties:
+            waited:
+              type: integer
+              description: The time the query waited in the queue (milliseconds).
+            elapsed:
+              type: integer
+              description: The elapsed execution time (milliseconds).
+            cancelled:
+              type: boolean
+              description: Whether the query was cancelled.
+            subqueries:
+              type: object
+              description: Statistics for subqueries, if any.
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

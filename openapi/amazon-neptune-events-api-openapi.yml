@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Events API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Events
+  description: Operations for managing event subscriptions and viewing events
+paths:
+  /?Action=CreateEventSubscription:
+    post:
+      operationId: createEventSubscription
+      summary: Amazon Neptune Create a Neptune Event Notification Subscription
+      description: Creates an event notification subscription. This action requires an Amazon SNS topic ARN. Notifications are sent to the SNS topic when specified events occur.
+      tags:
+      - Events
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateEventSubscription
+      - name: SubscriptionName
+        in: query
+        required: true
+        description: The name of the subscription.
+        schema:
+          type: string
+      - name: SnsTopicArn
+        in: query
+        required: true
+        description: The ARN of the SNS topic to send notifications to.
+        schema:
+          type: string
+      - name: SourceType
+        in: query
+        description: The type of source that triggers notifications (db-instance, db-cluster, db-parameter-group, db-cluster-snapshot).
+        schema:
+          type: string
+      - name: Enabled
+        in: query
+        description: Whether the subscription is enabled.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Event subscription created successfully.
+        '400':
+          description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=DescribeEvents:
+    get:
+      operationId: describeEvents
+      summary: Amazon Neptune Describe Neptune Events
+      description: Returns events related to DB instances, DB clusters, DB parameter groups, and DB cluster snapshots for the past 14 days.
+      tags:
+      - Events
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeEvents
+      - name: SourceIdentifier
+        in: query
+        description: The identifier of the event source to filter events.
+        schema:
+          type: string
+      - name: SourceType
+        in: query
+        description: The event source type to filter events.
+        schema:
+          type: string
+      - name: Duration
+        in: query
+        description: The number of minutes to retrieve events for.
+        schema:
+          type: integer
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Successful response with event details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

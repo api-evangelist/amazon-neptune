@@ -1,0 +1,803 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource ML API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: ML
+  description: Machine learning operations
+paths:
+  /ml/dataprocessing:
+    post:
+      operationId: startMLDataProcessingJob
+      summary: Amazon Neptune Start an ML Data Processing Job
+      description: Creates a new Neptune ML data processing job that prepares graph data for model training using Amazon SageMaker.
+      tags:
+      - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartMLDataProcessingJobInput'
+      responses:
+        '200':
+          description: Data processing job started successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+              examples:
+                startMLDataProcessingJob200Example:
+                  summary: Default startMLDataProcessingJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listMLDataProcessingJobs
+      summary: Amazon Neptune List ML Data Processing Jobs
+      description: Returns a list of active Neptune ML data processing job IDs.
+      tags:
+      - ML
+      parameters:
+      - name: maxItems
+        in: query
+        description: Maximum number of items to return (default 10, max 1024).
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data processing job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ids:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                listMLDataProcessingJobs200Example:
+                  summary: Default listMLDataProcessingJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    ids:
+                    - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/dataprocessing/{jobId}:
+    get:
+      operationId: getMLDataProcessingJobStatus
+      summary: Amazon Neptune Get ML Data Processing Job Status
+      description: Returns the status of a Neptune ML data processing job.
+      tags:
+      - ML
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: The unique identifier of the data processing job.
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLJobStatusOutput'
+              examples:
+                getMLDataProcessingJobStatus200Example:
+                  summary: Default getMLDataProcessingJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    processingJob:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      outputLocation: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelMLDataProcessingJob
+      summary: Amazon Neptune Cancel an ML Data Processing Job
+      description: Cancels a running Neptune ML data processing job.
+      tags:
+      - ML
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: The unique identifier of the data processing job.
+        schema:
+          type: string
+      - name: clean
+        in: query
+        description: Whether to delete all S3 artifacts when cancelling.
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job cancelled successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/modeltraining:
+    post:
+      operationId: startMLModelTrainingJob
+      summary: Amazon Neptune Start an ML Model Training Job
+      description: Creates a new Neptune ML model training job using Amazon SageMaker.
+      tags:
+      - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartMLModelTrainingJobInput'
+      responses:
+        '200':
+          description: Model training job started successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+              examples:
+                startMLModelTrainingJob200Example:
+                  summary: Default startMLModelTrainingJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listMLModelTrainingJobs
+      summary: Amazon Neptune List ML Model Training Jobs
+      description: Returns a list of active Neptune ML model training job IDs.
+      tags:
+      - ML
+      parameters:
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Model training job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ids:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                listMLModelTrainingJobs200Example:
+                  summary: Default listMLModelTrainingJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    ids:
+                    - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/modeltraining/{jobId}:
+    get:
+      operationId: getMLModelTrainingJobStatus
+      summary: Amazon Neptune Get ML Model Training Job Status
+      description: Returns the status of a Neptune ML model training job.
+      tags:
+      - ML
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLJobStatusOutput'
+              examples:
+                getMLModelTrainingJobStatus200Example:
+                  summary: Default getMLModelTrainingJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    processingJob:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      outputLocation: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelMLModelTrainingJob
+      summary: Amazon Neptune Cancel an ML Model Training Job
+      description: Cancels a running Neptune ML model training job.
+      tags:
+      - ML
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clean
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job cancelled successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/modeltransform:
+    post:
+      operationId: startMLModelTransformJob
+      summary: Amazon Neptune Start an ML Model Transform Job
+      description: Creates a new Neptune ML model transform job that generates model artifacts for inference.
+      tags:
+      - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartMLModelTransformJobInput'
+      responses:
+        '200':
+          description: Model transform job started successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+              examples:
+                startMLModelTransformJob200Example:
+                  summary: Default startMLModelTransformJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listMLModelTransformJobs
+      summary: Amazon Neptune List ML Model Transform Jobs
+      description: Returns a list of active Neptune ML model transform job IDs.
+      tags:
+      - ML
+      parameters:
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Model transform job list retrieved successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/modeltransform/{jobId}:
+    get:
+      operationId: getMLModelTransformJobStatus
+      summary: Amazon Neptune Get ML Model Transform Job Status
+      description: Returns the status of a Neptune ML model transform job.
+      tags:
+      - ML
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLJobStatusOutput'
+              examples:
+                getMLModelTransformJobStatus200Example:
+                  summary: Default getMLModelTransformJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    processingJob:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      outputLocation: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelMLModelTransformJob
+      summary: Amazon Neptune Cancel an ML Model Transform Job
+      description: Cancels a running Neptune ML model transform job.
+      tags:
+      - ML
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clean
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job cancelled successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/endpoints:
+    post:
+      operationId: createMLEndpoint
+      summary: Amazon Neptune Create an ML Inference Endpoint
+      description: Creates a new Neptune ML inference endpoint backed by Amazon SageMaker.
+      tags:
+      - ML
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMLEndpointInput'
+      responses:
+        '200':
+          description: Inference endpoint created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+              examples:
+                createMLEndpoint200Example:
+                  summary: Default createMLEndpoint 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listMLEndpoints
+      summary: Amazon Neptune List ML Inference Endpoints
+      description: Returns a list of active Neptune ML inference endpoint IDs.
+      tags:
+      - ML
+      parameters:
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Endpoint list retrieved successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/endpoints/{endpointId}:
+    get:
+      operationId: getMLEndpointStatus
+      summary: Amazon Neptune Get ML Inference Endpoint Status
+      description: Returns the status of a Neptune ML inference endpoint.
+      tags:
+      - ML
+      parameters:
+      - name: endpointId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Endpoint status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MLEndpointStatusOutput'
+              examples:
+                getMLEndpointStatus200Example:
+                  summary: Default getMLEndpointStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    endpoint:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                    endpointConfig: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteMLEndpoint
+      summary: Amazon Neptune Delete an ML Inference Endpoint
+      description: Deletes a Neptune ML inference endpoint.
+      tags:
+      - ML
+      parameters:
+      - name: endpointId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clean
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Endpoint deleted successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MLJobStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
+    StartMLModelTrainingJobInput:
+      type: object
+      required:
+      - dataProcessingJobId
+      - trainModelS3Location
+      properties:
+        id:
+          type: string
+        dataProcessingJobId:
+          type: string
+          description: Job ID of the completed data processing job.
+        trainModelS3Location:
+          type: string
+          description: S3 location for model artifacts.
+        previousModelTrainingJobId:
+          type: string
+        sagemakerIamRoleArn:
+          type: string
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          description: The model type to use.
+          enum:
+          - rgcn
+          - transe
+          - distmult
+          - rotate
+          - custom
+        baseProcessingInstanceType:
+          type: string
+        trainingInstanceType:
+          type: string
+          default: ml.p3.2xlarge
+        trainingInstanceVolumeSizeInGB:
+          type: integer
+        trainingTimeOutInSeconds:
+          type: integer
+          default: 86400
+        maxHPONumberOfTrainingJobs:
+          type: integer
+          default: 2
+        maxHPOParallelTrainingJobs:
+          type: integer
+          default: 2
+        subnets:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+        enableManagedSpotTraining:
+          type: boolean
+          default: false
+        customModelTrainingParameters:
+          type: object
+          properties:
+            sourceS3DirectoryPath:
+              type: string
+            trainingEntryPointScript:
+              type: string
+            transformEntryPointScript:
+              type: string
+    MLEndpointStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        endpoint:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+        endpointConfig:
+          type: object
+    StartMLModelTransformJobInput:
+      type: object
+      required:
+      - modelTransformOutputS3Location
+      properties:
+        id:
+          type: string
+        dataProcessingJobId:
+          type: string
+        mlModelTrainingJobId:
+          type: string
+        trainingJobName:
+          type: string
+        modelTransformOutputS3Location:
+          type: string
+          description: S3 location for transform output.
+        sagemakerIamRoleArn:
+          type: string
+        neptuneIamRoleArn:
+          type: string
+        baseProcessingInstanceType:
+          type: string
+        baseProcessingInstanceVolumeSizeInGB:
+          type: integer
+        subnets:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+        customModelTransformParameters:
+          type: object
+          properties:
+            sourceS3DirectoryPath:
+              type: string
+            transformEntryPointScript:
+              type: string
+    CreateMLEndpointInput:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint.
+        mlModelTrainingJobId:
+          type: string
+          description: Job ID from a completed training job.
+        mlModelTransformJobId:
+          type: string
+          description: Job ID from a completed transform job.
+        update:
+          type: boolean
+          description: Whether this is an update request.
+          default: false
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          enum:
+          - rgcn
+          - kge
+          - transe
+          - distmult
+          - rotate
+        instanceType:
+          type: string
+          default: ml.m5.xlarge
+        instanceCount:
+          type: integer
+          default: 1
+        volumeEncryptionKMSKey:
+          type: string
+    StartMLDataProcessingJobInput:
+      type: object
+      required:
+      - inputDataS3Location
+      - processedDataS3Location
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the job (auto-generated if omitted).
+        inputDataS3Location:
+          type: string
+          description: S3 URI for input data.
+        processedDataS3Location:
+          type: string
+          description: S3 URI for output results.
+        previousDataProcessingJobId:
+          type: string
+          description: Job ID of a previous job for incremental processing.
+        sagemakerIamRoleArn:
+          type: string
+          description: IAM role ARN for SageMaker execution.
+        neptuneIamRoleArn:
+          type: string
+          description: IAM role ARN for Neptune access.
+        processingInstanceType:
+          type: string
+          description: ML instance type (default auto-selected ml.r5 type).
+        processingInstanceVolumeSizeInGB:
+          type: integer
+          description: Disk volume size in GB (default 0 = auto-selected).
+        processingTimeOutInSeconds:
+          type: integer
+          description: Timeout in seconds (default 86400).
+        modelType:
+          type: string
+          description: Model type selection.
+          enum:
+          - heterogeneous
+          - kge
+        configFileName:
+          type: string
+          description: Data specification file name.
+          default: training-data-configuration.json
+        subnets:
+          type: array
+          items:
+            type: string
+          description: Subnet IDs in Neptune VPC.
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+          description: VPC security group IDs.
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

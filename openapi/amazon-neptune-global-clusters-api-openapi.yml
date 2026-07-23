@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Global Clusters API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Global Clusters
+  description: Operations for managing Neptune global database clusters
+paths:
+  /?Action=CreateGlobalCluster:
+    post:
+      operationId: createGlobalCluster
+      summary: Amazon Neptune Create a Neptune Global Database Cluster
+      description: Creates a Neptune global database spread across multiple AWS Regions. The global database contains a single primary cluster with read-write capability.
+      tags:
+      - Global Clusters
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateGlobalCluster
+      - name: GlobalClusterIdentifier
+        in: query
+        required: true
+        description: The cluster identifier of the new global cluster.
+        schema:
+          type: string
+      - name: SourceDBClusterIdentifier
+        in: query
+        description: The ARN of an existing Neptune cluster to use as the primary cluster.
+        schema:
+          type: string
+      - name: DeletionProtection
+        in: query
+        description: Whether the global cluster has deletion protection enabled.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Global cluster created successfully.
+        '400':
+          description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=DescribeGlobalClusters:
+    get:
+      operationId: describeGlobalClusters
+      summary: Amazon Neptune Describe Neptune Global Database Clusters
+      description: Returns information about Neptune global database clusters.
+      tags:
+      - Global Clusters
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeGlobalClusters
+      - name: GlobalClusterIdentifier
+        in: query
+        description: The identifier of the global cluster to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Successful response with global cluster details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

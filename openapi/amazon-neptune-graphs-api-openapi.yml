@@ -1,0 +1,439 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Graphs API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Graphs
+  description: Operations for managing Neptune Analytics graph resources
+paths:
+  /graphs:
+    post:
+      operationId: createGraph
+      summary: Amazon Neptune Create a Neptune Analytics Graph
+      description: Creates a new Neptune Analytics graph resource. The graph is a memory-optimized database instance optimized for analytical workloads with support for openCypher queries and vector search.
+      tags:
+      - Graphs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGraphInput'
+      responses:
+        '201':
+          description: Graph created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+              examples:
+                createGraph201Example:
+                  summary: Default createGraph 201 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
+        '400':
+          description: Bad request - invalid parameters.
+        '409':
+          description: A graph with the specified name already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listGraphs
+      summary: Amazon Neptune List Neptune Analytics Graphs
+      description: Returns a list of Neptune Analytics graph resources in the account.
+      tags:
+      - Graphs
+      parameters:
+      - name: maxResults
+        in: query
+        description: Maximum number of results to return.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: nextToken
+        in: query
+        description: Pagination token from a previous request.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Graph list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListGraphsOutput'
+              examples:
+                listGraphs200Example:
+                  summary: Default listGraphs 200 response
+                  x-microcks-default: true
+                  value:
+                    graphs:
+                    - id: neptune-cluster-abc123
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      provisionedMemory: 1
+                    nextToken: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /graphs/{graphIdentifier}:
+    get:
+      operationId: getGraph
+      summary: Amazon Neptune Get Neptune Analytics Graph Details
+      description: Returns detailed information about a specific Neptune Analytics graph resource.
+      tags:
+      - Graphs
+      parameters:
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Graph details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+              examples:
+                getGraph200Example:
+                  summary: Default getGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
+        '404':
+          description: Graph not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateGraph
+      summary: Amazon Neptune Update a Neptune Analytics Graph
+      description: Updates the configuration of an existing Neptune Analytics graph, such as provisioned memory or deletion protection settings.
+      tags:
+      - Graphs
+      parameters:
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGraphInput'
+      responses:
+        '200':
+          description: Graph updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+              examples:
+                updateGraph200Example:
+                  summary: Default updateGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
+        '404':
+          description: Graph not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteGraph
+      summary: Amazon Neptune Delete a Neptune Analytics Graph
+      description: Deletes a Neptune Analytics graph resource. The graph must not have deletion protection enabled.
+      tags:
+      - Graphs
+      parameters:
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph to delete.
+        schema:
+          type: string
+      - name: skipSnapshot
+        in: query
+        required: true
+        description: Whether to skip creating a final snapshot before deletion.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Graph deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+              examples:
+                deleteGraph200Example:
+                  summary: Default deleteGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
+        '404':
+          description: Graph not found.
+        '409':
+          description: Graph has deletion protection enabled.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /graphs/{graphIdentifier}/reset:
+    put:
+      operationId: resetGraph
+      summary: Amazon Neptune Reset a Neptune Analytics Graph
+      description: Empties the data from a Neptune Analytics graph, removing all nodes and edges while preserving the graph resource and its configuration.
+      tags:
+      - Graphs
+      parameters:
+      - name: graphIdentifier
+        in: path
+        required: true
+        description: The unique identifier of the graph to reset.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - performCleanData
+              properties:
+                performCleanData:
+                  type: boolean
+                  description: Must be set to true to confirm the reset.
+      responses:
+        '200':
+          description: Graph reset initiated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphOutput'
+              examples:
+                resetGraph200Example:
+                  summary: Default resetGraph 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+                    name: my-neptune-cluster
+                    arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                    status: CREATING
+                    statusReason: available
+                    createTime: '2025-03-15T14:30:00Z'
+                    provisionedMemory: 1
+                    endpoint: neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com
+                    publicConnectivity: true
+                    vectorSearchConfiguration:
+                      dimension: 1
+        '404':
+          description: Graph not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    UpdateGraphInput:
+      type: object
+      properties:
+        provisionedMemory:
+          type: integer
+          description: The new provisioned memory size in NCUs.
+        deletionProtection:
+          type: boolean
+          description: Whether deletion protection is enabled.
+        publicConnectivity:
+          type: boolean
+    GraphOutput:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the graph.
+        name:
+          type: string
+          description: The name of the graph.
+        arn:
+          type: string
+          description: The ARN of the graph.
+        status:
+          type: string
+          description: The current status of the graph.
+          enum:
+          - CREATING
+          - AVAILABLE
+          - DELETING
+          - RESETTING
+          - UPDATING
+          - SNAPSHOTTING
+          - FAILED
+          - IMPORTING
+        statusReason:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        provisionedMemory:
+          type: integer
+        endpoint:
+          type: string
+          description: The DNS endpoint for the graph.
+        publicConnectivity:
+          type: boolean
+        vectorSearchConfiguration:
+          type: object
+          properties:
+            dimension:
+              type: integer
+        replicaCount:
+          type: integer
+        kmsKeyIdentifier:
+          type: string
+        sourceSnapshotId:
+          type: string
+        deletionProtection:
+          type: boolean
+        buildNumber:
+          type: string
+    ListGraphsOutput:
+      type: object
+      properties:
+        graphs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              arn:
+                type: string
+              status:
+                type: string
+              provisionedMemory:
+                type: integer
+              publicConnectivity:
+                type: boolean
+              endpoint:
+                type: string
+              replicaCount:
+                type: integer
+              deletionProtection:
+                type: boolean
+        nextToken:
+          type: string
+    CreateGraphInput:
+      type: object
+      required:
+      - graphName
+      - provisionedMemory
+      properties:
+        graphName:
+          type: string
+          description: The name of the graph (1-63 alphanumeric characters or hyphens).
+          minLength: 1
+          maxLength: 63
+        provisionedMemory:
+          type: integer
+          description: The provisioned memory size in Neptune Capacity Units (NCUs).
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Tags to assign to the graph.
+        publicConnectivity:
+          type: boolean
+          description: Whether the graph can be reached over the internet.
+          default: false
+        kmsKeyIdentifier:
+          type: string
+          description: KMS key identifier for encryption at rest.
+        vectorSearchConfiguration:
+          type: object
+          description: Vector search configuration for the graph.
+          properties:
+            dimension:
+              type: integer
+              description: The number of dimensions for vector embeddings.
+        replicaCount:
+          type: integer
+          description: The number of read replicas.
+          default: 0
+        deletionProtection:
+          type: boolean
+          description: Whether deletion protection is enabled.
+          default: false
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

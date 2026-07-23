@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Inference Endpoints API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Inference Endpoints
+  description: ML inference endpoint management operations
+paths:
+  /ml/endpoints:
+    post:
+      operationId: createInferenceEndpoint
+      summary: Amazon Neptune Create an ML Inference Endpoint
+      description: Creates a new Neptune ML inference endpoint backed by Amazon SageMaker. The endpoint can be used to make real-time predictions on graph data using a trained model. Can also be used to update an existing endpoint by setting the update parameter to true.
+      tags:
+      - Inference Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInferenceEndpointRequest'
+      responses:
+        '200':
+          description: Inference endpoint created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointCreatedResponse'
+              examples:
+                createInferenceEndpoint200Example:
+                  summary: Default createInferenceEndpoint 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+        '400':
+          description: Bad request - invalid parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listInferenceEndpoints
+      summary: Amazon Neptune List ML Inference Endpoints
+      description: Returns a list of active Neptune ML inference endpoint IDs.
+      tags:
+      - Inference Endpoints
+      parameters:
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Endpoint list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointListResponse'
+              examples:
+                listInferenceEndpoints200Example:
+                  summary: Default listInferenceEndpoints 200 response
+                  x-microcks-default: true
+                  value:
+                    ids:
+                    - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/endpoints/{id}:
+    get:
+      operationId: getInferenceEndpointStatus
+      summary: Amazon Neptune Get ML Inference Endpoint Status
+      description: Returns the status of a Neptune ML inference endpoint.
+      tags:
+      - Inference Endpoints
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the inference endpoint.
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Endpoint status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointStatusResponse'
+              examples:
+                getInferenceEndpointStatus200Example:
+                  summary: Default getInferenceEndpointStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    endpoint:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                    endpointConfig: {}
+                    outputLocation: example-value
+        '404':
+          description: Endpoint not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteInferenceEndpoint
+      summary: Amazon Neptune Delete an ML Inference Endpoint
+      description: Deletes a Neptune ML inference endpoint. Optionally cleans up all related S3 artifacts.
+      tags:
+      - Inference Endpoints
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: clean
+        in: query
+        description: Whether to delete all related S3 artifacts.
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Endpoint deleted successfully.
+        '404':
+          description: Endpoint not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    EndpointStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        endpoint:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+        endpointConfig:
+          type: object
+        outputLocation:
+          type: string
+    CreateInferenceEndpointRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint (auto-generated timestamped name if omitted).
+        mlModelTrainingJobId:
+          type: string
+          description: Job ID from a completed training job.
+        mlModelTransformJobId:
+          type: string
+          description: Job ID from a completed transform job.
+        update:
+          type: boolean
+          description: Whether this is an update to an existing endpoint.
+          default: false
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          description: The model type.
+          enum:
+          - rgcn
+          - kge
+          - transe
+          - distmult
+          - rotate
+        instanceType:
+          type: string
+          description: ML instance type for the inference endpoint.
+          default: ml.m5.xlarge
+        instanceCount:
+          type: integer
+          description: Minimum number of EC2 instances to deploy.
+          default: 1
+        volumeEncryptionKMSKey:
+          type: string
+    EndpointCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created endpoint.
+    EndpointListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

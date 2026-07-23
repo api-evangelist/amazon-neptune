@@ -1,0 +1,279 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Data Processing API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Data Processing
+  description: ML data processing job operations
+paths:
+  /ml/dataprocessing:
+    post:
+      operationId: createDataProcessingJob
+      summary: Amazon Neptune Create an ML Data Processing Job
+      description: Creates a new Neptune ML data processing job that exports and prepares graph data from Neptune for model training using Amazon SageMaker. The job reads data from Neptune and writes processed output to the specified S3 location.
+      tags:
+      - Data Processing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataProcessingJobRequest'
+      responses:
+        '200':
+          description: Data processing job created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobCreatedResponse'
+              examples:
+                createDataProcessingJob200Example:
+                  summary: Default createDataProcessingJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: neptune-cluster-abc123
+        '400':
+          description: Bad request - invalid parameters.
+        '500':
+          description: Internal server error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listDataProcessingJobs
+      summary: Amazon Neptune List Active Data Processing Jobs
+      description: Returns a list of active Neptune ML data processing job IDs.
+      tags:
+      - Data Processing
+      parameters:
+      - name: maxItems
+        in: query
+        description: Maximum number of items to return (default 10, max 1024).
+        schema:
+          type: integer
+          default: 10
+          maximum: 1024
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+              examples:
+                listDataProcessingJobs200Example:
+                  summary: Default listDataProcessingJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    ids:
+                    - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ml/dataprocessing/{id}:
+    get:
+      operationId: getDataProcessingJobStatus
+      summary: Amazon Neptune Get Data Processing Job Status
+      description: Returns the status of a Neptune ML data processing job.
+      tags:
+      - Data Processing
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the data processing job.
+        schema:
+          type: string
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+              examples:
+                getDataProcessingJobStatus200Example:
+                  summary: Default getDataProcessingJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    id: neptune-cluster-abc123
+                    processingJob:
+                      name: my-neptune-cluster
+                      arn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+                      status: available
+                      outputLocation: example-value
+                      failureReason: example-value
+        '404':
+          description: Job not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: stopDataProcessingJob
+      summary: Amazon Neptune Stop a Data Processing Job
+      description: Stops a running Neptune ML data processing job. Optionally deletes all S3 artifacts when the clean parameter is set to true.
+      tags:
+      - Data Processing
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the data processing job.
+        schema:
+          type: string
+      - name: clean
+        in: query
+        description: Whether to delete all S3 artifacts when stopping.
+        schema:
+          type: boolean
+          default: false
+      - name: neptuneIamRoleArn
+        in: query
+        description: The ARN of the IAM role for Neptune access.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job stopped successfully.
+        '404':
+          description: Job not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    JobListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          description: List of job IDs.
+          items:
+            type: string
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
+    CreateDataProcessingJobRequest:
+      type: object
+      required:
+      - inputDataS3Location
+      - processedDataS3Location
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the job (auto-generated UUID if omitted).
+        inputDataS3Location:
+          type: string
+          description: S3 URI for the input data.
+        processedDataS3Location:
+          type: string
+          description: S3 URI where processed output is written.
+        previousDataProcessingJobId:
+          type: string
+          description: Job ID of a previous job for incremental processing.
+        sagemakerIamRoleArn:
+          type: string
+          description: IAM role ARN for SageMaker execution.
+        neptuneIamRoleArn:
+          type: string
+          description: IAM role ARN for Neptune access.
+        processingInstanceType:
+          type: string
+          description: ML instance type (default auto-selected ml.r5 type).
+        processingInstanceVolumeSizeInGB:
+          type: integer
+          description: Disk volume size in GB (default 0 means auto-selected).
+        processingTimeOutInSeconds:
+          type: integer
+          description: Timeout in seconds (default 86400, i.e., 1 day).
+          default: 86400
+        modelType:
+          type: string
+          description: The type of model to prepare data for.
+          enum:
+          - heterogeneous
+          - kge
+        configFileName:
+          type: string
+          description: The data specification configuration file name.
+          default: training-data-configuration.json
+        subnets:
+          type: array
+          description: VPC subnet IDs for SageMaker processing.
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          description: VPC security group IDs.
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+          description: KMS key for storage volume encryption.
+        s3OutputEncryptionKMSKey:
+          type: string
+          description: KMS key for S3 output encryption.
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          description: Whether to enable inter-container traffic encryption.
+          default: true
+    JobStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+        id:
+          type: string
+          description: The job identifier.
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
+            failureReason:
+              type: string
+            cloudwatchLogUrl:
+              type: string
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

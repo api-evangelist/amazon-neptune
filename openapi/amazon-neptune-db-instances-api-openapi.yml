@@ -1,0 +1,439 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource DB Instances API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: DB Instances
+  description: Operations for managing Neptune DB instances
+paths:
+  /?Action=CreateDBInstance:
+    post:
+      operationId: createDBInstance
+      summary: Amazon Neptune Create a New Neptune DB Instance
+      description: Creates a new DB instance in a Neptune DB cluster. The DB instance inherits the cluster's storage and high availability configuration.
+      tags:
+      - DB Instances
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBInstance
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateDBInstanceRequest'
+      responses:
+        '200':
+          description: DB instance created successfully.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DBInstance'
+              examples:
+                createDBInstance200Example:
+                  summary: Default createDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
+        '400':
+          description: Invalid request parameters.
+        '409':
+          description: A DB instance with the specified identifier already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=DeleteDBInstance:
+    post:
+      operationId: deleteDBInstance
+      summary: Amazon Neptune Delete a Neptune DB Instance
+      description: Deletes a previously provisioned DB instance. When you delete an instance, all automated backups for that instance are deleted and cannot be recovered.
+      tags:
+      - DB Instances
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DeleteDBInstance
+      - name: DBInstanceIdentifier
+        in: query
+        required: true
+        description: The DB instance identifier for the instance to be deleted.
+        schema:
+          type: string
+      - name: SkipFinalSnapshot
+        in: query
+        description: Whether to skip creation of a final snapshot.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: DB instance deleted successfully.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DBInstance'
+              examples:
+                deleteDBInstance200Example:
+                  summary: Default deleteDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
+        '404':
+          description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=DescribeDBInstances:
+    get:
+      operationId: describeDBInstances
+      summary: Amazon Neptune Describe Neptune DB Instances
+      description: Returns information about provisioned Neptune DB instances. If a specific instance identifier is supplied, details for that instance are returned.
+      tags:
+      - DB Instances
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBInstances
+      - name: DBInstanceIdentifier
+        in: query
+        description: The identifier of the DB instance to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        description: Maximum number of records to include in the response.
+        schema:
+          type: integer
+          minimum: 20
+          maximum: 100
+      - name: Marker
+        in: query
+        description: Pagination token from a previous request.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Successful response with DB instance details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DescribeDBInstancesResponse'
+              examples:
+                describeDBInstances200Example:
+                  summary: Default describeDBInstances 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstances:
+                    - {}
+                    Marker: example-value
+        '404':
+          description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=ModifyDBInstance:
+    post:
+      operationId: modifyDBInstance
+      summary: Amazon Neptune Modify a Neptune DB Instance
+      description: Modifies settings for a DB instance. You can change one or more database configuration parameters by specifying them and their new values.
+      tags:
+      - DB Instances
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ModifyDBInstance
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ModifyDBInstanceRequest'
+      responses:
+        '200':
+          description: DB instance modified successfully.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DBInstance'
+              examples:
+                modifyDBInstance200Example:
+                  summary: Default modifyDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
+        '404':
+          description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=RebootDBInstance:
+    post:
+      operationId: rebootDBInstance
+      summary: Amazon Neptune Reboot a Neptune DB Instance
+      description: Reboots a DB instance. When you reboot an instance, the instance is restarted. Rebooting results in a momentary outage.
+      tags:
+      - DB Instances
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - RebootDBInstance
+      - name: DBInstanceIdentifier
+        in: query
+        required: true
+        description: The identifier of the DB instance to reboot.
+        schema:
+          type: string
+      - name: ForceFailover
+        in: query
+        description: Whether to force a failover during the reboot.
+        schema:
+          type: boolean
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: DB instance reboot initiated successfully.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DBInstance'
+              examples:
+                rebootDBInstance200Example:
+                  summary: Default rebootDBInstance 200 response
+                  x-microcks-default: true
+                  value:
+                    DBInstanceIdentifier: neptune-cluster-abc123
+                    DBInstanceClass: example-value
+                    Engine: example-value
+                    DBInstanceStatus: available
+                    Endpoint:
+                      Address: example-value
+                      Port: 1
+                    DBClusterIdentifier: neptune-cluster-abc123
+                    AvailabilityZone: example-value
+                    PreferredMaintenanceWindow: example-value
+                    EngineVersion: 1.3.2.0
+                    AutoMinorVersionUpgrade: true
+        '404':
+          description: The specified DB instance was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DBInstance:
+      type: object
+      description: Contains the details of an Amazon Neptune DB instance.
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The user-supplied database identifier.
+        DBInstanceClass:
+          type: string
+          description: The compute and memory capacity of the instance.
+        Engine:
+          type: string
+          description: The database engine (neptune).
+        DBInstanceStatus:
+          type: string
+          description: Current state of the instance.
+        Endpoint:
+          type: object
+          properties:
+            Address:
+              type: string
+            Port:
+              type: integer
+        DBClusterIdentifier:
+          type: string
+          description: The cluster this instance belongs to.
+        AvailabilityZone:
+          type: string
+          description: The Availability Zone of the instance.
+        PreferredMaintenanceWindow:
+          type: string
+          description: The weekly time range for system maintenance.
+        EngineVersion:
+          type: string
+          description: The version of the database engine.
+        AutoMinorVersionUpgrade:
+          type: boolean
+          description: Whether minor version upgrades are applied automatically.
+        PubliclyAccessible:
+          type: boolean
+          description: Whether the instance is publicly accessible.
+        DBInstanceArn:
+          type: string
+          description: The ARN of the DB instance.
+        PromotionTier:
+          type: integer
+          description: The failover priority for the instance.
+        StorageEncrypted:
+          type: boolean
+          description: Whether the instance storage is encrypted.
+    DescribeDBInstancesResponse:
+      type: object
+      properties:
+        DBInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/DBInstance'
+        Marker:
+          type: string
+    CreateDBInstanceRequest:
+      type: object
+      required:
+      - DBInstanceIdentifier
+      - DBInstanceClass
+      - Engine
+      - DBClusterIdentifier
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The DB instance identifier.
+        DBInstanceClass:
+          type: string
+          description: The compute and memory capacity of the instance.
+        Engine:
+          type: string
+          description: The database engine to use (neptune).
+          default: neptune
+        DBClusterIdentifier:
+          type: string
+          description: The identifier of the DB cluster to add the instance to.
+        AvailabilityZone:
+          type: string
+          description: The Availability Zone for the instance.
+        PreferredMaintenanceWindow:
+          type: string
+        AutoMinorVersionUpgrade:
+          type: boolean
+        PromotionTier:
+          type: integer
+          description: Failover priority (0-15).
+          minimum: 0
+          maximum: 15
+    ModifyDBInstanceRequest:
+      type: object
+      required:
+      - DBInstanceIdentifier
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The DB instance identifier.
+        DBInstanceClass:
+          type: string
+          description: The new compute and memory capacity.
+        PreferredMaintenanceWindow:
+          type: string
+        AutoMinorVersionUpgrade:
+          type: boolean
+        NewDBInstanceIdentifier:
+          type: string
+        PromotionTier:
+          type: integer
+        ApplyImmediately:
+          type: boolean
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

@@ -1,0 +1,479 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Query API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Query
+  description: Submit Gremlin graph traversal queries
+paths:
+  /gremlin:
+    post:
+      operationId: executeGremlinTraversal
+      summary: Amazon Neptune Execute a Gremlin Traversal via HTTP POST
+      description: Submits a Gremlin traversal query to the Neptune HTTP REST endpoint. The query is provided as a JSON body with a gremlin property containing the traversal string. All results are returned in a single JSON response by default. For large result sets, chunked responses can be enabled to avoid OutOfMemoryError.
+      tags:
+      - Query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GremlinQueryRequest'
+            examples:
+              vertexCount:
+                summary: Count all vertices
+                value:
+                  gremlin: g.V().count()
+              limitedVertices:
+                summary: Get first vertex
+                value:
+                  gremlin: g.V().limit(1)
+              addVertex:
+                summary: Add a vertex
+                value:
+                  gremlin: g.addV('person').property('name','John')
+      responses:
+        '200':
+          description: Gremlin traversal executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryResponse'
+              examples:
+                executeGremlinTraversal200Example:
+                  summary: Default executeGremlinTraversal 200 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    status:
+                      message: example-value
+                      code: 1
+                      attributes: {}
+                    result:
+                      data: example-value
+                      meta: {}
+        '400':
+          description: Bad request - malformed Gremlin traversal.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinErrorResponse'
+              examples:
+                executeGremlinTraversal400Example:
+                  summary: Default executeGremlinTraversal 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
+        '408':
+          description: Query timed out before completing.
+        '500':
+          description: Internal server error during query execution.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: executeGremlinTraversalGet
+      summary: Amazon Neptune Execute a Gremlin Traversal via HTTP GET
+      description: Submits a Gremlin traversal query via a URL query parameter. This is an alternative to the POST method for simple queries.
+      tags:
+      - Query
+      parameters:
+      - name: gremlin
+        in: query
+        required: true
+        description: The Gremlin traversal query string (URL-encoded).
+        schema:
+          type: string
+        example: g.V().count()
+      responses:
+        '200':
+          description: Gremlin traversal executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryResponse'
+              examples:
+                executeGremlinTraversalGet200Example:
+                  summary: Default executeGremlinTraversalGet 200 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    status:
+                      message: example-value
+                      code: 1
+                      attributes: {}
+                    result:
+                      data: example-value
+                      meta: {}
+        '400':
+          description: Bad request - malformed Gremlin traversal.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /openCypher:
+    post:
+      operationId: executeOpenCypherQuery
+      summary: Amazon Neptune Execute an OpenCypher Query via HTTP POST
+      description: Submits an openCypher query to the Neptune HTTP endpoint. The query is provided as a form-encoded parameter. Supports both read and write queries. Nodes are returned with ~id, ~entityType, ~labels, and ~properties fields. Relationships include ~id, ~entityType, ~start, ~end, ~type, and ~properties fields.
+      tags:
+      - Query
+      parameters:
+      - name: TE
+        in: header
+        description: Set to 'trailers' to enable trailing headers for better error detection. Available in Neptune 1.4.5.0+.
+        schema:
+          type: string
+          enum:
+          - trailers
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OpenCypherQueryRequest'
+            examples:
+              matchAll:
+                summary: Match all nodes
+                value:
+                  query: MATCH (n) RETURN n LIMIT 10
+              countNodes:
+                summary: Count all nodes
+                value:
+                  query: MATCH (n) RETURN count(n)
+              createNode:
+                summary: Create a node
+                value:
+                  query: 'CREATE (n:Person {name: ''John'', age: 30}) RETURN n'
+      responses:
+        '200':
+          description: openCypher query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryResponse'
+              examples:
+                executeOpenCypherQuery200Example:
+                  summary: Default executeOpenCypherQuery 200 response
+                  x-microcks-default: true
+                  value:
+                    results:
+                    - {}
+          headers:
+            X-Neptune-Status:
+              description: 'Response code and status (only when TE: trailers was sent).'
+              schema:
+                type: string
+            X-Neptune-Detail:
+              description: 'URL-encoded JSON error details (only when TE: trailers was sent). Empty on success.'
+              schema:
+                type: string
+        '400':
+          description: Bad request - malformed openCypher query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherErrorResponse'
+              examples:
+                executeOpenCypherQuery400Example:
+                  summary: Default executeOpenCypherQuery 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
+        '408':
+          description: Query timed out before completing.
+        '500':
+          description: Internal server error during query execution.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: executeOpenCypherQueryGet
+      summary: Amazon Neptune Execute an OpenCypher Query via HTTP GET
+      description: Submits an openCypher query via URL query parameter. Supports both read and write queries.
+      tags:
+      - Query
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: The openCypher query string (URL-encoded).
+        schema:
+          type: string
+        example: MATCH (n1) RETURN n1 LIMIT 10
+      - name: TE
+        in: header
+        description: Set to 'trailers' for trailing headers.
+        schema:
+          type: string
+          enum:
+          - trailers
+      responses:
+        '200':
+          description: openCypher query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenCypherQueryResponse'
+              examples:
+                executeOpenCypherQueryGet200Example:
+                  summary: Default executeOpenCypherQueryGet 200 response
+                  x-microcks-default: true
+                  value:
+                    results:
+                    - {}
+        '400':
+          description: Bad request - malformed openCypher query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sparql:
+    post:
+      operationId: executeSparqlQuery
+      summary: Amazon Neptune Execute a SPARQL Query or Update via HTTP POST
+      description: Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL endpoint. For queries, use the 'query' parameter with SELECT, ASK, CONSTRUCT, or DESCRIBE forms. For mutations, use the 'update' parameter with INSERT DATA or DELETE DATA operations. The request body is form-encoded per the SPARQL 1.1 Protocol specification.
+      tags:
+      - Query
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SparqlRequestBody'
+            examples:
+              selectQuery:
+                summary: SELECT query
+                value:
+                  query: SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10
+              insertData:
+                summary: INSERT DATA update
+                value:
+                  update: INSERT DATA { <https://example.org/s> <https://example.org/p> <https://example.org/o> . }
+      responses:
+        '200':
+          description: SPARQL query or update executed successfully.
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SparqlSelectResponse'
+            application/n-quads:
+              schema:
+                type: string
+                description: N-Quads serialization for CONSTRUCT and DESCRIBE results.
+        '400':
+          description: Bad request - malformed SPARQL query or update.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlErrorResponse'
+              examples:
+                executeSparqlQuery400Example:
+                  summary: Default executeSparqlQuery 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
+        '408':
+          description: Query timed out before completing.
+        '500':
+          description: Internal server error during query execution.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: executeSparqlQueryGet
+      summary: Amazon Neptune Execute a SPARQL Query via HTTP GET
+      description: Submits a read-only SPARQL 1.1 query via URL query parameters. Only SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via GET. Update operations require POST.
+      tags:
+      - Query
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: The SPARQL query string (URL-encoded).
+        schema:
+          type: string
+        example: SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10
+      responses:
+        '200':
+          description: SPARQL query executed successfully.
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SparqlSelectResponse'
+        '400':
+          description: Bad request - malformed SPARQL query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    OpenCypherQueryRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The openCypher query string.
+    OpenCypherErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+    SparqlErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+          description: Detailed error message explaining the issue.
+    GremlinErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        code:
+          type: string
+          description: The error code.
+        detailedMessage:
+          type: string
+          description: A detailed description of the error.
+    OpenCypherQueryResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          description: The query result rows.
+          items:
+            type: object
+            description: A result row. Keys are the RETURN alias names. Values can be scalars, nodes, relationships, or paths.
+            additionalProperties:
+              description: Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.
+    SparqlRequestBody:
+      type: object
+      properties:
+        query:
+          type: string
+          description: A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.
+        update:
+          type: string
+          description: A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.
+        using-graph-uri:
+          type: string
+          description: Default graph URI for the query.
+        using-named-graph-uri:
+          type: string
+          description: Named graph URI for the query.
+    SparqlSelectResponse:
+      type: object
+      description: SPARQL 1.1 Query Results JSON Format as defined by W3C.
+      properties:
+        head:
+          type: object
+          properties:
+            vars:
+              type: array
+              description: The list of variable names in the result set.
+              items:
+                type: string
+            link:
+              type: array
+              items:
+                type: string
+        results:
+          type: object
+          properties:
+            bindings:
+              type: array
+              description: The result bindings for each solution.
+              items:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - uri
+                      - literal
+                      - bnode
+                    value:
+                      type: string
+                    datatype:
+                      type: string
+                    xml:lang:
+                      type: string
+        boolean:
+          type: boolean
+          description: The result for ASK queries.
+    GremlinQueryRequest:
+      type: object
+      required:
+      - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: The Gremlin traversal query string. Must be a valid Gremlin traversal starting with g. The bindings property is not supported by Neptune.
+          examples:
+          - g.V().count()
+          - g.V().has('name','John').out('knows')
+    GremlinQueryResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: The unique request identifier.
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: integer
+              description: The response status code (200 for success).
+            attributes:
+              type: object
+              description: Additional response attributes.
+        result:
+          type: object
+          properties:
+            data:
+              description: The query result data. The shape depends on the traversal's terminal step (e.g., count, valueMap, path).
+            meta:
+              type: object
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

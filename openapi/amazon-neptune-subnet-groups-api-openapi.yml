@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Subnet Groups API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Subnet Groups
+  description: Operations for managing DB subnet groups
+paths:
+  /?Action=CreateDBSubnetGroup:
+    post:
+      operationId: createDBSubnetGroup
+      summary: Amazon Neptune Create a New DB Subnet Group
+      description: Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two Availability Zones in the AWS Region.
+      tags:
+      - Subnet Groups
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBSubnetGroup
+      - name: DBSubnetGroupName
+        in: query
+        required: true
+        description: The name for the DB subnet group.
+        schema:
+          type: string
+      - name: DBSubnetGroupDescription
+        in: query
+        required: true
+        description: The description for the DB subnet group.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: DB subnet group created successfully.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DBSubnetGroup'
+              examples:
+                createDBSubnetGroup200Example:
+                  summary: Default createDBSubnetGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    DBSubnetGroupName: my-neptune-cluster
+                    DBSubnetGroupDescription: example-value
+                    VpcId: neptune-cluster-abc123
+                    SubnetGroupStatus: available
+                    Subnets:
+                    - SubnetIdentifier: neptune-cluster-abc123
+                      SubnetAvailabilityZone:
+                        Name: {}
+                      SubnetStatus: available
+                    DBSubnetGroupArn: arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1
+        '400':
+          description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=DescribeDBSubnetGroups:
+    get:
+      operationId: describeDBSubnetGroups
+      summary: Amazon Neptune Describe DB Subnet Groups
+      description: Returns a list of DB subnet group descriptions. If a specific subnet group name is supplied, the description for that group is returned.
+      tags:
+      - Subnet Groups
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBSubnetGroups
+      - name: DBSubnetGroupName
+        in: query
+        description: The name of a specific DB subnet group to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Successful response with subnet group details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DescribeDBSubnetGroupsResponse'
+              examples:
+                describeDBSubnetGroups200Example:
+                  summary: Default describeDBSubnetGroups 200 response
+                  x-microcks-default: true
+                  value:
+                    DBSubnetGroups:
+                    - {}
+                    Marker: example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DBSubnetGroup:
+      type: object
+      description: Contains the details of a Neptune DB subnet group.
+      properties:
+        DBSubnetGroupName:
+          type: string
+        DBSubnetGroupDescription:
+          type: string
+        VpcId:
+          type: string
+        SubnetGroupStatus:
+          type: string
+        Subnets:
+          type: array
+          items:
+            type: object
+            properties:
+              SubnetIdentifier:
+                type: string
+              SubnetAvailabilityZone:
+                type: object
+                properties:
+                  Name:
+                    type: string
+              SubnetStatus:
+                type: string
+        DBSubnetGroupArn:
+          type: string
+    DescribeDBSubnetGroupsResponse:
+      type: object
+      properties:
+        DBSubnetGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/DBSubnetGroup'
+        Marker:
+          type: string
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

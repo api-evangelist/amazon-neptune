@@ -1,0 +1,205 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Parameter Groups API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Parameter Groups
+  description: Operations for managing DB and cluster parameter groups
+paths:
+  /?Action=CreateDBParameterGroup:
+    post:
+      operationId: createDBParameterGroup
+      summary: Amazon Neptune Create a New DB Parameter Group
+      description: Creates a new DB parameter group. A DB parameter group is initially created with the default parameters for the database engine used.
+      tags:
+      - Parameter Groups
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBParameterGroup
+      - name: DBParameterGroupName
+        in: query
+        required: true
+        description: The name of the DB parameter group.
+        schema:
+          type: string
+      - name: DBParameterGroupFamily
+        in: query
+        required: true
+        description: The DB parameter group family name (e.g., neptune1, neptune1.2, neptune1.3).
+        schema:
+          type: string
+      - name: Description
+        in: query
+        required: true
+        description: The description for the DB parameter group.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: DB parameter group created successfully.
+        '400':
+          description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=CreateDBClusterParameterGroup:
+    post:
+      operationId: createDBClusterParameterGroup
+      summary: Amazon Neptune Create a New DB Cluster Parameter Group
+      description: Creates a new DB cluster parameter group. Parameters in a DB cluster parameter group apply to all of the instances in a DB cluster.
+      tags:
+      - Parameter Groups
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateDBClusterParameterGroup
+      - name: DBClusterParameterGroupName
+        in: query
+        required: true
+        description: The name of the DB cluster parameter group.
+        schema:
+          type: string
+      - name: DBParameterGroupFamily
+        in: query
+        required: true
+        description: The DB parameter group family name.
+        schema:
+          type: string
+      - name: Description
+        in: query
+        required: true
+        description: The description for the DB cluster parameter group.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: DB cluster parameter group created successfully.
+        '400':
+          description: Invalid request parameters.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=DescribeDBParameterGroups:
+    get:
+      operationId: describeDBParameterGroups
+      summary: Amazon Neptune Describe DB Parameter Groups
+      description: Returns a list of DB parameter group descriptions.
+      tags:
+      - Parameter Groups
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBParameterGroups
+      - name: DBParameterGroupName
+        in: query
+        description: The name of a specific DB parameter group to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Successful response with parameter group details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=DescribeDBClusterParameterGroups:
+    get:
+      operationId: describeDBClusterParameterGroups
+      summary: Amazon Neptune Describe DB Cluster Parameter Groups
+      description: Returns a list of DB cluster parameter group descriptions.
+      tags:
+      - Parameter Groups
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeDBClusterParameterGroups
+      - name: DBClusterParameterGroupName
+        in: query
+        description: The name of a specific cluster parameter group to describe.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Successful response with cluster parameter group details.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

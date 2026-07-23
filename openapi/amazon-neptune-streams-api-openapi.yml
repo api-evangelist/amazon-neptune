@@ -1,0 +1,267 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Streams API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Streams
+  description: Change data capture stream operations
+paths:
+  /propertygraph/stream:
+    get:
+      operationId: getPropertygraphStream
+      summary: Amazon Neptune Get Property Graph Change Stream Records
+      description: Gets a stream of change-log entries for property graph data. Each entry records a mutation (add, remove) made to the graph data.
+      tags:
+      - Streams
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of records to return (1-100000, default 10).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100000
+          default: 10
+      - name: iteratorType
+        in: query
+        description: The stream position to start reading from.
+        schema:
+          type: string
+          enum:
+          - AT_SEQUENCE_NUMBER
+          - AFTER_SEQUENCE_NUMBER
+          - TRIM_HORIZON
+          - LATEST
+      - name: commitNum
+        in: query
+        description: The commit number to start from.
+        schema:
+          type: integer
+      - name: opNum
+        in: query
+        description: The operation sequence number within the commit.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Stream records retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertygraphStreamOutput'
+              examples:
+                getPropertygraphStream200Example:
+                  summary: Default getPropertygraphStream 200 response
+                  x-microcks-default: true
+                  value:
+                    lastEventId:
+                      commitNum: 1
+                      opNum: 1
+                    lastTrxTimestampInMillis: 1
+                    format: PG_JSON
+                    records:
+                    - {}
+                    totalRecords: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sparql/stream:
+    get:
+      operationId: getSparqlStream
+      summary: Amazon Neptune Get SPARQL RDF Change Stream Records
+      description: Gets a stream of change-log entries for RDF data. Each entry records a mutation (add, remove) made to the RDF triples.
+      tags:
+      - Streams
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of records to return (1-100000, default 10).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100000
+          default: 10
+      - name: iteratorType
+        in: query
+        description: The stream position to start reading from.
+        schema:
+          type: string
+          enum:
+          - AT_SEQUENCE_NUMBER
+          - AFTER_SEQUENCE_NUMBER
+          - TRIM_HORIZON
+          - LATEST
+      - name: commitNum
+        in: query
+        description: The commit number to start from.
+        schema:
+          type: integer
+      - name: opNum
+        in: query
+        description: The operation sequence number within the commit.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Stream records retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SparqlStreamOutput'
+              examples:
+                getSparqlStream200Example:
+                  summary: Default getSparqlStream 200 response
+                  x-microcks-default: true
+                  value:
+                    lastEventId:
+                      commitNum: 1
+                      opNum: 1
+                    lastTrxTimestampInMillis: 1
+                    format: NQUADS
+                    records:
+                    - commitTimestampInMillis: 1
+                      eventId:
+                        commitNum: {}
+                        opNum: {}
+                      data:
+                        stmt: {}
+                      op: ADD
+                      isLastOp: true
+                    totalRecords: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SparqlStreamOutput:
+      type: object
+      properties:
+        lastEventId:
+          type: object
+          properties:
+            commitNum:
+              type: integer
+            opNum:
+              type: integer
+        lastTrxTimestampInMillis:
+          type: integer
+        format:
+          type: string
+          enum:
+          - NQUADS
+        records:
+          type: array
+          items:
+            type: object
+            properties:
+              commitTimestampInMillis:
+                type: integer
+              eventId:
+                type: object
+                properties:
+                  commitNum:
+                    type: integer
+                  opNum:
+                    type: integer
+              data:
+                type: object
+                properties:
+                  stmt:
+                    type: string
+                    description: The N-Quads statement.
+              op:
+                type: string
+                enum:
+                - ADD
+                - REMOVE
+              isLastOp:
+                type: boolean
+        totalRecords:
+          type: integer
+    PropertygraphStreamOutput:
+      type: object
+      properties:
+        lastEventId:
+          type: object
+          properties:
+            commitNum:
+              type: integer
+            opNum:
+              type: integer
+        lastTrxTimestampInMillis:
+          type: integer
+          description: Timestamp of the last transaction in milliseconds.
+        format:
+          type: string
+          enum:
+          - PG_JSON
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertygraphStreamRecord'
+        totalRecords:
+          type: integer
+    PropertygraphStreamRecord:
+      type: object
+      properties:
+        commitTimestampInMillis:
+          type: integer
+        eventId:
+          type: object
+          properties:
+            commitNum:
+              type: integer
+            opNum:
+              type: integer
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              description: The type of the element (v=vertex, vl=vertex label, vp=vertex property, e=edge, ep=edge property).
+            key:
+              type: string
+            value:
+              type: object
+              properties:
+                value:
+                  description: The property value.
+                dataType:
+                  type: string
+            from:
+              type: string
+              description: Source vertex ID (for edges only).
+            to:
+              type: string
+              description: Target vertex ID (for edges only).
+        op:
+          type: string
+          enum:
+          - ADD
+          - REMOVE
+        isLastOp:
+          type: boolean
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

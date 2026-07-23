@@ -1,0 +1,329 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Loader API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Loader
+  description: Bulk data loading operations
+paths:
+  /loader:
+    post:
+      operationId: startLoaderJob
+      summary: Amazon Neptune Start a Bulk Loader Job
+      description: Initiates a bulk data loading job from Amazon S3 into the Neptune database. Supports CSV for property graphs and multiple RDF formats.
+      tags:
+      - Loader
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartLoaderJobInput'
+      responses:
+        '200':
+          description: Loader job started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartLoaderJobOutput'
+              examples:
+                startLoaderJob200Example:
+                  summary: Default startLoaderJob 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      loadId: neptune-cluster-abc123
+        '400':
+          description: Bad request - invalid parameters.
+        '500':
+          description: Internal server error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listLoaderJobs
+      summary: Amazon Neptune List Bulk Loader Jobs
+      description: Returns a list of Neptune bulk loader job IDs. Neptune tracks the most recent 1,024 bulk load jobs.
+      tags:
+      - Loader
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of load IDs to return.
+        schema:
+          type: integer
+      - name: includeQueuedLoads
+        in: query
+        description: Whether to include queued loads in the response.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Loader job list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  payload:
+                    type: object
+                    properties:
+                      loadIds:
+                        type: array
+                        items:
+                          type: string
+              examples:
+                listLoaderJobs200Example:
+                  summary: Default listLoaderJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      loadIds:
+                      - example-value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /loader/{loadId}:
+    get:
+      operationId: getLoaderJobStatus
+      summary: Amazon Neptune Get the Status of a Bulk Loader Job
+      description: Returns the status of a specific bulk loader job including overall progress and any error details.
+      tags:
+      - Loader
+      parameters:
+      - name: loadId
+        in: path
+        required: true
+        description: The unique identifier of the load job.
+        schema:
+          type: string
+      - name: details
+        in: query
+        description: Whether to include detailed status information.
+        schema:
+          type: boolean
+      - name: errors
+        in: query
+        description: Whether to include error details.
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        description: Error page number to retrieve.
+        schema:
+          type: integer
+      - name: errorsPerPage
+        in: query
+        description: Number of errors per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Loader job status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoaderJobStatusOutput'
+              examples:
+                getLoaderJobStatus200Example:
+                  summary: Default getLoaderJobStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    status: available
+                    payload:
+                      feedCount:
+                      - {}
+                      overallStatus:
+                        fullUri: example-value
+                        runNumber: 1
+                        retryNumber: 1
+                        status: available
+                        totalTimeSpent: 1
+        '404':
+          description: Load job not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelLoaderJob
+      summary: Amazon Neptune Cancel a Bulk Loader Job
+      description: Cancels an in-progress bulk loader job by its load ID.
+      tags:
+      - Loader
+      parameters:
+      - name: loadId
+        in: path
+        required: true
+        description: The unique identifier of the load job to cancel.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Loader job cancelled successfully.
+        '404':
+          description: Load job not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    LoaderJobStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            feedCount:
+              type: array
+              items:
+                type: object
+            overallStatus:
+              type: object
+              properties:
+                fullUri:
+                  type: string
+                runNumber:
+                  type: integer
+                retryNumber:
+                  type: integer
+                status:
+                  type: string
+                totalTimeSpent:
+                  type: integer
+                startTime:
+                  type: integer
+                totalRecords:
+                  type: integer
+                totalDuplicates:
+                  type: integer
+                parsingErrors:
+                  type: integer
+                datatypeMismatchErrors:
+                  type: integer
+                insertErrors:
+                  type: integer
+    StartLoaderJobInput:
+      type: object
+      required:
+      - source
+      - format
+      - iamRoleArn
+      - region
+      properties:
+        source:
+          type: string
+          description: Amazon S3 URI identifying files or folders to load (s3://bucket/key).
+        format:
+          type: string
+          description: The data format of the files to load.
+          enum:
+          - csv
+          - opencypher
+          - ntriples
+          - nquads
+          - rdfxml
+          - turtle
+        iamRoleArn:
+          type: string
+          description: The ARN of the IAM role with S3 access.
+        region:
+          type: string
+          description: The AWS Region of the S3 bucket.
+        mode:
+          type: string
+          description: The load mode.
+          enum:
+          - NEW
+          - RESUME
+          - AUTO
+          default: AUTO
+        failOnError:
+          type: string
+          description: Whether to stop the load job on error.
+          enum:
+          - 'TRUE'
+          - 'FALSE'
+          default: 'TRUE'
+        parallelism:
+          type: string
+          description: The degree of parallelism for loading.
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+          - OVERSUBSCRIBE
+          default: HIGH
+        parserConfiguration:
+          type: object
+          description: Optional parser configuration settings.
+          properties:
+            baseUri:
+              type: string
+            namedGraphUri:
+              type: string
+            allowEmptyStrings:
+              type: boolean
+        updateSingleCardinalityProperties:
+          type: string
+          description: Whether to update existing single-cardinality properties.
+          enum:
+          - 'TRUE'
+          - 'FALSE'
+          default: 'FALSE'
+        queueRequest:
+          type: string
+          description: Whether to queue the request if a load is already running.
+          enum:
+          - 'TRUE'
+          - 'FALSE'
+          default: 'FALSE'
+        dependencies:
+          type: array
+          description: Load job IDs that must complete before this job runs.
+          items:
+            type: string
+        userProvidedEdgeIds:
+          type: string
+          description: For openCypher format, whether edge IDs are provided.
+          enum:
+          - 'TRUE'
+          - 'FALSE'
+    StartLoaderJobOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            loadId:
+              type: string
+              description: The unique identifier for the load job.
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

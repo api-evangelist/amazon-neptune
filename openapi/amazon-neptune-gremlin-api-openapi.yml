@@ -1,0 +1,301 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Gremlin API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Gremlin
+  description: Execute Gremlin graph traversal queries
+paths:
+  /gremlin:
+    post:
+      operationId: executeGremlinQuery
+      summary: Amazon Neptune Execute a Gremlin Query via the Data API
+      description: Executes a Gremlin query against the Neptune graph database using the Data API. The query is submitted as a JSON payload and results are returned synchronously.
+      tags:
+      - Gremlin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteGremlinQueryInput'
+      responses:
+        '200':
+          description: Query executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecuteGremlinQueryOutput'
+              examples:
+                executeGremlinQuery200Example:
+                  summary: Default executeGremlinQuery 200 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    status:
+                      message: example-value
+                      code: 1
+                    result:
+                      data: example-value
+        '400':
+          description: Bad request - malformed query or invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                executeGremlinQuery400Example:
+                  summary: Default executeGremlinQuery 400 response
+                  x-microcks-default: true
+                  value:
+                    requestId: neptune-cluster-abc123
+                    code: example-value
+                    detailedMessage: example-value
+        '408':
+          description: Query timed out.
+        '500':
+          description: Internal server error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gremlin/explain:
+    post:
+      operationId: executeGremlinExplainQuery
+      summary: Amazon Neptune Get the Execution Plan for a Gremlin Query
+      description: Executes a Gremlin explain query against the Neptune graph database. Returns the query execution plan without actually running the query against the data.
+      tags:
+      - Gremlin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteGremlinQueryInput'
+      responses:
+        '200':
+          description: Explain query executed successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The Gremlin query execution plan as text.
+        '400':
+          description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gremlin/profile:
+    post:
+      operationId: executeGremlinProfileQuery
+      summary: Amazon Neptune Profile a Gremlin Query Execution
+      description: Executes a Gremlin profile query against the Neptune graph database. Returns the query execution plan along with actual runtime statistics including execution time and intermediate result counts.
+      tags:
+      - Gremlin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteGremlinProfileInput'
+      responses:
+        '200':
+          description: Profile query executed successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The Gremlin query profile with runtime statistics.
+        '400':
+          description: Bad request - malformed query.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gremlin/status:
+    get:
+      operationId: getGremlinQueryStatus
+      summary: Amazon Neptune Get the Status of Gremlin Queries
+      description: Gets the status of running and waiting Gremlin queries. Returns a list of active queries with their query IDs and statuses.
+      tags:
+      - Gremlin
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatusOutput'
+              examples:
+                getGremlinQueryStatus200Example:
+                  summary: Default getGremlinQueryStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acceptedQueryCount: 1
+                    runningQueryCount: 1
+                    queries:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gremlin/status/{queryId}:
+    get:
+      operationId: getGremlinQueryStatusById
+      summary: Amazon Neptune Get the Status of a Specific Gremlin Query
+      description: Gets the status of a specific Gremlin query by its query ID.
+      tags:
+      - Gremlin
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GremlinQueryStatus'
+              examples:
+                getGremlinQueryStatusById200Example:
+                  summary: Default getGremlinQueryStatusById 200 response
+                  x-microcks-default: true
+                  value:
+                    queryId: neptune-cluster-abc123
+                    queryString: example-value
+                    queryEvalStats:
+                      waited: 1
+                      elapsed: 1
+                      cancelled: true
+        '404':
+          description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: cancelGremlinQuery
+      summary: Amazon Neptune Cancel a Running Gremlin Query
+      description: Cancels a running Gremlin query by its query ID.
+      tags:
+      - Gremlin
+      parameters:
+      - name: queryId
+        in: path
+        required: true
+        description: The unique identifier of the Gremlin query to cancel.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Query cancelled successfully.
+        '404':
+          description: Query not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    GremlinQueryStatusOutput:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/GremlinQueryStatus'
+    ErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+    ExecuteGremlinQueryOutput:
+      type: object
+      properties:
+        requestId:
+          type: string
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: integer
+        result:
+          type: object
+          properties:
+            data:
+              description: The query result data.
+    ExecuteGremlinProfileInput:
+      type: object
+      required:
+      - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: The Gremlin traversal query string to profile.
+        results:
+          type: boolean
+          description: Whether to include results in the profile output.
+        chop:
+          type: integer
+          description: Maximum length of result string per entry.
+        serializer:
+          type: string
+          description: The serialization format for results.
+        indexOps:
+          type: boolean
+          description: Whether to include index operation details.
+    GremlinQueryStatus:
+      type: object
+      properties:
+        queryId:
+          type: string
+        queryString:
+          type: string
+        queryEvalStats:
+          type: object
+          properties:
+            waited:
+              type: integer
+            elapsed:
+              type: integer
+            cancelled:
+              type: boolean
+    ExecuteGremlinQueryInput:
+      type: object
+      required:
+      - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: The Gremlin traversal query string to execute.
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication

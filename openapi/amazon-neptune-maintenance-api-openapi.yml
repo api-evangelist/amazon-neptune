@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Maintenance API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
+  version: '2023-11-29'
+  contact:
+    name: Amazon Web Services
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://neptune-graph.{region}.amazonaws.com
+  description: Neptune Analytics control plane regional endpoint
+  variables:
+    region:
+      default: us-east-1
+      description: AWS region
+security:
+- aws_sigv4: []
+tags:
+- name: Maintenance
+  description: Operations for managing pending maintenance actions
+paths:
+  /?Action=DescribePendingMaintenanceActions:
+    get:
+      operationId: describePendingMaintenanceActions
+      summary: Amazon Neptune Describe Pending Maintenance Actions
+      description: Returns a list of resources with pending maintenance actions.
+      tags:
+      - Maintenance
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribePendingMaintenanceActions
+      - name: ResourceIdentifier
+        in: query
+        description: The ARN of a resource to filter maintenance actions.
+        schema:
+          type: string
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+      - name: Marker
+        in: query
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Successful response with pending maintenance actions.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /?Action=ApplyPendingMaintenanceAction:
+    post:
+      operationId: applyPendingMaintenanceAction
+      summary: Amazon Neptune Apply a Pending Maintenance Action
+      description: Applies a pending maintenance action to a resource.
+      tags:
+      - Maintenance
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ApplyPendingMaintenanceAction
+      - name: ResourceIdentifier
+        in: query
+        required: true
+        description: The ARN of the resource to apply the action to.
+        schema:
+          type: string
+      - name: ApplyAction
+        in: query
+        required: true
+        description: The pending maintenance action to apply.
+        schema:
+          type: string
+      - name: OptInType
+        in: query
+        required: true
+        description: The type of opt-in request (immediate, next-maintenance, undo-opt-in).
+        schema:
+          type: string
+          enum:
+          - immediate
+          - next-maintenance
+          - undo-opt-in
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Maintenance action applied successfully.
+        '404':
+          description: The specified resource was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication
