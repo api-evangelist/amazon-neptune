@@ -28,7 +28,7 @@ tags:
   - SPARQL
 created: '2024'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - aid: amazon-neptune:amazon-neptune-action-addtagstoresource-api
   name: Amazon Neptune ?Action=AddTagsToResource API
