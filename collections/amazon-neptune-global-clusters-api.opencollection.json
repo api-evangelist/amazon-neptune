@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Global Clusters API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Global Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Neptune Global Database Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=CreateGlobalCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "GlobalClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The cluster identifier of the new global cluster."
+              },
+              {
+                "name": "SourceDBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of an existing Neptune cluster to use as the primary cluster."
+              },
+              {
+                "name": "DeletionProtection",
+                "value": "",
+                "type": "query",
+                "description": "Whether the global cluster has deletion protection enabled."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a Neptune global database spread across multiple AWS Regions. The global database contains a single primary cluster with read-write capability."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune Global Database Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribeGlobalClusters",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "GlobalClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the global cluster to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about Neptune global database clusters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

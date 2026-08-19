@@ -1,0 +1,766 @@
+{
+  "item": [
+    {
+      "id": "40d273e4-0e01-4b60-80c5-cd1e0a52a51c",
+      "name": "Loader",
+      "description": {
+        "content": "Bulk data loading operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "096eb891-9b10-4b2a-a9b9-b7f8e9b2b753",
+          "name": "Amazon Neptune Start a Bulk Loader Job",
+          "request": {
+            "name": "Amazon Neptune Start a Bulk Loader Job",
+            "description": {
+              "content": "Initiates a bulk data loading job from Amazon S3 into the Neptune database. Supports CSV for property graphs and multiple RDF formats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"<string>\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b478c78f-d3a0-42ce-a8df-78b055868aa0",
+              "name": "Loader job started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"<string>\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"payload\": {\n    \"loadId\": \"neptune-cluster-abc123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bbbc677-b5bd-4cb7-b925-780779f07857",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"<string>\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2be1b773-4e6d-4faf-9ef4-afae987e438d",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"format\": \"<string>\",\n  \"iamRoleArn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"mode\": \"AUTO\",\n  \"failOnError\": \"TRUE\",\n  \"parallelism\": \"HIGH\",\n  \"parserConfiguration\": {\n    \"baseUri\": \"<string>\",\n    \"namedGraphUri\": \"<string>\",\n    \"allowEmptyStrings\": \"<boolean>\"\n  },\n  \"updateSingleCardinalityProperties\": \"FALSE\",\n  \"queueRequest\": \"FALSE\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userProvidedEdgeIds\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c089bddb-2904-46f9-85e0-458fbe2a58ff",
+          "name": "Amazon Neptune List Bulk Loader Jobs",
+          "request": {
+            "name": "Amazon Neptune List Bulk Loader Jobs",
+            "description": {
+              "content": "Returns a list of Neptune bulk loader job IDs. Neptune tracks the most recent 1,024 bulk load jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of load IDs to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeQueuedLoads",
+                  "value": "<boolean>",
+                  "description": "Whether to include queued loads in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14b325b8-db9e-4f7b-9596-e501d4831e3c",
+              "name": "Loader job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeQueuedLoads",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"payload\": {\n    \"loadIds\": [\n      \"example-value\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4eb8814b-fa61-47b0-8b3c-f0aac44cb139",
+          "name": "Amazon Neptune Get the Status of a Bulk Loader Job",
+          "request": {
+            "name": "Amazon Neptune Get the Status of a Bulk Loader Job",
+            "description": {
+              "content": "Returns the status of a specific bulk loader job including overall progress and any error details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader",
+                ":loadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "details",
+                  "value": "<boolean>",
+                  "description": "Whether to include detailed status information."
+                },
+                {
+                  "disabled": false,
+                  "key": "errors",
+                  "value": "<boolean>",
+                  "description": "Whether to include error details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Error page number to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "errorsPerPage",
+                  "value": "<integer>",
+                  "description": "Number of errors per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "loadId",
+                  "description": "(Required) The unique identifier of the load job."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2150cb32-77fa-4157-87c8-a6fff23d0149",
+              "name": "Loader job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "errorsPerPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"payload\": {\n    \"feedCount\": [\n      {}\n    ],\n    \"overallStatus\": {\n      \"fullUri\": \"example-value\",\n      \"runNumber\": 1,\n      \"retryNumber\": 1,\n      \"status\": \"available\",\n      \"totalTimeSpent\": 1\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b9e355f-f7eb-4686-814e-8aefd367f82f",
+              "name": "Load job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "errors",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "errorsPerPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "008f91be-fd6d-4db3-a713-428c01f84470",
+          "name": "Amazon Neptune Cancel a Bulk Loader Job",
+          "request": {
+            "name": "Amazon Neptune Cancel a Bulk Loader Job",
+            "description": {
+              "content": "Cancels an in-progress bulk loader job by its load ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "loader",
+                ":loadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "loadId",
+                  "description": "(Required) The unique identifier of the load job to cancel."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22b2e1c1-087d-48ce-b781-b8f1b2981e77",
+              "name": "Loader job cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "abf9ee9d-1b3b-46fa-84fe-d6d4710d9906",
+              "name": "Load job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "loader",
+                    ":loadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "loadId",
+                      "description": "(Required) The unique identifier of the load job to cancel."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7c397114-3e84-438f-9c89-e40bcd7dd996",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Loader API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

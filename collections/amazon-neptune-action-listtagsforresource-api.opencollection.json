@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource ?Action=ListTagsForResource API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "?Action=ListTagsForResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Tags for a Neptune Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=ListTagsForResource",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ResourceName",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the resource to list tags for."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists all tags on an Amazon Neptune resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

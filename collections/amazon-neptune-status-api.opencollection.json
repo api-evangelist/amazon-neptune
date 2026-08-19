@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Status API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get Neptune Engine Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/status"
+          },
+          "docs": "Returns the status of the Neptune DB instance including engine version, cluster role, and instance health information."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Property Graph Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/propertygraph/statistics"
+          },
+          "docs": "Returns statistics for the property graph data stored in the Neptune database, including node and edge counts and label distributions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Manage Property Graph Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/propertygraph/statistics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or deletes statistics generation for the property graph data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get SPARQL RDF Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql/statistics"
+          },
+          "docs": "Returns statistics for the RDF data stored in the Neptune database, including triple counts and predicate distributions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Manage SPARQL RDF Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql/statistics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or deletes statistics generation for the RDF data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of All Running Gremlin Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/status"
+          },
+          "docs": "Returns the status of all running and waiting Gremlin queries, including query IDs, query strings, and execution statistics."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Gremlin query."
+              }
+            ]
+          },
+          "docs": "Returns the status of a specific Gremlin query identified by its query ID, including the query string and execution statistics."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Gremlin query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running Gremlin query by its query ID. The query must be currently running or waiting in the queue."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of All Running OpenCypher Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/openCypher/status"
+          },
+          "docs": "Returns the status of all running and waiting openCypher queries, including query IDs and execution statistics."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/openCypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query."
+              }
+            ]
+          },
+          "docs": "Returns the status of a specific openCypher query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/openCypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running openCypher query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of All Running SPARQL Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql/status"
+          },
+          "docs": "Returns the status of all running and waiting SPARQL queries, including query IDs and execution statistics."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific SPARQL Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SPARQL query."
+              }
+            ]
+          },
+          "docs": "Returns the status of a specific SPARQL query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running SPARQL Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the SPARQL query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running SPARQL query by its query ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

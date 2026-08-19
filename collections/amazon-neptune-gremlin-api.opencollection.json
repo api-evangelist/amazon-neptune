@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Gremlin API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gremlin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a Gremlin Query via the Data API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Gremlin query against the Neptune graph database using the Data API. The query is submitted as a JSON payload and results are returned synchronously."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Execution Plan for a Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/explain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Gremlin explain query against the Neptune graph database. Returns the query execution plan without actually running the query against the data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Profile a Gremlin Query Execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/profile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Gremlin profile query against the Neptune graph database. Returns the query execution plan along with actual runtime statistics including execution time and intermediate result counts."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of Gremlin Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/status"
+          },
+          "docs": "Gets the status of running and waiting Gremlin queries. Returns a list of active queries with their query IDs and statuses."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Gremlin query."
+              }
+            ]
+          },
+          "docs": "Gets the status of a specific Gremlin query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running Gremlin Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Gremlin query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running Gremlin query by its query ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

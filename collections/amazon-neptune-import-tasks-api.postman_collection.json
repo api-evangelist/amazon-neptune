@@ -1,0 +1,597 @@
+{
+  "item": [
+    {
+      "id": "10b1143c-a948-4c40-8015-e5b5678176b4",
+      "name": "Import Tasks",
+      "description": {
+        "content": "Operations for importing data into graphs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1920585a-a76a-4f0f-8a21-1505eb6ce5f9",
+          "name": "Amazon Neptune Create a Graph Using an Import Task",
+          "request": {
+            "name": "Amazon Neptune Create a Graph Using an Import Task",
+            "description": {
+              "content": "Creates a new Neptune Analytics graph and populates it with data from an Amazon S3 source in a single operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "importtasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"graphName\": \"<string>\",\n  \"source\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"format\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"importOptions\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "672e140b-d056-4dcf-a718-9b4bd478bd96",
+              "name": "Import task created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importtasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"source\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"format\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\",\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": \"<integer>\",\n  \"importOptions\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"graphId\": \"neptune-cluster-abc123\",\n  \"taskId\": \"neptune-cluster-abc123\",\n  \"source\": \"example-value\",\n  \"format\": \"example-value\",\n  \"roleArn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n  \"status\": \"INITIALIZING\",\n  \"importOptions\": {},\n  \"importTaskDetails\": {\n    \"status\": \"available\",\n    \"startTime\": \"2025-03-15T14:30:00Z\",\n    \"timeElapsedSeconds\": 1,\n    \"progressPercentage\": 1,\n    \"errorCount\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef41d603-6271-4143-a0ae-710afe0e2945",
+          "name": "Amazon Neptune List Import Tasks",
+          "request": {
+            "name": "Amazon Neptune List Import Tasks",
+            "description": {
+              "content": "Returns a list of import tasks in the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "importtasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "721a2472-79ea-4518-a9d2-f2f8388d2fc8",
+              "name": "Import task list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importtasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tasks\": [\n    {\n      \"graphId\": \"neptune-cluster-abc123\",\n      \"taskId\": \"neptune-cluster-abc123\",\n      \"source\": \"example-value\",\n      \"format\": \"example-value\",\n      \"roleArn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\"\n    }\n  ],\n  \"nextToken\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bb15fcb-bf46-4436-9bf0-6d77148e2de5",
+          "name": "Amazon Neptune Get Import Task Details",
+          "request": {
+            "name": "Amazon Neptune Get Import Task Details",
+            "description": {
+              "content": "Returns detailed information about a specific import task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "importtasks",
+                ":taskIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskIdentifier",
+                  "description": "(Required) The unique identifier of the import task."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0bbff280-7873-4b4c-b5f8-b800755e30ff",
+              "name": "Import task details retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importtasks",
+                    ":taskIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskIdentifier",
+                      "description": "(Required) The unique identifier of the import task."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"graphId\": \"neptune-cluster-abc123\",\n  \"taskId\": \"neptune-cluster-abc123\",\n  \"source\": \"example-value\",\n  \"format\": \"example-value\",\n  \"roleArn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n  \"status\": \"INITIALIZING\",\n  \"importOptions\": {},\n  \"importTaskDetails\": {\n    \"status\": \"available\",\n    \"startTime\": \"2025-03-15T14:30:00Z\",\n    \"timeElapsedSeconds\": 1,\n    \"progressPercentage\": 1,\n    \"errorCount\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7d1f8bd-eac7-4498-8dc2-7c53a21868aa",
+              "name": "Import task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importtasks",
+                    ":taskIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskIdentifier",
+                      "description": "(Required) The unique identifier of the import task."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1068b643-95fe-4313-b188-9b28c37146b2",
+          "name": "Amazon Neptune Cancel an Import Task",
+          "request": {
+            "name": "Amazon Neptune Cancel an Import Task",
+            "description": {
+              "content": "Cancels a running import task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "importtasks",
+                ":taskIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskIdentifier",
+                  "description": "(Required) The unique identifier of the import task to cancel."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "499b8d08-6664-4193-9739-5ebc0808e5f0",
+              "name": "Import task cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importtasks",
+                    ":taskIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskIdentifier",
+                      "description": "(Required) The unique identifier of the import task to cancel."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2077c147-def7-44e3-a541-a9f9796b8ac6",
+              "name": "Import task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importtasks",
+                    ":taskIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskIdentifier",
+                      "description": "(Required) The unique identifier of the import task to cancel."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "57bf276b-8b05-4e1a-99cf-1eb2db034008",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Import Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

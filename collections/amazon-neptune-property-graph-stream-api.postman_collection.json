@@ -1,0 +1,478 @@
+{
+  "item": [
+    {
+      "id": "1f75b846-e848-4d62-9a0b-b301959b626a",
+      "name": "Property Graph Stream",
+      "description": {
+        "content": "Change data capture for property graph (Gremlin/openCypher) data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87ea2feb-29ae-4d46-9d96-92c23df567bd",
+          "name": "Amazon Neptune Get Property Graph Change Stream Records",
+          "request": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records",
+            "description": {
+              "content": "Gets a stream of change-log entries for property graph (Gremlin/openCypher) data. Each entry records a mutation (ADD or REMOVE) made to vertices, edges, or their properties. The response format is PG_JSON. This is the recommended endpoint for property graph streams, replacing the deprecated /gremlin/stream endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "propertygraph",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return (1-100,000). Default is 10. The 10 MB response size limit takes precedence over this value."
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "AT_SEQUENCE_NUMBER",
+                  "description": "Determines the starting point for reading the stream."
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>",
+                  "description": "The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER."
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "1",
+                  "description": "The operation sequence number within the specified commit. Default is 1."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to 'gzip' to receive compressed responses.",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff89debc-835d-4612-8e39-1d5dce09a88c",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "propertygraph",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {},\n  \"lastTrxTimestamp\": 1,\n  \"format\": \"PG_JSON\",\n  \"records\": [\n    {}\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98fc5144-5820-4ad3-83db-54254183ee24",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "propertygraph",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a851fc1-e603-42f2-86d8-0f82af04d1e3",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "propertygraph",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c94eddb-3abe-46de-ab87-b83567e6c147",
+          "name": "Amazon Neptune Get Property Graph Change Stream Records (alias)",
+          "request": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records (alias)",
+            "description": {
+              "content": "Alias for /propertygraph/stream. Gets a stream of change-log entries for property graph data. Supports the same parameters and returns the same response format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pg",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "1"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad63fb48-73e8-4131-9280-4d0d6569812c",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pg",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {},\n  \"lastTrxTimestamp\": 1,\n  \"format\": \"PG_JSON\",\n  \"records\": [\n    {}\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b9487cf-e744-4d99-9692-474081a213b9",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Property Graph Stream API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

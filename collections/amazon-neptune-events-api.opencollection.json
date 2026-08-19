@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Events API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Neptune Event Notification Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=CreateEventSubscription",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "SubscriptionName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the subscription."
+              },
+              {
+                "name": "SnsTopicArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the SNS topic to send notifications to."
+              },
+              {
+                "name": "SourceType",
+                "value": "",
+                "type": "query",
+                "description": "The type of source that triggers notifications (db-instance, db-cluster, db-parameter-group, db-cluster-snapshot)."
+              },
+              {
+                "name": "Enabled",
+                "value": "",
+                "type": "query",
+                "description": "Whether the subscription is enabled."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates an event notification subscription. This action requires an Amazon SNS topic ARN. Notifications are sent to the SNS topic when specified events occur."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribeEvents",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "SourceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the event source to filter events."
+              },
+              {
+                "name": "SourceType",
+                "value": "",
+                "type": "query",
+                "description": "The event source type to filter events."
+              },
+              {
+                "name": "Duration",
+                "value": "",
+                "type": "query",
+                "description": "The number of minutes to retrieve events for."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns events related to DB instances, DB clusters, DB parameter groups, and DB cluster snapshots for the past 14 days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

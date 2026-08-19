@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Loader API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Loader",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Bulk Loader Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/loader",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of load IDs to return."
+              },
+              {
+                "name": "includeQueuedLoads",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include queued loads in the response."
+              }
+            ]
+          },
+          "docs": "Returns a list of Neptune bulk loader job IDs. Neptune tracks the most recent 1,024 bulk load jobs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Start a Bulk Loader Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/loader",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a bulk data loading job from Amazon S3 into the Neptune database. Supports CSV for property graphs and multiple RDF formats."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Bulk Loader Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/loader/:loadId",
+            "params": [
+              {
+                "name": "loadId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the load job."
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include detailed status information."
+              },
+              {
+                "name": "errors",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include error details."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Error page number to retrieve."
+              },
+              {
+                "name": "errorsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of errors per page."
+              }
+            ]
+          },
+          "docs": "Returns the status of a specific bulk loader job including overall progress and any error details."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Bulk Loader Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/loader/:loadId",
+            "params": [
+              {
+                "name": "loadId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the load job to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels an in-progress bulk loader job by its load ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

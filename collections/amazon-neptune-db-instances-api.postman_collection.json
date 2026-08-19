@@ -1,0 +1,1475 @@
+{
+  "item": [
+    {
+      "id": "693e0d0d-2585-4935-a7b3-2de0657a98f8",
+      "name": "DB Instances",
+      "description": {
+        "content": "Operations for managing Neptune DB instances",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5135fd54-ab4f-4772-810f-9318b8e8d6cd",
+          "name": "Amazon Neptune Create a New Neptune DB Instance",
+          "request": {
+            "name": "Amazon Neptune Create a New Neptune DB Instance",
+            "description": {
+              "content": "Creates a new DB instance in a Neptune DB cluster. The DB instance inherits the cluster's storage and high availability configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "CreateDBInstance"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "DBInstanceIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The DB instance identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "DBInstanceClass",
+                  "value": "<string>",
+                  "description": "(Required) The compute and memory capacity of the instance."
+                },
+                {
+                  "disabled": false,
+                  "key": "Engine",
+                  "value": "neptune",
+                  "description": "(Required) The database engine to use (neptune)."
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The identifier of the DB cluster to add the instance to."
+                },
+                {
+                  "disabled": false,
+                  "key": "AvailabilityZone",
+                  "value": "<string>",
+                  "description": "The Availability Zone for the instance."
+                },
+                {
+                  "disabled": false,
+                  "key": "PreferredMaintenanceWindow",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "AutoMinorVersionUpgrade",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PromotionTier",
+                  "value": "<integer>",
+                  "description": "Failover priority (0-15)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f17eccf9-f020-4bed-b8c4-752d4b65cfc7",
+              "name": "DB instance created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB instance identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The compute and memory capacity of the instance.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The database engine to use (neptune).",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "neptune"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The identifier of the DB cluster to add the instance to.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Availability Zone for the instance.",
+                        "type": "text/plain"
+                      },
+                      "key": "AvailabilityZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AutoMinorVersionUpgrade",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Failover priority (0-15).",
+                        "type": "text/plain"
+                      },
+                      "key": "PromotionTier",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "40dcd695-7080-4182-b2aa-264c4fbde68c",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB instance identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The compute and memory capacity of the instance.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The database engine to use (neptune).",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "neptune"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The identifier of the DB cluster to add the instance to.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Availability Zone for the instance.",
+                        "type": "text/plain"
+                      },
+                      "key": "AvailabilityZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AutoMinorVersionUpgrade",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Failover priority (0-15).",
+                        "type": "text/plain"
+                      },
+                      "key": "PromotionTier",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dad318ca-b94b-45fa-8281-9aec7480da91",
+              "name": "A DB instance with the specified identifier already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB instance identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The compute and memory capacity of the instance.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The database engine to use (neptune).",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "neptune"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The identifier of the DB cluster to add the instance to.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Availability Zone for the instance.",
+                        "type": "text/plain"
+                      },
+                      "key": "AvailabilityZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AutoMinorVersionUpgrade",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Failover priority (0-15).",
+                        "type": "text/plain"
+                      },
+                      "key": "PromotionTier",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79de408d-7bbf-40d5-bde1-3536ca686222",
+          "name": "Amazon Neptune Delete a Neptune DB Instance",
+          "request": {
+            "name": "Amazon Neptune Delete a Neptune DB Instance",
+            "description": {
+              "content": "Deletes a previously provisioned DB instance. When you delete an instance, all automated backups for that instance are deleted and cannot be recovered.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DeleteDBInstance"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBInstanceIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The DB instance identifier for the instance to be deleted."
+                },
+                {
+                  "disabled": false,
+                  "key": "SkipFinalSnapshot",
+                  "value": "<boolean>",
+                  "description": "Whether to skip creation of a final snapshot."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3e7438a-32a1-4547-9425-6f30950f6020",
+              "name": "DB instance deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SkipFinalSnapshot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "137e8941-1839-4dab-a78c-370633471f54",
+              "name": "The specified DB instance was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SkipFinalSnapshot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b93f4781-8af0-4634-a455-eef07a17a118",
+          "name": "Amazon Neptune Describe Neptune DB Instances",
+          "request": {
+            "name": "Amazon Neptune Describe Neptune DB Instances",
+            "description": {
+              "content": "Returns information about provisioned Neptune DB instances. If a specific instance identifier is supplied, details for that instance are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DescribeDBInstances"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBInstanceIdentifier",
+                  "value": "<string>",
+                  "description": "The identifier of the DB instance to describe."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "Marker",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous request."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2589ed9-c3d5-495e-9b2d-317c368f9c03",
+              "name": "Successful response with DB instance details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "aaa42c4c-6709-4f8c-87ce-bc1b3800923e",
+              "name": "The specified DB instance was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0606d641-9e0d-4758-88e4-1c372d66b1ef",
+          "name": "Amazon Neptune Modify a Neptune DB Instance",
+          "request": {
+            "name": "Amazon Neptune Modify a Neptune DB Instance",
+            "description": {
+              "content": "Modifies settings for a DB instance. You can change one or more database configuration parameters by specifying them and their new values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ModifyDBInstance"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "DBInstanceIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The DB instance identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "DBInstanceClass",
+                  "value": "<string>",
+                  "description": "The new compute and memory capacity."
+                },
+                {
+                  "disabled": false,
+                  "key": "PreferredMaintenanceWindow",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "AutoMinorVersionUpgrade",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "NewDBInstanceIdentifier",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PromotionTier",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ApplyImmediately",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6354e0af-799c-4de5-aab6-4ac3df16ae30",
+              "name": "DB instance modified successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB instance identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The new compute and memory capacity.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AutoMinorVersionUpgrade",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "NewDBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PromotionTier",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ApplyImmediately",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "8dc6271b-02a6-4bbe-916a-432b68230e52",
+              "name": "The specified DB instance was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB instance identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The new compute and memory capacity.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBInstanceClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "AutoMinorVersionUpgrade",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "NewDBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PromotionTier",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ApplyImmediately",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02ccb49d-3a40-4ba0-9ba0-9ef847e2e6d1",
+          "name": "Amazon Neptune Reboot a Neptune DB Instance",
+          "request": {
+            "name": "Amazon Neptune Reboot a Neptune DB Instance",
+            "description": {
+              "content": "Reboots a DB instance. When you reboot an instance, the instance is restarted. Rebooting results in a momentary outage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "RebootDBInstance"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBInstanceIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The identifier of the DB instance to reboot."
+                },
+                {
+                  "disabled": false,
+                  "key": "ForceFailover",
+                  "value": "<boolean>",
+                  "description": "Whether to force a failover during the reboot."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba38849c-e53b-483c-88c4-3fc2f8f2ae61",
+              "name": "DB instance reboot initiated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ForceFailover",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "58b41f02-8b16-4a90-a965-51269c310790",
+              "name": "The specified DB instance was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ForceFailover",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c04dd8d3-e0d2-48f7-9428-c35a58d349af",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource DB Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Streams API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/propertygraph/stream",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (1-100000, default 10)."
+              },
+              {
+                "name": "iteratorType",
+                "value": "",
+                "type": "query",
+                "description": "The stream position to start reading from."
+              },
+              {
+                "name": "commitNum",
+                "value": "",
+                "type": "query",
+                "description": "The commit number to start from."
+              },
+              {
+                "name": "opNum",
+                "value": "",
+                "type": "query",
+                "description": "The operation sequence number within the commit."
+              }
+            ]
+          },
+          "docs": "Gets a stream of change-log entries for property graph data. Each entry records a mutation (add, remove) made to the graph data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql/stream",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return (1-100000, default 10)."
+              },
+              {
+                "name": "iteratorType",
+                "value": "",
+                "type": "query",
+                "description": "The stream position to start reading from."
+              },
+              {
+                "name": "commitNum",
+                "value": "",
+                "type": "query",
+                "description": "The commit number to start from."
+              },
+              {
+                "name": "opNum",
+                "value": "",
+                "type": "query",
+                "description": "The operation sequence number within the commit."
+              }
+            ]
+          },
+          "docs": "Gets a stream of change-log entries for RDF data. Each entry records a mutation (add, remove) made to the RDF triples."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

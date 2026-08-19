@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "df93aba4-a0f3-4476-81df-4790328252fc",
+      "name": "SPARQL",
+      "description": {
+        "content": "Execute SPARQL queries against RDF data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37c8900f-5b26-4beb-b7a7-042305d8930d",
+          "name": "Amazon Neptune Execute a SPARQL Query via the Data API",
+          "request": {
+            "name": "Amazon Neptune Execute a SPARQL Query via the Data API",
+            "description": {
+              "content": "Executes a SPARQL query against the Neptune RDF graph database using the Data API. Supports SELECT, ASK, CONSTRUCT, and DESCRIBE queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/sparql-results+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE)."
+                },
+                {
+                  "disabled": false,
+                  "key": "update",
+                  "value": "<string>",
+                  "description": "The SPARQL update string (for INSERT, DELETE operations)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a87c522e-5fb9-4e73-ac38-49bf912b21dd",
+              "name": "Query executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/sparql-results+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SPARQL update string (for INSERT, DELETE operations).",
+                        "type": "text/plain"
+                      },
+                      "key": "update",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/sparql-results+json"
+                }
+              ],
+              "body": "{\n  \"head\": {\n    \"vars\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"results\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1b44f1d-991d-4a8f-9a3f-cce4368b3939",
+              "name": "Bad request - malformed query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).",
+                        "type": "text/plain"
+                      },
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The SPARQL update string (for INSERT, DELETE operations).",
+                        "type": "text/plain"
+                      },
+                      "key": "update",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "673f990f-b445-46da-992a-7c093b29fd53",
+          "name": "Amazon Neptune Get the Status of SPARQL Queries",
+          "request": {
+            "name": "Amazon Neptune Get the Status of SPARQL Queries",
+            "description": {
+              "content": "Gets the status of running and waiting SPARQL queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "945a69c9-c604-4e22-b4ed-d522b4caf209",
+              "name": "Query status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"acceptedQueryCount\": 1,\n  \"runningQueryCount\": 1,\n  \"queries\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f360ea30-55de-4925-9ee1-f99180360998",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource SPARQL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

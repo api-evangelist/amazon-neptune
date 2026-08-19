@@ -1,0 +1,346 @@
+{
+  "item": [
+    {
+      "id": "7371b44e-8dd4-47d3-a419-7a12a41b5fe6",
+      "name": "SPARQL Stream",
+      "description": {
+        "content": "Change data capture for RDF (SPARQL) data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "336f28f4-9ad7-48d4-ad0a-29f2f719d9e7",
+          "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+          "request": {
+            "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+            "description": {
+              "content": "Gets a stream of change-log entries for RDF (SPARQL) data. Each entry records a mutation (ADD or REMOVE) of an RDF triple or quad. The response format is NQUADS, with each change represented as an N-Quads statement string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return (1-100,000). Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "AT_SEQUENCE_NUMBER",
+                  "description": "Determines the starting point for reading the stream."
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>",
+                  "description": "The commit number to start reading from. Required when iteratorType is AT_SEQUENCE_NUMBER or AFTER_SEQUENCE_NUMBER."
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "1",
+                  "description": "The operation sequence number within the specified commit."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to 'gzip' to receive compressed responses.",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8537b8f-807f-48f6-9992-2ed03610130b",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {},\n  \"lastTrxTimestamp\": 1,\n  \"format\": \"NQUADS\",\n  \"records\": [\n    {}\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aac99a3-0c99-4dc9-bd2c-a947aa487c70",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "499fbd98-56e3-4a4f-b802-819864c660b8",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "AT_SEQUENCE_NUMBER"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to 'gzip' to receive compressed responses.",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "326b0267-0d82-4489-9553-55cdb37756ea",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource SPARQL Stream API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

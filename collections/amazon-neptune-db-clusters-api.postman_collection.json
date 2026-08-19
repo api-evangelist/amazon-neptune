@@ -1,0 +1,2572 @@
+{
+  "item": [
+    {
+      "id": "f214010e-a3bb-4274-9a7e-3fb69387e2f4",
+      "name": "DB Clusters",
+      "description": {
+        "content": "Operations for managing Neptune DB clusters",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69a81465-8b3b-4139-b9a3-4641f3536388",
+          "name": "Amazon Neptune Describe Neptune DB Clusters",
+          "request": {
+            "name": "Amazon Neptune Describe Neptune DB Clusters",
+            "description": {
+              "content": "Returns information about provisioned Neptune DB clusters. If a cluster identifier is supplied, details for that specific cluster are returned. Otherwise, details for up to 100 clusters are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "The identifier of the DB cluster to describe."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to include in the response (20-100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "Marker",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous request."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e12ec28d-c1f7-42cc-ac3a-2cd7f4c0979a",
+              "name": "Successful response with DB cluster details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "be572378-66b6-43a6-aec0-0ce8a62f7601",
+              "name": "The specified DB cluster was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "715aef06-e19f-43bd-b01b-74a30bc06f17",
+          "name": "Amazon Neptune Create a New Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Create a New Neptune DB Cluster",
+            "description": {
+              "content": "Creates a new Amazon Neptune DB cluster. You can use the ReplicationSourceIdentifier parameter to create the DB cluster as a read replica of another DB cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The DB cluster identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "Engine",
+                  "value": "neptune",
+                  "description": "(Required) The database engine to use (neptune)."
+                },
+                {
+                  "disabled": false,
+                  "key": "EngineVersion",
+                  "value": "<string>",
+                  "description": "The version of the Neptune engine."
+                },
+                {
+                  "disabled": false,
+                  "key": "Port",
+                  "value": "8182",
+                  "description": "The port number on which the cluster accepts connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "DBSubnetGroupName",
+                  "value": "<string>",
+                  "description": "The name of a DB subnet group."
+                },
+                {
+                  "disabled": false,
+                  "key": "VpcSecurityGroupIds",
+                  "value": "<string>",
+                  "description": "A list of VPC security group IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "VpcSecurityGroupIds",
+                  "value": "<string>",
+                  "description": "A list of VPC security group IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "StorageEncrypted",
+                  "value": "<boolean>",
+                  "description": "Whether the cluster is encrypted."
+                },
+                {
+                  "disabled": false,
+                  "key": "KmsKeyId",
+                  "value": "<string>",
+                  "description": "The KMS key identifier for an encrypted cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "PreferredBackupWindow",
+                  "value": "<string>",
+                  "description": "The daily time range for automated backups (UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "PreferredMaintenanceWindow",
+                  "value": "<string>",
+                  "description": "The weekly time range for maintenance (UTC)."
+                },
+                {
+                  "disabled": false,
+                  "key": "BackupRetentionPeriod",
+                  "value": "<integer>",
+                  "description": "The number of days for which automated backups are retained (1-35)."
+                },
+                {
+                  "disabled": false,
+                  "key": "DeletionProtection",
+                  "value": "<boolean>",
+                  "description": "Whether to enable deletion protection."
+                },
+                {
+                  "disabled": false,
+                  "key": "IAMDatabaseAuthenticationEnabled",
+                  "value": "<boolean>",
+                  "description": "Whether to enable IAM database authentication."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c105eebf-6623-4c04-820b-d7b6188abbd6",
+              "name": "DB cluster created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB cluster identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The database engine to use (neptune).",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "neptune"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The version of the Neptune engine.",
+                        "type": "text/plain"
+                      },
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The port number on which the cluster accepts connections.",
+                        "type": "text/plain"
+                      },
+                      "key": "Port",
+                      "value": "8182"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of a DB subnet group.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBSubnetGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A list of VPC security group IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A list of VPC security group IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether the cluster is encrypted.",
+                        "type": "text/plain"
+                      },
+                      "key": "StorageEncrypted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The KMS key identifier for an encrypted cluster.",
+                        "type": "text/plain"
+                      },
+                      "key": "KmsKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The daily time range for automated backups (UTC).",
+                        "type": "text/plain"
+                      },
+                      "key": "PreferredBackupWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The weekly time range for maintenance (UTC).",
+                        "type": "text/plain"
+                      },
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of days for which automated backups are retained (1-35).",
+                        "type": "text/plain"
+                      },
+                      "key": "BackupRetentionPeriod",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable deletion protection.",
+                        "type": "text/plain"
+                      },
+                      "key": "DeletionProtection",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable IAM database authentication.",
+                        "type": "text/plain"
+                      },
+                      "key": "IAMDatabaseAuthenticationEnabled",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "29e82348-673a-4a77-b2f2-4c99fb915e25",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB cluster identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The database engine to use (neptune).",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "neptune"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The version of the Neptune engine.",
+                        "type": "text/plain"
+                      },
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The port number on which the cluster accepts connections.",
+                        "type": "text/plain"
+                      },
+                      "key": "Port",
+                      "value": "8182"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of a DB subnet group.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBSubnetGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A list of VPC security group IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A list of VPC security group IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether the cluster is encrypted.",
+                        "type": "text/plain"
+                      },
+                      "key": "StorageEncrypted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The KMS key identifier for an encrypted cluster.",
+                        "type": "text/plain"
+                      },
+                      "key": "KmsKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The daily time range for automated backups (UTC).",
+                        "type": "text/plain"
+                      },
+                      "key": "PreferredBackupWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The weekly time range for maintenance (UTC).",
+                        "type": "text/plain"
+                      },
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of days for which automated backups are retained (1-35).",
+                        "type": "text/plain"
+                      },
+                      "key": "BackupRetentionPeriod",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable deletion protection.",
+                        "type": "text/plain"
+                      },
+                      "key": "DeletionProtection",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable IAM database authentication.",
+                        "type": "text/plain"
+                      },
+                      "key": "IAMDatabaseAuthenticationEnabled",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cf31157-b0de-43c8-bfd7-313b5f78e8b5",
+              "name": "A DB cluster with the specified identifier already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB cluster identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The database engine to use (neptune).",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "neptune"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The version of the Neptune engine.",
+                        "type": "text/plain"
+                      },
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The port number on which the cluster accepts connections.",
+                        "type": "text/plain"
+                      },
+                      "key": "Port",
+                      "value": "8182"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of a DB subnet group.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBSubnetGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A list of VPC security group IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A list of VPC security group IDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether the cluster is encrypted.",
+                        "type": "text/plain"
+                      },
+                      "key": "StorageEncrypted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The KMS key identifier for an encrypted cluster.",
+                        "type": "text/plain"
+                      },
+                      "key": "KmsKeyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The daily time range for automated backups (UTC).",
+                        "type": "text/plain"
+                      },
+                      "key": "PreferredBackupWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The weekly time range for maintenance (UTC).",
+                        "type": "text/plain"
+                      },
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of days for which automated backups are retained (1-35).",
+                        "type": "text/plain"
+                      },
+                      "key": "BackupRetentionPeriod",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable deletion protection.",
+                        "type": "text/plain"
+                      },
+                      "key": "DeletionProtection",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable IAM database authentication.",
+                        "type": "text/plain"
+                      },
+                      "key": "IAMDatabaseAuthenticationEnabled",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a049ed6-dde8-4fc7-b0fa-b14fce7bc0ee",
+          "name": "Amazon Neptune Delete a Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Delete a Neptune DB Cluster",
+            "description": {
+              "content": "Deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups are deleted and cannot be recovered. Manual snapshots are not deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DeleteDBCluster"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The DB cluster identifier for the cluster to be deleted."
+                },
+                {
+                  "disabled": false,
+                  "key": "SkipFinalSnapshot",
+                  "value": "<boolean>",
+                  "description": "Whether to skip creation of a final snapshot before deletion."
+                },
+                {
+                  "disabled": false,
+                  "key": "FinalDBSnapshotIdentifier",
+                  "value": "<string>",
+                  "description": "The identifier of the final snapshot to create before deletion."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e648651-8b35-4c44-a718-db1ff4096ff7",
+              "name": "DB cluster deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SkipFinalSnapshot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "FinalDBSnapshotIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "3328ebc1-08ee-46b9-b8bf-028319c5af70",
+              "name": "The specified DB cluster was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SkipFinalSnapshot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "FinalDBSnapshotIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24beed73-6e76-464e-97e5-8dc8ad440914",
+          "name": "Amazon Neptune Modify a Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Modify a Neptune DB Cluster",
+            "description": {
+              "content": "Modifies settings for a DB cluster. You can change one or more database configuration parameters by specifying them and their new values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "ModifyDBCluster"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The DB cluster identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "NewDBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "The new cluster identifier when renaming."
+                },
+                {
+                  "disabled": false,
+                  "key": "EngineVersion",
+                  "value": "<string>",
+                  "description": "The version of the Neptune engine to upgrade to."
+                },
+                {
+                  "disabled": false,
+                  "key": "Port",
+                  "value": "<integer>",
+                  "description": "The port number on which the cluster accepts connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterParameterGroupName",
+                  "value": "<string>",
+                  "description": "The name of the cluster parameter group to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "VpcSecurityGroupIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "VpcSecurityGroupIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "BackupRetentionPeriod",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PreferredBackupWindow",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "PreferredMaintenanceWindow",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "DeletionProtection",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ApplyImmediately",
+                  "value": "<boolean>",
+                  "description": "Whether to apply changes immediately or during the next maintenance window."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9baefbae-8f0b-46ce-8578-a5e0c61a81ad",
+              "name": "DB cluster modified successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB cluster identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The new cluster identifier when renaming.",
+                        "type": "text/plain"
+                      },
+                      "key": "NewDBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The version of the Neptune engine to upgrade to.",
+                        "type": "text/plain"
+                      },
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The port number on which the cluster accepts connections.",
+                        "type": "text/plain"
+                      },
+                      "key": "Port",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the cluster parameter group to use.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterParameterGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "BackupRetentionPeriod",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredBackupWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "DeletionProtection",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to apply changes immediately or during the next maintenance window.",
+                        "type": "text/plain"
+                      },
+                      "key": "ApplyImmediately",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "f875725b-6823-48c3-8cbe-046f4a56f995",
+              "name": "The specified DB cluster was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The DB cluster identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The new cluster identifier when renaming.",
+                        "type": "text/plain"
+                      },
+                      "key": "NewDBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The version of the Neptune engine to upgrade to.",
+                        "type": "text/plain"
+                      },
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The port number on which the cluster accepts connections.",
+                        "type": "text/plain"
+                      },
+                      "key": "Port",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the cluster parameter group to use.",
+                        "type": "text/plain"
+                      },
+                      "key": "DBClusterParameterGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "VpcSecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "BackupRetentionPeriod",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredBackupWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "PreferredMaintenanceWindow",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "DeletionProtection",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to apply changes immediately or during the next maintenance window.",
+                        "type": "text/plain"
+                      },
+                      "key": "ApplyImmediately",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1027a631-6705-48a3-8610-c09259d66bd9",
+          "name": "Amazon Neptune Start a Stopped Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Start a Stopped Neptune DB Cluster",
+            "description": {
+              "content": "Starts a stopped Neptune DB cluster. When you start a cluster, Neptune restores the cluster to the state it was in when it was stopped.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "StartDBCluster"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The identifier of the DB cluster to start."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c0e671c-5c6e-4958-8807-df8a4f572119",
+              "name": "DB cluster start initiated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "f9218fbf-7f67-4789-8a9b-0c4394ef6359",
+              "name": "The specified DB cluster was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca1f4000-99b6-4970-94cc-8e90c6258db1",
+          "name": "Amazon Neptune Stop a Running Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Stop a Running Neptune DB Cluster",
+            "description": {
+              "content": "Stops a running Neptune DB cluster. While the cluster is stopped, you are charged only for storage. A stopped cluster automatically restarts after 7 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "StopDBCluster"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The identifier of the DB cluster to stop."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d98c769c-41c0-4b3a-9447-8b09a8e7043a",
+              "name": "DB cluster stop initiated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "8e63a1c7-3c46-4867-b64b-687b91e571e1",
+              "name": "The specified DB cluster was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba104306-6a69-4c98-98e9-6cbe842e1985",
+          "name": "Amazon Neptune Force a Failover for a Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Force a Failover for a Neptune DB Cluster",
+            "description": {
+              "content": "Forces a failover for a DB cluster. A failover for a DB cluster promotes one of the read replicas in the cluster to be the new primary instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "FailoverDBCluster"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The identifier of the cluster to force a failover for."
+                },
+                {
+                  "disabled": false,
+                  "key": "TargetDBInstanceIdentifier",
+                  "value": "<string>",
+                  "description": "The name of the instance to promote to the primary instance."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc0122fe-944d-4560-953e-ef3f1e0357fd",
+              "name": "Failover initiated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TargetDBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "0f770fb7-5d52-419d-8971-18cdf5b1a72a",
+              "name": "The specified DB cluster was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TargetDBInstanceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "801fa9e8-abda-43cc-bf17-21f2dd8bac10",
+          "name": "Amazon Neptune Associate an IAM Role with a Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Associate an IAM Role with a Neptune DB Cluster",
+            "description": {
+              "content": "Associates an Identity and Access Management (IAM) role with a Neptune DB cluster so that the cluster can access other AWS services on your behalf.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "AddRoleToDBCluster"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The name of the DB cluster to associate the IAM role with."
+                },
+                {
+                  "disabled": false,
+                  "key": "RoleArn",
+                  "value": "<string>",
+                  "description": "(Required) The ARN of the IAM role to associate with the cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a3147d6-3482-4457-8d91-a43c64dc4585",
+              "name": "IAM role associated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd210465-0da1-4fd1-9d47-9e0354a57ddb",
+              "name": "The specified DB cluster was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17125e7c-94c7-460b-945e-e004d567dfb4",
+          "name": "Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster",
+          "request": {
+            "name": "Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster",
+            "description": {
+              "content": "Disassociates an Identity and Access Management (IAM) role from a Neptune DB cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "RemoveRoleFromDBCluster"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "DBClusterIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) The name of the DB cluster to disassociate the role from."
+                },
+                {
+                  "disabled": false,
+                  "key": "RoleArn",
+                  "value": "<string>",
+                  "description": "(Required) The ARN of the IAM role to disassociate."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7854b98-2c1c-4fe2-a5f2-7c0362436b83",
+              "name": "IAM role disassociated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "83f7fcae-9222-4502-af85-cb426d66ed93",
+              "name": "The specified DB cluster or role was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DBClusterIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RoleArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a29a8b9b-4de5-49c8-9106-7602cf4b0f4f",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource DB Clusters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

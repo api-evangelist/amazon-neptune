@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Private Graph Endpoints API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Private Graph Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Private Graph Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of private graph endpoints for a specific graph."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Private Graph Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a private graph endpoint in a VPC for accessing a Neptune Analytics graph without going over the public internet."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Private Graph Endpoint Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier/:vpcId",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "vpcId",
+                "value": "",
+                "type": "path",
+                "description": "The VPC ID of the private endpoint."
+              }
+            ]
+          },
+          "docs": "Returns details of a specific private graph endpoint."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Private Graph Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/privategraphendpoints/:graphIdentifier/:vpcId",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "vpcId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a private graph endpoint from a VPC."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

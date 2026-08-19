@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Data Processing API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Processing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Active Data Processing Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/dataprocessing",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (default 10, max 1024)."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role for Neptune access."
+              }
+            ]
+          },
+          "docs": "Returns a list of active Neptune ML data processing job IDs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create an ML Data Processing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/dataprocessing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune ML data processing job that exports and prepares graph data from Neptune for model training using Amazon SageMaker. The job reads data from Neptune and writes processed output to the specified S3 location."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Data Processing Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/dataprocessing/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data processing job."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role for Neptune access."
+              }
+            ]
+          },
+          "docs": "Returns the status of a Neptune ML data processing job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Stop a Data Processing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/dataprocessing/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data processing job."
+              },
+              {
+                "name": "clean",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all S3 artifacts when stopping."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role for Neptune access."
+              }
+            ]
+          },
+          "docs": "Stops a running Neptune ML data processing job. Optionally deletes all S3 artifacts when the clean parameter is set to true."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

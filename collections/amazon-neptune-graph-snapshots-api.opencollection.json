@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Graph Snapshots API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Graph Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Graph Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter snapshots by source graph identifier."
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of graph snapshots in the account."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Graph Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a snapshot of a Neptune Analytics graph for backup purposes."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Graph Snapshot Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots/:snapshotIdentifier",
+            "params": [
+              {
+                "name": "snapshotIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the snapshot."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific graph snapshot."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Graph Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots/:snapshotIdentifier",
+            "params": [
+              {
+                "name": "snapshotIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the snapshot to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a Neptune Analytics graph snapshot."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Restore a Graph from a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/snapshots/:snapshotIdentifier/restore",
+            "params": [
+              {
+                "name": "snapshotIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the snapshot to restore from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune Analytics graph by restoring from an existing snapshot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

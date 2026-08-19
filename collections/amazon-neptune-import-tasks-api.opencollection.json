@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Import Tasks API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Import Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Import Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of import tasks in the account."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Graph Using an Import Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune Analytics graph and populates it with data from an Amazon S3 source in a single operation."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Import Task Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks/:taskIdentifier",
+            "params": [
+              {
+                "name": "taskIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the import task."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific import task."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel an Import Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/importtasks/:taskIdentifier",
+            "params": [
+              {
+                "name": "taskIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the import task to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running import task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

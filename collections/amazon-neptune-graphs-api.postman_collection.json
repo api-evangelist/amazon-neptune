@@ -1,0 +1,1178 @@
+{
+  "item": [
+    {
+      "id": "a6c31150-1818-407f-aded-17dd48717353",
+      "name": "Graphs",
+      "description": {
+        "content": "Operations for managing Neptune Analytics graph resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad53beaf-64ce-4e8a-a965-1b9b51ddc94d",
+          "name": "Amazon Neptune Create a Neptune Analytics Graph",
+          "request": {
+            "name": "Amazon Neptune Create a Neptune Analytics Graph",
+            "description": {
+              "content": "Creates a new Neptune Analytics graph resource. The graph is a memory-optimized database instance optimized for analytical workloads with support for openCypher queries and vector search.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6247c07d-4c26-48ab-bdc6-1ce0967b83e6",
+              "name": "Graph created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\",\n  \"name\": \"my-neptune-cluster\",\n  \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n  \"status\": \"CREATING\",\n  \"statusReason\": \"available\",\n  \"createTime\": \"2025-03-15T14:30:00Z\",\n  \"provisionedMemory\": 1,\n  \"endpoint\": \"neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com\",\n  \"publicConnectivity\": true,\n  \"vectorSearchConfiguration\": {\n    \"dimension\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44451d9d-33dd-492b-a719-c29e310f27d7",
+              "name": "Bad request - invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cffa403f-33bb-40a0-9dba-bd8d936bae1e",
+              "name": "A graph with the specified name already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphName\": \"<string>\",\n  \"provisionedMemory\": \"<integer>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  },\n  \"publicConnectivity\": false,\n  \"kmsKeyIdentifier\": \"<string>\",\n  \"vectorSearchConfiguration\": {\n    \"dimension\": \"<integer>\"\n  },\n  \"replicaCount\": 0,\n  \"deletionProtection\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbc585ce-20cf-4266-8aa4-8225d4280cbe",
+          "name": "Amazon Neptune List Neptune Analytics Graphs",
+          "request": {
+            "name": "Amazon Neptune List Neptune Analytics Graphs",
+            "description": {
+              "content": "Returns a list of Neptune Analytics graph resources in the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous request."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36f8ec80-d019-4b5c-9134-e3f0f7599066",
+              "name": "Graph list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"graphs\": [\n    {\n      \"id\": \"neptune-cluster-abc123\",\n      \"name\": \"my-neptune-cluster\",\n      \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n      \"status\": \"available\",\n      \"provisionedMemory\": 1\n    }\n  ],\n  \"nextToken\": \"example-value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2abdf01-57d9-4e89-8a22-459b8c5804ca",
+          "name": "Amazon Neptune Get Neptune Analytics Graph Details",
+          "request": {
+            "name": "Amazon Neptune Get Neptune Analytics Graph Details",
+            "description": {
+              "content": "Returns detailed information about a specific Neptune Analytics graph resource.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs",
+                ":graphIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graphIdentifier",
+                  "description": "(Required) The unique identifier of the graph."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e43a59c-7a16-49e0-b574-907d85e72c8f",
+              "name": "Graph details retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\",\n  \"name\": \"my-neptune-cluster\",\n  \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n  \"status\": \"CREATING\",\n  \"statusReason\": \"available\",\n  \"createTime\": \"2025-03-15T14:30:00Z\",\n  \"provisionedMemory\": 1,\n  \"endpoint\": \"neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com\",\n  \"publicConnectivity\": true,\n  \"vectorSearchConfiguration\": {\n    \"dimension\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58499a6f-7a38-467c-acd7-bf9487e2d853",
+              "name": "Graph not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f0bb64e-1b8a-4aa0-a511-c2a2f5d7e2d1",
+          "name": "Amazon Neptune Update a Neptune Analytics Graph",
+          "request": {
+            "name": "Amazon Neptune Update a Neptune Analytics Graph",
+            "description": {
+              "content": "Updates the configuration of an existing Neptune Analytics graph, such as provisioned memory or deletion protection settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs",
+                ":graphIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graphIdentifier",
+                  "description": "(Required) The unique identifier of the graph."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e95ec43-4c0d-44b1-b225-d3c88ff3c564",
+              "name": "Graph updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\",\n  \"name\": \"my-neptune-cluster\",\n  \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n  \"status\": \"CREATING\",\n  \"statusReason\": \"available\",\n  \"createTime\": \"2025-03-15T14:30:00Z\",\n  \"provisionedMemory\": 1,\n  \"endpoint\": \"neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com\",\n  \"publicConnectivity\": true,\n  \"vectorSearchConfiguration\": {\n    \"dimension\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32c89b27-8f90-4535-a5ce-9a3210bd1e5c",
+              "name": "Graph not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provisionedMemory\": \"<integer>\",\n  \"deletionProtection\": \"<boolean>\",\n  \"publicConnectivity\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1fda8db-9e9c-4546-9822-4af1f2933a61",
+          "name": "Amazon Neptune Delete a Neptune Analytics Graph",
+          "request": {
+            "name": "Amazon Neptune Delete a Neptune Analytics Graph",
+            "description": {
+              "content": "Deletes a Neptune Analytics graph resource. The graph must not have deletion protection enabled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs",
+                ":graphIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skipSnapshot",
+                  "value": "<boolean>",
+                  "description": "(Required) Whether to skip creating a final snapshot before deletion."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graphIdentifier",
+                  "description": "(Required) The unique identifier of the graph to delete."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebb9232a-d3cc-4a42-80fb-b28c9bb64448",
+              "name": "Graph deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skipSnapshot",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph to delete."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\",\n  \"name\": \"my-neptune-cluster\",\n  \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n  \"status\": \"CREATING\",\n  \"statusReason\": \"available\",\n  \"createTime\": \"2025-03-15T14:30:00Z\",\n  \"provisionedMemory\": 1,\n  \"endpoint\": \"neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com\",\n  \"publicConnectivity\": true,\n  \"vectorSearchConfiguration\": {\n    \"dimension\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67c30e33-f1c8-41df-b185-23aff5967f30",
+              "name": "Graph not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skipSnapshot",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph to delete."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1930cfa-e2ec-414d-a525-b74b3ea3d198",
+              "name": "Graph has deletion protection enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skipSnapshot",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph to delete."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb01f574-22a6-45b0-aee5-3c52cfc23677",
+          "name": "Amazon Neptune Reset a Neptune Analytics Graph",
+          "request": {
+            "name": "Amazon Neptune Reset a Neptune Analytics Graph",
+            "description": {
+              "content": "Empties the data from a Neptune Analytics graph, removing all nodes and edges while preserving the graph resource and its configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs",
+                ":graphIdentifier",
+                "reset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graphIdentifier",
+                  "description": "(Required) The unique identifier of the graph to reset."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"performCleanData\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd27f3a0-2600-4ff4-b871-12e4475acbaa",
+              "name": "Graph reset initiated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph to reset."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"performCleanData\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\",\n  \"name\": \"my-neptune-cluster\",\n  \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n  \"status\": \"CREATING\",\n  \"statusReason\": \"available\",\n  \"createTime\": \"2025-03-15T14:30:00Z\",\n  \"provisionedMemory\": 1,\n  \"endpoint\": \"neptune-cluster-1.cluster-xyz.us-east-1.neptune.amazonaws.com\",\n  \"publicConnectivity\": true,\n  \"vectorSearchConfiguration\": {\n    \"dimension\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cae037f9-efa7-4b79-9f1d-81b2e24e8eb8",
+              "name": "Graph not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graphIdentifier",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graphIdentifier",
+                      "description": "(Required) The unique identifier of the graph to reset."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"performCleanData\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d4a4960e-2ddd-4561-987d-5d3431ed2025",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Graphs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "item": [
+    {
+      "id": "cf55bcb5-6cba-4ff6-a500-7fd339bb1d77",
+      "name": "Streams",
+      "description": {
+        "content": "Change data capture stream operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32e60a03-4f35-4b7b-af33-97ee9228611c",
+          "name": "Amazon Neptune Get Property Graph Change Stream Records",
+          "request": {
+            "name": "Amazon Neptune Get Property Graph Change Stream Records",
+            "description": {
+              "content": "Gets a stream of change-log entries for property graph data. Each entry records a mutation (add, remove) made to the graph data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "propertygraph",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return (1-100000, default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "<string>",
+                  "description": "The stream position to start reading from."
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>",
+                  "description": "The commit number to start from."
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "<integer>",
+                  "description": "The operation sequence number within the commit."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e30959e0-16b2-46c9-a03a-32a11a8746a5",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "propertygraph",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {\n    \"commitNum\": 1,\n    \"opNum\": 1\n  },\n  \"lastTrxTimestampInMillis\": 1,\n  \"format\": \"PG_JSON\",\n  \"records\": [\n    {}\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c58fe81-193e-43e3-8f36-4a12bf387c48",
+          "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+          "request": {
+            "name": "Amazon Neptune Get SPARQL RDF Change Stream Records",
+            "description": {
+              "content": "Gets a stream of change-log entries for RDF data. Each entry records a mutation (add, remove) made to the RDF triples.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sparql",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of records to return (1-100000, default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "iteratorType",
+                  "value": "<string>",
+                  "description": "The stream position to start reading from."
+                },
+                {
+                  "disabled": false,
+                  "key": "commitNum",
+                  "value": "<integer>",
+                  "description": "The commit number to start from."
+                },
+                {
+                  "disabled": false,
+                  "key": "opNum",
+                  "value": "<integer>",
+                  "description": "The operation sequence number within the commit."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a00b305-0eca-4dc9-955e-b9737569d286",
+              "name": "Stream records retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sparql",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "iteratorType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "commitNum",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "opNum",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lastEventId\": {\n    \"commitNum\": 1,\n    \"opNum\": 1\n  },\n  \"lastTrxTimestampInMillis\": 1,\n  \"format\": \"NQUADS\",\n  \"records\": [\n    {\n      \"commitTimestampInMillis\": 1,\n      \"eventId\": {\n        \"commitNum\": {},\n        \"opNum\": {}\n      },\n      \"data\": {\n        \"stmt\": {}\n      },\n      \"op\": \"ADD\",\n      \"isLastOp\": true\n    }\n  ],\n  \"totalRecords\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21a20a3b-41fa-4e05-bda6-89cde6d01bd8",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

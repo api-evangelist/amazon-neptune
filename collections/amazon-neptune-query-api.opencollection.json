@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Query API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a Gremlin Traversal via HTTP GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin",
+            "params": [
+              {
+                "name": "gremlin",
+                "value": "g.V().count()",
+                "type": "query",
+                "description": "The Gremlin traversal query string (URL-encoded)."
+              }
+            ]
+          },
+          "docs": "Submits a Gremlin traversal query via a URL query parameter. This is an alternative to the POST method for simple queries."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a Gremlin Traversal via HTTP POST",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/gremlin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a Gremlin traversal query to the Neptune HTTP REST endpoint. The query is provided as a JSON body with a gremlin property containing the traversal string. All results are returned in a single JSON response by default. For large result sets, chunked responses can be enabled to avoid OutOfMemoryError."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via HTTP GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/openCypher",
+            "headers": [
+              {
+                "name": "TE",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "query",
+                "value": "MATCH (n1) RETURN n1 LIMIT 10",
+                "type": "query",
+                "description": "The openCypher query string (URL-encoded)."
+              }
+            ]
+          },
+          "docs": "Submits an openCypher query via URL query parameter. Supports both read and write queries."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via HTTP POST",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/openCypher",
+            "headers": [
+              {
+                "name": "TE",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submits an openCypher query to the Neptune HTTP endpoint. The query is provided as a form-encoded parameter. Supports both read and write queries. Nodes are returned with ~id, ~entityType, ~labels, and ~properties fields. Relationships include ~id, ~entityType, ~start, ~end, ~type, and ~properties fields."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a SPARQL Query via HTTP GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql",
+            "params": [
+              {
+                "name": "query",
+                "value": "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10",
+                "type": "query",
+                "description": "The SPARQL query string (URL-encoded)."
+              }
+            ]
+          },
+          "docs": "Submits a read-only SPARQL 1.1 query via URL query parameters. Only SELECT, ASK, CONSTRUCT, and DESCRIBE query forms are supported via GET. Update operations require POST."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Execute a SPARQL Query or Update via HTTP POST",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/sparql",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submits a SPARQL 1.1 query or update operation to the Neptune SPARQL endpoint. For queries, use the 'query' parameter with SELECT, ASK, CONSTRUCT, or DESCRIBE forms. For mutations, use the 'update' parameter with INSERT DATA or DELETE DATA operations. The request body is form-encoded per the SPARQL 1.1 Protocol specification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

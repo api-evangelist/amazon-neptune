@@ -1,0 +1,325 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource DB Clusters API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DB Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in the response (20-100)."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about provisioned Neptune DB clusters. If a cluster identifier is supplied, details for that specific cluster are returned. Otherwise, details for up to 100 clusters are returned."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new Amazon Neptune DB cluster. You can use the ReplicationSourceIdentifier parameter to create the DB cluster as a read replica of another DB cluster."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DeleteDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The DB cluster identifier for the cluster to be deleted."
+              },
+              {
+                "name": "SkipFinalSnapshot",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip creation of a final snapshot before deletion."
+              },
+              {
+                "name": "FinalDBSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the final snapshot to create before deletion."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups are deleted and cannot be recovered. Manual snapshots are not deleted."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Modify a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=ModifyDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Modifies settings for a DB cluster. You can change one or more database configuration parameters by specifying them and their new values."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Start a Stopped Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=StartDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to start."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Starts a stopped Neptune DB cluster. When you start a cluster, Neptune restores the cluster to the state it was in when it was stopped."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Stop a Running Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=StopDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to stop."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Stops a running Neptune DB cluster. While the cluster is stopped, you are charged only for storage. A stopped cluster automatically restarts after 7 days."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Force a Failover for a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=FailoverDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the cluster to force a failover for."
+              },
+              {
+                "name": "TargetDBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The name of the instance to promote to the primary instance."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Forces a failover for a DB cluster. A failover for a DB cluster promotes one of the read replicas in the cluster to be the new primary instance."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Associate an IAM Role with a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=AddRoleToDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB cluster to associate the IAM role with."
+              },
+              {
+                "name": "RoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role to associate with the cluster."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Associates an Identity and Access Management (IAM) role with a Neptune DB cluster so that the cluster can access other AWS services on your behalf."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Disassociate an IAM Role from a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=RemoveRoleFromDBCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB cluster to disassociate the role from."
+              },
+              {
+                "name": "RoleArn",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the IAM role to disassociate."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Disassociates an Identity and Access Management (IAM) role from a Neptune DB cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

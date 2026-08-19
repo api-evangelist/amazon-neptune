@@ -1,0 +1,433 @@
+{
+  "item": [
+    {
+      "id": "77fe01c3-3b77-4964-878a-9e0583a1b4cc",
+      "name": "Events",
+      "description": {
+        "content": "Operations for managing event subscriptions and viewing events",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eaec4d1c-8530-4189-9e1c-e8d4840fb0da",
+          "name": "Amazon Neptune Create a Neptune Event Notification Subscription",
+          "request": {
+            "name": "Amazon Neptune Create a Neptune Event Notification Subscription",
+            "description": {
+              "content": "Creates an event notification subscription. This action requires an Amazon SNS topic ARN. Notifications are sent to the SNS topic when specified events occur.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "CreateEventSubscription"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "SubscriptionName",
+                  "value": "<string>",
+                  "description": "(Required) The name of the subscription."
+                },
+                {
+                  "disabled": false,
+                  "key": "SnsTopicArn",
+                  "value": "<string>",
+                  "description": "(Required) The ARN of the SNS topic to send notifications to."
+                },
+                {
+                  "disabled": false,
+                  "key": "SourceType",
+                  "value": "<string>",
+                  "description": "The type of source that triggers notifications (db-instance, db-cluster, db-parameter-group, db-cluster-snapshot)."
+                },
+                {
+                  "disabled": false,
+                  "key": "Enabled",
+                  "value": "<boolean>",
+                  "description": "Whether the subscription is enabled."
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea942311-d0f8-471f-bd0b-a432bba7eb03",
+              "name": "Event subscription created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SubscriptionName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SnsTopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SourceType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b15fae93-3461-4291-bda8-56d56c7adce9",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SubscriptionName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SnsTopicArn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SourceType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30254054-f6ad-4b06-af89-8b9756bdfa4d",
+          "name": "Amazon Neptune Describe Neptune Events",
+          "request": {
+            "name": "Amazon Neptune Describe Neptune Events",
+            "description": {
+              "content": "Returns events related to DB instances, DB clusters, DB parameter groups, and DB cluster snapshots for the past 14 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "Action",
+                  "value": "DescribeEvents"
+                },
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "SourceIdentifier",
+                  "value": "<string>",
+                  "description": "The identifier of the event source to filter events."
+                },
+                {
+                  "disabled": false,
+                  "key": "SourceType",
+                  "value": "<string>",
+                  "description": "The event source type to filter events."
+                },
+                {
+                  "disabled": false,
+                  "key": "Duration",
+                  "value": "<integer>",
+                  "description": "The number of minutes to retrieve events for."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Marker",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2014-10-31",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5117b06-313d-4e42-8cc2-5f6a5a8a689d",
+              "name": "Successful response with event details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SourceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SourceType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Duration",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2014-10-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c8945351-d2de-4688-b3bf-e911cbab51b3",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

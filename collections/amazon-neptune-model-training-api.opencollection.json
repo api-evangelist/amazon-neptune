@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Model Training API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Model Training",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Active Model Training Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltraining",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (default 10, max 1024)."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of active Neptune ML model training job IDs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create an ML Model Training Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltraining",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune ML model training job using Amazon SageMaker. The job trains a graph neural network model using the output from a completed data processing job. Supports relational graph convolutional network (RGCN) and knowledge graph embedding (KGE) models, as well as custom training scripts."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Model Training Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltraining/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the model training job."
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the status of a Neptune ML model training job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Stop a Model Training Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltraining/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clean",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Stops a running Neptune ML model training job. Optionally deletes all S3 artifacts when the clean parameter is set to true."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

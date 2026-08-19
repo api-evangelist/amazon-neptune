@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Parameter Groups API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parameter Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New DB Parameter Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=CreateDBParameterGroup",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB parameter group."
+              },
+              {
+                "name": "DBParameterGroupFamily",
+                "value": "",
+                "type": "query",
+                "description": "The DB parameter group family name (e.g., neptune1, neptune1.2, neptune1.3)."
+              },
+              {
+                "name": "Description",
+                "value": "",
+                "type": "query",
+                "description": "The description for the DB parameter group."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a new DB parameter group. A DB parameter group is initially created with the default parameters for the database engine used."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New DB Cluster Parameter Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=CreateDBClusterParameterGroup",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the DB cluster parameter group."
+              },
+              {
+                "name": "DBParameterGroupFamily",
+                "value": "",
+                "type": "query",
+                "description": "The DB parameter group family name."
+              },
+              {
+                "name": "Description",
+                "value": "",
+                "type": "query",
+                "description": "The description for the DB cluster parameter group."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a new DB cluster parameter group. Parameters in a DB cluster parameter group apply to all of the instances in a DB cluster."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe DB Parameter Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribeDBParameterGroups",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of a specific DB parameter group to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of DB parameter group descriptions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe DB Cluster Parameter Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribeDBClusterParameterGroups",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterParameterGroupName",
+                "value": "",
+                "type": "query",
+                "description": "The name of a specific cluster parameter group to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of DB cluster parameter group descriptions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

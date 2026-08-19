@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource DB Instances API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DB Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a New Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=CreateDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new DB instance in a Neptune DB cluster. The DB instance inherits the cluster's storage and high availability configuration."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DeleteDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The DB instance identifier for the instance to be deleted."
+              },
+              {
+                "name": "SkipFinalSnapshot",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip creation of a final snapshot."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a previously provisioned DB instance. When you delete an instance, all automated backups for that instance are deleted and cannot be recovered."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribeDBInstances",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB instance to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in the response."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about provisioned Neptune DB instances. If a specific instance identifier is supplied, details for that instance are returned."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Modify a Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=ModifyDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Modifies settings for a DB instance. You can change one or more database configuration parameters by specifying them and their new values."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Reboot a Neptune DB Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=RebootDBInstance",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBInstanceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB instance to reboot."
+              },
+              {
+                "name": "ForceFailover",
+                "value": "",
+                "type": "query",
+                "description": "Whether to force a failover during the reboot."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Reboots a DB instance. When you reboot an instance, the instance is restarted. Rebooting results in a momentary outage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

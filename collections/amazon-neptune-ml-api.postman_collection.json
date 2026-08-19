@@ -1,0 +1,1923 @@
+{
+  "item": [
+    {
+      "id": "37aad407-6291-4b0d-b944-aa84e90f739f",
+      "name": "ML",
+      "description": {
+        "content": "Machine learning operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a758f1cb-8890-4891-b221-aa53ef813e27",
+          "name": "Amazon Neptune Start an ML Data Processing Job",
+          "request": {
+            "name": "Amazon Neptune Start an ML Data Processing Job",
+            "description": {
+              "content": "Creates a new Neptune ML data processing job that prepares graph data for model training using Amazon SageMaker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inputDataS3Location\": \"<string>\",\n  \"processedDataS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousDataProcessingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"processingInstanceType\": \"<string>\",\n  \"processingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"processingTimeOutInSeconds\": \"<integer>\",\n  \"modelType\": \"<string>\",\n  \"configFileName\": \"training-data-configuration.json\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb060cb3-0517-46a9-83b7-ab2ed3791caf",
+              "name": "Data processing job started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputDataS3Location\": \"<string>\",\n  \"processedDataS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousDataProcessingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"processingInstanceType\": \"<string>\",\n  \"processingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"processingTimeOutInSeconds\": \"<integer>\",\n  \"modelType\": \"<string>\",\n  \"configFileName\": \"training-data-configuration.json\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28c91146-b322-4543-a946-bc9639af1102",
+          "name": "Amazon Neptune List ML Data Processing Jobs",
+          "request": {
+            "name": "Amazon Neptune List ML Data Processing Jobs",
+            "description": {
+              "content": "Returns a list of active Neptune ML data processing job IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10",
+                  "description": "Maximum number of items to return (default 10, max 1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>",
+                  "description": "The ARN of the IAM role for Neptune access."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "392bb108-7d97-4490-8879-2ee7cccc8e73",
+              "name": "Data processing job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ids\": [\n    \"example-value\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82d49b22-c1fe-4c2f-a740-a98d55bbd9df",
+          "name": "Amazon Neptune Get ML Data Processing Job Status",
+          "request": {
+            "name": "Amazon Neptune Get ML Data Processing Job Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML data processing job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>",
+                  "description": "The ARN of the IAM role for Neptune access."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The unique identifier of the data processing job."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82eb5a45-e63b-40bb-99b7-5d350b653b98",
+              "name": "Job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The unique identifier of the data processing job."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"processingJob\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\",\n    \"outputLocation\": \"example-value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f65cc214-4e33-4940-b13a-06ce873b87a8",
+          "name": "Amazon Neptune Cancel an ML Data Processing Job",
+          "request": {
+            "name": "Amazon Neptune Cancel an ML Data Processing Job",
+            "description": {
+              "content": "Cancels a running Neptune ML data processing job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "dataprocessing",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false",
+                  "description": "Whether to delete all S3 artifacts when cancelling."
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>",
+                  "description": "The ARN of the IAM role for Neptune access."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The unique identifier of the data processing job."
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3534728c-3105-40de-b5a4-6f997d483cfa",
+              "name": "Job cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "dataprocessing",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The unique identifier of the data processing job."
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad195cf8-04ea-441c-ac42-2d962be18584",
+          "name": "Amazon Neptune Start an ML Model Training Job",
+          "request": {
+            "name": "Amazon Neptune Start an ML Model Training Job",
+            "description": {
+              "content": "Creates a new Neptune ML model training job using Amazon SageMaker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataProcessingJobId\": \"<string>\",\n  \"trainModelS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousModelTrainingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"trainingInstanceType\": \"ml.p3.2xlarge\",\n  \"trainingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"trainingTimeOutInSeconds\": 86400,\n  \"maxHPONumberOfTrainingJobs\": 2,\n  \"maxHPOParallelTrainingJobs\": 2,\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"enableManagedSpotTraining\": false,\n  \"customModelTrainingParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"trainingEntryPointScript\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38e0b68b-eddc-451d-b0b4-08bbc8d720d9",
+              "name": "Model training job started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataProcessingJobId\": \"<string>\",\n  \"trainModelS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"previousModelTrainingJobId\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"trainingInstanceType\": \"ml.p3.2xlarge\",\n  \"trainingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"trainingTimeOutInSeconds\": 86400,\n  \"maxHPONumberOfTrainingJobs\": 2,\n  \"maxHPOParallelTrainingJobs\": 2,\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"enableManagedSpotTraining\": false,\n  \"customModelTrainingParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"trainingEntryPointScript\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f6f79f8-506c-4397-9398-d6cf3e79e358",
+          "name": "Amazon Neptune List ML Model Training Jobs",
+          "request": {
+            "name": "Amazon Neptune List ML Model Training Jobs",
+            "description": {
+              "content": "Returns a list of active Neptune ML model training job IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1145e8d7-8dc5-4155-a018-db03933269d7",
+              "name": "Model training job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ids\": [\n    \"example-value\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "275e00ac-c5c7-4fdd-9298-44bc376fb380",
+          "name": "Amazon Neptune Get ML Model Training Job Status",
+          "request": {
+            "name": "Amazon Neptune Get ML Model Training Job Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML model training job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d9a4d9f-bdae-4ae1-8cd3-b16b5fef4510",
+              "name": "Job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"processingJob\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\",\n    \"outputLocation\": \"example-value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52c60739-a4d1-41ed-bf3c-c7800cd516a1",
+          "name": "Amazon Neptune Cancel an ML Model Training Job",
+          "request": {
+            "name": "Amazon Neptune Cancel an ML Model Training Job",
+            "description": {
+              "content": "Cancels a running Neptune ML model training job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltraining",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18e993f7-46eb-4613-9540-1d0724737cb1",
+              "name": "Job cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltraining",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf07ab7e-7daa-4780-971b-02546c65614c",
+          "name": "Amazon Neptune Start an ML Model Transform Job",
+          "request": {
+            "name": "Amazon Neptune Start an ML Model Transform Job",
+            "description": {
+              "content": "Creates a new Neptune ML model transform job that generates model artifacts for inference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modelTransformOutputS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"dataProcessingJobId\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"trainingJobName\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"baseProcessingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"customModelTransformParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66dbf306-36df-4620-8d24-421ad022ab3e",
+              "name": "Model transform job started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelTransformOutputS3Location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"dataProcessingJobId\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"trainingJobName\": \"<string>\",\n  \"sagemakerIamRoleArn\": \"<string>\",\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"baseProcessingInstanceType\": \"<string>\",\n  \"baseProcessingInstanceVolumeSizeInGB\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"securityGroupIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"volumeEncryptionKMSKey\": \"<string>\",\n  \"s3OutputEncryptionKMSKey\": \"<string>\",\n  \"enableInterContainerTrafficEncryption\": true,\n  \"customModelTransformParameters\": {\n    \"sourceS3DirectoryPath\": \"<string>\",\n    \"transformEntryPointScript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ed535c6-9749-4caf-a94e-dbbcbf90913d",
+          "name": "Amazon Neptune List ML Model Transform Jobs",
+          "request": {
+            "name": "Amazon Neptune List ML Model Transform Jobs",
+            "description": {
+              "content": "Returns a list of active Neptune ML model transform job IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6d6f9ef-46b0-4ac7-a862-5070f10059b6",
+              "name": "Model transform job list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c603889b-2c44-4a6c-a0fe-d52a3790c555",
+          "name": "Amazon Neptune Get ML Model Transform Job Status",
+          "request": {
+            "name": "Amazon Neptune Get ML Model Transform Job Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML model transform job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "219755f2-497e-4dc3-bf7f-b8c8301a321f",
+              "name": "Job status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"processingJob\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\",\n    \"outputLocation\": \"example-value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb186cbe-ae54-403e-a251-e5578db8b318",
+          "name": "Amazon Neptune Cancel an ML Model Transform Job",
+          "request": {
+            "name": "Amazon Neptune Cancel an ML Model Transform Job",
+            "description": {
+              "content": "Cancels a running Neptune ML model transform job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "modeltransform",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c10756f2-d2db-4c9f-8d9c-467f601bbad3",
+              "name": "Job cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "modeltransform",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "670fd38f-5b63-4519-bdcf-f7913420ef6d",
+          "name": "Amazon Neptune Create an ML Inference Endpoint",
+          "request": {
+            "name": "Amazon Neptune Create an ML Inference Endpoint",
+            "description": {
+              "content": "Creates a new Neptune ML inference endpoint backed by Amazon SageMaker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"mlModelTransformJobId\": \"<string>\",\n  \"update\": false,\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"instanceType\": \"ml.m5.xlarge\",\n  \"instanceCount\": 1,\n  \"volumeEncryptionKMSKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "40ccee85-e451-451e-a445-5cb343b76b07",
+              "name": "Inference endpoint created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"mlModelTrainingJobId\": \"<string>\",\n  \"mlModelTransformJobId\": \"<string>\",\n  \"update\": false,\n  \"neptuneIamRoleArn\": \"<string>\",\n  \"modelName\": \"<string>\",\n  \"instanceType\": \"ml.m5.xlarge\",\n  \"instanceCount\": 1,\n  \"volumeEncryptionKMSKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"neptune-cluster-abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1c2c045-f0bb-443c-8c56-6cde1bea4ef4",
+          "name": "Amazon Neptune List ML Inference Endpoints",
+          "request": {
+            "name": "Amazon Neptune List ML Inference Endpoints",
+            "description": {
+              "content": "Returns a list of active Neptune ML inference endpoint IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxItems",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a6923b8-27fa-4abc-b984-9b5e8aaf231c",
+              "name": "Endpoint list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxItems",
+                      "value": "10"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "066189b2-98e2-4590-aa1a-502e864dfb10",
+          "name": "Amazon Neptune Get ML Inference Endpoint Status",
+          "request": {
+            "name": "Amazon Neptune Get ML Inference Endpoint Status",
+            "description": {
+              "content": "Returns the status of a Neptune ML inference endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96b18583-49c4-4884-8b1d-d2897f478b5c",
+              "name": "Endpoint status retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"available\",\n  \"id\": \"neptune-cluster-abc123\",\n  \"endpoint\": {\n    \"name\": \"my-neptune-cluster\",\n    \"arn\": \"arn:aws:neptune:us-east-1:123456789012:db:neptune-cluster-1\",\n    \"status\": \"available\"\n  },\n  \"endpointConfig\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e649fcec-0990-482c-93f5-43ab72950bbc",
+          "name": "Amazon Neptune Delete an ML Inference Endpoint",
+          "request": {
+            "name": "Amazon Neptune Delete an ML Inference Endpoint",
+            "description": {
+              "content": "Deletes a Neptune ML inference endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ml",
+                "endpoints",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clean",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "neptuneIamRoleArn",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "AWS region",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b530b04-0cec-4cf0-ba45-a025681bf91c",
+              "name": "Endpoint deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ml",
+                    "endpoints",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clean",
+                      "value": "false"
+                    },
+                    {
+                      "key": "neptuneIamRoleArn",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "AWS region",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "AWS region",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://neptune-graph.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d81213c9-1c16-4a1a-8c72-e68bb94522dd",
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource ML API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource openCypher API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "openCypher",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Execute an OpenCypher Query via the Data API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/opencypher",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an openCypher query against the Neptune property graph database using the Data API. Returns the results in JSON format."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Execution Plan for an OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/opencypher/explain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an openCypher explain query. Returns the query execution plan without actually running the query against the data."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of OpenCypher Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/opencypher/status"
+          },
+          "docs": "Gets the status of running and waiting openCypher queries."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get the Status of a Specific OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/opencypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query."
+              }
+            ]
+          },
+          "docs": "Gets the status of a specific openCypher query by its query ID."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Cancel a Running OpenCypher Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/opencypher/status/:queryId",
+            "params": [
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the openCypher query to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running openCypher query by its query ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

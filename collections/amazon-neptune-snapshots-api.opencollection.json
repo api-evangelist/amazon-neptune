@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Snapshots API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Snapshot of a Neptune DB Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=CreateDBClusterSnapshot",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the DB cluster to create a snapshot for."
+              },
+              {
+                "name": "DBClusterSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier for the DB cluster snapshot."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates a snapshot of a DB cluster. Manual snapshots can be used to restore a DB cluster to a specific state."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Cluster Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribeDBClusterSnapshots",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of a specific snapshot to describe."
+              },
+              {
+                "name": "DBClusterIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the cluster to filter snapshots by."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to include in the response."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about DB cluster snapshots. If a specific snapshot identifier is supplied, details for that snapshot are returned."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune DB Cluster Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DeleteDBClusterSnapshot",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DBClusterSnapshotIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the cluster snapshot to delete."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a DB cluster snapshot. If the snapshot is being copied, the copy operation is terminated."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Restore a Neptune DB Cluster from a Snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=RestoreDBClusterFromSnapshot",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new DB cluster from a DB snapshot or DB cluster snapshot. The new DB cluster is created from the source snapshot with a default configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

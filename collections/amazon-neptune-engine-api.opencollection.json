@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Engine API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Engine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Neptune DB Engine Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribeDBEngineVersions",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Engine",
+                "value": "",
+                "type": "query",
+                "description": "The database engine to return versions for."
+              },
+              {
+                "name": "EngineVersion",
+                "value": "",
+                "type": "query",
+                "description": "A specific engine version to return details for."
+              },
+              {
+                "name": "DBParameterGroupFamily",
+                "value": "",
+                "type": "query",
+                "description": "The parameter group family to filter versions by."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of the available DB engine versions. The output shows the supported features and parameter group families for each version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

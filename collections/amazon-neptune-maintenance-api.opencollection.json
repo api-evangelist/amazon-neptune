@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Maintenance API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Maintenance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune Describe Pending Maintenance Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=DescribePendingMaintenanceActions",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ResourceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of a resource to filter maintenance actions."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of resources with pending maintenance actions."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Apply a Pending Maintenance Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/?Action=ApplyPendingMaintenanceAction",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ResourceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "The ARN of the resource to apply the action to."
+              },
+              {
+                "name": "ApplyAction",
+                "value": "",
+                "type": "query",
+                "description": "The pending maintenance action to apply."
+              },
+              {
+                "name": "OptInType",
+                "value": "",
+                "type": "query",
+                "description": "The type of opt-in request (immediate, next-maintenance, undo-opt-in)."
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Applies a pending maintenance action to a resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

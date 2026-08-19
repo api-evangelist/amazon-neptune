@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Graphs API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Graphs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Neptune Analytics Graphs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous request."
+              }
+            ]
+          },
+          "docs": "Returns a list of Neptune Analytics graph resources in the account."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune Analytics graph resource. The graph is a memory-optimized database instance optimized for analytical workloads with support for openCypher queries and vector search."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Neptune Analytics Graph Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific Neptune Analytics graph resource."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Update a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing Neptune Analytics graph, such as provisioned memory or deletion protection settings."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Delete a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph to delete."
+              },
+              {
+                "name": "skipSnapshot",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip creating a final snapshot before deletion."
+              }
+            ]
+          },
+          "docs": "Deletes a Neptune Analytics graph resource. The graph must not have deletion protection enabled."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Reset a Neptune Analytics Graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://neptune-graph.{region}.amazonaws.com/graphs/:graphIdentifier/reset",
+            "params": [
+              {
+                "name": "graphIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the graph to reset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Empties the data from a Neptune Analytics graph, removing all nodes and edges while preserving the graph resource and its configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

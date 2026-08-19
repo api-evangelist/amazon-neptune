@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Model Transform API",
+    "version": "2023-11-29"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Model Transform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Neptune List Active Model Transform Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltransform",
+            "params": [
+              {
+                "name": "maxItems",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of active Neptune ML model transform job IDs."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Create an ML Model Transform Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltransform",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Neptune ML model transform job that generates model artifacts for inference. The transform job creates the embeddings and other artifacts needed to deploy the model to an inference endpoint."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Get Model Transform Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltransform/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the status of a Neptune ML model transform job."
+        },
+        {
+          "info": {
+            "name": "Amazon Neptune Stop a Model Transform Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://neptune-graph.{region}.amazonaws.com/ml/modeltransform/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "clean",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "neptuneIamRoleArn",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Stops a running Neptune ML model transform job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
