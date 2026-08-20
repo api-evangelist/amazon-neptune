@@ -588,6 +588,8 @@ apis:
   name: Amazon Neptune Events API
   description: Operations for managing event subscriptions and viewing events
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
