@@ -3,6 +3,18 @@ description: >-
   Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build and run
   applications that work with highly connected datasets. It supports property graph and RDF models, with multiple query
   languages including Gremlin, SPARQL, and openCypher.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -2716,6 +2728,9 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+  - type: CapabilityMap
+    url: capabilities/amazon-neptune-capability-edges.yml
+    name: Amazon Neptune Business Capability Map
   - type: AgenticAccess
     url: agentic-access/amazon-neptune-agentic-access.yml
   - type: TrustCenter
