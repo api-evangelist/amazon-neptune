@@ -12,8 +12,8 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneDataApi
-  url: ../openapi/amazon-neptune-data-openapi.yml
+- name: loaderApi
+  url: ../openapi/amazon-neptune-loader-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: bulk-loader-start-and-poll

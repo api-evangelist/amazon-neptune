@@ -13,8 +13,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneStreamsApi
-  url: ../openapi/amazon-neptune-streams-openapi.yml
+- name: propertyGraphStreamApi
+  url: ../openapi/amazon-neptune-property-graph-stream-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: propertygraph-stream-replay

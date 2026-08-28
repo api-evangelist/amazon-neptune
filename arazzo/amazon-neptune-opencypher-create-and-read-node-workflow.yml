@@ -12,8 +12,8 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneOpenCypherApi
-  url: ../openapi/amazon-neptune-opencypher-openapi.yml
+- name: opencypherApi
+  url: ../openapi/amazon-neptune-opencypher-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: opencypher-create-and-read-node

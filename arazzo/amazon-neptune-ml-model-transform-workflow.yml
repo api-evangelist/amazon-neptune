@@ -12,8 +12,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneMlApi
-  url: ../openapi/amazon-neptune-ml-openapi.yml
+- name: modelTransformApi
+  url: ../openapi/amazon-neptune-model-transform-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: ml-model-transform

@@ -12,8 +12,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneAnalyticsApi
-  url: ../openapi/amazon-neptune-analytics-openapi.yml
+- name: importTasksApi
+  url: ../openapi/amazon-neptune-import-tasks-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: analytics-import-task

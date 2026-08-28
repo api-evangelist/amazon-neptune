@@ -12,8 +12,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneDataApi
-  url: ../openapi/amazon-neptune-data-openapi.yml
+- name: gremlinApi
+  url: ../openapi/amazon-neptune-gremlin-api-openapi.yml
+  type: openapi
+- name: statusApi
+  url: ../openapi/amazon-neptune-status-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: gremlin-query-with-status

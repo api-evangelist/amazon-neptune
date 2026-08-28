@@ -11,8 +11,14 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneDataApi
-  url: ../openapi/amazon-neptune-data-openapi.yml
+- name: queryApi
+  url: ../openapi/amazon-neptune-query-api-openapi.yml
+  type: openapi
+- name: sparqlApi
+  url: ../openapi/amazon-neptune-sparql-api-openapi.yml
+  type: openapi
+- name: statusApi
+  url: ../openapi/amazon-neptune-status-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: sparql-query-with-status

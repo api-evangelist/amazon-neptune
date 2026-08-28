@@ -12,8 +12,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneAnalyticsApi
-  url: ../openapi/amazon-neptune-analytics-openapi.yml
+- name: graphsApi
+  url: ../openapi/amazon-neptune-graphs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: analytics-create-graph

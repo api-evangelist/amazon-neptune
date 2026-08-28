@@ -11,8 +11,11 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneDataApi
-  url: ../openapi/amazon-neptune-data-openapi.yml
+- name: opencypherApi
+  url: ../openapi/amazon-neptune-opencypher-api-openapi.yml
+  type: openapi
+- name: statusApi
+  url: ../openapi/amazon-neptune-status-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: opencypher-query-with-status

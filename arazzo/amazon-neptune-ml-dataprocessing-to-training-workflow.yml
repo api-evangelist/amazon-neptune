@@ -12,8 +12,11 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneMlApi
-  url: ../openapi/amazon-neptune-ml-openapi.yml
+- name: dataProcessingApi
+  url: ../openapi/amazon-neptune-data-processing-api-openapi.yml
+  type: openapi
+- name: modelTrainingApi
+  url: ../openapi/amazon-neptune-model-training-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: ml-dataprocessing-to-training

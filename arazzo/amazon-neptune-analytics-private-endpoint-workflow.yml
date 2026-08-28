@@ -12,8 +12,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneAnalyticsApi
-  url: ../openapi/amazon-neptune-analytics-openapi.yml
+- name: graphsApi
+  url: ../openapi/amazon-neptune-graphs-api-openapi.yml
+  type: openapi
+- name: privateGraphEndpointsApi
+  url: ../openapi/amazon-neptune-private-graph-endpoints-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: analytics-private-endpoint
