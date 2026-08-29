@@ -1,21 +1,39 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource DB Clusters API
-  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
-  version: '2023-11-29'
+  title: Amazon Neptune Management DB Clusters API
+  description: Amazon Neptune Management API for creating, managing, and deleting Neptune DB clusters, instances, parameter groups, snapshots, and related infrastructure resources. This is an AWS Query API that uses HTTPS requests with Action and parameter query strings.
+  version: '2014-10-31'
   contact:
     name: Amazon Web Services
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: https://aws.amazon.com/neptune/
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-- url: https://neptune-graph.{region}.amazonaws.com
-  description: Neptune Analytics control plane regional endpoint
+- url: https://rds.{region}.amazonaws.com
+  description: Amazon Neptune Management API regional endpoint
   variables:
     region:
       default: us-east-1
       description: AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-north-1
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-south-1
+      - ca-central-1
+      - me-south-1
+      - sa-east-1
 security:
 - aws_sigv4: []
 tags:
@@ -504,41 +522,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ModifyDBClusterRequest:
-      type: object
-      required:
-      - DBClusterIdentifier
-      properties:
-        DBClusterIdentifier:
-          type: string
-          description: The DB cluster identifier.
-        NewDBClusterIdentifier:
-          type: string
-          description: The new cluster identifier when renaming.
-        EngineVersion:
-          type: string
-          description: The version of the Neptune engine to upgrade to.
-        Port:
-          type: integer
-          description: The port number on which the cluster accepts connections.
-        DBClusterParameterGroupName:
-          type: string
-          description: The name of the cluster parameter group to use.
-        VpcSecurityGroupIds:
-          type: array
-          items:
-            type: string
-        BackupRetentionPeriod:
-          type: integer
-        PreferredBackupWindow:
-          type: string
-        PreferredMaintenanceWindow:
-          type: string
-        DeletionProtection:
-          type: boolean
-        ApplyImmediately:
-          type: boolean
-          description: Whether to apply changes immediately or during the next maintenance window.
     CreateDBClusterRequest:
       type: object
       required:
@@ -588,22 +571,51 @@ components:
         IAMDatabaseAuthenticationEnabled:
           type: boolean
           description: Whether to enable IAM database authentication.
-    DBClusterMember:
+    ModifyDBClusterRequest:
       type: object
-      description: A member instance of a Neptune DB cluster.
+      required:
+      - DBClusterIdentifier
       properties:
-        DBInstanceIdentifier:
+        DBClusterIdentifier:
           type: string
-          description: The instance identifier.
-        IsClusterWriter:
-          type: boolean
-          description: Whether the instance is the primary (writer) instance.
-        DBClusterParameterGroupStatus:
+          description: The DB cluster identifier.
+        NewDBClusterIdentifier:
           type: string
-          description: The status of the parameter group for this member.
-        PromotionTier:
+          description: The new cluster identifier when renaming.
+        EngineVersion:
+          type: string
+          description: The version of the Neptune engine to upgrade to.
+        Port:
           type: integer
-          description: Failover priority for the instance.
+          description: The port number on which the cluster accepts connections.
+        DBClusterParameterGroupName:
+          type: string
+          description: The name of the cluster parameter group to use.
+        VpcSecurityGroupIds:
+          type: array
+          items:
+            type: string
+        BackupRetentionPeriod:
+          type: integer
+        PreferredBackupWindow:
+          type: string
+        PreferredMaintenanceWindow:
+          type: string
+        DeletionProtection:
+          type: boolean
+        ApplyImmediately:
+          type: boolean
+          description: Whether to apply changes immediately or during the next maintenance window.
+    DBClusterRole:
+      type: object
+      description: An IAM role associated with a Neptune DB cluster.
+      properties:
+        RoleArn:
+          type: string
+          description: The ARN of the IAM role.
+        Status:
+          type: string
+          description: The status of the association (active, pending, error).
     DBCluster:
       type: object
       description: Contains the details of an Amazon Neptune DB cluster.
@@ -679,16 +691,6 @@ components:
           description: IAM roles associated with the cluster.
           items:
             $ref: '#/components/schemas/DBClusterRole'
-    DBClusterRole:
-      type: object
-      description: An IAM role associated with a Neptune DB cluster.
-      properties:
-        RoleArn:
-          type: string
-          description: The ARN of the IAM role.
-        Status:
-          type: string
-          description: The status of the association (active, pending, error).
     DescribeDBClustersResponse:
       type: object
       properties:
@@ -698,6 +700,22 @@ components:
             $ref: '#/components/schemas/DBCluster'
         Marker:
           type: string
+    DBClusterMember:
+      type: object
+      description: A member instance of a Neptune DB cluster.
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The instance identifier.
+        IsClusterWriter:
+          type: boolean
+          description: Whether the instance is the primary (writer) instance.
+        DBClusterParameterGroupStatus:
+          type: string
+          description: The status of the parameter group for this member.
+        PromotionTier:
+          type: integer
+          description: Failover priority for the instance.
   securitySchemes:
     aws_sigv4:
       type: apiKey

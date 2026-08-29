@@ -1,21 +1,21 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Model Training API
-  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
-  version: '2023-11-29'
+  title: Amazon Neptune Neptune ML Model Training API
+  description: Neptune ML enables machine learning on graph data using graph neural networks. It provides APIs for data processing, model training, model transform, and inference endpoint management powered by Amazon SageMaker. The ML API endpoints are available on the Neptune DB instance HTTP endpoint under the /ml path prefix.
+  version: '2024-01-01'
   contact:
     name: Amazon Web Services
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-- url: https://neptune-graph.{region}.amazonaws.com
-  description: Neptune Analytics control plane regional endpoint
+- url: https://{cluster-endpoint}:8182
+  description: Neptune ML REST endpoint
   variables:
-    region:
-      default: us-east-1
-      description: AWS region
+    cluster-endpoint:
+      default: your-cluster-endpoint.region.neptune.amazonaws.com
+      description: The cluster endpoint DNS name for your Neptune DB cluster
 security:
 - aws_sigv4: []
 tags:
@@ -164,6 +164,36 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
+    JobStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+        id:
+          type: string
+          description: The job identifier.
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
+            failureReason:
+              type: string
+            cloudwatchLogUrl:
+              type: string
     JobListResponse:
       type: object
       properties:
@@ -172,12 +202,6 @@ components:
           description: List of job IDs.
           items:
             type: string
-    JobCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the created job.
     CreateModelTrainingJobRequest:
       type: object
       required:
@@ -263,33 +287,9 @@ components:
             transformEntryPointScript:
               type: string
               description: Name of the transform entry point script.
-    JobStatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: The current status of the job.
-        id:
-          type: string
-          description: The job identifier.
-        processingJob:
-          type: object
-          properties:
-            name:
-              type: string
-            arn:
-              type: string
-            status:
-              type: string
-            outputLocation:
-              type: string
-            failureReason:
-              type: string
-            cloudwatchLogUrl:
-              type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey
       name: Authorization
       in: header
-      description: AWS Signature Version 4 authentication
+      description: AWS Signature Version 4 authentication via IAM

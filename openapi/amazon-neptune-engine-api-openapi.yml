@@ -1,21 +1,39 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amazon Neptune Neptune Analytics ?Action=AddTagsToResource ?Action=AddTagsToResource Engine API
-  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This API provides management operations for Neptune Analytics graph resources including creating, managing, and querying graph databases optimized for analytical workloads.
-  version: '2023-11-29'
+  title: Amazon Neptune Management Engine API
+  description: Amazon Neptune Management API for creating, managing, and deleting Neptune DB clusters, instances, parameter groups, snapshots, and related infrastructure resources. This is an AWS Query API that uses HTTPS requests with Action and parameter query strings.
+  version: '2014-10-31'
   contact:
     name: Amazon Web Services
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: https://aws.amazon.com/neptune/
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-- url: https://neptune-graph.{region}.amazonaws.com
-  description: Neptune Analytics control plane regional endpoint
+- url: https://rds.{region}.amazonaws.com
+  description: Amazon Neptune Management API regional endpoint
   variables:
     region:
       default: us-east-1
       description: AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-north-1
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-south-1
+      - ca-central-1
+      - me-south-1
+      - sa-east-1
 security:
 - aws_sigv4: []
 tags:
