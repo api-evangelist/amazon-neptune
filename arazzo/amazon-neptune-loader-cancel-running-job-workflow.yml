@@ -11,8 +11,8 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneLoaderApi
-  url: ../openapi/amazon-neptune-loader-openapi.yml
+- name: loaderApi
+  url: ../openapi/amazon-neptune-loader-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: loader-cancel-running-job
@@ -33,7 +33,7 @@ workflows:
     description: >-
       Read the current status of the load job and capture the overall status so
       the cancel decision can be made.
-    operationId: getBulkLoadJobStatus
+    operationId: getLoaderJobStatus
     parameters:
     - name: loadId
       in: path
@@ -63,7 +63,7 @@ workflows:
     description: >-
       Cancel the in-progress load job. Must run against the read/write cluster
       endpoint, not a read replica.
-    operationId: cancelBulkLoadJob
+    operationId: cancelLoaderJob
     parameters:
     - name: loadId
       in: path

@@ -11,8 +11,8 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: neptuneLoaderApi
-  url: ../openapi/amazon-neptune-loader-openapi.yml
+- name: loaderApi
+  url: ../openapi/amazon-neptune-loader-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: loader-job-lifecycle
@@ -47,7 +47,7 @@ workflows:
   - stepId: startLoad
     description: >-
       Start a bulk load job from the supplied S3 source and capture the load id.
-    operationId: startBulkLoadJob
+    operationId: startLoaderJob
     requestBody:
       contentType: application/json
       payload:
@@ -64,7 +64,7 @@ workflows:
     description: >-
       List the recent bulk load job ids, including queued loads, to confirm the
       new job is being tracked by Neptune.
-    operationId: listBulkLoadJobs
+    operationId: listLoaderJobs
     parameters:
     - name: includeQueuedLoads
       in: query
@@ -77,7 +77,7 @@ workflows:
     description: >-
       Poll the load job status with detailed feed counts. Repeat while the
       overall status is LOAD_IN_PROGRESS and finish once it is LOAD_COMPLETED.
-    operationId: getBulkLoadJobStatus
+    operationId: getLoaderJobStatus
     parameters:
     - name: loadId
       in: path
