@@ -3006,3 +3006,5 @@ common:
     title: Streams Context
   - type: Integrations
     url: https://aws.amazon.com/partners/
+x-parent: aws
+x-relationship: product
