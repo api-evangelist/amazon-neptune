@@ -65,7 +65,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -123,13 +124,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-db-clusters-api
   name: Amazon Neptune DB Clusters API
   description: Operations for managing Neptune DB clusters
@@ -153,7 +157,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -211,13 +216,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-db-instances-api
   name: Amazon Neptune DB Instances API
   description: Operations for managing Neptune DB instances
@@ -241,7 +249,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -299,13 +308,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-engine-api
   name: Amazon Neptune Engine API
   description: Operations for querying engine version information
@@ -329,7 +341,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -387,13 +400,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-events-api
   name: Amazon Neptune Events API
   description: Operations for managing event subscriptions and viewing events
@@ -419,7 +435,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -477,13 +494,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-global-clusters-api
   name: Amazon Neptune Global Clusters API
   description: Operations for managing Neptune global database clusters
@@ -507,7 +527,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -565,13 +586,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-graph-snapshots-api
   name: Amazon Neptune Graph Snapshots API
   description: Operations for managing graph snapshots
@@ -595,7 +619,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -653,13 +678,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-graphs-api
   name: Amazon Neptune Graphs API
   description: Operations for managing Neptune Analytics graph resources
@@ -683,7 +711,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -741,13 +770,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-gremlin-api
   name: Amazon Neptune Gremlin API
   description: Execute Gremlin graph traversal queries
@@ -771,7 +803,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -829,13 +862,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-import-tasks-api
   name: Amazon Neptune Import Tasks API
   description: Operations for importing data into graphs
@@ -859,7 +895,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -917,13 +954,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-inference-endpoints-api
   name: Amazon Neptune Inference Endpoints API
   description: ML inference endpoint management operations
@@ -947,7 +987,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1005,13 +1046,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-loader-api
   name: Amazon Neptune Loader API
   description: Bulk data loading operations
@@ -1035,7 +1079,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1093,13 +1138,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-maintenance-api
   name: Amazon Neptune Maintenance API
   description: Operations for managing pending maintenance actions
@@ -1123,7 +1171,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1181,13 +1230,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-ml-api
   name: Amazon Neptune ML API
   description: Machine learning operations
@@ -1211,7 +1263,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1269,13 +1322,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-model-training-api
   name: Amazon Neptune Model Training API
   description: ML model training job operations
@@ -1299,7 +1355,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1357,13 +1414,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-model-transform-api
   name: Amazon Neptune Model Transform API
   description: ML model transform job operations
@@ -1387,7 +1447,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1445,101 +1506,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-opencypher-api
-  name: Amazon Neptune openCypher API
-  description: Execute openCypher graph queries
-  tags:
-  - openCypher
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-opencypher-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-parameter-groups-api
   name: Amazon Neptune Parameter Groups API
   description: Operations for managing DB and cluster parameter groups
@@ -1563,7 +1539,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1621,13 +1598,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-private-graph-endpoints-api
   name: Amazon Neptune Private Graph Endpoints API
   description: Operations for managing private graph endpoints in VPCs
@@ -1651,7 +1631,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1709,13 +1690,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-property-graph-stream-api
   name: Amazon Neptune Property Graph Stream API
   description: Change data capture for property graph (Gremlin/openCypher) data
@@ -1739,7 +1723,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1797,13 +1782,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-query-api
   name: Amazon Neptune Query API
   description: Submit Gremlin graph traversal queries
@@ -1827,7 +1815,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1885,13 +1874,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-snapshots-api
   name: Amazon Neptune Snapshots API
   description: Operations for managing cluster snapshots
@@ -1915,7 +1907,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -1973,13 +1966,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-sparql-api
   name: Amazon Neptune SPARQL API
   description: Execute SPARQL queries against RDF data
@@ -2003,7 +1999,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -2061,13 +2058,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-sparql-stream-api
   name: Amazon Neptune SPARQL Stream API
   description: Change data capture for RDF (SPARQL) data
@@ -2091,7 +2091,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -2149,13 +2150,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-status-api
   name: Amazon Neptune Status API
   description: Query engine status and statistics
@@ -2179,7 +2183,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -2237,13 +2242,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-streams-api
   name: Amazon Neptune Streams API
   description: Change data capture stream operations
@@ -2267,7 +2275,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -2325,13 +2334,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - aid: amazon-neptune:amazon-neptune-subnet-groups-api
   name: Amazon Neptune Subnet Groups API
   description: Operations for managing DB subnet groups
@@ -2355,7 +2367,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -2413,13 +2426,16 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 - name: Amazon Neptune Tags API
   description: Tag management for Amazon Neptune resources — list and add resource tags.
   humanURL: null
@@ -2446,7 +2462,8 @@ apis:
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
   - type: CLI Reference
     url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
   - type: JavaScript SDK
@@ -2504,15 +2521,110 @@ apis:
   - type: GettingStarted
     url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
   - type: Documentation
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
   - type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
   - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
   - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
   - type: OpenAPI
     url: openapi/amazon-neptune-action-listtagsforresource-api-openapi.yml
+- aid: amazon-neptune:amazon-neptune-open-cypher-api
+  name: Amazon Neptune open Cypher API
+  description: Execute openCypher graph queries
+  tags:
+  - open Cypher
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-neptune-open-cypher-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
+  - type: Pricing
+    url: https://aws.amazon.com/neptune/pricing/
+  - type: GettingStarted
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
+  - type: SDKs
+    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
+  - type: SDKs
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+  - type: CLI Reference
+    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
+  - type: JavaScript SDK
+    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
+  - type: Go SDK
+    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
+  - type: Reference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
+  - type: Gremlin Reference
+    url: https://tinkerpop.apache.org/docs/current/reference/
+  - type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
+  - type: REST Endpoint
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
+  - type: SPARQL Reference
+    url: https://www.w3.org/TR/sparql11-query/
+  - type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
+  - type: REST Endpoint
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
+  - type: openCypher Reference
+    url: https://opencypher.org/
+  - type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
+  - type: Response Format
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
+  - type: Data API Reference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
+  - type: Loader Command
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
+  - type: Data Formats
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
+  - type: Data API Reference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
+  - type: Model Training
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
+  - type: GettingStarted
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
+  - type: Documentation
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  - type: APIReference
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
+  - type: SDKs
+    url: >-
+      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+  - type: GettingStarted
+    url: >-
+      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
 integrations:
 - name: Partner Programs
 - name: Resources
