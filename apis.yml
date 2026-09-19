@@ -1,7 +1,7 @@
 name: Amazon Neptune
-description: Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy
-  to build and run applications that work with highly connected datasets. It supports property graph and
-  RDF models, with multiple query languages including Gremlin, SPARQL, and openCypher.
+description: Amazon Neptune is a fast, reliable, fully managed graph database service that makes it easy to build
+  and run applications that work with highly connected datasets. It supports property graph and RDF models, with
+  multiple query languages including Gremlin, SPARQL, and openCypher.
 deliveryModel:
   model: saas
   open_source: false
@@ -42,2589 +42,542 @@ created: '2024'
 modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
-- aid: amazon-neptune:amazon-neptune-data-processing-api
-  name: Amazon Neptune Data Processing API
-  description: ML data processing job operations
-  tags:
-  - Data Processing
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-data-processing-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-db-clusters-api
-  name: Amazon Neptune DB Clusters API
-  description: Operations for managing Neptune DB clusters
-  tags:
-  - DB Clusters
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-db-clusters-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-db-instances-api
-  name: Amazon Neptune DB Instances API
-  description: Operations for managing Neptune DB instances
-  tags:
-  - DB Instances
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-db-instances-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-engine-api
-  name: Amazon Neptune Engine API
-  description: Operations for querying engine version information
-  tags:
-  - Engine
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-engine-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-events-api
-  name: Amazon Neptune Events API
-  description: Operations for managing event subscriptions and viewing events
-  tags:
-  - Event
-  tags_raw:
-  - Events
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-events-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-global-clusters-api
-  name: Amazon Neptune Global Clusters API
-  description: Operations for managing Neptune global database clusters
-  tags:
-  - Global Clusters
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-global-clusters-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-graph-snapshots-api
-  name: Amazon Neptune Graph Snapshots API
-  description: Operations for managing graph snapshots
-  tags:
-  - Graph Snapshots
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-graph-snapshots-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-graphs-api
-  name: Amazon Neptune Graphs API
-  description: Operations for managing Neptune Analytics graph resources
-  tags:
-  - Graphs
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-graphs-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-gremlin-api
-  name: Amazon Neptune Gremlin API
-  description: Execute Gremlin graph traversal queries
-  tags:
-  - Gremlin
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-gremlin-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-import-tasks-api
-  name: Amazon Neptune Import Tasks API
-  description: Operations for importing data into graphs
-  tags:
-  - Import Tasks
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-import-tasks-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-inference-endpoints-api
-  name: Amazon Neptune Inference Endpoints API
-  description: ML inference endpoint management operations
-  tags:
-  - Inference Endpoints
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-inference-endpoints-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-loader-api
-  name: Amazon Neptune Loader API
-  description: Bulk data loading operations
-  tags:
-  - Loader
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-loader-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-maintenance-api
-  name: Amazon Neptune Maintenance API
-  description: Operations for managing pending maintenance actions
-  tags:
-  - Maintenance
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-maintenance-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-ml-api
-  name: Amazon Neptune ML API
-  description: Machine learning operations
-  tags:
-  - ML
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-ml-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-model-training-api
-  name: Amazon Neptune Model Training API
-  description: ML model training job operations
-  tags:
-  - Model Training
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-model-training-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-model-transform-api
-  name: Amazon Neptune Model Transform API
-  description: ML model transform job operations
-  tags:
-  - Model Transform
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-model-transform-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-parameter-groups-api
-  name: Amazon Neptune Parameter Groups API
-  description: Operations for managing DB and cluster parameter groups
-  tags:
-  - Parameter Groups
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-parameter-groups-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-private-graph-endpoints-api
-  name: Amazon Neptune Private Graph Endpoints API
-  description: Operations for managing private graph endpoints in VPCs
-  tags:
-  - Private Graph Endpoints
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-private-graph-endpoints-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-property-graph-stream-api
-  name: Amazon Neptune Property Graph Stream API
-  description: Change data capture for property graph (Gremlin/openCypher) data
-  tags:
-  - Property Graph Stream
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-property-graph-stream-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-query-api
-  name: Amazon Neptune Query API
-  description: Submit Gremlin graph traversal queries
-  tags:
-  - Query
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-query-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-snapshots-api
-  name: Amazon Neptune Snapshots API
-  description: Operations for managing cluster snapshots
-  tags:
-  - Snapshots
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-snapshots-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-sparql-api
-  name: Amazon Neptune SPARQL API
-  description: Execute SPARQL queries against RDF data
-  tags:
-  - SPARQL
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-sparql-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-sparql-stream-api
-  name: Amazon Neptune SPARQL Stream API
-  description: Change data capture for RDF (SPARQL) data
-  tags:
-  - SPARQL Stream
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-sparql-stream-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-status-api
-  name: Amazon Neptune Status API
-  description: Query engine status and statistics
-  tags:
-  - Status
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-status-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-streams-api
-  name: Amazon Neptune Streams API
-  description: Change data capture stream operations
-  tags:
-  - Streams
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-streams-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- aid: amazon-neptune:amazon-neptune-subnet-groups-api
-  name: Amazon Neptune Subnet Groups API
-  description: Operations for managing DB subnet groups
-  tags:
-  - Subnet Groups
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-neptune-subnet-groups-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-- name: Amazon Neptune Tags API
-  description: Tag management for Amazon Neptune resources — list and add resource tags.
-  humanURL: null
-  baseURL: null
-  tags:
-  - Tags
-  - Resource Management
+- aid: amazon-neptune:amazon-neptune-analytics
+  name: Amazon Neptune Analytics API
+  description: Neptune Analytics is a memory-optimized graph database engine for analytics, providing optimized
+    graph analytic algorithms, low-latency queries, and vector search capabilities within graph traversals. This
+    API provides management operations for Neptune Analytics graph resources including creating, m
+  baseURL: https://neptune-graph.{region}.amazonaws.com
+  tags: &id001
   - AWS
+  - DB Clusters
+  - DB Instances
+  - Data Processing
+  - Engine
+  - Event
   properties:
   - type: OpenAPI
-    url: openapi/amazon-neptune-action-addtagstoresource-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
+    url: openapi/_original/amazon-neptune-analytics-openapi.yml
+  - &id002
+    type: APIReference
     url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
-  - type: OpenAPI
-    url: openapi/amazon-neptune-action-listtagsforresource-api-openapi.yml
-- aid: amazon-neptune:amazon-neptune-open-cypher-api
-  name: Amazon Neptune open Cypher API
-  description: Execute openCypher graph queries
-  tags:
-  - open Cypher
+  - &id003
+    type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
+  - &id004
+    type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
+  - &id005
+    type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
+  - &id006
+    type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
+  - &id007
+    type: APIReference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
+  - &id008
+    type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
+  - &id009
+    type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
+  - &id010
+    type: Best Practices
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
+  - &id011
+    type: CLI Reference
+    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
+  - &id012
+    type: Data API Reference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
+  - &id013
+    type: Data API Reference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
+  - &id014
+    type: Data Formats
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
+  - &id015
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
+  - &id016
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
+  - &id017
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
+  - &id018
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
+  - &id019
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
+  - &id020
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
+  - &id021
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
+  - &id022
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
+  - &id023
+    type: Documentation
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
+  - &id024
+    type: GettingStarted
+    url: https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+  - &id025
+    type: GettingStarted
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
+  - &id026
+    type: GettingStarted
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
+  - &id027
+    type: Go SDK
+    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
+  - &id028
+    type: Gremlin Reference
+    url: https://tinkerpop.apache.org/docs/current/reference/
+  - &id029
+    type: JavaScript SDK
+    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
+  - &id030
+    type: Loader Command
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
+  - &id031
+    type: Model Training
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
+  - &id032
+    type: Pricing
+    url: https://aws.amazon.com/neptune/pricing/
+  - &id033
+    type: REST Endpoint
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
+  - &id034
+    type: REST Endpoint
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
+  - &id035
+    type: Reference
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
+  - &id036
+    type: Response Format
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
+  - &id037
+    type: SDKs
+    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
+  - &id038
+    type: SDKs
+    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
+  - &id039
+    type: SDKs
+    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
+  - &id040
+    type: SPARQL Reference
+    url: https://www.w3.org/TR/sparql11-query/
+  - &id041
+    type: openCypher Reference
+    url: https://opencypher.org/
+- aid: amazon-neptune:amazon-neptune-data
+  name: Amazon Neptune Data API
+  description: Amazon Neptune Data API provides SDK support for more than 40 data operations including data loading,
+    query execution, data inquiry, and machine learning. It supports Gremlin and openCypher query languages and
+    provides programmatic access to Neptune graph data through AWS SDKs.
+  baseURL: https://neptune-db.{region}.amazonaws.com
+  tags: *id001
   properties:
   - type: OpenAPI
-    url: openapi/amazon-neptune-open-cypher-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/api.html
-  - type: Pricing
-    url: https://aws.amazon.com/neptune/pricing/
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/get-started.html
-  - type: SDKs
-    url: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/data-api/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptunedata.html
-  - type: CLI Reference
-    url: https://docs.aws.amazon.com/cli/latest/reference/neptunedata/
-  - type: JavaScript SDK
-    url: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/neptunedata/
-  - type: Go SDK
-    url: https://docs.aws.amazon.com/sdk-for-go/api/service/neptunedata/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin.html
-  - type: Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/gremlin-api-reference.html
-  - type: Gremlin Reference
-    url: https://tinkerpop.apache.org/docs/current/reference/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-gremlin.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql.html
-  - type: SPARQL Reference
-    url: https://www.w3.org/TR/sparql11-query/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-sparql.html
-  - type: REST Endpoint
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-sparql-http-rest.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-opencypher.html
-  - type: openCypher Reference
-    url: https://opencypher.org/
-  - type: Best Practices
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/best-practices-opencypher.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-call.html
-  - type: Response Format
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/streams-using-api-reponse.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-streams.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference.html
-  - type: Loader Command
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/load-api-reference-load.html
-  - type: Data Formats
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html
-  - type: Data API Reference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-loader.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-reference.html
-  - type: Model Training
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/data-api-dp-ml-training.html
-  - type: GettingStarted
-    url: https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-overview.html
-  - type: Documentation
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/what-is-neptune-analytics.html
-  - type: APIReference
-    url: https://docs.aws.amazon.com/neptune-analytics/latest/apiref/Welcome.html
-  - type: SDKs
-    url: >-
-      https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/neptune-graph.html
-  - type: GettingStarted
-    url: >-
-      https://docs.aws.amazon.com/neptune-analytics/latest/userguide/gettingStarted-accessing.html
+    url: openapi/_original/amazon-neptune-data-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+- aid: amazon-neptune:amazon-neptune-gremlin
+  name: Amazon Neptune Gremlin API
+  description: Apache TinkerPop Gremlin graph traversal language API for querying property graphs in Neptune. It
+    supports both WebSocket and HTTP REST endpoints for submitting Gremlin traversals. This spec covers the HTTP
+    REST endpoint. Neptune supports Gremlin as defined in Apache TinkerPop and uses HTTP/1.1 with
+  baseURL: https://{cluster-endpoint}:8182
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/amazon-neptune-gremlin-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+- aid: amazon-neptune:amazon-neptune-loader
+  name: Amazon Neptune Loader API
+  description: Neptune bulk loader API for ingesting large volumes of data from Amazon S3 into a Neptune DB instance.
+    It supports CSV formats for property graphs and multiple RDF serialization formats including N-Triples, N-Quads,
+    RDF/XML, and Turtle. The loader operates from the HTTP endpoint of a Neptune DB inst
+  baseURL: https://{cluster-endpoint}:8182
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/amazon-neptune-loader-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+- aid: amazon-neptune:amazon-neptune-management
+  name: Amazon Neptune Management API
+  description: Amazon Neptune Management API for creating, managing, and deleting Neptune DB clusters, instances,
+    parameter groups, snapshots, and related infrastructure resources. This is an AWS Query API that uses HTTPS
+    requests with Action and parameter query strings.
+  baseURL: https://rds.{region}.amazonaws.com
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/amazon-neptune-management-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+- aid: amazon-neptune:amazon-neptune-ml
+  name: Amazon Neptune ML API
+  description: Neptune ML enables machine learning on graph data using graph neural networks. It provides APIs for
+    data processing, model training, model transform, and inference endpoint management powered by Amazon SageMaker.
+    The ML API endpoints are available on the Neptune DB instance HTTP endpoint under the /
+  baseURL: https://{cluster-endpoint}:8182
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/amazon-neptune-ml-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+- aid: amazon-neptune:amazon-neptune-opencypher
+  name: Amazon Neptune openCypher API
+  description: openCypher graph query language API for querying property graphs with Cypher syntax in Neptune. It
+    provides an HTTP endpoint for executing openCypher queries against property graph data. Neptune supports openCypher
+    as a declarative query language with SQL-inspired syntax using MATCH, WHERE, WITH, an
+  baseURL: https://{cluster-endpoint}:8182
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/amazon-neptune-opencypher-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+- aid: amazon-neptune:amazon-neptune-sparql
+  name: Amazon Neptune SPARQL API
+  description: W3C SPARQL 1.1 query language API for querying RDF graphs in Neptune. It provides an HTTP REST endpoint
+    compatible with the SPARQL 1.1 protocol specification. Supports SELECT, ASK, CONSTRUCT, DESCRIBE query forms
+    and INSERT/DELETE update operations. Uses HTTP/1.1 with HTTPS only.
+  baseURL: https://{cluster-endpoint}:8182
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/amazon-neptune-sparql-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+- aid: amazon-neptune:amazon-neptune-streams
+  name: Amazon Neptune Streams API
+  description: Neptune Streams generates a complete sequence of change-log entries that record every change made
+    to graph data as it happens, enabling real-time capture of graph mutations via a REST API. Streams must be enabled
+    by setting the neptune_streams DB cluster parameter to 1. The API supports both propert
+  baseURL: https://{cluster-endpoint}:8182
+  tags: *id001
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/amazon-neptune-streams-openapi.yml
+  - *id002
+  - *id003
+  - *id004
+  - *id005
+  - *id006
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
 integrations:
 - name: Partner Programs
 - name: Resources
@@ -2805,85 +758,78 @@ common:
 - type: Features
   data:
   - name: Serverless Graph Database
-    description: Automatically scales compute and memory resources based on workload demands without requiring
-      capacity planning.
+    description: Automatically scales compute and memory resources based on workload demands without requiring capacity
+      planning.
   - name: Multiple Query Language Support
-    description: Supports Apache TinkerPop Gremlin, openCypher, and SPARQL 1.1 query languages for property
-      graph and RDF models.
+    description: Supports Apache TinkerPop Gremlin, openCypher, and SPARQL 1.1 query languages for property graph
+      and RDF models.
   - name: High Availability
-    description: Multi-AZ deployment with up to 15 read replicas, automated failover, and continuous backups
-      with point-in-time recovery up to 35 days.
+    description: Multi-AZ deployment with up to 15 read replicas, automated failover, and continuous backups with
+      point-in-time recovery up to 35 days.
   - name: Global Database
-    description: Multi-region replication with sub-second latency across up to five secondary clusters
-      for global applications.
+    description: Multi-region replication with sub-second latency across up to five secondary clusters for global
+      applications.
   - name: Neptune Analytics
-    description: Memory-optimized graph analytics engine for analyzing tens of billions of relationships
-      within seconds with vector search capabilities.
+    description: Memory-optimized graph analytics engine for analyzing tens of billions of relationships within
+      seconds with vector search capabilities.
   - name: GraphRAG Support
-    description: Fully managed GraphRAG with Amazon Bedrock Knowledge Bases for AI-enhanced graph retrieval
-      augmented generation.
+    description: Fully managed GraphRAG with Amazon Bedrock Knowledge Bases for AI-enhanced graph retrieval augmented
+      generation.
   - name: Machine Learning on Graphs
-    description: Native graph neural network support via Neptune ML powered by Amazon SageMaker for link
-      prediction and node classification.
+    description: Native graph neural network support via Neptune ML powered by Amazon SageMaker for link prediction
+      and node classification.
   - name: ACID Transactions
     description: Full ACID transaction support ensuring data consistency and integrity across graph operations.
   - name: AWS Security Integration
     description: VPC network isolation, IAM resource permissions, AWS KMS encryption, TLS in-transit encryption,
       and CloudWatch audit logging.
   - name: Auto-Expanding Storage
-    description: Storage automatically grows up to 128 TiB with self-healing architecture spanning three
-      availability zones.
+    description: Storage automatically grows up to 128 TiB with self-healing architecture spanning three availability
+      zones.
 - type: UseCases
   data:
   - name: Knowledge Graphs and GraphRAG
-    description: Build knowledge graphs to enhance AI accuracy, comprehensiveness, and explainability
-      using GraphRAG with Amazon Bedrock.
+    description: Build knowledge graphs to enhance AI accuracy, comprehensiveness, and explainability using GraphRAG
+      with Amazon Bedrock.
   - name: Fraud Detection
-    description: Model transaction and account relationship networks to detect fraudulent patterns in
-      near real-time using graph traversals.
+    description: Model transaction and account relationship networks to detect fraudulent patterns in near real-time
+      using graph traversals.
   - name: Customer 360
-    description: Build unified customer profile graphs linking purchases, preferences, and interactions
-      for personalization and marketing.
+    description: Build unified customer profile graphs linking purchases, preferences, and interactions for personalization
+      and marketing.
   - name: Cybersecurity and Threat Detection
-    description: Model IT infrastructure as a connected graph to detect attack paths, anomalies, and proactive
-      threats.
+    description: Model IT infrastructure as a connected graph to detect attack paths, anomalies, and proactive threats.
   - name: Recommendation Engines
-    description: Power product and content recommendation engines by traversing user-item relationship
-      graphs.
+    description: Power product and content recommendation engines by traversing user-item relationship graphs.
   - name: Social Networks
-    description: Model and query highly connected social graph data for applications requiring relationship
-      traversal at scale.
+    description: Model and query highly connected social graph data for applications requiring relationship traversal
+      at scale.
   - name: Network and IT Operations
-    description: Map network topology, dependencies, and configuration relationships for operations and
-      impact analysis.
+    description: Map network topology, dependencies, and configuration relationships for operations and impact analysis.
   - name: Supply Chain Management
     description: Model complex supply chain relationships and dependencies for optimization and risk analysis.
 - type: Integrations
   data:
   - name: Amazon Bedrock
-    description: Integration with Bedrock Knowledge Bases for fully managed GraphRAG and AI-enhanced knowledge
-      graph applications.
+    description: Integration with Bedrock Knowledge Bases for fully managed GraphRAG and AI-enhanced knowledge graph
+      applications.
   - name: Amazon SageMaker
     description: Neptune ML uses SageMaker for training graph neural network models on Neptune graph data.
   - name: Amazon S3
-    description: Bulk data loading from S3 using the Neptune Loader API with CSV and RDF serialization
-      format support.
+    description: Bulk data loading from S3 using the Neptune Loader API with CSV and RDF serialization format support.
   - name: AWS IAM
-    description: Fine-grained resource-level access control and role-based permissions via AWS Identity
-      and Access Management.
+    description: Fine-grained resource-level access control and role-based permissions via AWS Identity and Access
+      Management.
   - name: Amazon CloudWatch
     description: Metrics, logs, and audit logging for monitoring Neptune cluster performance and compliance.
   - name: AWS KMS
     description: Encryption at rest using AWS Key Management Service for customer-managed key support.
   - name: Amazon VPC
-    description: Network isolation using Amazon Virtual Private Cloud with security group and firewall
-      controls.
+    description: Network isolation using Amazon Virtual Private Cloud with security group and firewall controls.
   - name: Apache TinkerPop
-    description: Gremlin graph traversal language and TinkerPop ecosystem integration for property graph
-      querying.
+    description: Gremlin graph traversal language and TinkerPop ecosystem integration for property graph querying.
   - name: Strands AI Agents SDK
-    description: Integration with Strands AI Agents SDK and popular agentic memory tools for AI agent
-      applications.
+    description: Integration with Strands AI Agents SDK and popular agentic memory tools for AI agent applications.
 - type: SpectralRules
   url: rules/amazon-neptune-spectral-rules.yml
 - type: Vocabulary
