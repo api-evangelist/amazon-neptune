@@ -1,147 +1,50 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Amazon Neptune
-providerId: amazon-neptune
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: true
-tags:
-  - Amazon
-  - AWS
-  - Database
-  - Graph Database
-  - Analytics
-description: Amazon Neptune is priced per database-instance-hour on either Standard (with separate I/O
-  charges) or I/O-Optimized (no I/O charges, higher instance and storage rates) configurations, plus
-  Neptune Serverless for variable workloads measured in NCUs (Neptune Capacity Units) billed per second.
-  Storage and backup are metered separately. Prices listed are us-east-1 on-demand.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://aws.amazon.com/neptune/pricing/
 sources:
-  - https://aws.amazon.com/neptune/pricing/
+- https://aws.amazon.com/neptune/pricing/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+published: true
+note: 'Most rate tables (Neptune Analytics m-NCU hourly prices, serverless NCU-hour, storage per GB-month,
+  I/O per million requests, backup storage, data transfer tiers, workbench notebook instances) render
+  as unresolved pricing template tokens in the captured text, so no numeric values are visible. Numeric
+  figures visible are the $0.15 per vCPU-Hour CPU credit charge, the $0.01 per GB EC2 regional transfer
+  note, and illustrative figures inside four worked pricing examples (e.g. $0.348 per hour db.r5.large),
+  which are examples rather than the rate card. Billing is usage-based: on-demand instance hours, serverless
+  NCUs, storage GB-month, I/O per million requests, plus optional 1-year Database Savings Plans.'
+plan_count: 3
+currency: USD
 plans:
-  - id: amazon-neptune-provisioned-standard
-    name: Provisioned - Standard
-    type: usage-based
-    description: On-demand instance pricing with separate I/O charges. Storage at $0.10/GB-month plus per-million-IO
-      requests.
-    entries:
-      - label: db.r5.large instance hour
-        name: db_r5_large_hour
-        type: metered
-        metric: instance-hour
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: '0.348'
-        userMultiplied: false
-      - label: db.r5d.2xlarge instance hour
-        name: db_r5d_2xlarge_hour
-        type: metered
-        metric: instance-hour
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: '1.92'
-        userMultiplied: false
-      - label: Storage
-        name: storage_standard
-        type: metered
-        metric: gb-month
-        limit: -1
-        timeFrame: month
-        geo: US
-        unit: 1
-        price: '0.10'
-        userMultiplied: false
-      - label: I/O requests
-        name: io_requests
-        type: metered
-        metric: io-request
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1000000
-        price: '0.20'
-        userMultiplied: false
-    elements:
-      - name: Pay-per-IO
-      - name: Lower per-instance hourly rate
-      - name: Multi-AZ replicas
-  - id: amazon-neptune-provisioned-io-optimized
-    name: Provisioned - I/O-Optimized
-    type: usage-based
-    description: Higher instance and storage rates with no separate I/O charges. Predictable cost for I/O-heavy
-      workloads.
-    entries:
-      - label: db.r5.large I/O-Optimized instance hour
-        name: db_r5_large_io_hour
-        type: metered
-        metric: instance-hour
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: '0.4698'
-        userMultiplied: false
-      - label: Storage (I/O-Optimized)
-        name: storage_io_optimized
-        type: metered
-        metric: gb-month
-        limit: -1
-        timeFrame: month
-        geo: US
-        unit: 1
-        price: '0.225'
-        userMultiplied: false
-    elements:
-      - name: No per-IO charge
-      - name: Predictable cost at high IO
-  - id: amazon-neptune-serverless
-    name: Neptune Serverless
-    type: usage-based
-    description: Auto-scaling capacity measured in Neptune Capacity Units (NCUs) - 1 NCU is approximately
-      2 GB memory plus CPU/network. Billed per-second.
-    entries:
-      - label: NCU-hour
-        name: ncu_hour
-        type: metered
-        metric: ncu-hour
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: see vendor pricing calculator
-        userMultiplied: false
-    elements:
-      - name: Auto-scaling from 1 NCU
-      - name: Per-second billing
-      - name: No idle capacity charge below floor
-  - id: amazon-neptune-burstable-credits
-    name: Burstable CPU Credits (T3/T4g)
-    type: usage-based
-    description: Additional CPU credits charged when burstable instances exceed baseline.
-    entries:
-      - label: vCPU-hour over baseline
-        name: cpu_credit
-        type: metered
-        metric: vcpu-hour
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: '0.15'
-        userMultiplied: false
-    elements:
-      - name: Applies to db.t3.medium and db.t4g.medium only
-maintainers:
-  - name: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
-  - name: Amazon Web Services
-    email: support@aws.amazon.com
-    url: https://aws.amazon.com
+- name: T4g and T3 CPU Credits
+  price_text: $0.15 per vCPU-Hour
+  price: 0.15
+  currency: USD
+  period: per-use
+  unit: vCPU-Hour
+  included_quota: charged if average CPU use over a rolling 24-hour period exceeds the baseline of the
+    instance
+- name: Free Tier trial (Neptune Database)
+  price_text: free for 30 days
+  currency: USD
+  period: none
+  included_quota: 750 hours of the Neptune db.t3.medium or db.t4g.medium instance, 10 million I/O requests,
+    one GB of storage, and one GB of backup storage
+  overage: Once your free trial expires or your usage exceeds the free allowance, you can keep it running
+    at our standard on-demand rates.
+- name: EC2 Regional data transfer (Neptune instances outside VPC)
+  price_text: $0.01 per GB in/out
+  price: 0.01
+  currency: USD
+  period: per-use
+  unit: GB
+rate_limit_statements:
+- Read replicas Up to 15 Neptune replicas for read scalability
+- Scale-down latency <5 minute
+- Starting capacity 1 NCU
+- Capacity granularity Fine-grained, with increments as small as 1 NCU
