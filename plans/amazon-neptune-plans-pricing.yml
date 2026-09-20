@@ -10,6 +10,10 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: developer-api
 pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-09-20'
 published: true
 note: 'Most rate tables (Neptune Analytics m-NCU hourly prices, serverless NCU-hour, storage per GB-month,
   I/O per million requests, backup storage, data transfer tiers, workbench notebook instances) render
