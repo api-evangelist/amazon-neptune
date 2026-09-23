@@ -162,26 +162,13 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    EndpointStatusResponse:
+    EndpointListResponse:
       type: object
       properties:
-        status:
-          type: string
-        id:
-          type: string
-        endpoint:
-          type: object
-          properties:
-            name:
-              type: string
-            arn:
-              type: string
-            status:
-              type: string
-        endpointConfig:
-          type: object
-        outputLocation:
-          type: string
+        ids:
+          type: array
+          items:
+            type: string
     CreateInferenceEndpointRequest:
       type: object
       properties:
@@ -219,19 +206,32 @@ components:
           default: 1
         volumeEncryptionKMSKey:
           type: string
+    EndpointStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        endpoint:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+        endpointConfig:
+          type: object
+        outputLocation:
+          type: string
     EndpointCreatedResponse:
       type: object
       properties:
         id:
           type: string
           description: The unique identifier for the created endpoint.
-    EndpointListResponse:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

@@ -154,22 +154,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CreatePrivateGraphEndpointInput:
-      type: object
-      properties:
-        vpcId:
-          type: string
-          description: The VPC ID for the private endpoint.
-        subnetIds:
-          type: array
-          description: The subnet IDs for the private endpoint.
-          items:
-            type: string
-        vpcSecurityGroupIds:
-          type: array
-          description: The security group IDs for the private endpoint.
-          items:
-            type: string
     PrivateGraphEndpointOutput:
       type: object
       properties:
@@ -188,6 +172,22 @@ components:
           - FAILED
         vpcEndpointId:
           type: string
+    CreatePrivateGraphEndpointInput:
+      type: object
+      properties:
+        vpcId:
+          type: string
+          description: The VPC ID for the private endpoint.
+        subnetIds:
+          type: array
+          description: The subnet IDs for the private endpoint.
+          items:
+            type: string
+        vpcSecurityGroupIds:
+          type: array
+          description: The security group IDs for the private endpoint.
+          items:
+            type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

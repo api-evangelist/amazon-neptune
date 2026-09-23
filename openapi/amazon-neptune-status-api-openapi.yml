@@ -569,6 +569,20 @@ components:
                   type: integer
                 numEdgeProperties:
                   type: integer
+    GremlinQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+          description: The total number of accepted queries.
+        runningQueryCount:
+          type: integer
+          description: The number of currently running queries.
+        queries:
+          type: array
+          description: The list of running and waiting queries.
+          items:
+            $ref: '#/components/schemas/GremlinQueryStatusDetail'
     GremlinQueryStatusDetail:
       type: object
       properties:
@@ -594,20 +608,6 @@ components:
             subqueries:
               type: object
               description: Statistics for subqueries, if any.
-    GremlinQueryStatusList:
-      type: object
-      properties:
-        acceptedQueryCount:
-          type: integer
-          description: The total number of accepted queries.
-        runningQueryCount:
-          type: integer
-          description: The number of currently running queries.
-        queries:
-          type: array
-          description: The list of running and waiting queries.
-          items:
-            $ref: '#/components/schemas/GremlinQueryStatusDetail'
     OpenCypherQueryStatusList:
       type: object
       properties:
@@ -637,17 +637,6 @@ components:
               description: Elapsed execution time (milliseconds).
             cancelled:
               type: boolean
-    SparqlQueryStatusList:
-      type: object
-      properties:
-        acceptedQueryCount:
-          type: integer
-        runningQueryCount:
-          type: integer
-        queries:
-          type: array
-          items:
-            $ref: '#/components/schemas/SparqlQueryStatusDetail'
     SparqlQueryStatusDetail:
       type: object
       properties:
@@ -666,6 +655,17 @@ components:
               description: Elapsed execution time (milliseconds).
             cancelled:
               type: boolean
+    SparqlQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SparqlQueryStatusDetail'
   securitySchemes:
     aws_sigv4:
       type: apiKey

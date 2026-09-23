@@ -160,12 +160,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    JobCreatedResponse:
+    JobListResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier for the created job.
+        ids:
+          type: array
+          description: List of job IDs.
+          items:
+            type: string
     JobStatusResponse:
       type: object
       properties:
@@ -190,14 +192,12 @@ components:
               type: string
             cloudwatchLogUrl:
               type: string
-    JobListResponse:
+    JobCreatedResponse:
       type: object
       properties:
-        ids:
-          type: array
-          description: List of job IDs.
-          items:
-            type: string
+        id:
+          type: string
+          description: The unique identifier for the created job.
     CreateModelTransformJobRequest:
       type: object
       required:

@@ -210,52 +210,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    GraphSnapshotOutput:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        arn:
-          type: string
-        sourceGraphId:
-          type: string
-        snapshotCreateTime:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - CREATING
-          - AVAILABLE
-          - DELETING
-          - FAILED
-        kmsKeyIdentifier:
-          type: string
-    ListGraphSnapshotsOutput:
-      type: object
-      properties:
-        graphSnapshots:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              arn:
-                type: string
-              sourceGraphId:
-                type: string
-              snapshotCreateTime:
-                type: string
-                format: date-time
-              status:
-                type: string
-        nextToken:
-          type: string
     RestoreGraphFromSnapshotInput:
       type: object
       required:
@@ -342,6 +296,52 @@ components:
         deletionProtection:
           type: boolean
         buildNumber:
+          type: string
+    ListGraphSnapshotsOutput:
+      type: object
+      properties:
+        graphSnapshots:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              arn:
+                type: string
+              sourceGraphId:
+                type: string
+              snapshotCreateTime:
+                type: string
+                format: date-time
+              status:
+                type: string
+        nextToken:
+          type: string
+    GraphSnapshotOutput:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        arn:
+          type: string
+        sourceGraphId:
+          type: string
+        snapshotCreateTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - CREATING
+          - AVAILABLE
+          - DELETING
+          - FAILED
+        kmsKeyIdentifier:
           type: string
   securitySchemes:
     aws_sigv4:

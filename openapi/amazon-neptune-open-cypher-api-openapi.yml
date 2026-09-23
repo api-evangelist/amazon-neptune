@@ -19,7 +19,7 @@ servers:
 security:
 - aws_sigv4: []
 tags:
-- name: openCypher
+- name: open Cypher
   description: Execute openCypher graph queries
 paths:
   /opencypher:
@@ -28,7 +28,7 @@ paths:
       summary: Amazon Neptune Execute an OpenCypher Query via the Data API
       description: Executes an openCypher query against the Neptune property graph database using the Data API. Returns the results in JSON format.
       tags:
-      - openCypher
+      - open Cypher
       requestBody:
         required: true
         content:
@@ -62,7 +62,7 @@ paths:
       summary: Amazon Neptune Get the Execution Plan for an OpenCypher Query
       description: Executes an openCypher explain query. Returns the query execution plan without actually running the query against the data.
       tags:
-      - openCypher
+      - open Cypher
       requestBody:
         required: true
         content:
@@ -87,7 +87,7 @@ paths:
       summary: Amazon Neptune Get the Status of OpenCypher Queries
       description: Gets the status of running and waiting openCypher queries.
       tags:
-      - openCypher
+      - open Cypher
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -115,7 +115,7 @@ paths:
       summary: Amazon Neptune Get the Status of a Specific OpenCypher Query
       description: Gets the status of a specific openCypher query by its query ID.
       tags:
-      - openCypher
+      - open Cypher
       parameters:
       - name: queryId
         in: path
@@ -136,7 +136,7 @@ paths:
       summary: Amazon Neptune Cancel a Running OpenCypher Query
       description: Cancels a running openCypher query by its query ID.
       tags:
-      - openCypher
+      - open Cypher
       parameters:
       - name: queryId
         in: path
@@ -154,6 +154,31 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ExecuteOpenCypherQueryOutput:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+          description: The query result rows.
+    ExecuteOpenCypherExplainInput:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The openCypher query to explain.
+        parameters:
+          type: string
+        explainMode:
+          type: string
+          enum:
+          - static
+          - dynamic
+          - details
+          description: The explain mode (static, dynamic, or details).
     OpenCypherQueryStatusOutput:
       type: object
       properties:
@@ -172,14 +197,6 @@ components:
                 type: string
               queryEvalStats:
                 type: object
-    ExecuteOpenCypherQueryOutput:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-          description: The query result rows.
     ExecuteOpenCypherQueryInput:
       type: object
       required:
@@ -191,23 +208,6 @@ components:
         parameters:
           type: string
           description: The openCypher query parameters as a JSON-serialized string.
-    ExecuteOpenCypherExplainInput:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: The openCypher query to explain.
-        parameters:
-          type: string
-        explainMode:
-          type: string
-          enum:
-          - static
-          - dynamic
-          - details
-          description: The explain mode (static, dynamic, or details).
   securitySchemes:
     aws_sigv4:
       type: apiKey

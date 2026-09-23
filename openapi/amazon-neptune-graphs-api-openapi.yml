@@ -362,34 +362,6 @@ components:
           type: boolean
         buildNumber:
           type: string
-    ListGraphsOutput:
-      type: object
-      properties:
-        graphs:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              arn:
-                type: string
-              status:
-                type: string
-              provisionedMemory:
-                type: integer
-              publicConnectivity:
-                type: boolean
-              endpoint:
-                type: string
-              replicaCount:
-                type: integer
-              deletionProtection:
-                type: boolean
-        nextToken:
-          type: string
     CreateGraphInput:
       type: object
       required:
@@ -431,6 +403,34 @@ components:
           type: boolean
           description: Whether deletion protection is enabled.
           default: false
+    ListGraphsOutput:
+      type: object
+      properties:
+        graphs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              arn:
+                type: string
+              status:
+                type: string
+              provisionedMemory:
+                type: integer
+              publicConnectivity:
+                type: boolean
+              endpoint:
+                type: string
+              replicaCount:
+                type: integer
+              deletionProtection:
+                type: boolean
+        nextToken:
+          type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

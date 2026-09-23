@@ -19,7 +19,7 @@ servers:
 security:
 - aws_sigv4: []
 tags:
-- name: SPARQL
+- name: Sparql
   description: Execute SPARQL queries against RDF data
 paths:
   /sparql:
@@ -28,7 +28,7 @@ paths:
       summary: Amazon Neptune Execute a SPARQL Query via the Data API
       description: Executes a SPARQL query against the Neptune RDF graph database using the Data API. Supports SELECT, ASK, CONSTRUCT, and DESCRIBE queries.
       tags:
-      - SPARQL
+      - Sparql
       requestBody:
         required: true
         content:
@@ -53,7 +53,7 @@ paths:
       summary: Amazon Neptune Get the Status of SPARQL Queries
       description: Gets the status of running and waiting SPARQL queries.
       tags:
-      - SPARQL
+      - Sparql
       responses:
         '200':
           description: Query status retrieved successfully.
@@ -84,6 +84,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ExecuteSparqlQueryInput:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).
+        update:
+          type: string
+          description: The SPARQL update string (for INSERT, DELETE operations).
     SparqlQueryOutput:
       type: object
       properties:
@@ -101,15 +110,6 @@ components:
               type: array
               items:
                 type: object
-    ExecuteSparqlQueryInput:
-      type: object
-      properties:
-        query:
-          type: string
-          description: The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).
-        update:
-          type: string
-          description: The SPARQL update string (for INSERT, DELETE operations).
   securitySchemes:
     aws_sigv4:
       type: apiKey

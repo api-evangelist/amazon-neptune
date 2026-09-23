@@ -394,6 +394,15 @@ components:
           examples:
           - g.V().count()
           - g.V().has('name','John').out('knows')
+    OpenCypherErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
     OpenCypherQueryRequest:
       type: object
       required:
@@ -413,40 +422,6 @@ components:
             description: A result row. Keys are the RETURN alias names. Values can be scalars, nodes, relationships, or paths.
             additionalProperties:
               description: Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.
-    OpenCypherErrorResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-        code:
-          type: string
-        detailedMessage:
-          type: string
-    SparqlRequestBody:
-      type: object
-      properties:
-        query:
-          type: string
-          description: A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.
-        update:
-          type: string
-          description: A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.
-        using-graph-uri:
-          type: string
-          description: Default graph URI for the query.
-        using-named-graph-uri:
-          type: string
-          description: Named graph URI for the query.
-    SparqlErrorResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-        code:
-          type: string
-        detailedMessage:
-          type: string
-          description: Detailed error message explaining the issue.
     SparqlSelectResponse:
       type: object
       description: SPARQL 1.1 Query Results JSON Format as defined by W3C.
@@ -489,6 +464,31 @@ components:
         boolean:
           type: boolean
           description: The result for ASK queries.
+    SparqlErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+          description: Detailed error message explaining the issue.
+    SparqlRequestBody:
+      type: object
+      properties:
+        query:
+          type: string
+          description: A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.
+        update:
+          type: string
+          description: A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.
+        using-graph-uri:
+          type: string
+          description: Default graph URI for the query.
+        using-named-graph-uri:
+          type: string
+          description: Named graph URI for the query.
   securitySchemes:
     aws_sigv4:
       type: apiKey

@@ -285,16 +285,15 @@ components:
         SnapshotType:
           type: string
           description: The type of the snapshot (manual or automated).
-    DBClusterRole:
+    DescribeDBClusterSnapshotsResponse:
       type: object
-      description: An IAM role associated with a Neptune DB cluster.
       properties:
-        RoleArn:
+        DBClusterSnapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/DBClusterSnapshot'
+        Marker:
           type: string
-          description: The ARN of the IAM role.
-        Status:
-          type: string
-          description: The status of the association (active, pending, error).
     DBCluster:
       type: object
       description: Contains the details of an Amazon Neptune DB cluster.
@@ -370,6 +369,16 @@ components:
           description: IAM roles associated with the cluster.
           items:
             $ref: '#/components/schemas/DBClusterRole'
+    DBClusterRole:
+      type: object
+      description: An IAM role associated with a Neptune DB cluster.
+      properties:
+        RoleArn:
+          type: string
+          description: The ARN of the IAM role.
+        Status:
+          type: string
+          description: The status of the association (active, pending, error).
     RestoreDBClusterFromSnapshotRequest:
       type: object
       required:
@@ -401,15 +410,6 @@ components:
           type: boolean
         IAMDatabaseAuthenticationEnabled:
           type: boolean
-    DescribeDBClusterSnapshotsResponse:
-      type: object
-      properties:
-        DBClusterSnapshots:
-          type: array
-          items:
-            $ref: '#/components/schemas/DBClusterSnapshot'
-        Marker:
-          type: string
     DBClusterMember:
       type: object
       description: A member instance of a Neptune DB cluster.

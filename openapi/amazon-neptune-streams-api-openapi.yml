@@ -149,7 +149,7 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SparqlStreamOutput:
+    PropertygraphStreamOutput:
       type: object
       properties:
         lastEventId:
@@ -161,37 +161,15 @@ components:
               type: integer
         lastTrxTimestampInMillis:
           type: integer
+          description: Timestamp of the last transaction in milliseconds.
         format:
           type: string
           enum:
-          - NQUADS
+          - PG_JSON
         records:
           type: array
           items:
-            type: object
-            properties:
-              commitTimestampInMillis:
-                type: integer
-              eventId:
-                type: object
-                properties:
-                  commitNum:
-                    type: integer
-                  opNum:
-                    type: integer
-              data:
-                type: object
-                properties:
-                  stmt:
-                    type: string
-                    description: The N-Quads statement.
-              op:
-                type: string
-                enum:
-                - ADD
-                - REMOVE
-              isLastOp:
-                type: boolean
+            $ref: '#/components/schemas/PropertygraphStreamRecord'
         totalRecords:
           type: integer
     PropertygraphStreamRecord:
@@ -236,7 +214,7 @@ components:
           - REMOVE
         isLastOp:
           type: boolean
-    PropertygraphStreamOutput:
+    SparqlStreamOutput:
       type: object
       properties:
         lastEventId:
@@ -248,15 +226,37 @@ components:
               type: integer
         lastTrxTimestampInMillis:
           type: integer
-          description: Timestamp of the last transaction in milliseconds.
         format:
           type: string
           enum:
-          - PG_JSON
+          - NQUADS
         records:
           type: array
           items:
-            $ref: '#/components/schemas/PropertygraphStreamRecord'
+            type: object
+            properties:
+              commitTimestampInMillis:
+                type: integer
+              eventId:
+                type: object
+                properties:
+                  commitNum:
+                    type: integer
+                  opNum:
+                    type: integer
+              data:
+                type: object
+                properties:
+                  stmt:
+                    type: string
+                    description: The N-Quads statement.
+              op:
+                type: string
+                enum:
+                - ADD
+                - REMOVE
+              isLastOp:
+                type: boolean
         totalRecords:
           type: integer
   securitySchemes:

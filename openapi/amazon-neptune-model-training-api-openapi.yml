@@ -164,6 +164,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    JobListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          description: List of job IDs.
+          items:
+            type: string
     JobCreatedResponse:
       type: object
       properties:
@@ -194,14 +202,6 @@ components:
               type: string
             cloudwatchLogUrl:
               type: string
-    JobListResponse:
-      type: object
-      properties:
-        ids:
-          type: array
-          description: List of job IDs.
-          items:
-            type: string
     CreateModelTrainingJobRequest:
       type: object
       required:

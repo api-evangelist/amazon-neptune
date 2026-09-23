@@ -169,6 +169,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    JobListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          description: List of job IDs.
+          items:
+            type: string
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
     CreateDataProcessingJobRequest:
       type: object
       required:
@@ -233,12 +247,6 @@ components:
           type: boolean
           description: Whether to enable inter-container traffic encryption.
           default: true
-    JobCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the created job.
     JobStatusResponse:
       type: object
       properties:
@@ -263,14 +271,6 @@ components:
               type: string
             cloudwatchLogUrl:
               type: string
-    JobListResponse:
-      type: object
-      properties:
-        ids:
-          type: array
-          description: List of job IDs.
-          items:
-            type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey
