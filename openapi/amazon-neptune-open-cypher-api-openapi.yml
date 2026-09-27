@@ -154,14 +154,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ExecuteOpenCypherQueryOutput:
+    ExecuteOpenCypherQueryInput:
       type: object
+      required:
+      - query
       properties:
-        results:
-          type: array
-          items:
-            type: object
-          description: The query result rows.
+        query:
+          type: string
+          description: The openCypher query string to execute.
+        parameters:
+          type: string
+          description: The openCypher query parameters as a JSON-serialized string.
     ExecuteOpenCypherExplainInput:
       type: object
       required:
@@ -179,6 +182,14 @@ components:
           - dynamic
           - details
           description: The explain mode (static, dynamic, or details).
+    ExecuteOpenCypherQueryOutput:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+          description: The query result rows.
     OpenCypherQueryStatusOutput:
       type: object
       properties:
@@ -197,17 +208,6 @@ components:
                 type: string
               queryEvalStats:
                 type: object
-    ExecuteOpenCypherQueryInput:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: The openCypher query string to execute.
-        parameters:
-          type: string
-          description: The openCypher query parameters as a JSON-serialized string.
   securitySchemes:
     aws_sigv4:
       type: apiKey

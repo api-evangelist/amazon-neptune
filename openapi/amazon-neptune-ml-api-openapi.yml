@@ -547,6 +547,130 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    MLEndpointStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+        endpoint:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+        endpointConfig:
+          type: object
+    StartMLModelTrainingJobInput:
+      type: object
+      required:
+      - dataProcessingJobId
+      - trainModelS3Location
+      properties:
+        id:
+          type: string
+        dataProcessingJobId:
+          type: string
+          description: Job ID of the completed data processing job.
+        trainModelS3Location:
+          type: string
+          description: S3 location for model artifacts.
+        previousModelTrainingJobId:
+          type: string
+        sagemakerIamRoleArn:
+          type: string
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          description: The model type to use.
+          enum:
+          - rgcn
+          - transe
+          - distmult
+          - rotate
+          - custom
+        baseProcessingInstanceType:
+          type: string
+        trainingInstanceType:
+          type: string
+          default: ml.p3.2xlarge
+        trainingInstanceVolumeSizeInGB:
+          type: integer
+        trainingTimeOutInSeconds:
+          type: integer
+          default: 86400
+        maxHPONumberOfTrainingJobs:
+          type: integer
+          default: 2
+        maxHPOParallelTrainingJobs:
+          type: integer
+          default: 2
+        subnets:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
+        enableManagedSpotTraining:
+          type: boolean
+          default: false
+        customModelTrainingParameters:
+          type: object
+          properties:
+            sourceS3DirectoryPath:
+              type: string
+            trainingEntryPointScript:
+              type: string
+            transformEntryPointScript:
+              type: string
+    CreateMLEndpointInput:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint.
+        mlModelTrainingJobId:
+          type: string
+          description: Job ID from a completed training job.
+        mlModelTransformJobId:
+          type: string
+          description: Job ID from a completed transform job.
+        update:
+          type: boolean
+          description: Whether this is an update request.
+          default: false
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          enum:
+          - rgcn
+          - kge
+          - transe
+          - distmult
+          - rotate
+        instanceType:
+          type: string
+          default: ml.m5.xlarge
+        instanceCount:
+          type: integer
+          default: 1
+        volumeEncryptionKMSKey:
+          type: string
     MLJobStatusOutput:
       type: object
       properties:
@@ -671,130 +795,6 @@ components:
               type: string
             transformEntryPointScript:
               type: string
-    CreateMLEndpointInput:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the endpoint.
-        mlModelTrainingJobId:
-          type: string
-          description: Job ID from a completed training job.
-        mlModelTransformJobId:
-          type: string
-          description: Job ID from a completed transform job.
-        update:
-          type: boolean
-          description: Whether this is an update request.
-          default: false
-        neptuneIamRoleArn:
-          type: string
-        modelName:
-          type: string
-          enum:
-          - rgcn
-          - kge
-          - transe
-          - distmult
-          - rotate
-        instanceType:
-          type: string
-          default: ml.m5.xlarge
-        instanceCount:
-          type: integer
-          default: 1
-        volumeEncryptionKMSKey:
-          type: string
-    StartMLModelTrainingJobInput:
-      type: object
-      required:
-      - dataProcessingJobId
-      - trainModelS3Location
-      properties:
-        id:
-          type: string
-        dataProcessingJobId:
-          type: string
-          description: Job ID of the completed data processing job.
-        trainModelS3Location:
-          type: string
-          description: S3 location for model artifacts.
-        previousModelTrainingJobId:
-          type: string
-        sagemakerIamRoleArn:
-          type: string
-        neptuneIamRoleArn:
-          type: string
-        modelName:
-          type: string
-          description: The model type to use.
-          enum:
-          - rgcn
-          - transe
-          - distmult
-          - rotate
-          - custom
-        baseProcessingInstanceType:
-          type: string
-        trainingInstanceType:
-          type: string
-          default: ml.p3.2xlarge
-        trainingInstanceVolumeSizeInGB:
-          type: integer
-        trainingTimeOutInSeconds:
-          type: integer
-          default: 86400
-        maxHPONumberOfTrainingJobs:
-          type: integer
-          default: 2
-        maxHPOParallelTrainingJobs:
-          type: integer
-          default: 2
-        subnets:
-          type: array
-          items:
-            type: string
-        securityGroupIds:
-          type: array
-          items:
-            type: string
-        volumeEncryptionKMSKey:
-          type: string
-        s3OutputEncryptionKMSKey:
-          type: string
-        enableInterContainerTrafficEncryption:
-          type: boolean
-          default: true
-        enableManagedSpotTraining:
-          type: boolean
-          default: false
-        customModelTrainingParameters:
-          type: object
-          properties:
-            sourceS3DirectoryPath:
-              type: string
-            trainingEntryPointScript:
-              type: string
-            transformEntryPointScript:
-              type: string
-    MLEndpointStatusOutput:
-      type: object
-      properties:
-        status:
-          type: string
-        id:
-          type: string
-        endpoint:
-          type: object
-          properties:
-            name:
-              type: string
-            arn:
-              type: string
-            status:
-              type: string
-        endpointConfig:
-          type: object
   securitySchemes:
     aws_sigv4:
       type: apiKey

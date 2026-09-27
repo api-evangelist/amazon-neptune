@@ -177,12 +177,6 @@ components:
           description: List of job IDs.
           items:
             type: string
-    JobCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the created job.
     CreateDataProcessingJobRequest:
       type: object
       required:
@@ -247,6 +241,12 @@ components:
           type: boolean
           description: Whether to enable inter-container traffic encryption.
           default: true
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
     JobStatusResponse:
       type: object
       properties:

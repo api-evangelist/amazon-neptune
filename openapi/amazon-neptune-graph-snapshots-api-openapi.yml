@@ -210,42 +210,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    RestoreGraphFromSnapshotInput:
+    ListGraphSnapshotsOutput:
       type: object
-      required:
-      - graphName
       properties:
-        graphName:
+        graphSnapshots:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              arn:
+                type: string
+              sourceGraphId:
+                type: string
+              snapshotCreateTime:
+                type: string
+                format: date-time
+              status:
+                type: string
+        nextToken:
           type: string
-          description: The name of the restored graph.
-        provisionedMemory:
-          type: integer
-        deletionProtection:
-          type: boolean
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        replicaCount:
-          type: integer
-        publicConnectivity:
-          type: boolean
-    CreateGraphSnapshotInput:
-      type: object
-      required:
-      - graphIdentifier
-      - snapshotName
-      properties:
-        graphIdentifier:
-          type: string
-          description: The identifier of the graph to snapshot.
-        snapshotName:
-          type: string
-          description: The name of the snapshot.
-        tags:
-          type: object
-          additionalProperties:
-            type: string
     GraphOutput:
       type: object
       properties:
@@ -297,29 +284,42 @@ components:
           type: boolean
         buildNumber:
           type: string
-    ListGraphSnapshotsOutput:
+    CreateGraphSnapshotInput:
       type: object
+      required:
+      - graphIdentifier
+      - snapshotName
       properties:
-        graphSnapshots:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              arn:
-                type: string
-              sourceGraphId:
-                type: string
-              snapshotCreateTime:
-                type: string
-                format: date-time
-              status:
-                type: string
-        nextToken:
+        graphIdentifier:
           type: string
+          description: The identifier of the graph to snapshot.
+        snapshotName:
+          type: string
+          description: The name of the snapshot.
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    RestoreGraphFromSnapshotInput:
+      type: object
+      required:
+      - graphName
+      properties:
+        graphName:
+          type: string
+          description: The name of the restored graph.
+        provisionedMemory:
+          type: integer
+        deletionProtection:
+          type: boolean
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        replicaCount:
+          type: integer
+        publicConnectivity:
+          type: boolean
     GraphSnapshotOutput:
       type: object
       properties:

@@ -23,8 +23,7 @@
     "amazon-neptune-streams-api-openapi.yml",
     "amazon-neptune-opencypher-api-openapi.yml",
     "amazon-neptune-query-api-openapi.yml",
-    "amazon-neptune-action-addtagstoresource-api-openapi.yml",
-    "amazon-neptune-action-listtagsforresource-api-openapi.yml",
+    "amazon-neptune-amazon-neptune-management-api-api-openapi.yml",
     "amazon-neptune-db-clusters-api-openapi.yml",
     "amazon-neptune-db-instances-api-openapi.yml",
     "amazon-neptune-engine-api-openapi.yml",
@@ -42,7 +41,7 @@
     "amazon-neptune-sparql-stream-api-openapi.yml"
   ],
   "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
+    "deleted 3 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -53,18 +52,17 @@
     "amazon-neptune-data-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "amazon-neptune-gremlin-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "amazon-neptune-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "amazon-neptune-management-openapi.yml: tagged paths POST /?Action=AddTagsToResource -> ?Action=AddTagsToResource",
-    "amazon-neptune-management-openapi.yml: tagged paths GET /?Action=ListTagsForResource -> ?Action=ListTagsForResource",
-    "amazon-neptune-management-openapi.yml: declared missing tag: ?Action=AddTagsToResource",
-    "amazon-neptune-management-openapi.yml: declared missing tag: ?Action=ListTagsForResource",
+    "amazon-neptune-management-openapi.yml: tagged paths POST /?Action=AddTagsToResource -> Amazon Neptune Management API",
+    "amazon-neptune-management-openapi.yml: tagged paths GET /?Action=ListTagsForResource -> Amazon Neptune Management API",
+    "amazon-neptune-management-openapi.yml: declared missing tag: Amazon Neptune Management API",
     "amazon-neptune-ml-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "amazon-neptune-opencypher-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "amazon-neptune-sparql-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "amazon-neptune-streams-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tag 'Status' spans 4 source specs (amazon-neptune-data-openapi.yml, amazon-neptune-gremlin-openapi.yml, amazon-neptune-opencypher-openapi.yml, amazon-neptune-sparql-openapi.yml): per-path servers applied",
     "tag 'Query' spans 3 source specs (amazon-neptune-gremlin-openapi.yml, amazon-neptune-opencypher-openapi.yml, amazon-neptune-sparql-openapi.yml): per-path servers applied",
-    "superseded outputs removed: amazon-neptune-open-cypher-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 28 total)"
+    "superseded outputs removed: amazon-neptune-action-addtagstoresource-api-openapi.yml, amazon-neptune-action-listtagsforresource-api-openapi.yml, amazon-neptune-open-cypher-api-openapi.yml",
+    "apis.yml register: written (+28 apis, 28 total)"
   ],
   "skipped": [
     "_original/amazon-neptune-loader-openapi.yml: archived document superseded by a larger archived document",

@@ -336,15 +336,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DescribeDBInstancesResponse:
-      type: object
-      properties:
-        DBInstances:
-          type: array
-          items:
-            $ref: '#/components/schemas/DBInstance'
-        Marker:
-          type: string
     ModifyDBInstanceRequest:
       type: object
       required:
@@ -366,6 +357,15 @@ components:
           type: integer
         ApplyImmediately:
           type: boolean
+    DescribeDBInstancesResponse:
+      type: object
+      properties:
+        DBInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/DBInstance'
+        Marker:
+          type: string
     DBInstance:
       type: object
       description: Contains the details of an Amazon Neptune DB instance.

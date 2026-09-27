@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Neptune Management ?Action=List Tags For Resource API
+  title: Amazon Neptune Management API
   description: Amazon Neptune Management API for creating, managing, and deleting Neptune DB clusters, instances, parameter groups, snapshots, and related infrastructure resources. This is an AWS Query API that uses HTTPS requests with Action and parameter query strings.
   version: '2014-10-31'
   contact:
@@ -37,15 +37,50 @@ servers:
 security:
 - aws_sigv4: []
 tags:
-- name: ?Action=ListTagsForResource
+- name: Amazon Neptune Management API
 paths:
+  /?Action=AddTagsToResource:
+    post:
+      operationId: addTagsToResource
+      summary: Amazon Neptune Add Tags to a Neptune Resource
+      description: Adds metadata tags to an Amazon Neptune resource. Tags are key-value pairs that you can use to categorize and manage your resources.
+      tags:
+      - Amazon Neptune Management API
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - AddTagsToResource
+      - name: ResourceName
+        in: query
+        required: true
+        description: The ARN of the resource to add tags to.
+        schema:
+          type: string
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2014-10-31'
+      responses:
+        '200':
+          description: Tags added successfully.
+        '404':
+          description: The specified resource was not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /?Action=ListTagsForResource:
     get:
       operationId: listTagsForResource
       summary: Amazon Neptune List Tags for a Neptune Resource
       description: Lists all tags on an Amazon Neptune resource.
       tags:
-      - ?Action=ListTagsForResource
+      - Amazon Neptune Management API
       parameters:
       - name: Action
         in: query

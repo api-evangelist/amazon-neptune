@@ -637,6 +637,17 @@ components:
               description: Elapsed execution time (milliseconds).
             cancelled:
               type: boolean
+    SparqlQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+        runningQueryCount:
+          type: integer
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SparqlQueryStatusDetail'
     SparqlQueryStatusDetail:
       type: object
       properties:
@@ -655,17 +666,6 @@ components:
               description: Elapsed execution time (milliseconds).
             cancelled:
               type: boolean
-    SparqlQueryStatusList:
-      type: object
-      properties:
-        acceptedQueryCount:
-          type: integer
-        runningQueryCount:
-          type: integer
-        queries:
-          type: array
-          items:
-            $ref: '#/components/schemas/SparqlQueryStatusDetail'
   securitySchemes:
     aws_sigv4:
       type: apiKey

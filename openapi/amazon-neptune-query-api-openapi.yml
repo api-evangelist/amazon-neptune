@@ -346,6 +346,17 @@ paths:
           description: The cluster endpoint DNS name for your Neptune DB cluster
 components:
   schemas:
+    GremlinQueryRequest:
+      type: object
+      required:
+      - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: The Gremlin traversal query string. Must be a valid Gremlin traversal starting with g. The bindings property is not supported by Neptune.
+          examples:
+          - g.V().count()
+          - g.V().has('name','John').out('knows')
     GremlinErrorResponse:
       type: object
       properties:
@@ -383,17 +394,6 @@ components:
               description: The query result data. The shape depends on the traversal's terminal step (e.g., count, valueMap, path).
             meta:
               type: object
-    GremlinQueryRequest:
-      type: object
-      required:
-      - gremlin
-      properties:
-        gremlin:
-          type: string
-          description: The Gremlin traversal query string. Must be a valid Gremlin traversal starting with g. The bindings property is not supported by Neptune.
-          examples:
-          - g.V().count()
-          - g.V().has('name','John').out('knows')
     OpenCypherErrorResponse:
       type: object
       properties:
@@ -422,6 +422,16 @@ components:
             description: A result row. Keys are the RETURN alias names. Values can be scalars, nodes, relationships, or paths.
             additionalProperties:
               description: Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.
+    SparqlErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+          description: Detailed error message explaining the issue.
     SparqlSelectResponse:
       type: object
       description: SPARQL 1.1 Query Results JSON Format as defined by W3C.
@@ -464,16 +474,6 @@ components:
         boolean:
           type: boolean
           description: The result for ASK queries.
-    SparqlErrorResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-        code:
-          type: string
-        detailedMessage:
-          type: string
-          description: Detailed error message explaining the issue.
     SparqlRequestBody:
       type: object
       properties:

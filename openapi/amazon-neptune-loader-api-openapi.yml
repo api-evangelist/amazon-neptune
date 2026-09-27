@@ -187,17 +187,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StartLoaderJobOutput:
-      type: object
-      properties:
-        status:
-          type: string
-        payload:
-          type: object
-          properties:
-            loadId:
-              type: string
-              description: The unique identifier for the load job.
     LoaderJobStatusOutput:
       type: object
       properties:
@@ -321,6 +310,17 @@ components:
           enum:
           - 'TRUE'
           - 'FALSE'
+    StartLoaderJobOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            loadId:
+              type: string
+              description: The unique identifier for the load job.
   securitySchemes:
     aws_sigv4:
       type: apiKey
