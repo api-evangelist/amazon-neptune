@@ -41,7 +41,7 @@
     "amazon-neptune-sparql-stream-api-openapi.yml"
   ],
   "archived": [
-    "deleted 3 superseded output(s) from the previous generation"
+    "deleted 1 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -61,13 +61,12 @@
     "amazon-neptune-streams-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tag 'Status' spans 4 source specs (amazon-neptune-data-openapi.yml, amazon-neptune-gremlin-openapi.yml, amazon-neptune-opencypher-openapi.yml, amazon-neptune-sparql-openapi.yml): per-path servers applied",
     "tag 'Query' spans 3 source specs (amazon-neptune-gremlin-openapi.yml, amazon-neptune-opencypher-openapi.yml, amazon-neptune-sparql-openapi.yml): per-path servers applied",
-    "superseded outputs removed: amazon-neptune-action-addtagstoresource-api-openapi.yml, amazon-neptune-action-listtagsforresource-api-openapi.yml, amazon-neptune-open-cypher-api-openapi.yml",
-    "apis.yml register: written (+28 apis, 28 total)"
+    "superseded outputs removed: amazon-neptune-open-cypher-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 28 total)"
   ],
   "skipped": [
     "_original/amazon-neptune-loader-openapi.yml: archived document superseded by a larger archived document",
-    "amazon-neptune-action-addtagstoresource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "amazon-neptune-action-listtagsforresource-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-neptune-amazon-neptune-management-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "amazon-neptune-data-processing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "amazon-neptune-db-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "amazon-neptune-db-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/",

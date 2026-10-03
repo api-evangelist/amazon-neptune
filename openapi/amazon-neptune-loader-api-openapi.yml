@@ -187,43 +187,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    LoaderJobStatusOutput:
-      type: object
-      properties:
-        status:
-          type: string
-        payload:
-          type: object
-          properties:
-            feedCount:
-              type: array
-              items:
-                type: object
-            overallStatus:
-              type: object
-              properties:
-                fullUri:
-                  type: string
-                runNumber:
-                  type: integer
-                retryNumber:
-                  type: integer
-                status:
-                  type: string
-                totalTimeSpent:
-                  type: integer
-                startTime:
-                  type: integer
-                totalRecords:
-                  type: integer
-                totalDuplicates:
-                  type: integer
-                parsingErrors:
-                  type: integer
-                datatypeMismatchErrors:
-                  type: integer
-                insertErrors:
-                  type: integer
     StartLoaderJobInput:
       type: object
       required:
@@ -310,6 +273,43 @@ components:
           enum:
           - 'TRUE'
           - 'FALSE'
+    LoaderJobStatusOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            feedCount:
+              type: array
+              items:
+                type: object
+            overallStatus:
+              type: object
+              properties:
+                fullUri:
+                  type: string
+                runNumber:
+                  type: integer
+                retryNumber:
+                  type: integer
+                status:
+                  type: string
+                totalTimeSpent:
+                  type: integer
+                startTime:
+                  type: integer
+                totalRecords:
+                  type: integer
+                totalDuplicates:
+                  type: integer
+                parsingErrors:
+                  type: integer
+                datatypeMismatchErrors:
+                  type: integer
+                insertErrors:
+                  type: integer
     StartLoaderJobOutput:
       type: object
       properties:

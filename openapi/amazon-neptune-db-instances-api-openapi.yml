@@ -336,36 +336,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ModifyDBInstanceRequest:
-      type: object
-      required:
-      - DBInstanceIdentifier
-      properties:
-        DBInstanceIdentifier:
-          type: string
-          description: The DB instance identifier.
-        DBInstanceClass:
-          type: string
-          description: The new compute and memory capacity.
-        PreferredMaintenanceWindow:
-          type: string
-        AutoMinorVersionUpgrade:
-          type: boolean
-        NewDBInstanceIdentifier:
-          type: string
-        PromotionTier:
-          type: integer
-        ApplyImmediately:
-          type: boolean
-    DescribeDBInstancesResponse:
-      type: object
-      properties:
-        DBInstances:
-          type: array
-          items:
-            $ref: '#/components/schemas/DBInstance'
-        Marker:
-          type: string
     DBInstance:
       type: object
       description: Contains the details of an Amazon Neptune DB instance.
@@ -416,6 +386,36 @@ components:
         StorageEncrypted:
           type: boolean
           description: Whether the instance storage is encrypted.
+    ModifyDBInstanceRequest:
+      type: object
+      required:
+      - DBInstanceIdentifier
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The DB instance identifier.
+        DBInstanceClass:
+          type: string
+          description: The new compute and memory capacity.
+        PreferredMaintenanceWindow:
+          type: string
+        AutoMinorVersionUpgrade:
+          type: boolean
+        NewDBInstanceIdentifier:
+          type: string
+        PromotionTier:
+          type: integer
+        ApplyImmediately:
+          type: boolean
+    DescribeDBInstancesResponse:
+      type: object
+      properties:
+        DBInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/DBInstance'
+        Marker:
+          type: string
     CreateDBInstanceRequest:
       type: object
       required:

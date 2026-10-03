@@ -169,6 +169,36 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
+    JobStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+        id:
+          type: string
+          description: The job identifier.
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
+            failureReason:
+              type: string
+            cloudwatchLogUrl:
+              type: string
     JobListResponse:
       type: object
       properties:
@@ -241,36 +271,6 @@ components:
           type: boolean
           description: Whether to enable inter-container traffic encryption.
           default: true
-    JobCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the created job.
-    JobStatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: The current status of the job.
-        id:
-          type: string
-          description: The job identifier.
-        processingJob:
-          type: object
-          properties:
-            name:
-              type: string
-            arn:
-              type: string
-            status:
-              type: string
-            outputLocation:
-              type: string
-            failureReason:
-              type: string
-            cloudwatchLogUrl:
-              type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

@@ -162,6 +162,13 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    EndpointListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: string
     EndpointStatusResponse:
       type: object
       properties:
@@ -225,13 +232,6 @@ components:
         id:
           type: string
           description: The unique identifier for the created endpoint.
-    EndpointListResponse:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

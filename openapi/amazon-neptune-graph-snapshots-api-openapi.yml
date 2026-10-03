@@ -210,29 +210,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ListGraphSnapshotsOutput:
-      type: object
-      properties:
-        graphSnapshots:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              arn:
-                type: string
-              sourceGraphId:
-                type: string
-              snapshotCreateTime:
-                type: string
-                format: date-time
-              status:
-                type: string
-        nextToken:
-          type: string
     GraphOutput:
       type: object
       properties:
@@ -320,6 +297,29 @@ components:
           type: integer
         publicConnectivity:
           type: boolean
+    ListGraphSnapshotsOutput:
+      type: object
+      properties:
+        graphSnapshots:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              arn:
+                type: string
+              sourceGraphId:
+                type: string
+              snapshotCreateTime:
+                type: string
+                format: date-time
+              status:
+                type: string
+        nextToken:
+          type: string
     GraphSnapshotOutput:
       type: object
       properties:
