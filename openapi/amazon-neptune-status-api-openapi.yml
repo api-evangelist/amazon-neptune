@@ -569,6 +569,20 @@ components:
           type: object
           additionalProperties:
             type: object
+    GremlinQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+          description: The total number of accepted queries.
+        runningQueryCount:
+          type: integer
+          description: The number of currently running queries.
+        queries:
+          type: array
+          description: The list of running and waiting queries.
+          items:
+            $ref: '#/components/schemas/GremlinQueryStatusDetail'
     GremlinQueryStatusDetail:
       type: object
       properties:
@@ -594,20 +608,17 @@ components:
             subqueries:
               type: object
               description: Statistics for subqueries, if any.
-    GremlinQueryStatusList:
+    OpenCypherQueryStatusList:
       type: object
       properties:
         acceptedQueryCount:
           type: integer
-          description: The total number of accepted queries.
         runningQueryCount:
           type: integer
-          description: The number of currently running queries.
         queries:
           type: array
-          description: The list of running and waiting queries.
           items:
-            $ref: '#/components/schemas/GremlinQueryStatusDetail'
+            $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
     OpenCypherQueryStatusDetail:
       type: object
       properties:
@@ -626,17 +637,6 @@ components:
               description: Elapsed execution time (milliseconds).
             cancelled:
               type: boolean
-    OpenCypherQueryStatusList:
-      type: object
-      properties:
-        acceptedQueryCount:
-          type: integer
-        runningQueryCount:
-          type: integer
-        queries:
-          type: array
-          items:
-            $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
     SparqlQueryStatusList:
       type: object
       properties:

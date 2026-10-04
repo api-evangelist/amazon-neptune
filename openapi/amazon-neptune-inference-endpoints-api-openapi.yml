@@ -189,6 +189,12 @@ components:
           type: object
         outputLocation:
           type: string
+    EndpointCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created endpoint.
     CreateInferenceEndpointRequest:
       type: object
       properties:
@@ -226,12 +232,6 @@ components:
           default: 1
         volumeEncryptionKMSKey:
           type: string
-    EndpointCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the created endpoint.
   securitySchemes:
     aws_sigv4:
       type: apiKey

@@ -2564,8 +2564,6 @@ apis:
   description: Execute openCypher graph queries
   baseURL: https://neptune-graph.{region}.amazonaws.com
   tags:
-  - openCypher
-  tags_raw:
   - open Cypher
   properties:
   - type: OpenAPI

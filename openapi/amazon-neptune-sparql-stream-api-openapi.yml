@@ -94,37 +94,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StreamEventId:
-      type: object
-      description: A sequence identifier for a stream event.
-      properties:
-        commitNum:
-          type: integer
-          description: The commit (transaction) number.
-        opNum:
-          type: integer
-          description: The operation number within the commit.
-    SparqlStreamResponse:
-      type: object
-      properties:
-        lastEventId:
-          $ref: '#/components/schemas/StreamEventId'
-        lastTrxTimestamp:
-          type: integer
-          description: Unix epoch timestamp in milliseconds of the last commit.
-        format:
-          type: string
-          enum:
-          - NQUADS
-          description: The serialization format (always NQUADS for RDF).
-        records:
-          type: array
-          description: The array of change-log stream records.
-          items:
-            $ref: '#/components/schemas/SparqlStreamRecord'
-        totalRecords:
-          type: integer
-          description: Total number of records in the response.
     SparqlStreamRecord:
       type: object
       properties:
@@ -148,6 +117,37 @@ components:
         isLastOp:
           type: boolean
           description: True only if this is the last operation in the transaction.
+    SparqlStreamResponse:
+      type: object
+      properties:
+        lastEventId:
+          $ref: '#/components/schemas/StreamEventId'
+        lastTrxTimestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds of the last commit.
+        format:
+          type: string
+          enum:
+          - NQUADS
+          description: The serialization format (always NQUADS for RDF).
+        records:
+          type: array
+          description: The array of change-log stream records.
+          items:
+            $ref: '#/components/schemas/SparqlStreamRecord'
+        totalRecords:
+          type: integer
+          description: Total number of records in the response.
+    StreamEventId:
+      type: object
+      description: A sequence identifier for a stream event.
+      properties:
+        commitNum:
+          type: integer
+          description: The commit (transaction) number.
+        opNum:
+          type: integer
+          description: The operation number within the commit.
   securitySchemes:
     aws_sigv4:
       type: apiKey

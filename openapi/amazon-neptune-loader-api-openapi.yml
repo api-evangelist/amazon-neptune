@@ -187,6 +187,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    StartLoaderJobOutput:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            loadId:
+              type: string
+              description: The unique identifier for the load job.
     StartLoaderJobInput:
       type: object
       required:
@@ -310,17 +321,6 @@ components:
                   type: integer
                 insertErrors:
                   type: integer
-    StartLoaderJobOutput:
-      type: object
-      properties:
-        status:
-          type: string
-        payload:
-          type: object
-          properties:
-            loadId:
-              type: string
-              description: The unique identifier for the load job.
   securitySchemes:
     aws_sigv4:
       type: apiKey

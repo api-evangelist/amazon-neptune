@@ -154,6 +154,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    DescribeDBSubnetGroupsResponse:
+      type: object
+      properties:
+        DBSubnetGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/DBSubnetGroup'
+        Marker:
+          type: string
     DBSubnetGroup:
       type: object
       description: Contains the details of a Neptune DB subnet group.
@@ -181,15 +190,6 @@ components:
               SubnetStatus:
                 type: string
         DBSubnetGroupArn:
-          type: string
-    DescribeDBSubnetGroupsResponse:
-      type: object
-      properties:
-        DBSubnetGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/DBSubnetGroup'
-        Marker:
           type: string
   securitySchemes:
     aws_sigv4:

@@ -84,15 +84,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ExecuteSparqlQueryInput:
-      type: object
-      properties:
-        query:
-          type: string
-          description: The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).
-        update:
-          type: string
-          description: The SPARQL update string (for INSERT, DELETE operations).
     SparqlQueryOutput:
       type: object
       properties:
@@ -110,6 +101,15 @@ components:
               type: array
               items:
                 type: object
+    ExecuteSparqlQueryInput:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The SPARQL query string (for SELECT, ASK, CONSTRUCT, DESCRIBE).
+        update:
+          type: string
+          description: The SPARQL update string (for INSERT, DELETE operations).
   securitySchemes:
     aws_sigv4:
       type: apiKey

@@ -547,66 +547,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StartMLDataProcessingJobInput:
-      type: object
-      required:
-      - inputDataS3Location
-      - processedDataS3Location
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the job (auto-generated if omitted).
-        inputDataS3Location:
-          type: string
-          description: S3 URI for input data.
-        processedDataS3Location:
-          type: string
-          description: S3 URI for output results.
-        previousDataProcessingJobId:
-          type: string
-          description: Job ID of a previous job for incremental processing.
-        sagemakerIamRoleArn:
-          type: string
-          description: IAM role ARN for SageMaker execution.
-        neptuneIamRoleArn:
-          type: string
-          description: IAM role ARN for Neptune access.
-        processingInstanceType:
-          type: string
-          description: ML instance type (default auto-selected ml.r5 type).
-        processingInstanceVolumeSizeInGB:
-          type: integer
-          description: Disk volume size in GB (default 0 = auto-selected).
-        processingTimeOutInSeconds:
-          type: integer
-          description: Timeout in seconds (default 86400).
-        modelType:
-          type: string
-          description: Model type selection.
-          enum:
-          - heterogeneous
-          - kge
-        configFileName:
-          type: string
-          description: Data specification file name.
-          default: training-data-configuration.json
-        subnets:
-          type: array
-          items:
-            type: string
-          description: Subnet IDs in Neptune VPC.
-        securityGroupIds:
-          type: array
-          items:
-            type: string
-          description: VPC security group IDs.
-        volumeEncryptionKMSKey:
-          type: string
-        s3OutputEncryptionKMSKey:
-          type: string
-        enableInterContainerTrafficEncryption:
-          type: boolean
-          default: true
     StartMLModelTrainingJobInput:
       type: object
       required:
@@ -697,24 +637,100 @@ components:
               type: string
         endpointConfig:
           type: object
-    MLJobStatusOutput:
+    CreateMLEndpointInput:
       type: object
       properties:
-        status:
-          type: string
         id:
           type: string
-        processingJob:
-          type: object
-          properties:
-            name:
-              type: string
-            arn:
-              type: string
-            status:
-              type: string
-            outputLocation:
-              type: string
+          description: Unique identifier for the endpoint.
+        mlModelTrainingJobId:
+          type: string
+          description: Job ID from a completed training job.
+        mlModelTransformJobId:
+          type: string
+          description: Job ID from a completed transform job.
+        update:
+          type: boolean
+          description: Whether this is an update request.
+          default: false
+        neptuneIamRoleArn:
+          type: string
+        modelName:
+          type: string
+          enum:
+          - rgcn
+          - kge
+          - transe
+          - distmult
+          - rotate
+        instanceType:
+          type: string
+          default: ml.m5.xlarge
+        instanceCount:
+          type: integer
+          default: 1
+        volumeEncryptionKMSKey:
+          type: string
+    StartMLDataProcessingJobInput:
+      type: object
+      required:
+      - inputDataS3Location
+      - processedDataS3Location
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the job (auto-generated if omitted).
+        inputDataS3Location:
+          type: string
+          description: S3 URI for input data.
+        processedDataS3Location:
+          type: string
+          description: S3 URI for output results.
+        previousDataProcessingJobId:
+          type: string
+          description: Job ID of a previous job for incremental processing.
+        sagemakerIamRoleArn:
+          type: string
+          description: IAM role ARN for SageMaker execution.
+        neptuneIamRoleArn:
+          type: string
+          description: IAM role ARN for Neptune access.
+        processingInstanceType:
+          type: string
+          description: ML instance type (default auto-selected ml.r5 type).
+        processingInstanceVolumeSizeInGB:
+          type: integer
+          description: Disk volume size in GB (default 0 = auto-selected).
+        processingTimeOutInSeconds:
+          type: integer
+          description: Timeout in seconds (default 86400).
+        modelType:
+          type: string
+          description: Model type selection.
+          enum:
+          - heterogeneous
+          - kge
+        configFileName:
+          type: string
+          description: Data specification file name.
+          default: training-data-configuration.json
+        subnets:
+          type: array
+          items:
+            type: string
+          description: Subnet IDs in Neptune VPC.
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+          description: VPC security group IDs.
+        volumeEncryptionKMSKey:
+          type: string
+        s3OutputEncryptionKMSKey:
+          type: string
+        enableInterContainerTrafficEncryption:
+          type: boolean
+          default: true
     StartMLModelTransformJobInput:
       type: object
       required:
@@ -761,40 +777,24 @@ components:
               type: string
             transformEntryPointScript:
               type: string
-    CreateMLEndpointInput:
+    MLJobStatusOutput:
       type: object
       properties:
+        status:
+          type: string
         id:
           type: string
-          description: Unique identifier for the endpoint.
-        mlModelTrainingJobId:
-          type: string
-          description: Job ID from a completed training job.
-        mlModelTransformJobId:
-          type: string
-          description: Job ID from a completed transform job.
-        update:
-          type: boolean
-          description: Whether this is an update request.
-          default: false
-        neptuneIamRoleArn:
-          type: string
-        modelName:
-          type: string
-          enum:
-          - rgcn
-          - kge
-          - transe
-          - distmult
-          - rotate
-        instanceType:
-          type: string
-          default: ml.m5.xlarge
-        instanceCount:
-          type: integer
-          default: 1
-        volumeEncryptionKMSKey:
-          type: string
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

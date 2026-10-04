@@ -250,41 +250,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DescribeDBClusterSnapshotsResponse:
-      type: object
-      properties:
-        DBClusterSnapshots:
-          type: array
-          items:
-            $ref: '#/components/schemas/DBClusterSnapshot'
-        Marker:
-          type: string
-    DBClusterRole:
-      type: object
-      description: An IAM role associated with a Neptune DB cluster.
-      properties:
-        RoleArn:
-          type: string
-          description: The ARN of the IAM role.
-        Status:
-          type: string
-          description: The status of the association (active, pending, error).
-    DBClusterMember:
-      type: object
-      description: A member instance of a Neptune DB cluster.
-      properties:
-        DBInstanceIdentifier:
-          type: string
-          description: The instance identifier.
-        IsClusterWriter:
-          type: boolean
-          description: Whether the instance is the primary (writer) instance.
-        DBClusterParameterGroupStatus:
-          type: string
-          description: The status of the parameter group for this member.
-        PromotionTier:
-          type: integer
-          description: Failover priority for the instance.
     RestoreDBClusterFromSnapshotRequest:
       type: object
       required:
@@ -316,6 +281,15 @@ components:
           type: boolean
         IAMDatabaseAuthenticationEnabled:
           type: boolean
+    DescribeDBClusterSnapshotsResponse:
+      type: object
+      properties:
+        DBClusterSnapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/DBClusterSnapshot'
+        Marker:
+          type: string
     DBClusterSnapshot:
       type: object
       description: Contains the details of a Neptune DB cluster snapshot.
@@ -426,6 +400,32 @@ components:
           description: IAM roles associated with the cluster.
           items:
             $ref: '#/components/schemas/DBClusterRole'
+    DBClusterMember:
+      type: object
+      description: A member instance of a Neptune DB cluster.
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The instance identifier.
+        IsClusterWriter:
+          type: boolean
+          description: Whether the instance is the primary (writer) instance.
+        DBClusterParameterGroupStatus:
+          type: string
+          description: The status of the parameter group for this member.
+        PromotionTier:
+          type: integer
+          description: Failover priority for the instance.
+    DBClusterRole:
+      type: object
+      description: An IAM role associated with a Neptune DB cluster.
+      properties:
+        RoleArn:
+          type: string
+          description: The ARN of the IAM role.
+        Status:
+          type: string
+          description: The status of the association (active, pending, error).
   securitySchemes:
     aws_sigv4:
       type: apiKey

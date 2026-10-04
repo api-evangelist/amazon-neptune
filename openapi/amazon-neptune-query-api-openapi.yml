@@ -346,29 +346,6 @@ paths:
           description: The cluster endpoint DNS name for your Neptune DB cluster
 components:
   schemas:
-    GremlinErrorResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        code:
-          type: string
-          description: The error code.
-        detailedMessage:
-          type: string
-          description: A detailed description of the error.
-    GremlinQueryRequest:
-      type: object
-      required:
-      - gremlin
-      properties:
-        gremlin:
-          type: string
-          description: The Gremlin traversal query string. Must be a valid Gremlin traversal starting with g. The bindings property is not supported by Neptune.
-          examples:
-          - g.V().count()
-          - g.V().has('name','John').out('knows')
     GremlinQueryResponse:
       type: object
       properties:
@@ -394,6 +371,29 @@ components:
               description: The query result data. The shape depends on the traversal's terminal step (e.g., count, valueMap, path).
             meta:
               type: object
+    GremlinErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        code:
+          type: string
+          description: The error code.
+        detailedMessage:
+          type: string
+          description: A detailed description of the error.
+    GremlinQueryRequest:
+      type: object
+      required:
+      - gremlin
+      properties:
+        gremlin:
+          type: string
+          description: The Gremlin traversal query string. Must be a valid Gremlin traversal starting with g. The bindings property is not supported by Neptune.
+          examples:
+          - g.V().count()
+          - g.V().has('name','John').out('knows')
     OpenCypherQueryRequest:
       type: object
       required:
@@ -402,6 +402,15 @@ components:
         query:
           type: string
           description: The openCypher query string.
+    OpenCypherErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
     OpenCypherQueryResponse:
       type: object
       properties:
@@ -413,40 +422,6 @@ components:
             description: A result row. Keys are the RETURN alias names. Values can be scalars, nodes, relationships, or paths.
             additionalProperties:
               description: Result value. Nodes have ~id, ~entityType, ~labels, ~properties. Relationships have ~id, ~entityType, ~start, ~end, ~type, ~properties.
-    OpenCypherErrorResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-        code:
-          type: string
-        detailedMessage:
-          type: string
-    SparqlRequestBody:
-      type: object
-      properties:
-        query:
-          type: string
-          description: A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.
-        update:
-          type: string
-          description: A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.
-        using-graph-uri:
-          type: string
-          description: Default graph URI for the query.
-        using-named-graph-uri:
-          type: string
-          description: Named graph URI for the query.
-    SparqlErrorResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-        code:
-          type: string
-        detailedMessage:
-          type: string
-          description: Detailed error message explaining the issue.
     SparqlSelectResponse:
       type: object
       description: SPARQL 1.1 Query Results JSON Format as defined by W3C.
@@ -489,6 +464,31 @@ components:
         boolean:
           type: boolean
           description: The result for ASK queries.
+    SparqlErrorResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        code:
+          type: string
+        detailedMessage:
+          type: string
+          description: Detailed error message explaining the issue.
+    SparqlRequestBody:
+      type: object
+      properties:
+        query:
+          type: string
+          description: A SPARQL 1.1 query (SELECT, ASK, CONSTRUCT, or DESCRIBE). Mutually exclusive with update.
+        update:
+          type: string
+          description: A SPARQL 1.1 Update operation (INSERT DATA, DELETE DATA, etc.). Mutually exclusive with query.
+        using-graph-uri:
+          type: string
+          description: Default graph URI for the query.
+        using-named-graph-uri:
+          type: string
+          description: Named graph URI for the query.
   securitySchemes:
     aws_sigv4:
       type: apiKey

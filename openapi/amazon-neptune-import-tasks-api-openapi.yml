@@ -215,28 +215,6 @@ components:
               type: integer
             dictionaryEntryCount:
               type: integer
-    ListImportTasksOutput:
-      type: object
-      properties:
-        tasks:
-          type: array
-          items:
-            type: object
-            properties:
-              graphId:
-                type: string
-              taskId:
-                type: string
-              source:
-                type: string
-              format:
-                type: string
-              roleArn:
-                type: string
-              status:
-                type: string
-        nextToken:
-          type: string
     CreateGraphUsingImportTaskInput:
       type: object
       required:
@@ -283,6 +261,28 @@ components:
         importOptions:
           type: object
           description: Additional import configuration options.
+    ListImportTasksOutput:
+      type: object
+      properties:
+        tasks:
+          type: array
+          items:
+            type: object
+            properties:
+              graphId:
+                type: string
+              taskId:
+                type: string
+              source:
+                type: string
+              format:
+                type: string
+              roleArn:
+                type: string
+              status:
+                type: string
+        nextToken:
+          type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

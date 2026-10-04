@@ -210,57 +210,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    GraphOutput:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the graph.
-        name:
-          type: string
-          description: The name of the graph.
-        arn:
-          type: string
-          description: The ARN of the graph.
-        status:
-          type: string
-          description: The current status of the graph.
-          enum:
-          - CREATING
-          - AVAILABLE
-          - DELETING
-          - RESETTING
-          - UPDATING
-          - SNAPSHOTTING
-          - FAILED
-          - IMPORTING
-        statusReason:
-          type: string
-        createTime:
-          type: string
-          format: date-time
-        provisionedMemory:
-          type: integer
-        endpoint:
-          type: string
-          description: The DNS endpoint for the graph.
-        publicConnectivity:
-          type: boolean
-        vectorSearchConfiguration:
-          type: object
-          properties:
-            dimension:
-              type: integer
-        replicaCount:
-          type: integer
-        kmsKeyIdentifier:
-          type: string
-        sourceSnapshotId:
-          type: string
-        deletionProtection:
-          type: boolean
-        buildNumber:
-          type: string
     CreateGraphSnapshotInput:
       type: object
       required:
@@ -342,6 +291,57 @@ components:
           - DELETING
           - FAILED
         kmsKeyIdentifier:
+          type: string
+    GraphOutput:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the graph.
+        name:
+          type: string
+          description: The name of the graph.
+        arn:
+          type: string
+          description: The ARN of the graph.
+        status:
+          type: string
+          description: The current status of the graph.
+          enum:
+          - CREATING
+          - AVAILABLE
+          - DELETING
+          - RESETTING
+          - UPDATING
+          - SNAPSHOTTING
+          - FAILED
+          - IMPORTING
+        statusReason:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        provisionedMemory:
+          type: integer
+        endpoint:
+          type: string
+          description: The DNS endpoint for the graph.
+        publicConnectivity:
+          type: boolean
+        vectorSearchConfiguration:
+          type: object
+          properties:
+            dimension:
+              type: integer
+        replicaCount:
+          type: integer
+        kmsKeyIdentifier:
+          type: string
+        sourceSnapshotId:
+          type: string
+        deletionProtection:
+          type: boolean
+        buildNumber:
           type: string
   securitySchemes:
     aws_sigv4:
