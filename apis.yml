@@ -514,6 +514,8 @@ apis:
   description: Operations for managing event subscriptions and viewing events
   baseURL: https://neptune-graph.{region}.amazonaws.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -1351,6 +1353,8 @@ apis:
   description: Machine learning operations
   baseURL: https://neptune-graph.{region}.amazonaws.com
   tags:
+  - Machine Learning
+  tags_raw:
   - ML
   properties:
   - type: OpenAPI
@@ -2560,6 +2564,8 @@ apis:
   description: Execute openCypher graph queries
   baseURL: https://neptune-graph.{region}.amazonaws.com
   tags:
+  - openCypher
+  tags_raw:
   - open Cypher
   properties:
   - type: OpenAPI
