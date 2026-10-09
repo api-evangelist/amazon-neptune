@@ -52,3 +52,36 @@ rate_limit_statements:
 - Scale-down latency <5 minute
 - Starting capacity 1 NCU
 - Capacity granularity Fine-grained, with increments as small as 1 NCU
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units:
+  - compute
+  - data
+  plans:
+  - name: T4g and T3 CPU Credits
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Free Tier trial (Neptune Database)
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: EC2 Regional data transfer (Neptune instances outside VPC)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
