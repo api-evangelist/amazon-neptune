@@ -505,29 +505,6 @@ components:
                   type: integer
                 numDistinctPredicates:
                   type: integer
-    PropertygraphStatisticsOutput:
-      type: object
-      properties:
-        status:
-          type: string
-        payload:
-          type: object
-          properties:
-            graphStatistics:
-              type: object
-              properties:
-                numNodes:
-                  type: integer
-                numEdges:
-                  type: integer
-                numNodeLabels:
-                  type: integer
-                numEdgeLabels:
-                  type: integer
-                numNodeProperties:
-                  type: integer
-                numEdgeProperties:
-                  type: integer
     EngineStatusOutput:
       type: object
       properties:
@@ -569,20 +546,29 @@ components:
           type: object
           additionalProperties:
             type: object
-    GremlinQueryStatusList:
+    PropertygraphStatisticsOutput:
       type: object
       properties:
-        acceptedQueryCount:
-          type: integer
-          description: The total number of accepted queries.
-        runningQueryCount:
-          type: integer
-          description: The number of currently running queries.
-        queries:
-          type: array
-          description: The list of running and waiting queries.
-          items:
-            $ref: '#/components/schemas/GremlinQueryStatusDetail'
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            graphStatistics:
+              type: object
+              properties:
+                numNodes:
+                  type: integer
+                numEdges:
+                  type: integer
+                numNodeLabels:
+                  type: integer
+                numEdgeLabels:
+                  type: integer
+                numNodeProperties:
+                  type: integer
+                numEdgeProperties:
+                  type: integer
     GremlinQueryStatusDetail:
       type: object
       properties:
@@ -608,6 +594,38 @@ components:
             subqueries:
               type: object
               description: Statistics for subqueries, if any.
+    GremlinQueryStatusList:
+      type: object
+      properties:
+        acceptedQueryCount:
+          type: integer
+          description: The total number of accepted queries.
+        runningQueryCount:
+          type: integer
+          description: The number of currently running queries.
+        queries:
+          type: array
+          description: The list of running and waiting queries.
+          items:
+            $ref: '#/components/schemas/GremlinQueryStatusDetail'
+    OpenCypherQueryStatusDetail:
+      type: object
+      properties:
+        queryId:
+          type: string
+        queryString:
+          type: string
+        queryEvalStats:
+          type: object
+          properties:
+            waited:
+              type: integer
+              description: Time waited in queue (milliseconds).
+            elapsed:
+              type: integer
+              description: Elapsed execution time (milliseconds).
+            cancelled:
+              type: boolean
     OpenCypherQueryStatusList:
       type: object
       properties:
@@ -619,7 +637,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OpenCypherQueryStatusDetail'
-    OpenCypherQueryStatusDetail:
+    SparqlQueryStatusDetail:
       type: object
       properties:
         queryId:
@@ -648,24 +666,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SparqlQueryStatusDetail'
-    SparqlQueryStatusDetail:
-      type: object
-      properties:
-        queryId:
-          type: string
-        queryString:
-          type: string
-        queryEvalStats:
-          type: object
-          properties:
-            waited:
-              type: integer
-              description: Time waited in queue (milliseconds).
-            elapsed:
-              type: integer
-              description: Elapsed execution time (milliseconds).
-            cancelled:
-              type: boolean
   securitySchemes:
     aws_sigv4:
       type: apiKey

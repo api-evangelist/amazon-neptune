@@ -169,25 +169,6 @@ components:
         totalRecords:
           type: integer
           description: Total number of records in the response.
-    PropertyGraphStreamRecord:
-      type: object
-      properties:
-        commitTimestamp:
-          type: integer
-          description: Unix epoch timestamp in milliseconds of the transaction commit.
-        eventId:
-          $ref: '#/components/schemas/StreamEventId'
-        data:
-          $ref: '#/components/schemas/PropertyGraphData'
-        op:
-          type: string
-          enum:
-          - ADD
-          - REMOVE
-          description: The operation type (ADD or REMOVE).
-        isLastOp:
-          type: boolean
-          description: True only if this is the last operation in the transaction.
     PropertyGraphData:
       type: object
       description: The serialized property graph change data. The type field indicates the element kind.
@@ -232,6 +213,25 @@ components:
         opNum:
           type: integer
           description: The operation number within the commit.
+    PropertyGraphStreamRecord:
+      type: object
+      properties:
+        commitTimestamp:
+          type: integer
+          description: Unix epoch timestamp in milliseconds of the transaction commit.
+        eventId:
+          $ref: '#/components/schemas/StreamEventId'
+        data:
+          $ref: '#/components/schemas/PropertyGraphData'
+        op:
+          type: string
+          enum:
+          - ADD
+          - REMOVE
+          description: The operation type (ADD or REMOVE).
+        isLastOp:
+          type: boolean
+          description: True only if this is the last operation in the transaction.
   securitySchemes:
     aws_sigv4:
       type: apiKey

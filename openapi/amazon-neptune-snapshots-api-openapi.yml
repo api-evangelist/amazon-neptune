@@ -250,37 +250,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    RestoreDBClusterFromSnapshotRequest:
-      type: object
-      required:
-      - DBClusterIdentifier
-      - SnapshotIdentifier
-      - Engine
-      properties:
-        DBClusterIdentifier:
-          type: string
-          description: The name of the new DB cluster.
-        SnapshotIdentifier:
-          type: string
-          description: The identifier of the snapshot to restore from.
-        Engine:
-          type: string
-          description: The database engine to use.
-          default: neptune
-        EngineVersion:
-          type: string
-        Port:
-          type: integer
-        DBSubnetGroupName:
-          type: string
-        VpcSecurityGroupIds:
-          type: array
-          items:
-            type: string
-        DeletionProtection:
-          type: boolean
-        IAMDatabaseAuthenticationEnabled:
-          type: boolean
     DescribeDBClusterSnapshotsResponse:
       type: object
       properties:
@@ -290,6 +259,22 @@ components:
             $ref: '#/components/schemas/DBClusterSnapshot'
         Marker:
           type: string
+    DBClusterMember:
+      type: object
+      description: A member instance of a Neptune DB cluster.
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The instance identifier.
+        IsClusterWriter:
+          type: boolean
+          description: Whether the instance is the primary (writer) instance.
+        DBClusterParameterGroupStatus:
+          type: string
+          description: The status of the parameter group for this member.
+        PromotionTier:
+          type: integer
+          description: Failover priority for the instance.
     DBClusterSnapshot:
       type: object
       description: Contains the details of a Neptune DB cluster snapshot.
@@ -400,22 +385,37 @@ components:
           description: IAM roles associated with the cluster.
           items:
             $ref: '#/components/schemas/DBClusterRole'
-    DBClusterMember:
+    RestoreDBClusterFromSnapshotRequest:
       type: object
-      description: A member instance of a Neptune DB cluster.
+      required:
+      - DBClusterIdentifier
+      - SnapshotIdentifier
+      - Engine
       properties:
-        DBInstanceIdentifier:
+        DBClusterIdentifier:
           type: string
-          description: The instance identifier.
-        IsClusterWriter:
-          type: boolean
-          description: Whether the instance is the primary (writer) instance.
-        DBClusterParameterGroupStatus:
+          description: The name of the new DB cluster.
+        SnapshotIdentifier:
           type: string
-          description: The status of the parameter group for this member.
-        PromotionTier:
+          description: The identifier of the snapshot to restore from.
+        Engine:
+          type: string
+          description: The database engine to use.
+          default: neptune
+        EngineVersion:
+          type: string
+        Port:
           type: integer
-          description: Failover priority for the instance.
+        DBSubnetGroupName:
+          type: string
+        VpcSecurityGroupIds:
+          type: array
+          items:
+            type: string
+        DeletionProtection:
+          type: boolean
+        IAMDatabaseAuthenticationEnabled:
+          type: boolean
     DBClusterRole:
       type: object
       description: An IAM role associated with a Neptune DB cluster.

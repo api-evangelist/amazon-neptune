@@ -336,6 +336,27 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ModifyDBInstanceRequest:
+      type: object
+      required:
+      - DBInstanceIdentifier
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The DB instance identifier.
+        DBInstanceClass:
+          type: string
+          description: The new compute and memory capacity.
+        PreferredMaintenanceWindow:
+          type: string
+        AutoMinorVersionUpgrade:
+          type: boolean
+        NewDBInstanceIdentifier:
+          type: string
+        PromotionTier:
+          type: integer
+        ApplyImmediately:
+          type: boolean
     DescribeDBInstancesResponse:
       type: object
       properties:
@@ -345,6 +366,39 @@ components:
             $ref: '#/components/schemas/DBInstance'
         Marker:
           type: string
+    CreateDBInstanceRequest:
+      type: object
+      required:
+      - DBInstanceIdentifier
+      - DBInstanceClass
+      - Engine
+      - DBClusterIdentifier
+      properties:
+        DBInstanceIdentifier:
+          type: string
+          description: The DB instance identifier.
+        DBInstanceClass:
+          type: string
+          description: The compute and memory capacity of the instance.
+        Engine:
+          type: string
+          description: The database engine to use (neptune).
+          default: neptune
+        DBClusterIdentifier:
+          type: string
+          description: The identifier of the DB cluster to add the instance to.
+        AvailabilityZone:
+          type: string
+          description: The Availability Zone for the instance.
+        PreferredMaintenanceWindow:
+          type: string
+        AutoMinorVersionUpgrade:
+          type: boolean
+        PromotionTier:
+          type: integer
+          description: Failover priority (0-15).
+          minimum: 0
+          maximum: 15
     DBInstance:
       type: object
       description: Contains the details of an Amazon Neptune DB instance.
@@ -395,60 +449,6 @@ components:
         StorageEncrypted:
           type: boolean
           description: Whether the instance storage is encrypted.
-    ModifyDBInstanceRequest:
-      type: object
-      required:
-      - DBInstanceIdentifier
-      properties:
-        DBInstanceIdentifier:
-          type: string
-          description: The DB instance identifier.
-        DBInstanceClass:
-          type: string
-          description: The new compute and memory capacity.
-        PreferredMaintenanceWindow:
-          type: string
-        AutoMinorVersionUpgrade:
-          type: boolean
-        NewDBInstanceIdentifier:
-          type: string
-        PromotionTier:
-          type: integer
-        ApplyImmediately:
-          type: boolean
-    CreateDBInstanceRequest:
-      type: object
-      required:
-      - DBInstanceIdentifier
-      - DBInstanceClass
-      - Engine
-      - DBClusterIdentifier
-      properties:
-        DBInstanceIdentifier:
-          type: string
-          description: The DB instance identifier.
-        DBInstanceClass:
-          type: string
-          description: The compute and memory capacity of the instance.
-        Engine:
-          type: string
-          description: The database engine to use (neptune).
-          default: neptune
-        DBClusterIdentifier:
-          type: string
-          description: The identifier of the DB cluster to add the instance to.
-        AvailabilityZone:
-          type: string
-          description: The Availability Zone for the instance.
-        PreferredMaintenanceWindow:
-          type: string
-        AutoMinorVersionUpgrade:
-          type: boolean
-        PromotionTier:
-          type: integer
-          description: Failover priority (0-15).
-          minimum: 0
-          maximum: 15
   securitySchemes:
     aws_sigv4:
       type: apiKey

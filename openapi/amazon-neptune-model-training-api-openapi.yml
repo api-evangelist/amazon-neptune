@@ -164,6 +164,30 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    JobStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The current status of the job.
+        id:
+          type: string
+          description: The job identifier.
+        processingJob:
+          type: object
+          properties:
+            name:
+              type: string
+            arn:
+              type: string
+            status:
+              type: string
+            outputLocation:
+              type: string
+            failureReason:
+              type: string
+            cloudwatchLogUrl:
+              type: string
     CreateModelTrainingJobRequest:
       type: object
       required:
@@ -249,6 +273,12 @@ components:
             transformEntryPointScript:
               type: string
               description: Name of the transform entry point script.
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
     JobListResponse:
       type: object
       properties:
@@ -257,36 +287,6 @@ components:
           description: List of job IDs.
           items:
             type: string
-    JobCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the created job.
-    JobStatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: The current status of the job.
-        id:
-          type: string
-          description: The job identifier.
-        processingJob:
-          type: object
-          properties:
-            name:
-              type: string
-            arn:
-              type: string
-            status:
-              type: string
-            outputLocation:
-              type: string
-            failureReason:
-              type: string
-            cloudwatchLogUrl:
-              type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

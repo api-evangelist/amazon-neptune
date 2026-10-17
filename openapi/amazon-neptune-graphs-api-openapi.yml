@@ -300,17 +300,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UpdateGraphInput:
-      type: object
-      properties:
-        provisionedMemory:
-          type: integer
-          description: The new provisioned memory size in NCUs.
-        deletionProtection:
-          type: boolean
-          description: Whether deletion protection is enabled.
-        publicConnectivity:
-          type: boolean
     GraphOutput:
       type: object
       properties:
@@ -390,6 +379,17 @@ components:
                 type: boolean
         nextToken:
           type: string
+    UpdateGraphInput:
+      type: object
+      properties:
+        provisionedMemory:
+          type: integer
+          description: The new provisioned memory size in NCUs.
+        deletionProtection:
+          type: boolean
+          description: Whether deletion protection is enabled.
+        publicConnectivity:
+          type: boolean
     CreateGraphInput:
       type: object
       required:

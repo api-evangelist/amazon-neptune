@@ -160,20 +160,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    JobListResponse:
-      type: object
-      properties:
-        ids:
-          type: array
-          description: List of job IDs.
-          items:
-            type: string
-    JobCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the created job.
     CreateModelTransformJobRequest:
       type: object
       required:
@@ -247,6 +233,20 @@ components:
               type: string
             cloudwatchLogUrl:
               type: string
+    JobCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the created job.
+    JobListResponse:
+      type: object
+      properties:
+        ids:
+          type: array
+          description: List of job IDs.
+          items:
+            type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey
