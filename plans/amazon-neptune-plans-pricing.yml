@@ -1,0 +1,87 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://aws.amazon.com/neptune/pricing/
+sources:
+- https://aws.amazon.com/neptune/pricing/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-09-20'
+published: true
+note: 'Most rate tables (Neptune Analytics m-NCU hourly prices, serverless NCU-hour, storage per GB-month,
+  I/O per million requests, backup storage, data transfer tiers, workbench notebook instances) render
+  as unresolved pricing template tokens in the captured text, so no numeric values are visible. Numeric
+  figures visible are the $0.15 per vCPU-Hour CPU credit charge, the $0.01 per GB EC2 regional transfer
+  note, and illustrative figures inside four worked pricing examples (e.g. $0.348 per hour db.r5.large),
+  which are examples rather than the rate card. Billing is usage-based: on-demand instance hours, serverless
+  NCUs, storage GB-month, I/O per million requests, plus optional 1-year Database Savings Plans.'
+plan_count: 3
+currency: USD
+plans:
+- name: T4g and T3 CPU Credits
+  price_text: $0.15 per vCPU-Hour
+  price: 0.15
+  currency: USD
+  period: per-use
+  unit: vCPU-Hour
+  included_quota: charged if average CPU use over a rolling 24-hour period exceeds the baseline of the
+    instance
+- name: Free Tier trial (Neptune Database)
+  price_text: free for 30 days
+  currency: USD
+  period: none
+  included_quota: 750 hours of the Neptune db.t3.medium or db.t4g.medium instance, 10 million I/O requests,
+    one GB of storage, and one GB of backup storage
+  overage: Once your free trial expires or your usage exceeds the free allowance, you can keep it running
+    at our standard on-demand rates.
+- name: EC2 Regional data transfer (Neptune instances outside VPC)
+  price_text: $0.01 per GB in/out
+  price: 0.01
+  currency: USD
+  period: per-use
+  unit: GB
+rate_limit_statements:
+- Read replicas Up to 15 Neptune replicas for read scalability
+- Scale-down latency <5 minute
+- Starting capacity 1 NCU
+- Capacity granularity Fine-grained, with increments as small as 1 NCU
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units:
+  - compute
+  - data
+  plans:
+  - name: T4g and T3 CPU Credits
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Free Tier trial (Neptune Database)
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: EC2 Regional data transfer (Neptune instances outside VPC)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
