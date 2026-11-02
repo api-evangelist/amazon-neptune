@@ -53,7 +53,7 @@ rate_limit_statements:
 - Starting capacity 1 NCU
 - Capacity granularity Fine-grained, with increments as small as 1 NCU
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
