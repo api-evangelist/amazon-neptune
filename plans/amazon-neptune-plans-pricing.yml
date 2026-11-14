@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://aws.amazon.com/neptune/pricing/
+name: Amazon Neptune API Plans
 sources:
 - https://aws.amazon.com/neptune/pricing/
 provenance:
@@ -53,7 +54,7 @@ rate_limit_statements:
 - Starting capacity 1 NCU
 - Capacity granularity Fine-grained, with increments as small as 1 NCU
 x-canonical:
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid

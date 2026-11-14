@@ -5,6 +5,9 @@ artifacts:
   agentic-access/amazon-neptune-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/amazon-neptune-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   arazzo/amazon-neptune-analytics-cancel-import-task-workflow.yml:
     method: derived
     evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
@@ -86,6 +89,12 @@ artifacts:
   capabilities/amazon-neptune-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-action-addtagstoresource-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -105,17 +114,17 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/amazon-neptune-data-processing-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-data-processing-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-data-processing-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-data-processing-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-data.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-data
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-data.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-data
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-db-clusters-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-neptune-db-clusters-api
@@ -177,11 +186,11 @@ artifacts:
     method: derived
     evidence: openapi/amazon-neptune-import-tasks-api
   collections/amazon-neptune-inference-endpoints-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-inference-endpoints-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-inference-endpoints-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-inference-endpoints-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-loader-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-neptune-loader-api
@@ -219,17 +228,17 @@ artifacts:
     method: derived
     evidence: openapi/amazon-neptune-ml
   collections/amazon-neptune-model-training-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-model-training-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-model-training-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-model-training-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-model-transform-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-model-transform-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-model-transform-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-model-transform-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-neptune-opencypher-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -314,6 +323,24 @@ artifacts:
   collections/amazon-neptune-subnet-groups-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-neptune-subnet-groups-api
+  compliance/amazon-neptune-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
+  conformance/amazon-neptune-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/amazon-neptune-conventions.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/amazon-neptune-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  eligibility/amazon-neptune-eligibility.yml:
+    method: harvested
+    evidence: declared in the artifact
+  errors/amazon-neptune-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/amazon-neptune-analytics-graph-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -854,6 +881,9 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/amazon-neptune-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -890,7 +920,94 @@ artifacts:
   json-ld/amazon-neptune-streams-context.jsonld:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-add-tags-to-resource-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-analytics-graph-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-cancel-export-task-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-cancel-import-task-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-cancel-mlmodel-training-job-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-cancel-open-cypher-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-cancel-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-copy-dbcluster-parameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-copy-dbcluster-snapshot-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbcluster-endpoint-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbcluster-endpoint-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbcluster-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbcluster-parameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbcluster-snapshot-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbinstance-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbparameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbsubnet-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-dbsubnet-group-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-event-subscription-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-event-subscription-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-global-cluster-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-global-cluster-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-graph-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-graph-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-graph-snapshot-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-graph-using-import-task-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-graph-using-import-task-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-mlendpoint-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-private-graph-endpoint-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-create-private-graph-endpoint-output-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-createdataprocessingjobrequest-schema.json:
@@ -932,6 +1049,12 @@ artifacts:
   json-schema/amazon-neptune-db-instance-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-dbcluster-parameter-group-name-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-dbcluster-parameter-groups-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-dbcluster-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -944,10 +1067,100 @@ artifacts:
   json-schema/amazon-neptune-dbclustersnapshot-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-dbengine-version-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-dbinstance-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-dbinstance-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-dbparameter-group-name-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-dbparameter-groups-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-dbsubnet-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-dbsubnetgroup-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-dbcluster-endpoint-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-dbcluster-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-dbcluster-parameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-dbinstance-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-dbparameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-event-subscription-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-event-subscription-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-global-cluster-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-graph-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-graph-snapshot-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-private-graph-endpoint-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-delete-sparql-statistics-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbcluster-endpoints-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbcluster-parameter-groups-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbcluster-snapshots-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbclusters-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbengine-versions-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbinstances-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbparameter-groups-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-dbsubnet-groups-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-event-subscriptions-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-events-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-global-clusters-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-orderable-dbinstance-options-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-describe-pending-maintenance-actions-message-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-describedbclustersnapshotsresponse-schema.json:
@@ -977,6 +1190,33 @@ artifacts:
   json-schema/amazon-neptune-errorresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-event-subscriptions-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-events-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-execute-gremlin-profile-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-execute-gremlin-profile-query-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-execute-gremlin-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-execute-gremlin-query-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-execute-open-cypher-explain-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-execute-open-cypher-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-execute-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-executegremlinprofileinput-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -996,6 +1236,75 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-executesparqlqueryinput-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-engine-status-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-export-task-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-graph-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-graph-snapshot-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-gremlin-query-status-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-import-task-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-index-rebuild-status-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-index-rebuild-status-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-loader-job-status-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-loader-job-status-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-mlmodel-training-job-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-open-cypher-query-status-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-private-graph-endpoint-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-propertygraph-statistics-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-propertygraph-stream-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-propertygraph-stream-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-query-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-query-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-sparql-statistics-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-sparql-stream-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-sparql-stream-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-get-storage-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-global-clusters-message-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-graph-element-schema.json:
@@ -1040,6 +1349,51 @@ artifacts:
   json-schema/amazon-neptune-jobstatusresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-list-export-tasks-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-export-tasks-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-graph-snapshots-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-gremlin-queries-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-index-rebuilds-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-loader-jobs-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-loader-jobs-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-open-cypher-queries-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-open-cypher-queries-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-private-graph-endpoints-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-private-graph-endpoints-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-queries-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-tags-for-resource-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-tags-for-resource-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-list-tags-for-resource-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-listgraphsnapshotsoutput-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -1070,6 +1424,15 @@ artifacts:
   json-schema/amazon-neptune-loaderstatusresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-manage-propertygraph-statistics-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-manage-sparql-statistics-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-manage-sparql-statistics-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-ml-job-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -1077,6 +1440,36 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-mljobstatusoutput-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-dbcluster-endpoint-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-dbcluster-endpoint-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-dbcluster-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-dbcluster-parameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-dbcluster-snapshot-attribute-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-dbinstance-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-dbparameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-event-subscription-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-event-subscription-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-modify-global-cluster-message-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-modifydbclusterrequest-schema.json:
@@ -1127,6 +1520,30 @@ artifacts:
   json-schema/amazon-neptune-propertygraphstreamresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-reboot-dbinstance-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-reset-dbcluster-parameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-reset-dbparameter-group-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-reset-graph-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-restore-dbcluster-from-snapshot-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-restore-dbcluster-to-point-in-time-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-restore-graph-from-snapshot-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-restore-graph-from-snapshot-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-restoredbclusterfromsnapshotrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -1163,6 +1580,42 @@ artifacts:
   json-schema/amazon-neptune-sparqlstreamresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-start-export-task-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-export-task-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-graph-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-import-task-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-import-task-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-index-rebuild-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-index-rebuild-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-loader-job-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-loader-job-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-mldata-processing-job-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-mlmodel-training-job-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-start-mlmodel-transform-job-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-startloaderjobinput-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -1178,10 +1631,19 @@ artifacts:
   json-schema/amazon-neptune-startmlmodeltransformjobinput-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-neptune-stop-graph-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-neptune-stream-record-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-streameventid-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-tag-list-message-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-neptune-update-graph-output-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-neptune-updategraphinput-schema.json:
@@ -1766,7 +2228,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -1835,126 +2297,114 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/_original/amazon-neptune-analytics-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-data-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-gremlin-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-loader-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-management-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-ml-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-opencypher-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-sparql-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/amazon-neptune-streams-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/amazon-neptune-llms-provenance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/amazon-neptune-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/amazon-neptune-mcp.yml:
+    method: searched
+    evidence: declared in the artifact
+  mcp/amazon-neptune-tool-crosswalk.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/amazon-neptune-amazon-neptune-management-api-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-neptune-data-processing-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/amazon-neptune-db-cluster-endpoint-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/amazon-neptune-db-cluster-parameter-group-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-db-clusters-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-db-instances-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/amazon-neptune-db-parameter-group-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-engine-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/amazon-neptune-event-subscription-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-events-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/amazon-neptune-exporttasks-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-global-clusters-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-graph-snapshots-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-graphs-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-gremlin-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-import-tasks-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-neptune-inference-endpoints-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-loader-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-maintenance-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-ml-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-neptune-model-training-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-neptune-model-transform-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-open-cypher-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/amazon-neptune-operations-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-parameter-groups-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-private-graph-endpoints-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-property-graph-stream-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-query-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-snapshots-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-sparql-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-sparql-stream-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-status-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
+  openapi/amazon-neptune-storage-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-streams-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-neptune-subnet-groups-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   overlays/amazon-neptune-amazon-neptune-management-api-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
@@ -2039,6 +2489,12 @@ artifacts:
   overlays/amazon-neptune-subnet-groups-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  packages/amazon-neptune-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  patterns/amazon-neptune-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/amazon-neptune-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
@@ -2046,8 +2502,8 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   postman/amazon-neptune-data.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-neptune-data
+    method: unknown
+    evidence: no authorship recorded
   postman/amazon-neptune-gremlin.postman_collection.json:
     method: derived
     evidence: openapi/amazon-neptune-gremlin
@@ -2069,10 +2525,16 @@ artifacts:
   postman/amazon-neptune-streams.postman_collection.json:
     method: derived
     evidence: openapi/amazon-neptune-streams
+  privacy/amazon-neptune-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/amazon-neptune-rate-limits.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-neptune-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/amazon-neptune-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-neptune-spectral-rules.yml:
@@ -2091,11 +2553,38 @@ artifacts:
     method: searched
     evidence: declared in the artifact
   smithy/neptune-2014-10-31.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/neptune/service/2014-10-31/neptune-2014-10-31.json
+      (sha256 dd3fc7307ebe, fetched 2026-11-11T21:13:11+00:00)
+  smithy/neptune-graph-2023-11-29.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/neptune-graph/service/2023-11-29/neptune-graph-2023-11-29.json
+      (sha256 5cb0dc79ea08, fetched 2026-11-11T21:13:12+00:00)
+  smithy/neptunedata-2023-08-01.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/neptunedata/service/2023-08-01/neptunedata-2023-08-01.json
+      (sha256 3a0b36eea56a, fetched 2026-11-11T21:13:13+00:00)
+  terms/amazon-neptune-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/amazon-neptune-vendors.yml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/amazon-neptune-vocabulary.yaml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/amazon-neptune-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/amazon-neptune-midway-auth-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-neptune-repost-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-neptune-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-neptune-well-known.yml:
     method: unknown
     evidence: no authorship recorded
